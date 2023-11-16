@@ -1,0 +1,8 @@
+.yuki-color {
+  background-color: #0dcfdc !important;
+}
+
+.navBar-container, .footer-container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
