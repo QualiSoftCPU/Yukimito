@@ -9,7 +9,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
-import logo from '../../images/Logo.PNG';
+import logo from '../../assets/images/Logo.PNG';
 
 export default function NavBar(props) {
 
@@ -27,7 +27,7 @@ export default function NavBar(props) {
   };
 
   return (
-    <AppBar className="yuki-color" position='fixed'>
+    <AppBar className="yuki-color no-box-shadow" position='relative'>
       <Container maxWidth='xl' className='navBar-container'>
         <Toolbar disableGutters>
           <Typography

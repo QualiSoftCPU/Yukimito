@@ -20,7 +20,7 @@ export default function Footer() {
   };
 
   const logoStyle = {
-    fontSize: '75px'
+    fontSize: '50px'
   };
 
   const iconStyle = {
@@ -28,7 +28,7 @@ export default function Footer() {
   };
 
   return (
-    <BottomNavigation className='yuki-color'>
+    <BottomNavigation>
       <AppBar className='yuki-color' position="static" style={style}>
         <Container maxWidth="xl" className='footer-container'>
           <Toolbar disableGutters>

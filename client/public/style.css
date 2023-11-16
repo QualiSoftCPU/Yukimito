@@ -1,14 +1,30 @@
+.button-link {
+  color: #0dcfdc !important;
+}
+
 .yuki-color {
   background-color: #0dcfdc !important;
 }
 
-.navBar-container, .footer-container {
+.navBar-container {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.no-box-shadow {
+  box-shadow: none !important
 }
 
 .input-white-bg {
   background-color: white !important;
   border-radius: 4px;
-  
+}
+
+.css-o5pqw1-MuiPaper-root-MuiCard-root {
+  min-width: 400px !important;
+  border-radius: 15px !important;
+}
+
+.button-color {
+  background-color: #0dcfdc !important;
 }
