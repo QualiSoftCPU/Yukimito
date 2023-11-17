@@ -1,172 +1,180 @@
-import React from 'react'
-import { Box, Button, styled, TextField, Typography } from "@mui/material";
+import React, { useState } from 'react'
+import { Box, Button, TextField, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import cartoonDogs from "../assets/images/cartoonDogs.jpeg";
-import { Grid } from "@mui/material";
-import { amber } from "@mui/material/colors";
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 
-const LilitaOne = "'Lilita One', cursive";
+const inputDetails = [
+    {
+        name: 'ownerName',
+        label: "Pet Owner's Name",
+        placeholder: "Enter Name",
+        type: "text"
+    }, 
+    {
+        name: 'contact',
+        label: "Contact Number",
+        placeholder: "Enter Contact Number",
+        type: "text"
+    }, 
+    {
+        name: 'username',
+        label: "Username",
+        placeholder: "Enter Username",
+        type: "text"
+    }, 
+    {
+        name: 'password',
+        label: "Password",
+        placeholder: "Enter Passord",
+        type: "password"
+    }, 
+    {
+        name: 'confirmPassword',
+        label: "Confirm Password",
+        placeholder: "Confirm Username",
+        type: "password"
+    }]
 
 const ClientRegister = () => {
 
-    const CustomBox = styled(Box)(({ theme }) => ({
-    display: "flex",
-    justifyContent: "center",
-    gap: theme.spacing(8),
-    marginTop: theme.spacing(1),
-    [theme.breakpoints.down("sm")]: {
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
-    },
-    }));
-    
-    const Title = styled(Typography)(({ theme }) => ({
-    fontSize: "90px",
-    color: "#000336",
-    
-    fontFamily: LilitaOne,
+    const [ input, setInput ] = useState({
+        ownerName: String,
+        contactNumber: String,
+        username: String,
+        password: String,
+        confirmPassword: String,
+    });
 
-    [theme.breakpoints.down("sm")]: {
-        fontSize: "40px",
-    },
-    }));
+    function handleInput(event) {
+        const name = event.target.name;
+        console.log(name);
+        if (name === 'ownerName') {
+            setInput({
+                ...input,
+                ownerName: event.target.value
+            })
+        } else if (name === 'contact') {
+            setInput({
+                ...input,
+                contact: event.target.value
+            })
+        } else if (name === 'username') {
+            setInput({
+                ...input,
+                username: event.target.value
+            })
+        } else if (name === 'password') {
+            setInput({
+                ...input,
+                password: event.target.value
+            })
+        } else if (name === 'confirmPassword') {
+            setInput({
+                ...input,
+                confirmPassword: event.target.value
+            })
+        }
+    }
 
-    const signInStyle = {
-        paddingLeft: '0',
-        paddingRight: '0',
-    };  
-
-    const formStyle = {
-    minWidth: 275, 
-    paddingTop: '1rem',
-    paddingBottom: '1rem',
-    paddingRight: '3rem',
-    paddingLeft: '3rem',
-    backgroundColor: '#ededed'
+    function handleSubmit() {
+        console.log(input);
     }
 
     return (
-    <Container maxWidth='xl' className='navBar-container'>
-        <Toolbar disableGutters>
-            <CustomBox>
-            {/*comment here*/}
-                <Grid>
-                    <CustomBox sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                            <Title variant="h1" sx={{ fontSize: "100px", color: '#F5CF00' }}>
-                                YUKIMITO
-                            </Title>
-                    </CustomBox>
-                    <CustomBox sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                            <img
-                                src={cartoonDogs}
-                                alt="cartoon dog"
-                                style={{ width: "100%", maxWidth: "70%" }}
-                            />
-                    </CustomBox>
-                </Grid>
-                <Grid align="center" >
-                    <CustomBox sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                        <Card sx={formStyle}>
-                            <Title
-                                variant="h1"
-                                sx={{ fontSize: "70px", color: '#F5CF00'}}
-                            >
-                                Welcome
-                            </Title>
-        
-                            <Typography
-                                variant="body2"
-                                sx={{
-                                    fontSize: "20px",
-                                    color: "#5A6473",
-                                    fontWeight: "1000",
-                                    my: 2,
-                                }}
-                            >
-                                Register to Yukimito!
-                            </Typography>
-                            <Box mb={1}>
-                                <TextField
-                                    className='input-white-bg'
-                                    variant="outlined"
-                                    label="Pet Owner's Name"
-                                    placeholder="Enter Name"
-                                    fullWidth
-                                    required
-                                />
-                            </Box>
-                            <Box mb={1}>
-                                <TextField
-                                className='input-white-bg'
-                                    variant="outlined"
-                                    label="Contact Number"
-                                    placeholder="Enter Contact Number"
-                                    fullWidth
-                                    required
-                                />
-                            </Box>
-                            <Box mb={1}>
-                                <TextField
-                                className='input-white-bg'
-                                    variant="outlined"
-                                    label="Username"
-                                    placeholder="Enter Username"
-                                    fullWidth
-                                    required
-                                />
-                            </Box>
-                            <Box mb={1}>
-                                <TextField
-                                className='input-white-bg'
-                                    variant="outlined"
-                                    label="Password"
-                                    type="password"
-                                    placeholder="Enter Password"
-                                    fullWidth
-                                    required
-                                />
-                            </Box>
-                            <Box mb={1}>
-                                <TextField
-                                className='input-white-bg'
-                                    variant="outlined"
-                                    label="Confirm Password"
-                                    type="password"
-                                    placeholder="Confirm Password"
-                                    fullWidth
-                                    required
-                                />
-                            </Box>
-                            <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                                <Button className='button-color' type="submit" variant="contained">
-                                    Register
-                                </Button>
-                                <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                                    <Typography
-                                        variant="body2"
-                                        sx={{
-                                            fontSize: "15px",
-                                            color: "#5A6473",
-                                            fontWeight: "1000",
-                                            my: 2,
-                                        }}
-                                    >
-                                        Already have an account?
-                                    </Typography>
-                                    <Button style={signInStyle} className='button-link' type="submit" variant="text">
-                                        Sign in
-                                    </Button>
+        <Container maxWidth='xl' className='main-container'>
+            <Toolbar disableGutters>
+                    <Box sx={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(2, 1fr)',
+                        gap: 10,
+                        textAlign: 'center',
+                        gridTemplateRows: 'auto',
+                        gridTemplateAreas: `"hero form"`,
+                    }}> 
+                        <Box sx={{ gridArea: 'hero'}}>
+                                <Box>
+                                    <Box sx={2}>
+                                        <Typography className='yukimito-font yuki-font-color' variant="h1" sx={2}>
+                                            YUKIMITO
+                                        </Typography>
+                                    </Box>
+                                    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                                            <img
+                                                src={cartoonDogs}
+                                                alt="cartoon dog"
+                                                style={{ width: "100%", maxWidth: "70%" }}
+                                            />
+                                    </Box>
+                                </Box>
+                        </Box>
+                        <Box sx={{ gridArea: 'form'}}>
+                            <Box>
+                                <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                                    <Card className='form-bg-color form-styles'>
+                                        <Box className="input-container">
+                                            <Typography className='yukimito-font yuki-font-color' variant="h1" sx={{ 
+                                                fontSize: "70px"}}>
+                                                Welcome
+                                            </Typography>
+
+                                            <Typography className='no-margin' variant="body2" sx={{
+                                                    fontSize: "20px",
+                                                    color: "#5A6473",
+                                                    fontWeight: "1000",
+                                                    my: 2,
+                                                }}>
+                                                Register to Yukimito!
+                                            </Typography>
+
+                                            {inputDetails.map((details, index) => {
+                                                return (
+                                                    <TextField
+                                                        key={index}
+                                                        className='input-margin non-inline input-styling'
+                                                        onChange={handleInput}
+                                                        name={details.name}
+                                                        placeholder={details.placeholder}
+                                                        type={details.type}
+                                                        id="outlined-basic" 
+                                                        label={details.label} 
+                                                        variant="outlined"
+                                                        required
+                                                        />)
+                                            })}
+
+                                                <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+                                                    <Button className='button-color' onClick={handleSubmit} variant="contained"
+                                                        style={{marginRight: '10px'}}
+                                                    >
+                                                        Register
+                                                    </Button>
+                                                    <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+                                                        <Typography
+                                                            variant="body2"
+                                                            sx={{
+                                                                fontSize: "15px",
+                                                                color: "#5A6473",
+                                                                fontWeight: "1000",
+                                                                my: 2,
+                                                            }}
+                                                        >
+                                                            Already have an account?
+                                                        </Typography>
+                                                        <Button className='button-link' type="submit" variant="text">
+                                                            Sign in
+                                                        </Button>
+                                                    </Box>
+                                                </Box>
+                                            </Box>
+                                        </Card>
                                 </Box>
                             </Box>
-                        </Card>
-                    </CustomBox>
-                </Grid>
-        </CustomBox>
-        </Toolbar>
-    </Container>
+                        </Box>
+                    </Box>
+            </Toolbar>
+        </Container>
     );
 };
 export default ClientRegister

@@ -2,6 +2,36 @@
   color: #0dcfdc !important;
 }
 
+.form-bg-color {
+  background-color: #ededed !important;
+} 
+
+.form-styles {
+  border-radius: 10px;
+  border: 1px solid #C4C4C4 !important;
+}
+
+.input-styling {
+  border-radius: 20px;
+  background-color: #fff !important;
+}
+
+.input-container {
+  padding: 2rem !important;
+}
+
+.input-margin {
+  margin-bottom: 0.5rem !important;
+}
+
+.yukimito-font {
+  font-family: 'Lilita One' !important;
+}
+
+.yuki-font-color {
+  color: #F5CF00;
+}
+
 .yuki-color {
   background-color: #0dcfdc !important;
 }
@@ -9,6 +39,20 @@
 .navBar-container {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.non-inline {
+  width: 100%;
+}
+
+.no-margin {
+  margin-top: 0 !important;
+}
+
+.main-container {
+  padding-top: 0.5rem;
+  padding-bottom: 1.5rem;
+  margin-top: 2rem;
 }
 
 .no-box-shadow {
@@ -27,4 +71,8 @@
 
 .button-color {
   background-color: #0dcfdc !important;
+}
+
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+  border-radius: 20px !important;
 }

@@ -1,19 +1,19 @@
-import AdminDashBoard from "./pages/AdminDashboard";
-// import AdminNavbar from "./components/AdminNavbar";
-import AdminManageContent from "./pages/AdminManageContent";
-import AdminCalendar from "./pages/AdminCalendar";
-import AdminInventory from "./pages/AdminInventory";
-import AdminVaccine from "./pages/AdminVaccine";
-import AdminBooking from "./pages/AdminBooking";
-import AdminClient from "./pages/AdminClient";
-import LandingPage from "./pages/LandingPage";
-import ClientLogin from "./pages/ClientLogin";
+// import AdminDashBoard from "./pages/AdminDashboard";
+// // import AdminNavbar from "./components/AdminNavbar";
+// import AdminManageContent from "./pages/AdminManageContent";
+// import AdminCalendar from "./pages/AdminCalendar";
+// import AdminInventory from "./pages/AdminInventory";
+// import AdminVaccine from "./pages/AdminVaccine";
+// import AdminBooking from "./pages/AdminBooking";
+// import AdminClient from "./pages/AdminClient";
+// import LandingPage from "./pages/LandingPage";
+// import ClientLogin from "./pages/ClientLogin";
 import ClientRegister from "./pages/ClientRegister";
 import NavBar from "./components/partials/NavBar";
 import Footer from "./components/partials/Footer";
 
 
-import { Route, Routes } from "react-router-dom";
+// import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (

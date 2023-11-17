@@ -11,9 +11,8 @@ import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
 import logo from '../../assets/images/Logo.PNG';
 
-export default function NavBar(props) {
+export default function NavBar() {
 
-  // change [] to props.pages for none empty nav menu bar
   const pages = [];
 
   const [anchorElNav, setAnchorElNav] = useState(null);
