@@ -6,85 +6,48 @@ import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 
 const inputDetails = [
-    {
-        name: 'ownerName',
-        label: "Pet Owner's Name",
-        placeholder: "Enter Name",
-        type: "text"
-    }, 
-    {
-        name: 'contact',
-        label: "Contact Number",
-        placeholder: "Enter Contact Number",
-        type: "text"
-    }, 
-    {
-        name: 'username',
-        label: "Username",
-        placeholder: "Enter Username",
-        type: "text"
-    }, 
-    {
-        name: 'password',
-        label: "Password",
-        placeholder: "Enter Passord",
-        type: "password"
-    }, 
-    {
-        name: 'confirmPassword',
-        label: "Confirm Password",
-        placeholder: "Confirm Username",
-        type: "password"
-    }]
+  {
+      name: 'adminUsername',
+      label: "Admin Username",
+      placeholder: "Admin Username",
+      type: "text"
+  }, 
+  {
+      name: 'password',
+      label: "Password",
+      placeholder: "Password",
+      type: "password"
+  }]
 
-const ClientRegister = () => {
+export default function AdminLogin() {
+  
+  const [ input, setInput ] = useState({
+    username: String,
+    password: String
+  });
 
-    const [ input, setInput ] = useState({
-        ownerName: String,
-        contactNumber: String,
-        username: String,
-        password: String,
-        confirmPassword: String,
-    });
-
-    function handleInput(event) {
-        const name = event.target.name;
-        console.log(name);
-        if (name === 'ownerName') {
-            setInput({
-                ...input,
-                ownerName: event.target.value
-            })
-        } else if (name === 'contact') {
-            setInput({
-                ...input,
-                contact: event.target.value
-            })
-        } else if (name === 'username') {
-            setInput({
-                ...input,
-                username: event.target.value
-            })
-        } else if (name === 'password') {
-            setInput({
-                ...input,
-                password: event.target.value
-            })
-        } else if (name === 'confirmPassword') {
-            setInput({
-                ...input,
-                confirmPassword: event.target.value
-            })
-        }
-    }
-
-    function handleSubmit() {
-        fetch('localhost:5000/createUser').then(( ) => {
-            console.log("Established connection!")
+  function handleInput(event) {
+    const name = event.target.name;
+    console.log(name);
+    if (name === 'username') {
+        setInput({
+            ...input,
+            username: event.target.value
+        })
+    } else if (name === 'password') {
+        setInput({
+            ...input,
+            password: event.target.value
         })
     }
+  }
 
-    return (
+function handleSubmit() {
+    console.log(input);
+}
+
+  return (
+   
         <Container maxWidth='xl' className='main-container'>
             <Toolbar disableGutters>
                     <FormControl sx={{
@@ -127,7 +90,7 @@ const ClientRegister = () => {
                                                     fontWeight: "1000",
                                                     my: 2,
                                                 }}>
-                                                Register to Yukimito!
+                                                Login to Yukimito!
                                             </Typography>
 
                                             {inputDetails.map((details, index) => {
@@ -150,22 +113,11 @@ const ClientRegister = () => {
                                                     <Button className='button-color' onClick={handleSubmit} variant="contained"
                                                         style={{marginRight: '10px'}}
                                                     >
-                                                        Register
+                                                        Login
                                                     </Button>
                                                     <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                                                        <Typography
-                                                            variant="body2"
-                                                            sx={{
-                                                                fontSize: "15px",
-                                                                color: "#5A6473",
-                                                                fontWeight: "1000",
-                                                                my: 2,
-                                                            }}
-                                                        >
-                                                            Already have an account?
-                                                        </Typography>
                                                         <Button className='button-link' type="submit" variant="text">
-                                                            Sign in
+                                                            Create an account
                                                         </Button>
                                                     </Box>
                                                 </Box>
@@ -179,4 +131,3 @@ const ClientRegister = () => {
         </Container>
     );
 };
-export default ClientRegister
