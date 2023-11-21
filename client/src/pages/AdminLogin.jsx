@@ -118,11 +118,6 @@ function handleSubmit() {
                                                     >
                                                         Login
                                                     </Button>
-                                                    <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                                                        <Button className='button-link' type="submit" variant="text">
-                                                            Create an account
-                                                        </Button>
-                                                    </Box>
                                                 </Box>
                                             </Box>
                                         </Card>

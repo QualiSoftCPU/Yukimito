@@ -1,6 +1,8 @@
 .button-link {
   color: #0dcfdc !important;
   font-family: sans-serif;
+  text-decoration: none !important;
+  margin-left: 0.25rem !important;
 }
 
 .form-bg-color {
@@ -33,6 +35,10 @@
   color: #F5CF00;
 }
 
+.yuki-font-color2 {
+  color: #0dcfdc;
+}
+
 .yuki-color {
   background-color: #0dcfdc !important;
 }
@@ -40,6 +46,10 @@
 .navBar-container {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.nav-logo {
+  padding-top: 1rem !important;
 }
 
 .non-inline {
@@ -53,7 +63,7 @@
 .main-container {
   padding-top: 0.5rem;
   padding-bottom: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .no-box-shadow {

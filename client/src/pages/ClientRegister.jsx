@@ -82,9 +82,11 @@ const ClientRegister = () => {
     }
 
     function handleSubmit() {
-        fetch('localhost:5000/createUser').then(( ) => {
-            console.log("Established connection!")
-        })
+        // fetch('localhost:5000/createUser').then(( ) => {
+        //     console.log("Established connection!")
+        // })
+
+        console.log(input);
     }
 
     return (
@@ -121,9 +123,9 @@ const ClientRegister = () => {
                                 <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                                     <Card className='form-bg-color form-styles'>
                                         <Box className="input-container">
-                                            <Typography className='yukimito-font yuki-font-color' variant="h1" sx={{ 
-                                                fontSize: "70px"}}>
-                                                Welcome
+                                            <Typography className='yukimito-font yuki-font-color2' variant="h1" sx={{ 
+                                                fontSize: "35px"}}>
+                                                WELCOME
                                             </Typography>
 
                                             <Typography className='no-margin' variant="body2" sx={{
