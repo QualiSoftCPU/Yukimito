@@ -4,6 +4,9 @@ import Card from "@mui/material/Card";
 import cartoonDogs from "../assets/images/cartoonDogs.jpeg";
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
+import NavBar from '../components/partials/NavBar';
+import Footer from '../components/partials/Footer';
+import { Link } from 'react-router-dom';
 
 const inputDetails = [
     {
@@ -85,7 +88,9 @@ const ClientRegister = () => {
     }
 
     return (
-        <Container maxWidth='xl' className='main-container'>
+        <>
+            <NavBar />
+            <Container maxWidth='xl' className='main-container'>
             <Toolbar disableGutters>
                     <FormControl sx={{
                         display: 'grid',
@@ -164,9 +169,9 @@ const ClientRegister = () => {
                                                         >
                                                             Already have an account?
                                                         </Typography>
-                                                        <Button className='button-link' type="submit" variant="text">
+                                                        <Link to={'/PetOwnerLogin'} className='button-link' type="submit" variant="text">
                                                             Sign in
-                                                        </Button>
+                                                        </Link>
                                                     </Box>
                                                 </Box>
                                             </Box>
@@ -177,6 +182,8 @@ const ClientRegister = () => {
                     </FormControl>
             </Toolbar>
         </Container>
+            <Footer />
+        </>
     );
 };
 export default ClientRegister

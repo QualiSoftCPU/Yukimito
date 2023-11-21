@@ -4,6 +4,8 @@ import Card from "@mui/material/Card";
 import cartoonDogs from "../assets/images/cartoonDogs.jpeg";
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
+import NavBar from '../components/partials/NavBar';
+import Footer from '../components/partials/Footer';
 
 const inputDetails = [
   {
@@ -47,7 +49,8 @@ function handleSubmit() {
 }
 
   return (
-   
+    <>
+        <NavBar/ >
         <Container maxWidth='xl' className='main-container'>
             <Toolbar disableGutters>
                     <FormControl sx={{
@@ -129,5 +132,7 @@ function handleSubmit() {
                     </FormControl>
             </Toolbar>
         </Container>
+        <Footer />
+    </>
     );
 };

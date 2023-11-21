@@ -6,6 +6,7 @@ import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 import NavBar from '../components/partials/NavBar';
 import Footer from '../components/partials/Footer';
+import { Link } from 'react-router-dom';
 
 const inputDetails = [
     {
@@ -119,9 +120,9 @@ const PetOwnerLogin = () => {
                                                             Login
                                                         </Button>
                                                         <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                                                            <Button className='button-link' type="submit" variant="text">
+                                                            <Link to={'/ClientRegister'} className='button-link' type="submit" variant="text">
                                                                 Create an account
-                                                            </Button>
+                                                            </Link>
                                                         </Box>
                                                     </Box>
                                                 </Box>
