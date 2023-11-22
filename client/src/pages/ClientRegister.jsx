@@ -146,7 +146,7 @@ const ClientRegister = () => {
                                                         name={details.name}
                                                         placeholder={details.placeholder}
                                                         type={details.type}
-                                                        id="outlined-basic" 
+                                                        id={'outlined-basic ' + index}
                                                         label={details.label} 
                                                         variant="outlined"
                                                         required
@@ -171,7 +171,7 @@ const ClientRegister = () => {
                                                         >
                                                             Already have an account?
                                                         </Typography>
-                                                        <Link to={'/PetOwnerLogin'} className='button-link' type="submit" variant="text">
+                                                        <Link to={'/'} className='button-link' type="submit" variant="text">
                                                             Sign in
                                                         </Link>
                                                     </Box>

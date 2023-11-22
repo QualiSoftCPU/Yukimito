@@ -31,7 +31,7 @@ export default function AdminLogin() {
   function handleInput(event) {
     const name = event.target.name;
     console.log(name);
-    if (name === 'username') {
+    if (name === 'adminUsername') {
         setInput({
             ...input,
             username: event.target.value
@@ -82,8 +82,8 @@ function handleSubmit() {
                                 <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                                     <Card className='form-bg-color form-styles'>
                                         <Box className="input-container">
-                                            <Typography className='yukimito-font yuki-font-color' variant="h1" sx={{ 
-                                                fontSize: "70px"}}>
+                                            <Typography className='yukimito-font yuki-font-color2' variant="h1" sx={{ 
+                                                fontSize: "35px"}}>
                                                 Welcome
                                             </Typography>
 

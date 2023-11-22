@@ -1,5 +1,5 @@
 // import AdminDashBoard from "./pages/AdminDashboard";
-// // import AdminNavbar from "./components/AdminNavbar";
+// import AdminNavbar from "./components/AdminNavbar";
 // import AdminManageContent from "./pages/AdminManageContent";
 // import AdminCalendar from "./pages/AdminCalendar";
 // import AdminInventory from "./pages/AdminInventory";
@@ -13,15 +13,15 @@ import ClientRegister from "./pages/ClientRegister";
 import AdminLogin from "./pages/AdminLogin";
 import PetOwnerLogin from "./pages/PetOwnerLogin";
 import SuccessTestPage from "./pages/SuccessTestpage";
-
-// import { Route, Routes } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
 
 export default function App() {
   return (  
     <BrowserRouter>
       <Routes>
+        <Route path="/Landing" element={<LandingPage />} />
+        <Route path="/" element={<PetOwnerLogin />} />
         <Route path="/ClientRegister" element={<ClientRegister />} />
-        <Route path="/PetOwnerLogin" element={<PetOwnerLogin />} />
         <Route path="/AdminLogin" element={<AdminLogin />} />
         <Route path="/SuccessTestPage" element={<SuccessTestPage />} />
       </Routes>
