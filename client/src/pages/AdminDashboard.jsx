@@ -1,4 +1,4 @@
-import { Box, Container, styled, Typography } from "@mui/material";
+import { Box, Container, styled, Typography, Button } from "@mui/material";
 import React from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import cartoonDogs from "../assets/images/cartoonDogs.jpeg";
@@ -7,6 +7,14 @@ import { amber } from "@mui/material/colors";
 const amberColor = amber[600];
 const LilitaOne = "'Lilita One', cursive";
 const AdminDashBoard = () => {
+
+
+  function handleSubmit() {
+    localStorage.clear();
+    window.location.href = "/AdminLogin";
+}
+
+
   const CustomBox = styled(Box)(({ theme }) => ({
     display: "flex",
     justifyContent: "center",
@@ -78,6 +86,16 @@ const AdminDashBoard = () => {
             >
               Iloilo Pet Hotel and Boarding Services
             </Typography>
+
+            <Button
+              className="button-color"
+              variant="contained"
+              onClick={handleSubmit}
+              style={{ marginRight: "10px" }}
+            >
+              LOG OUT
+            </Button>
+
           </Box>
 
           <Box sx={{ flex: "1.25" }}>
