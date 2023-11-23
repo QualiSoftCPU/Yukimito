@@ -92,7 +92,6 @@ export default function ClientRegister () {
           });
 
         window.location.href = "/";
-
         console.log(input);
     }
 

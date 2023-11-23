@@ -7,6 +7,7 @@ import Toolbar from '@mui/material/Toolbar';
 import NavBar from '../components/partials/NavBar';
 import Footer from '../components/partials/Footer';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const inputDetails = [
     {
@@ -46,8 +47,18 @@ const PetOwnerLogin = () => {
     }
 
     function handleSubmit() {
-        window.location.href = "/SuccessTestPage";
+        axios.post('http://localhost:4269/api/auth/signin/petowner', input)
+        .then(function (response) {
+        console.log(response);
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+
+        window.location.href = "/";
+
         console.log(input);
+        window.location.href = "/SuccessTestPage";
     }
 
     return (
