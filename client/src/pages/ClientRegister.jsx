@@ -7,6 +7,7 @@ import Toolbar from '@mui/material/Toolbar';
 import NavBar from '../components/partials/NavBar';
 import Footer from '../components/partials/Footer';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const inputDetails = [
     {
@@ -82,12 +83,18 @@ const ClientRegister = () => {
     }
 
     function handleSubmit() {
-        // fetch('localhost:5000/createUser').then(( ) => {
-        //     console.log("Established connection!")
-        // })
+        axios.post('http://localhost:4269/api/auth/signup/petowner', input)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
 
         console.log(input);
     }
+
+
 
     return (
         <>
