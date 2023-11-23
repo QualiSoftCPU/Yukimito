@@ -91,6 +91,8 @@ const ClientRegister = () => {
             console.log(error);
           });
 
+        window.location.href = "/";
+
         console.log(input);
     }
 
@@ -161,7 +163,7 @@ const ClientRegister = () => {
                                             })}
 
                                                 <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                                                    <Button className='button-color' onClick={handleSubmit} variant="contained"
+                                                    <Button  to={'/'} className='button-color' onClick={handleSubmit} variant="contained"
                                                         style={{marginRight: '10px'}}
                                                     >
                                                         Register

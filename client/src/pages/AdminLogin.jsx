@@ -45,6 +45,7 @@ export default function AdminLogin() {
   }
 
 function handleSubmit() {
+    window.location.href = "/AdminDashboard";
     console.log(input);
 }
 

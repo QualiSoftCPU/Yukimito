@@ -46,6 +46,7 @@ const PetOwnerLogin = () => {
     }
 
     function handleSubmit() {
+        window.location.href = "/SuccessTestPage";
         console.log(input);
     }
 

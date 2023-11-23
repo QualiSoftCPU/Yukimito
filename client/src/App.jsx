@@ -1,4 +1,4 @@
-// import AdminDashBoard from "./pages/AdminDashboard";
+ import AdminDashBoard from "./pages/AdminDashboard";
 // import AdminNavbar from "./components/AdminNavbar";
 // import AdminManageContent from "./pages/AdminManageContent";
 // import AdminCalendar from "./pages/AdminCalendar";
@@ -24,6 +24,7 @@ export default function App() {
         <Route path="/ClientRegister" element={<ClientRegister />} />
         <Route path="/AdminLogin" element={<AdminLogin />} />
         <Route path="/SuccessTestPage" element={<SuccessTestPage />} />
+        <Route path="/AdminDashboard" element={<AdminDashBoard />} />
       </Routes>
     </BrowserRouter>
   );
