@@ -1,0 +1,26 @@
+{
+  "name": "yukimito",
+  "version": "1.0.0",
+  "description": "yukimito",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QualiSoftCPU/Yukimito.git#main"
+  },
+  "keywords": [
+    "yukimito"
+  ],
+  "author": "qualisoft",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QualiSoftCPU/Yukimito/issues"
+  },
+  "homepage": "https://github.com/QualiSoftCPU/Yukimito/tree/main#readme",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

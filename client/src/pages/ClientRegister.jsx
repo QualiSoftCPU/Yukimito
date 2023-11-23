@@ -41,7 +41,7 @@ const inputDetails = [
         type: "password"
     }]
 
-const ClientRegister = () => {
+export default function ClientRegister () {
 
     const [ input, setInput ] = useState({
         ownerName: String,
@@ -93,8 +93,6 @@ const ClientRegister = () => {
 
         console.log(input);
     }
-
-
 
     return (
         <>
@@ -195,4 +193,3 @@ const ClientRegister = () => {
         </>
     );
 };
-export default ClientRegister
