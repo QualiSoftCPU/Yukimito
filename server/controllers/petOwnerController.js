@@ -7,6 +7,8 @@ const signup = (req, res) => {
 
  petOwner.create({
    username: req.body.username,
+   ownerName: req.body.ownerName,
+   contactNumber: req.body.contactNumber,
    email: req.body.email,
    password: bcrypt.hashSync(req.body.password, 8),
  })
@@ -47,7 +49,9 @@ const signin = (req, res) => {
 
      res.status(200).send({
        id: petOwner.id,
+       name: petOwner.ownerName,
        username: petOwner.username,
+       contact_number: petOwner.contactNumber,
        email: petOwner.email,
        accessToken: token
      });
