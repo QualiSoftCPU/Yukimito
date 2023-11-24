@@ -10,96 +10,74 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const inputDetails = [
-    {
-        name: 'ownerName',
-        label: "Pet Owner's Name",
-        placeholder: "Enter Name",
-        type: "text"
-    }, 
-    {
-        name: 'contact',
-        label: "Contact Number",
-        placeholder: "Enter Contact Number",
-        type: "text"
-    }, 
-    {
-        name: 'username',
-        label: "Username",
-        placeholder: "Enter Username",
-        type: "text"
-    }, 
-    {
-        name: 'password',
-        label: "Password",
-        placeholder: "Enter Passord",
-        type: "password"
-    }, 
-    {
-        name: 'confirmPassword',
-        label: "Confirm Password",
-        placeholder: "Confirm Username",
-        type: "password"
-    }]
+{   name: 'name', 
+    placeholder: 'Enter Owner Name', 
+    type: 'text', 
+    label: 'Pet Owner Name' 
+},
 
-export default function ClientRegister () {
+{   name: 'contact_number', 
+    placeholder: 'Enter Contact Number', 
+    type: 'text', 
+    label: 'Contact Number' 
+},
+{   name: 'username', 
+    placeholder: 'Enter Username', 
+    type: 'text', 
+    label: 'Username' 
+},
 
-    const [ input, setInput ] = useState({
-        ownerName: String,
-        contactNumber: String,
-        username: String,
-        password: String,
-        confirmPassword: String,
+{   name: 'password', 
+    placeholder: 'Enter Password', 
+    type: 'password', 
+    label: 'Password' 
+},
+
+{   name: 'confirmPassword', 
+    placeholder: 'Confirm Password', 
+    type: 'password', 
+    label: 'Confirm Password' 
+},
+  ];
+
+export default function ClientRegister() {
+    const [form, setForm] = useState({
+      username: '',
+      name: '',
+      contact_number: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
     });
+  
+    const handleInput = (e) => {
+      setForm({
+        ...form,
+        [e.target.name]: e.target.value,
+      });
+    };
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+  
+      if (form.password !== form.confirmPassword) {
+        alert('Error: Passwords do not match.');
+        return;
+      }
 
-    function handleInput(event) {
-        const name = event.target.name;
-        console.log(name);
-        if (name === 'ownerName') {
-            setInput({
-                ...input,
-                ownerName: event.target.value
-            })
-        } else if (name === 'contact') {
-            setInput({
-                ...input,
-                contact: event.target.value
-            })
-        } else if (name === 'username') {
-            setInput({
-                ...input,
-                username: event.target.value
-            })
-        } else if (name === 'password') {
-            setInput({
-                ...input,
-                password: event.target.value
-            })
-        } else if (name === 'confirmPassword') {
-            setInput({
-                ...input,
-                confirmPassword: event.target.value
-            })
-        }
-    }
-
-    function handleSubmit() {
-        if (input.password === input.confirmPassword
-            && input.ownerName !== null
-            && input.contactNumber !== null
-            && input.username !== null) {
-            axios.post('http://localhost:4269/api/auth/signup/petowner', input)
-          .then(function (response) {
-            window.location.href = "/";
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-          
-        } else {
-            alert("Invalid Credentials!");
-        }
-    }
-
+      axios.post('http://localhost:5000/api/auth/signup/petowner', form)
+        .then((response) => {
+          console.log(response.data);
+          // handle success here
+          alert('Registration successful!');
+        })
+        .catch((error) => {
+            console.error(error);
+            // handle error here
+            alert('Registration failed!');
+        });
+}
+     
     return (
         <>
             <NavBar />
