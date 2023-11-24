@@ -83,19 +83,20 @@ export default function ClientRegister () {
     }
 
     function handleSubmit() {
-        if (input.password === input.confirmPassword) {
+        if (input.password === input.confirmPassword
+            && input.ownerName !== null
+            && input.contactNumber !== null
+            && input.username !== null) {
             axios.post('http://localhost:4269/api/auth/signup/petowner', input)
           .then(function (response) {
-            console.log(response);
+            window.location.href = "/";
           })
           .catch(function (error) {
             console.log(error);
           });
-
-        window.location.href = "/";
-        console.log(input);
+          
         } else {
-            alert("Passwords do not match!");
+            alert("Invalid Credentials!");
         }
     }
 
@@ -159,7 +160,7 @@ export default function ClientRegister () {
                                                         id={'outlined-basic ' + index}
                                                         label={details.label} 
                                                         variant="outlined"
-                                                        required
+                                                        required={true}
                                                         />)
                                             })}
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import cartoonDogs from "../assets/images/cartoonDogs.jpeg";
@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 import NavBar from '../components/partials/NavBar';
 import Footer from '../components/partials/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const inputDetails = [
@@ -36,35 +36,34 @@ async function loginUser(credentials) {
 }
 
 const PetOwnerLogin = () => {
-
-  const [ input, setInput ] = useState({
-    username: String,
-    password: String
+  const navigate = useNavigate();
+  const [input, setInput] = useState({
+    username: '',
+    password: ''
   });
 
-  function handleInput(event) {
-    const name = event.target.name;
-    console.log(name);
-    if (name === 'username') {
-      setInput({
-        ...input,
-        username: event.target.value
-      })
-    } else if (name === 'password') {
-      setInput({
-        ...input,
-        password: event.target.value
-      })
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/SuccessTestPage');
     }
-  }
+  }, [navigate]);
 
   async function handleLogin() {
     const success = await loginUser(input);
     if (success) {
-      window.location.href = "/SuccessTestPage";
+      navigate('/SuccessTestPage');
     } else {
-        alert("Invalid username or password!");
+      alert("Invalid username or password!");
     }
+  }
+
+  function handleInput(event) {
+    const name = event.target.name;
+    setInput({
+      ...input,
+      [name]: event.target.value
+    });
   }
 
   return (

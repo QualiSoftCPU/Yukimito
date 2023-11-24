@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
 
-const handleSubmit = () => {
-  localStorage.clear();
-  window.location.href = "/";
-}
+const SuccessTestPage = () => {
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/');
+    }
+  }, [navigate]);
 
-const SuccessTestpage = () => {
+  const handleSubmit = () => {
+    localStorage.clear();
+    navigate('/');
+  }
+
   return (
     <div>
       <Button
@@ -22,4 +31,4 @@ const SuccessTestpage = () => {
   );
 };
 
-export default SuccessTestpage;
+export default SuccessTestPage;
