@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   petOwner.init({
-    first_name: DataTypes.STRING,
-    last_name: DataTypes.STRING,
+    name: DataTypes.STRING,
+    contact_number: DataTypes.STRING,
     username: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING
