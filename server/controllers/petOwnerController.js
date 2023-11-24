@@ -7,8 +7,8 @@ const signup = (req, res) => {
 
  petOwner.create({
    username: req.body.username,
-   ownerName: req.body.ownerName,
-   contactNumber: req.body.contactNumber,
+   name: req.body.ownerName,
+   contact_number: req.body.contactNumber,
    email: req.body.email,
    password: bcrypt.hashSync(req.body.password, 8),
  })
