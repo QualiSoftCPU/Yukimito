@@ -83,7 +83,8 @@ export default function ClientRegister () {
     }
 
     function handleSubmit() {
-        axios.post('http://localhost:4269/api/auth/signup/petowner', input)
+        if (input.password === input.confirmPassword) {
+            axios.post('http://localhost:4269/api/auth/signup/petowner', input)
           .then(function (response) {
             console.log(response);
           })
@@ -93,6 +94,9 @@ export default function ClientRegister () {
 
         window.location.href = "/";
         console.log(input);
+        } else {
+            alert("Passwords do not match!");
+        }
     }
 
     return (
