@@ -10,13 +10,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const inputDetails = [
-{   name: 'name', 
+{   name: 'ownerName', 
     placeholder: 'Enter Owner Name', 
     type: 'text', 
     label: 'Pet Owner Name' 
 },
 
-{   name: 'contact_number', 
+{   name: 'contactNumber', 
     placeholder: 'Enter Contact Number', 
     type: 'text', 
     label: 'Contact Number' 
