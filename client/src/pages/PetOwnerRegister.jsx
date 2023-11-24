@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 import NavBar from '../components/partials/NavBar';
 import Footer from '../components/partials/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const inputDetails = [
@@ -41,6 +41,8 @@ const inputDetails = [
   ];
 
 export default function ClientRegister() {
+    const navigate = useNavigate();
+
     const [form, setForm] = useState({
       username: '',
       name: '',
@@ -65,11 +67,12 @@ export default function ClientRegister() {
         return;
       }
 
-      axios.post('http://localhost:5000/api/auth/signup/petowner', form)
+      axios.post('http://localhost:4269/api/auth/signup/petowner', form)
         .then((response) => {
           console.log(response.data);
           // handle success here
           alert('Registration successful!');
+          navigate('/');
         })
         .catch((error) => {
             console.error(error);
