@@ -9,13 +9,14 @@
 // import LandingPage from "./pages/LandingPage";
 // import ClientLogin from "./pages/ClientLogin";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ClientRegister from "./pages/ClientRegister";
+import ClientRegister from "./pages/PetOwnerRegister";
 import AdminLogin from "./pages/AdminLogin";
 import PetOwnerLogin from "./pages/PetOwnerLogin";
 import SuccessTestPage from "./pages/SuccessTestpage";
 import LandingPage from "./pages/LandingPage";
 
 export default function App() {
+
   return (  
     <BrowserRouter>
       <Routes>

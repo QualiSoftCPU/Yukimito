@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import cartoonDogs from "../assets/images/cartoonDogs.jpeg";
@@ -10,17 +10,29 @@ import axios from 'axios';
 
 const inputDetails = [
   {
-      name: 'adminUsername',
-      label: "Admin Username",
-      placeholder: "Admin Username",
-      type: "text"
+    name: 'adminUsername',
+    label: "Admin Username",
+    placeholder: "Admin Username",
+    type: "text"
   }, 
   {
-      name: 'password',
-      label: "Password",
-      placeholder: "Password",
-      type: "password"
-  }]
+    name: 'password',
+    label: "Password",
+    placeholder: "Password",
+    type: "password"
+  }
+];
+
+async function loginAdmin(credentials) {
+  try {
+    const response = await axios.post('http://localhost:4269/api/auth/signin/admin', credentials);
+    localStorage.setItem('token', response.data.token);
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
 
 export default function AdminLogin() {
   
@@ -45,19 +57,12 @@ export default function AdminLogin() {
     }
   }
 
-    function handleSubmit() {
-        axios.post('http://localhost:4269/api/auth/signin/admin', input)
-        .then(function (response) {
-        console.log(response);
-        })
-        .catch(function (error) {
-        console.log(error);
-        });
-
-        window.location.href = "/";
-
-        console.log(input);
-}
+  async function handleSubmit() {
+    const success = await loginAdmin(input);
+    if (success) {
+      window.location.href = "/SuccessTestPage";
+    }
+  }
 
   return (
     <>
@@ -141,4 +146,4 @@ export default function AdminLogin() {
         <Footer />
     </>
     );
-};
+}
