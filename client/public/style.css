@@ -1,0 +1,89 @@
+.button-link {
+  color: #0dcfdc !important;
+  font-family: sans-serif;
+  text-decoration: none !important;
+  margin-left: 0.25rem !important;
+}
+
+.form-bg-color {
+  background-color: #ededed !important;
+} 
+
+.form-styles {
+  border-radius: 10px;
+  border: 1px solid #C4C4C4 !important;
+}
+
+.input-styling {
+  border-radius: 20px;
+  background-color: #fff !important;
+}
+
+.input-container {
+  padding: 2rem !important;
+}
+
+.input-margin {
+  margin-bottom: 0.5rem !important;
+}
+
+.yukimito-font {
+  font-family: 'Lilita One' !important;
+}
+
+.yuki-font-color {
+  color: #F5CF00;
+}
+
+.yuki-font-color2 {
+  color: #0dcfdc;
+}
+
+.yuki-color {
+  background-color: #0dcfdc !important;
+}
+
+.navBar-container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.nav-logo {
+  padding-top: 1rem !important;
+}
+
+.non-inline {
+  width: 100%;
+}
+
+.no-margin {
+  margin-top: 0 !important;
+}
+
+.main-container {
+  padding-top: 0.5rem;
+  padding-bottom: 1.5rem;
+  margin-top: 3rem;
+}
+
+.no-box-shadow {
+  box-shadow: none !important
+}
+
+.input-white-bg {
+  background-color: white !important;
+  border-radius: 4px;
+}
+
+.css-o5pqw1-MuiPaper-root-MuiCard-root {
+  min-width: 400px !important;
+  border-radius: 15px !important;
+}
+
+.button-color {
+  background-color: #0dcfdc !important;
+}
+
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+  border-radius: 20px !important;
+}
