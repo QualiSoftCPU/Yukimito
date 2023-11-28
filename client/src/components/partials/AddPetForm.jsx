@@ -5,7 +5,9 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import UploadFile from './UploadFile';
 import { useState } from 'react';
+import { Typography } from '@mui/material';
 
 const dialogueNames = [
   {
@@ -23,10 +25,6 @@ const dialogueNames = [
   {
     title: 'Size',
     label: 'Size'
-  },
-  {
-    title: 'Vaccine Card',
-    label: 'Vaccine Card'
   }
 ];
 
@@ -56,25 +54,31 @@ export default function EditItemForm(props) {
           Add A Pet
       </Button>
       <Dialog open={open} onClose={handleCancel}>
-        <DialogTitle>Pet Details</DialogTitle>
-        {dialogueNames.map((result) => {
-          return (
-            <DialogContent className='form-input'>
-              <TextField
-                autoFocus
-                name={result.title}
-                id="name outline-basic"
-                label={result.label}
-                type="text"
-                variant="outlined"
-                onChange={props.handleChange}
-              />
-            </DialogContent>
-          )
-        })}
+        <DialogTitle>
+          <Typography className='yuki-font-color' variant='h5'>
+            Officially add your pet to the family!
+          </Typography>
+        </DialogTitle>
+          <DialogContent style={{ maxWidth: '500px' }}>
+            {dialogueNames.map((result) => {
+              return (
+                  <TextField
+                    autoFocus
+                    name={result.title}
+                    id="name outline-basic"
+                    label={result.label}
+                    type="text"
+                    variant="outlined"
+                    onChange={props.handleChange}
+                    style={{ width: '100%', marginTop: '1rem', marginBottom: '1rem'}}
+                  />
+              )
+            })}
+            <UploadFile />
+          </DialogContent>
         <DialogActions>
-          <Button onClick={handleCancel}>Cancel</Button>
-          <Button onClick={handleAdd}>Add</Button>
+          <Button className='button-link' onClick={handleCancel}>Cancel</Button>
+          <Button className='button-link' onClick={handleAdd}>Add</Button>
         </DialogActions>
       </Dialog>
     </Fragment>
