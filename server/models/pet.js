@@ -25,6 +25,6 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     }
-  }, { sequelize, modelName: 'Pet' });
+  }, { sequelize, modelName: 'pet' });
   return pet;
 };
