@@ -45,14 +45,14 @@ const PetOwnerLogin = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      navigate('/SuccessTestPage');
+      navigate('/PetOwnerDashboard');
     }
   }, [navigate]);
 
   async function handleLogin() {
     const success = await loginUser(input);
     if (success) {
-      navigate('/SuccessTestPage');
+      navigate('/PetOwnerDashboard');
     } else {
       alert("Invalid username or password!");
     }
@@ -68,7 +68,7 @@ const PetOwnerLogin = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar navItems={[]} />
       <Container maxWidth='xl' className='main-container'>
         <Toolbar disableGutters>
           <FormControl sx={{

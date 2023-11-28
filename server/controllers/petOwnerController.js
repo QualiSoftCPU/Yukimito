@@ -3,6 +3,14 @@ const bcrypt = require("bcryptjs");
 const db = require("../models");
 const petOwner = db.petOwner;
 
+const getAll = () => {
+  petOwner.findOne({
+    where: {
+      username: req.body.username
+    }
+  })
+} 
+
 const signup = (req, res) => {
 
  petOwner.create({

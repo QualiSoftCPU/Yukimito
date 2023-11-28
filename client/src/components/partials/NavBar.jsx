@@ -17,11 +17,11 @@ import Button from '@mui/material/Button';
 import logo from '../../assets/images/Logo.PNG';
 
 const drawerWidth = 240;
-const navItems = [];
 
 function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const navItems = props.navItems;
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);

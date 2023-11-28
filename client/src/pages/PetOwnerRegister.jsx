@@ -83,7 +83,7 @@ export default function ClientRegister() {
      
     return (
         <>
-            <NavBar />
+            <NavBar navItems={[]} />
             <Container maxWidth='xl' className='main-container'>
             <Toolbar disableGutters>
                     <FormControl sx={{

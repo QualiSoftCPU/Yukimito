@@ -14,6 +14,7 @@ import AdminLogin from "./pages/AdminLogin";
 import PetOwnerLogin from "./pages/PetOwnerLogin";
 import SuccessTestPage from "./pages/SuccessTestpage";
 import LandingPage from "./pages/LandingPage";
+import PetOwnerDashboard from "./pages/PetOwnerDashbooard";
 
 export default function App() {
 
@@ -24,8 +25,9 @@ export default function App() {
         <Route path="/" element={<PetOwnerLogin />} />
         <Route path="/ClientRegister" element={<ClientRegister />} />
         <Route path="/AdminLogin" element={<AdminLogin />} />
-        <Route path="/SuccessTestPage" element={<SuccessTestPage />} />
         <Route path="/AdminDashboard" element={<AdminDashBoard />} />
+        <Route path="/SuccessTestPage" element={<SuccessTestPage />} />
+        <Route path="/PetOwnerDashboard" element={<PetOwnerDashboard />} />
       </Routes>
     </BrowserRouter>
   );
