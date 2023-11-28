@@ -34,7 +34,7 @@ export default function BasicMenu() {
         onClick={handleClick}
         style={{color: 'white'}}
       >
-        <AccountCircleOutlinedIcon />
+        <AccountCircleOutlinedIcon style={{fontSize: '50px'}}/>
       </Button>
       <Menu
         id="basic-menu"

@@ -40,9 +40,9 @@ function DrawerAppBar(props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+          <ListItem className='yukimito-font' key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
+              <ListItemText className='navbar-text-size' primary={item} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -79,9 +79,9 @@ function DrawerAppBar(props) {
               src={logo}
             />
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }} className='yukimito-font'>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
+              <Button className='navbar-text-size' key={item} sx={{ color: '#fff' }}>
                 {item}
               </Button>
             ))}

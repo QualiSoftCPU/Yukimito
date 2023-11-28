@@ -9,6 +9,10 @@
   background-color: #ededed !important;
 } 
 
+.form-input {
+  width: 100% !important;
+}
+
 .form-styles {
   border-radius: 10px;
   border: 1px solid #C4C4C4 !important;
@@ -25,22 +29,6 @@
 
 .input-margin {
   margin-bottom: 0.5rem !important;
-}
-
-.yukimito-font {
-  font-family: 'Lilita One' !important;
-}
-
-.yuki-font-color {
-  color: #F5CF00;
-}
-
-.yuki-font-color2 {
-  color: #0dcfdc;
-}
-
-.yuki-color {
-  background-color: #0dcfdc !important;
 }
 
 .navBar-container {
@@ -65,6 +53,9 @@
   padding-bottom: 1.5rem;
   margin-top: 3rem;
 }
+.navbar-text-size {
+  font-size: 1.25rem !important;
+}
 
 .no-box-shadow {
   box-shadow: none !important
@@ -86,4 +77,24 @@
 
 .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
   border-radius: 20px !important;
+}
+
+
+.yukimito-font, 
+.css-1kkpk3h-MuiButtonBase-root-MuiButton-root, 
+.css-ag7rrr-MuiTypography-root, 
+.css-5lbw0b-MuiTypography-root {
+  font-family: 'Lilita One' !important;
+}
+
+.yuki-font-color {
+  color: #F5CF00 !important;
+}
+
+.yuki-font-color2 {
+  color: #0dcfdc !important;
+}
+
+.yuki-color {
+  background-color: #0dcfdc !important;
 }

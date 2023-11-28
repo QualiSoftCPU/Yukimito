@@ -48,8 +48,12 @@ export default function EditItemForm(props) {
 
   return (
     <Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Add Pet
+      <Button 
+        onClick={handleClickOpen}
+        className='button-color' 
+        variant="contained"
+        style={{marginRight: '10px'}}>
+          Add A Pet
       </Button>
       <Dialog open={open} onClose={handleCancel}>
         <DialogTitle>Pet Details</DialogTitle>
@@ -59,11 +63,9 @@ export default function EditItemForm(props) {
               <TextField
                 autoFocus
                 name={result.title}
-                margin="dense"
                 id="name outline-basic"
                 label={result.label}
                 type="text"
-                fullWidth
                 variant="outlined"
                 onChange={props.handleChange}
               />
