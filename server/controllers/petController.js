@@ -1,23 +1,29 @@
 const db = require('../models');
-const Pet = db.Pet;
+const Pet = db.pet;
 
-const getAll = (req, res) => {
-  Pet.findAll()
-    .then(pets => {
-      res.status(200).json(pets);
-    })
-    .catch(error => {
-      res.status(500).json(error);
-    });
+async function getAll(req, res)  {
+  const userId = req.body.petOwnerId;
+
+  const pets = await Pet.findAll({
+    where: {
+      petOwnerId: userId
+    }
+  });
+
+  res.json(pets);
 };
 
+
 const createPet = (req, res) => {
+
+  const { name, breed, birthday, size, petOwnerId } = req.body;
+
   Pet.create({
-    name: req.body.name,
-    breed: req.body.breed,
-    birthday: req.body.birthday,
-    size: req.body.size,
-    petOwnerId: req.body.petOwnerId
+    name: name,
+    breed: breed,
+    birthday: birthday,
+    size: size,
+    petOwnerId: petOwnerId
   })
     .then(pet => {
       res.status(200).json(pet);

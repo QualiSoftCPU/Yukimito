@@ -13,13 +13,17 @@ import { useNavigate } from "react-router-dom";
 import Paper from '@mui/material/Paper';
 import PopUpForm from '../components/partials/AddPetForm';
 import Link from '@mui/material/Link';
-
+import { jwtDecode } from "jwt-decode";
 
 const navItems = ["About Us", "Reviews", "Rates", "Size Charts", "Requirements", "Gallery", "Book Now", <ProfileMenu />];
 
 export default function PetOwnerDashboard() {
 
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+  const userSelected = jwtDecode(token);
+
+  console.log(userSelected);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -27,6 +31,8 @@ export default function PetOwnerDashboard() {
       navigate('/');
     }
   }, [navigate]);
+
+  
 
   return (
     <> 
@@ -43,9 +49,9 @@ export default function PetOwnerDashboard() {
                       sx={{ width: 100, height: 100 }} />
                       <div style={{ marginLeft: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <Typography variant="h4" className="yuki-font-color2">
-                            Sean Patrick Paguntalan Namo<br />
+                            {userSelected.name}<br />
                           <Typography variant="h6" style={{color: 'gray'}}>
-                            @seannamo
+                            @{userSelected.username}
                           </Typography>
                         </Typography>
                       </div>
@@ -56,10 +62,10 @@ export default function PetOwnerDashboard() {
                     <Paper style={{ padding: '1rem', display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
                       <Typography variant="h6">
                         <div>
-                          Contact Number: +639497097025
+                          Contact Number: {userSelected.contact_number}
                         </div>
                         <div>
-                          Email: seannamo15@gmail.com
+                          Email: {userSelected.email}
                         </div>
                       </Typography>
                     </Paper>

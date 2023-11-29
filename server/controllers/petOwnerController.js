@@ -51,7 +51,13 @@ const signin = (req, res) => {
        });
      }
 
-     var token = jwt.sign({ id: petOwner.id }, process.env.JWT_SECRET, {
+     var token = jwt.sign({ 
+      id: petOwner.id,
+      name: petOwner.name,
+      username: petOwner.username,
+      contact_number: petOwner.contact_number,
+      email: petOwner.email }, 
+      process.env.JWT_SECRET, {
        expiresIn: 86400 // 24 hours
      });
 
