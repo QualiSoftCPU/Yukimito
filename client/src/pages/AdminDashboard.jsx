@@ -37,7 +37,7 @@ const AdminDashBoard = () => {
       fontSize: "40px",
     },
   }));
-  return (
+  return ( 
     <Box sx={{ backgroundColor: "white", minHeight: "80vh" }}>
       <Container>
         <AdminNavbar />
