@@ -14,7 +14,7 @@ import AdminLogin from "./pages/AdminLogin";
 import PetOwnerLogin from "./pages/PetOwnerLogin";
 import SuccessTestPage from "./pages/SuccessTestpage";
 import LandingPage from "./pages/LandingPage";
-import PetOwnerDashboard from "./pages/PetOwnerDashbooard";
+import PetOwnerDashboard from "./pages/PetOwnerDashboard";
 
 export default function App() {
 

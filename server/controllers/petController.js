@@ -2,8 +2,10 @@ const db = require('../models');
 const Pet = db.pet;
 
 async function getAll(req, res)  {
-  const userId = req.body.petOwnerId;
+  const userId = req.params.petOwnerId;
 
+  console.log(userId);
+  
   const pets = await Pet.findAll({
     where: {
       petOwnerId: userId
