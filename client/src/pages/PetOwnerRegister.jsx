@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
-import cartoonDogs from "../assets/images/cartoonDogs.jpeg";
+import Logo from '../assets/images/Logo.PNG';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
-import NavBar from '../components/partials/NavBar';
+import ClientNavBar from '../components/ClientNavBar';
 import Footer from '../components/partials/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -83,7 +83,7 @@ export default function ClientRegister() {
      
     return (
         <>
-            <NavBar navItems={[]} />
+            <ClientNavBar navItems={[]} />
             <Container maxWidth='xl' className='main-container'>
             <Toolbar disableGutters>
                     <FormControl sx={{
@@ -96,16 +96,16 @@ export default function ClientRegister() {
                     }}> 
                         <Box sx={{ gridArea: 'hero'}}>
                                 <Box>
-                                    <Box sx={2}>
-                                        <Typography className='yukimito-font yuki-font-color' variant="h1" sx={2}>
+                                    <Box sx={2}> {/**/}
+                                      {/*  <Typography className='yukimito-font yuki-font-color' variant="h1" sx={2}>
                                             YUKIMITO
-                                        </Typography>
+                                        </Typography>*/}
                                     </Box>
                                     <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                                             <img
-                                                src={cartoonDogs}
-                                                alt="cartoon dog"
-                                                style={{ width: "100%", maxWidth: "70%" }}
+                                                src={Logo}
+                                                alt="Logo"
+                                                style={{ width: "100%", maxWidth: "100%", marginLeft: "50px"}}
                                             />
                                     </Box>
                                 </Box>

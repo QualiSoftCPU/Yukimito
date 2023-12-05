@@ -107,3 +107,11 @@
 .yuki-color {
   background-color: #0dcfdc !important;
 }
+
+.navbar-color {
+  color: #ffffff !important;
+  text-decoration: none;
+ margin: 15px;
+} 
+
+
