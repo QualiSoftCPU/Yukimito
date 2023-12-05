@@ -75,5 +75,30 @@ const signin = (req, res) => {
    });
 };
 
+const updateProfile = (req, res) => {
 
-module.exports = { signup, signin};
+  const ownerId = req.params.petOwnerId; 
+
+  const updatedProfile = {
+    name: req.body.ownerName,
+    contact_number: req.body.contactNumber,
+    email: req.body.email,
+    username: req.body.username
+  };
+
+  petOwner.update(updatedProfile, {
+    where: { id: ownerId }
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({ message: "Profile was updated successfully." });
+      } else {
+        res.send({ message: `Cannot update Profile with id=${ownerId}. Maybe Profile was not found or req.body is empty!` });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({ message: "Error updating Profile with id=" + ownerId });
+    });
+};
+
+module.exports = { signup, signin, getAll, updateProfile};

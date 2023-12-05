@@ -10,9 +10,10 @@ import profilePicture from '../assets/images/kobe.jpg'
 import { Typography } from "@mui/material";
 import Paper from '@mui/material/Paper';
 import AddPetForm from '../components/partials/AddPetForm';
+import PetProfileDetails from "../components/partials/PetProfileDetails";
 
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom"; 
 
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
@@ -171,13 +172,13 @@ export default function PetOwnerDashboard() {
                             </Typography>
                           </div>
                           <div>
-                            <Link
-                            id={pet.id} 
-                            className="yuki-font-color2" 
-                            to={"/PetProfile/" + pet.id}
-                            underline="none">
-                              View {pet.name}'s Profile
-                            </Link>
+                            <PetProfileDetails 
+                              id={pet.id} 
+                              petName={pet.name} 
+                              breed={pet.breed}
+                              birthday={pet.birthday}
+                              size={pet.size}
+                              />
                           </div>
                         </Paper>
                       )
