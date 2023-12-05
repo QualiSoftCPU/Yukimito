@@ -10,15 +10,14 @@ import profilePicture from '../assets/images/kobe.jpg'
 import { Typography } from "@mui/material";
 import Paper from '@mui/material/Paper';
 import AddPetForm from '../components/partials/AddPetForm';
-import Link from '@mui/material/Link';
 
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate, Link } from "react-router-dom"; 
 
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
 
-const navItems = ["About Us", "Reviews", "Rates", "Size Charts", "Requirements", "Gallery", "Book Now", <ProfileMenu />];
+const navItems = ["AboutUs", "Reviews", "Rates", "SizeCharts", "Requirements", "Gallery", "BookNow", <ProfileMenu />];
 
 export default function PetOwnerDashboard() {
 
@@ -40,16 +39,16 @@ export default function PetOwnerDashboard() {
   const [ open, setOpen ] = useState(false);
 
   const handleChange = (event) => {
-    let name = event.target.name;
-    console.log(name)
 
     setPet({
       ...pet,
       [event.target.name]: event.target.value,
     });
+
   };
 
   const handleDateChange = (date) => {
+
     setPet({ ...pet, birthday: date.format('MM-DD-YYYY') });
   };
 
@@ -82,8 +81,6 @@ export default function PetOwnerDashboard() {
     
     
   };
-
-  console.log(userSelected);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -174,7 +171,11 @@ export default function PetOwnerDashboard() {
                             </Typography>
                           </div>
                           <div>
-                            <Link className="yuki-font-color2" href="#" underline="none">
+                            <Link
+                            id={pet.id} 
+                            className="yuki-font-color2" 
+                            to={"/PetProfile/" + pet.id}
+                            underline="none">
                               View {pet.name}'s Profile
                             </Link>
                           </div>

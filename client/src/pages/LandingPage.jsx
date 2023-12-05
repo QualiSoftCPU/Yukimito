@@ -9,9 +9,6 @@ import Grid from '@mui/material/Grid';
 const amberColor = amber[500]
 const LilitaOne = "'Lilita One', cursive";
 
-
-
-
 const AdminDashBoard = () => {
   const CustomBox = styled(Box)(({ theme }) => ({
     display: "flex",
@@ -35,8 +32,6 @@ const AdminDashBoard = () => {
     },
   }));
   return (
-    
-    
     
     <Box sx={{ backgroundColor: "white", minHeight: "80vh" }}>
       

@@ -45,6 +45,7 @@ export default function EditItemForm(props) {
             {dialogueNames.map((result) => {
               return (
                   <TextField
+                    autocomplete="off"
                     autoFocus
                     name={result.title}
                     id="name outline-basic"

@@ -13,7 +13,7 @@ export default function BasicDatePicker({ onDateChange }) {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DatePicker', 'DatePicker', 'DatePicker']}>
         <DateField
-          label="Dash separator"
+          label="Birth Date"
           value={value}
           onChange={(newValue) => {
             setValue(newValue);

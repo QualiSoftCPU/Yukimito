@@ -19,6 +19,10 @@ export default function BasicMenu() {
     setAnchorEl(null);
   };
 
+  function handleEditProfile () {
+    navigate('/EditPetProfile');
+  }
+
   function handleLogout () {
     localStorage.removeItem('token');
     navigate('/');
@@ -45,7 +49,7 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleEditProfile}>Edit Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>

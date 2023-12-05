@@ -15,6 +15,7 @@ import PetOwnerLogin from "./pages/PetOwnerLogin";
 import SuccessTestPage from "./pages/SuccessTestpage";
 import LandingPage from "./pages/LandingPage";
 import PetOwnerDashboard from "./pages/PetOwnerDashboard";
+import PetProfile from "./pages/PetProfile";
 
 export default function App() {
 
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="/AdminDashboard" element={<AdminDashBoard />} />
         <Route path="/SuccessTestPage" element={<SuccessTestPage />} />
         <Route path="/PetOwnerDashboard" element={<PetOwnerDashboard />} />
+        <Route path="/PetProfile/:petId" element={<PetProfile />} />
       </Routes>
     </BrowserRouter>
   );

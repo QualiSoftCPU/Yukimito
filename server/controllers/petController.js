@@ -15,6 +15,17 @@ async function getAll(req, res)  {
   res.json(pets);
 };
 
+async function getPet(req, res) {
+  const petId = req.params.petId;
+
+  try {
+    const pet = await Pet.findByPk(petId);
+    res.json(pet);
+  } catch (error) {
+    res.status(404).json({ message: 'Pet not found' });
+  }
+}
+
 
 const createPet = (req, res) => {
 
@@ -35,4 +46,4 @@ const createPet = (req, res) => {
     });
 };
 
-module.exports = { getAll, createPet };
+module.exports = { getAll, createPet, getPet};

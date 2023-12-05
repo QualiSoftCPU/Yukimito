@@ -55,10 +55,11 @@
 .main-container {
   padding-top: 0.5rem;
   padding-bottom: 1.5rem;
-  margin-top: 3rem;
+  margin-top: 0.5rem;
 }
 .navbar-text-size {
-  font-size: 1.25rem !important;
+  font-size: 1.5rem !important;
+  text-transform: none !important;
 }
 
 .no-box-shadow {
@@ -89,6 +90,10 @@
 .css-ag7rrr-MuiTypography-root, 
 .css-5lbw0b-MuiTypography-root {
   font-family: 'Lilita One' !important;
+}
+
+.white-font-color {
+  color: #FFFFFF !important;
 }
 
 .yuki-font-color {
