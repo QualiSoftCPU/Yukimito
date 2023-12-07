@@ -116,6 +116,27 @@
   color: #ffffff !important;
   text-decoration: none;
  margin: 15px;
+
+
 } 
+
+
+.cursive-font {
+  font-family: 'Pacifico', cursive !important;
+  color: black !important;
+  text-shadow: 3px 1px white;
+  font-size: 29px !important;
+}
+
+.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
+  background-color: #0dcfdc !important;
+  font-family: 'Lilita One' !important; 
+}
+
+.css-10hburv-MuiTypography-root {
+  font-family: 'Lilita One' !important; 
+  font-size: larger !important;
+  margin-bottom: 0.5rem !important;
+}
 
 

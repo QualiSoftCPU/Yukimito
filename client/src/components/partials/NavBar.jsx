@@ -14,7 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import logo from '../../assets/images/Logo.PNG';
+import Paw from '../../assets/images/Paw.PNG';
 
 const drawerWidth = 240;
 
@@ -32,9 +32,9 @@ function DrawerAppBar(props) {
       <Typography variant="h6" sx={{ my: 2 }}>
         <Box
                 component="img"
-                sx={{ height: 100 }}
+                sx={{ height: 80 }}
                 alt="Logo"
-                src={logo}
+                src={Paw}
               />
       </Typography>
       <Divider />
@@ -42,7 +42,7 @@ function DrawerAppBar(props) {
         {navItems.map((item) => (
           <ListItem className='yukimito-font' key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText className='navbar-text-size' primary={item} />
+              <ListItemText className='navbar-text-size yuki' primary={item} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -74,9 +74,9 @@ function DrawerAppBar(props) {
             <Box
               className='nav-logo'
               component="img"
-              sx={{ height: 100 }}
+              sx={{ height: 80 }}
               alt="Logo"
-              src={logo}
+              src={Paw}
             />
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }} className='yukimito-font'>

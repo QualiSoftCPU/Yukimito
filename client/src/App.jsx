@@ -11,7 +11,7 @@
 
 
 // pet ownwer pages
-import PetOwnerLanding from "./pages/PetOwnerLanding";
+import PetOwnerHome from "./pages/PetOwnerHome";
 import PetOwnerReview from "./pages/PetOwnerReview";
 import PetOwnerContact from "./pages/PetOwnerContact";
 import PetOwnerSizeChart from "./pages/PetOwnerSizeChart";
@@ -35,7 +35,7 @@ export default function App() {
       <Routes>
 
         {/* pet owner pages*/}
-        <Route path="/PetOwnerLanding" element={<PetOwnerLanding />} />
+        <Route path="/PetOwnerHome" element={<PetOwnerHome />} />
         <Route path="/PetOwnerReview" element={<PetOwnerReview />} />
         <Route path="/PetOwnerContact" element={<PetOwnerContact />} />
         <Route path="/PetOwnerSizeChart" element={<PetOwnerSizeChart />} />

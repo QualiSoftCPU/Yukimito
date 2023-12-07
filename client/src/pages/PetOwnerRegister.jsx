@@ -8,6 +8,7 @@ import ClientNavBar from '../components/ClientNavBar';
 import Footer from '../components/partials/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Cats from '../assets/images/Cats.jpg';
 
 const inputDetails = [
 {   name: 'ownerName', 
@@ -105,9 +106,15 @@ export default function ClientRegister() {
                                             <img
                                                 src={Logo}
                                                 alt="Logo"
-                                                style={{ width: "100%", maxWidth: "100%", marginLeft: "50px"}}
+                                                style={{ width: "70%", maxWidth: "70%", margin: 'auto'}}
+                                            />
+                                             <img
+                                                src={Cats}
+                                                alt="Cats"
+                                                style={{ width: "55%", maxWidth: "55%", margin: 'auto' }}
                                             />
                                     </Box>
+
                                 </Box>
                         </Box>
                         <Box sx={{ gridArea: 'form'}}>

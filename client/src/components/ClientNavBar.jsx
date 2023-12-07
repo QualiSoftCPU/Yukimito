@@ -4,7 +4,7 @@ import NavBar from '../components/partials/NavBar';
 import { Link } from 'react-router-dom';
 
 const navItems = [
-    { name: 'Home', path: '/PetOwnerLanding' },
+    { name: 'Home', path: '/PetOwnerHome' },
     { name: 'Reviews', path: '/PetOwnerReview' },
     { name: 'Contact', path: '/PetOwnerContact' },
     { name: 'Size Chart', path: '/PetOwnerSizeChart' },
