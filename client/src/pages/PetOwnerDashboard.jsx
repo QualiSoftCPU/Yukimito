@@ -18,8 +18,6 @@ import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
 
-const navItems = ["AboutUs", "Reviews", "Rates", "SizeCharts", "Requirements", "Gallery", "BookNow", <ProfileMenu />];
-
 export default function PetOwnerDashboard() {
 
   const navigate = useNavigate();
@@ -28,6 +26,7 @@ export default function PetOwnerDashboard() {
   const userSelected = jwtDecode(token);
 
   const [ pets, setPets ] = useState([]);
+  const [petOwnerDetails, setPetOwnerDetails] = useState({});
 
   const [ pet, setPet ] = useState({
     name: String,
@@ -36,6 +35,14 @@ export default function PetOwnerDashboard() {
     size: String,
     petOwnerId: userSelected.id
   });
+
+  const [formData, setFormData] = useState({
+    ownerName: userSelected.name,
+    contactNumber: userSelected.contact_number,
+    email: userSelected.email,
+    username: userSelected.username,
+  });
+
 
   const [ open, setOpen ] = useState(false);
 
@@ -61,7 +68,7 @@ export default function PetOwnerDashboard() {
     setOpen(false);
   };
 
-  async function handleAdd (event) {
+  async function handleAdd () {
     
     const token = localStorage.getItem('token');
 
@@ -83,6 +90,29 @@ export default function PetOwnerDashboard() {
     
   };
 
+  const handleUpdate = async () => {
+    
+    const ownerId = userSelected.id;
+
+    try {
+      const response = await axios.put(`http://localhost:4269/api/auth/editProfile/petowner/${ownerId}`,
+        formData, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (response.status === 200) {
+        console.log("Successfully updated!");
+        window.location.reload();
+      } else {
+        console.log("Update failed!")
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -98,9 +128,48 @@ export default function PetOwnerDashboard() {
       .then((fetchedPets) => setPets(fetchedPets))
       .catch((error) => console.log(error));
 
-  }, [navigate, userSelected.id]);
-  
+    axios.get(`http://localhost:4269/api/auth/getPetOwner/${userSelected.id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then((response) => {
 
+        const userDetails = response.data;
+
+        setPetOwnerDetails({
+          ownerName: userDetails.name,
+          username: userDetails.username,
+          contactNumber: userDetails.contact_number,
+          email: userDetails.email,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    
+
+  }, [navigate, userSelected.id]);
+
+  const updateFormData = (event) => {
+    console.log(event.target.name);
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const navItems = ["AboutUs", "Reviews", "Rates", "SizeCharts", "Requirements", "Gallery", "BookNow", 
+    <ProfileMenu
+      updateFormData={updateFormData}
+      handleUpdate={handleUpdate}
+      ownerName={formData.ownerName}
+      username={formData.username}
+      contactNumber={formData.contactNumber}
+      email={formData.email}
+    />
+    ];
+    
   return (
     <> 
         <Navbar navItems={navItems}/>
@@ -117,9 +186,9 @@ export default function PetOwnerDashboard() {
                         sx={{ width: 130, height: 130 }} />
                         <div style={{ marginLeft: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <Typography variant="h4" className="yuki-font-color2">
-                              {userSelected.name}<br />
+                              {petOwnerDetails.ownerName}<br />
                             <Typography variant="h6" style={{color: 'gray'}}>
-                              @{userSelected.username}
+                              @{petOwnerDetails.username}
                             </Typography>
                           </Typography>
                         </div>
@@ -130,10 +199,10 @@ export default function PetOwnerDashboard() {
                       <Paper style={{ padding: '1rem', display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
                         <Typography variant="h6">
                           <div>
-                            Contact Number: {userSelected.contact_number}
+                            Contact Number: {petOwnerDetails.contactNumber}
                           </div>
                           <div>
-                            Email: {userSelected.email}
+                            Email: {petOwnerDetails.email}
                           </div>
                         </Typography>
                       </Paper>

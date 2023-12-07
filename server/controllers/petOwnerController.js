@@ -3,14 +3,6 @@ const bcrypt = require("bcryptjs");
 const db = require("../models");
 const petOwner = db.petOwner;
 
-const getAll = () => {
-  petOwner.findOne({
-    where: {
-      username: req.body.username
-    }
-  })
-} 
-
 const signup = (req, res) => {
 
  petOwner.create({
@@ -75,6 +67,28 @@ const signin = (req, res) => {
    });
 };
 
+const getPetOwner = (req, res) => {
+
+  const userId = req.params.petOwnerId;
+
+  db.petOwner.findOne({
+    where: {
+      id: userId
+    }
+  })
+    .then(user => {
+      if (!user) {
+        return res.status(404).send({ message: "User not found." });
+      }
+
+      // Return the retrieved user data as a response
+      res.status(200).send(user);
+    })
+    .catch(err => {
+      res.status(500).send({ message: err.message });
+    });
+};
+
 const updateProfile = (req, res) => {
 
   const ownerId = req.params.petOwnerId; 
@@ -92,6 +106,7 @@ const updateProfile = (req, res) => {
     .then(num => {
       if (num == 1) {
         res.send({ message: "Profile was updated successfully." });
+        console.log(updatedProfile);
       } else {
         res.send({ message: `Cannot update Profile with id=${ownerId}. Maybe Profile was not found or req.body is empty!` });
       }
@@ -101,4 +116,4 @@ const updateProfile = (req, res) => {
     });
 };
 
-module.exports = { signup, signin, getAll, updateProfile};
+module.exports = { signup, signin, getPetOwner, updateProfile};

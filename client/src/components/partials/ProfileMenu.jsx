@@ -6,7 +6,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import { useNavigate } from "react-router-dom";
 import EditPetProfileForm from './EditPetProfileForm';
 
-export default function BasicMenu() {
+export default function BasicMenu(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
 
@@ -59,9 +59,15 @@ export default function BasicMenu() {
       >
         <MenuItem>
           <EditPetProfileForm
+            updateFormData={props.updateFormData}
+            ownerName={props.ownerName}
+            username={props.username}
+            contactNumber={props.contactNumber}
+            email={props.email}
             open={open}
             handleCancel={handleCancel}
-            handleClickOpen={handleClickOpen} />
+            handleClickOpen={handleClickOpen}
+            handleUpdate={props.handleUpdate} />
         </MenuItem>
         <MenuItem onClick={handleClose}><Button className='yuki-font-color2' variant='text'>My account</Button></MenuItem>
         <MenuItem onClick={handleLogout}><Button className='yuki-font-color' variant='text'>Logout</Button></MenuItem>

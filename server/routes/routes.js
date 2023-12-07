@@ -7,6 +7,7 @@ const petController = require("../controllers/petController");
 
 router.post("/api/auth/signup/petowner", petOwnerController.signup);
 router.post("/api/auth/signin/petowner", petOwnerController.signin);
+router.get("/api/auth/getPetOwner/:petOwnerId", petOwnerController.getPetOwner);
 router.put("/api/auth/editProfile/petowner/:petOwnerId", petOwnerController.updateProfile);
 
 router.post("/api/auth/signup/admin", adminController.signup);
