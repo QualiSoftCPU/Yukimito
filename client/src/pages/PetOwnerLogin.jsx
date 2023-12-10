@@ -27,7 +27,7 @@ const inputDetails = [
 async function loginUser(credentials) {
   try {
     const response = await axios.post('http://localhost:4269/api/auth/signin/petowner', credentials);
-    localStorage.setItem('token', response.data.token);
+    localStorage.setItem('token', response.data.accessToken); // Store the token in localStorage
     return true;
   } catch (error) {
     console.log(error);
@@ -36,6 +36,7 @@ async function loginUser(credentials) {
 }
 
 const PetOwnerLogin = () => {
+
   const navigate = useNavigate();
   const [input, setInput] = useState({
     username: '',
@@ -45,14 +46,18 @@ const PetOwnerLogin = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      navigate('/SuccessTestPage');
+      navigate('/PetOwnerDashboard');
     }
   }, [navigate]);
 
   async function handleLogin() {
     const success = await loginUser(input);
+
+    console.log(success)
+
     if (success) {
-      navigate('/SuccessTestPage');
+      
+      navigate('/PetOwnerDashboard');
     } else {
       alert("Invalid username or password!");
     }
@@ -68,7 +73,7 @@ const PetOwnerLogin = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar navItems={[]} />
       <Container maxWidth='xl' className='main-container'>
         <Toolbar disableGutters>
           <FormControl sx={{

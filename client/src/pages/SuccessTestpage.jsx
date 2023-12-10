@@ -12,8 +12,8 @@ const SuccessTestPage = () => {
     }
   }, [navigate]);
 
-  const handleSubmit = () => {
-    localStorage.clear();
+  function handleLogout () {
+    localStorage.removeItem('token');
     navigate('/');
   }
 
@@ -22,7 +22,7 @@ const SuccessTestPage = () => {
       <Button
         className="button-color"
         variant="contained"
-        onClick={handleSubmit}
+        onClick={handleLogout}
         style={{ marginRight: "10px" }}
       >
         LOG OUT
