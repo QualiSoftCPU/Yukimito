@@ -1,7 +1,7 @@
 import { Box, Container, styled, Typography, Button } from "@mui/material";
 import React from "react";
-import AdminNavbar from "../components/AdminNavbar";
-import cartoonDogs from "../assets/images/cartoonDogs.jpeg";
+import AdminNavbar from "../../components/AdminNavbar";
+import cartoonDogs from "../../assets/images/cartoonDogs.jpeg";
 import { amber } from "@mui/material/colors";
 
 const amberColor = amber[600];

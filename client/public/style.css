@@ -1,16 +1,32 @@
+body {
+  background-color: #ffffff;
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+
 .add-pet-form {
   width: 600px !important;
+}
+
+.black-font {
+  color: #212529 !important;
+}
+
+.border-top {
+  border-top: 1px solid #00bac7 !important;
 }
 
 .button-link {
   color: #0dcfdc !important;
   font-family: sans-serif;
-  text-decoration: none !important;
   margin-left: 0.25rem !important;
 }
 
 .form-bg-color {
-  background-color: #ededed !important;
+  background-color: #fff !important;
 } 
 
 .form-input {
@@ -20,6 +36,15 @@
 .form-styles {
   border-radius: 10px;
   border: 1px solid #C4C4C4 !important;
+}
+
+.footer {
+  width: 100%;
+  background-color: #0dcfdc;
+} 
+
+.gray-font {
+  color: #9C9FA0 !important;
 }
 
 .input-styling {
@@ -35,9 +60,12 @@
   margin-bottom: 0.5rem !important;
 }
 
-.navBar-container {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.navbar-container {
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)
+}
+
+.navbar-toggler {
+  color: white !important;
 }
 
 .nav-logo {
@@ -53,6 +81,7 @@
 }
 
 .main-container {
+  flex: 1;
   padding-top: 0.5rem;
   padding-bottom: 1.5rem;
   margin-top: 0.5rem;
@@ -78,6 +107,7 @@
 
 .button-color {
   background-color: #0dcfdc !important;
+  --bs-btn-border-color: #0dcfdc
 }
 
 .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
@@ -92,8 +122,8 @@
   font-family: 'Lilita One' !important;
 }
 
-.white-font-color {
-  color: #FFFFFF !important;
+.dark-b-font {
+  color: #00a1ad !important;
 }
 
 .yuki-border-color {
@@ -115,17 +145,16 @@
 .navbar-color {
   color: #ffffff !important;
   text-decoration: none;
- margin: 15px;
-
-
+  margin: 15px;
 } 
 
+.login-footer {
+  background-color: #0DCFDB !important;
+}
 
 .cursive-font {
   font-family: 'Pacifico', cursive !important;
-  color: black !important;
-  text-shadow: 3px 1px white;
-  font-size: 29px !important;
+  color: #00a1ad !important;
 }
 
 .css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
@@ -139,4 +168,14 @@
   margin-bottom: 0.5rem !important;
 }
 
+.no-padding {
+  padding: 0px !important;
+}
 
+.text-white {
+  color: white !important;
+}
+
+.white-background { 
+  background-color: #fff !important;
+}

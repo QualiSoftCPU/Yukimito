@@ -16,7 +16,6 @@ app.use(
 
 app.use(bodyParser.json());
 
-
 const sequelize = db.sequelize;
 sequelize
  .sync()

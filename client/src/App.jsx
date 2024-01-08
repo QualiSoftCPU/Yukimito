@@ -1,4 +1,4 @@
- import AdminDashBoard from "./pages/AdminDashboard";
+ import AdminDashBoard from "./pages/admin/AdminDashboard";
 // import AdminNavbar from "./components/AdminNavbar";
 // import AdminManageContent from "./pages/AdminManageContent";
 // import AdminCalendar from "./pages/AdminCalendar";
@@ -11,22 +11,22 @@
 
 
 // pet ownwer pages
-import PetOwnerHome from "./pages/PetOwnerHome";
-import PetOwnerReview from "./pages/PetOwnerReview";
-import PetOwnerContact from "./pages/PetOwnerContact";
-import PetOwnerSizeChart from "./pages/PetOwnerSizeChart";
-import PetOwnerRates from "./pages/PetOwnerRates";
-import PetOwnerPhotos from "./pages/PetOwnerPhotos";
-import PetOwnerRequirements from "./pages/PetOwnerRequirements";
+import PetOwnerHome from "./pages/client/PetOwnerHome";
+import PetOwnerReview from "./pages/client/PetOwnerReview";
+import PetOwnerContact from "./pages/client/PetOwnerContact";
+import PetOwnerSizeChart from "./pages/client/PetOwnerSizeChart";
+import PetOwnerRates from "./pages/client/PetOwnerRates";
+import PetOwnerPhotos from "./pages/client/PetOwnerPhotos";
+import PetOwnerRequirements from "./pages/client/PetOwnerRequirements";
 
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ClientRegister from "./pages/PetOwnerRegister";
-import AdminLogin from "./pages/AdminLogin";
-import PetOwnerLogin from "./pages/PetOwnerLogin";
+import ClientRegister from "./pages/client/PetOwnerRegister";
+import AdminLogin from "./pages/admin/AdminLogin";
+import PetOwnerLogin from "./pages/client/PetOwnerLogin";
 import SuccessTestPage from "./pages/SuccessTestpage";
 import LandingPage from "./pages/LandingPage";
-import PetOwnerDashboard from "./pages/PetOwnerDashboard";
+import PetOwnerDashboard from "./pages/client/PetOwnerDashboard";
 
 export default function App() {
 

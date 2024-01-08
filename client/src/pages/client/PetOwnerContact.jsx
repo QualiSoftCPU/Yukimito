@@ -1,6 +1,6 @@
 import React from 'react'
-import ClientNavBar from '../components/ClientNavBar'
-import Footer from '../components/partials/Footer'
+import ClientNavBar from '../../components/ClientNavBar'
+import Footer from '../../components/partials/Footer'
 
 const PetOwnerContact = () => {
     return (

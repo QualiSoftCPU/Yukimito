@@ -1,10 +1,10 @@
 import React from "react";
-import ClientNavBar from "../components/ClientNavBar";
-import Footer from "../components/partials/Footer";
+import ClientNavBar from "../../components/ClientNavBar";
+import Footer from "../../components/partials/Footer";
 
 import { Box, Container, Typography, Grid } from "@mui/material";
 
-import cartoonDogs from "../assets/images/cartoonDogs.jpeg";
+import cartoonDogs from "../../assets/images/cartoonDogs.jpeg";
 
 const PetOwnerHome = () => {
   return (

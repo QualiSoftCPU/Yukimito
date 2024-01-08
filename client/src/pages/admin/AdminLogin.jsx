@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
-import cartoonDogs from "../assets/images/cartoonDogs.jpeg";
+import cartoonDogs from "../../assets/images/cartoonDogs.jpeg";
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
-import NavBar from '../components/partials/NavBar';
-import Footer from '../components/partials/Footer';
+import NavBar from '../../components/partials/NavBar';
+import Footer from '../../components/partials/Footer';
 import axios from 'axios';
 
 const inputDetails = [
@@ -66,7 +66,7 @@ export default function AdminLogin() {
 
   return (
     <>
-        <NavBar/ >
+        <NavBar navItems={[]} />
         <Container maxWidth='xl' className='main-container'>
             <Toolbar disableGutters>
                     <FormControl sx={{
