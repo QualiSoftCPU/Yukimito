@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import WhatWeOffer from '../partials/WhatWeOffer';
 import Footer from '../partials/Footer';
-import Navbar from '../partials/NavBar';
+import NavBarMain from '../partials/NavBarMain';
 import LoginHero from '../partials/HeroLogin';
 
 const inputDetails = [
@@ -71,9 +71,11 @@ const PetOwnerLogin = () => {
     });
   }
 
+  const navItems=["About", "Gallery", "Requirements", "Rates & Services", "Team", "Reviews"]
+
   return (
     <>
-      <Navbar />
+      <NavBarMain navItems={navItems} />
 
       <div className="container my-5 main-container">
         <div className="row">
@@ -91,7 +93,7 @@ const PetOwnerLogin = () => {
               <Box sx={{ gridArea: 'form'}}>
                   <Box>
                     <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                      <Card className='form-bg-color form-styles'>
+                      <Card className='form-bg-color form-styles shadow'>
                         <Box className="input-container">
 
                           <p className='text-center h4 mb-3 black-font'>
@@ -138,7 +140,7 @@ const PetOwnerLogin = () => {
       </div>
 
       <div className="container">
-        <hr />
+        <hr id='About'/>
       </div>
 
       <WhatWeOffer />

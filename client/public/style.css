@@ -25,6 +25,14 @@ body {
   margin-left: 0.25rem !important;
 }
 
+.button-border-color {
+ border-color: #0dcfdc;
+}
+
+.button-border-color:hover {
+  border-color: #0dcfdc;
+ }
+
 .form-bg-color {
   background-color: #fff !important;
 } 
@@ -142,6 +150,10 @@ body {
   background-color: #0dcfdc !important;
 }
 
+.yuki-color2 {
+  background-color: #F5CF00 !important;
+}
+
 .navbar-color {
   color: #ffffff !important;
   text-decoration: none;
@@ -179,3 +191,4 @@ body {
 .white-background { 
   background-color: #fff !important;
 }
+

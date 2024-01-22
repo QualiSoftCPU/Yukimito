@@ -23,7 +23,7 @@ export default function NavBarUser(props) {
                 {navItems.map((item) => {
                   return (
                     <li class="nav-item active px-3 align-middle">
-                      <a class="nav-link text-white" href="/">{item}</a>
+                      <a class="nav-link text-white" href={item.link}>{item.name}</a>
                     </li>
                   )
                 })}

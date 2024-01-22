@@ -80,7 +80,7 @@ export default function ClientRegister() {
       });
   }
 
-  const navItems=["Home", "About Us", "Reviews", "Gallery", "Contact", "Rates", "Size Chart", "Requirements"]
+  const navItems=["About", "Gallery", "Requirements", "Rates & Services", "Team", "Reviews"]
      
   return (
     <>
@@ -147,7 +147,7 @@ export default function ClientRegister() {
       </div>
 
       <div className="container">
-        <hr />
+        <hr id='About'/>
       </div>
 
       <WhatWeOffer />

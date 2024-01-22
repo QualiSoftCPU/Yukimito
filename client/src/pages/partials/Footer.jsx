@@ -3,7 +3,7 @@ export default function Footer() {
     <>
       <div className="shadow-lg yuki-color footer mt-5">
 
-        <div class="container-fluid yuki-color">
+        <div class="container yuki-color">
           <p className='text-center py-3 cursive-font h3'>
             Come, play and stay with us!
           </p>

@@ -7,9 +7,9 @@ export default function NavBarMain(props) {
 
   return (
     <>
-      <div height="75" className="shadow-sm yuki-color navbar-container p-0">
-        <div className='container-fluid no-padding'>
-          <nav class="navbar navbar-expand-lg navbar-dark px-3">
+      <div id='Log In' height="75" className="shadow-sm yuki-color navbar-container p-0">
+        <div className='container no-padding'>
+          <nav id="navbar-scroll" class="navbar navbar-expand-lg navbar-dark">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -18,11 +18,11 @@ export default function NavBarMain(props) {
             </a>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo03">
-              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0 nav-pills">
                 {navItems.map((item) => {
                   return (
                     <li class="nav-item active px-3 align-middle">
-                      <a class="nav-link text-white" href="/">{item}</a>
+                      <a class="nav-link text-white display-6" href={"#" + item}>{item}</a>
                     </li>
                   )
                 })}
