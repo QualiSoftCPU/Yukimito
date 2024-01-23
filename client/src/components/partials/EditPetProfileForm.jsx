@@ -13,11 +13,14 @@ export default function EditPetProfileForm(props) {
     <Fragment>
       <Button 
         className='yuki-font-color2'
-        onClick={props.handleClickOpen}
-        variant="text">
+        onClick={props.handleEditOpen}
+        variant="text"
+        type="button" 
+        class="btn btn-primary yuki-color button-border-color" 
+        data-toggle="modal">
           Edit Profile
       </Button>
-      <Dialog open={props.open} onClose={props.handleCancel}>
+      <Dialog open={props.openEdit} onClose={props.handleEditCancel}>
         <DialogTitle>
           <Typography className='yuki-font-color' variant='h5'>
             Edit your details
@@ -62,6 +65,18 @@ export default function EditPetProfileForm(props) {
             />
             <TextField
               onChange={props.updateFormData}
+              value={props.address}
+              autocomplete="off"
+              autoFocus
+              name="address"
+              id="name outline-basic"
+              label="Address"
+              type="text"
+              variant="outlined"
+              style={{ width: '100%', marginTop: '1rem', marginBottom: '1rem'}}
+            />
+            <TextField
+              onChange={props.updateFormData}
               value={props.email}
               autocomplete="off"
               autoFocus
@@ -74,7 +89,7 @@ export default function EditPetProfileForm(props) {
             />
           </DialogContent>
         <DialogActions>
-          <Button className='button-link' onClick={props.handleCancel}>Cancel</Button>
+          <Button className='button-link' onClick={props.handleEditCancel}>Cancel</Button>
           <Button className='button-link' onClick={props.handleUpdate}>Update</Button>
         </DialogActions>
       </Dialog>
