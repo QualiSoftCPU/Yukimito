@@ -68,16 +68,18 @@ const PetOwnerLogin = () => {
     setInput({
       ...input,
       [name]: event.target.value
-    });
+    }); 
   }
 
   const navItems=["About", "Gallery", "Requirements", "Rates & Services", "Team", "Reviews"]
 
   return (
     <>
+      <hr id="Log In"/>
+      
       <NavBarMain navItems={navItems} />
 
-      <div className="container my-5 main-container">
+      <div className="container my-5 main-container pt-5">
         <div className="row">
 
           <div className="col-sm mt-3 d-flex justify-content-center text-center">
@@ -140,7 +142,7 @@ const PetOwnerLogin = () => {
       </div>
 
       <div className="container">
-        <hr id='About'/>
+        <hr id='About' className='mb-5 pb-5'/>
       </div>
 
       <WhatWeOffer />

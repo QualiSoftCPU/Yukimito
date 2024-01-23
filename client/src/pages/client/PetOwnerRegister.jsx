@@ -80,10 +80,12 @@ export default function ClientRegister() {
       });
   }
 
-  const navItems=["About", "Gallery", "Requirements", "Rates & Services", "Team", "Reviews"]
+  const navItems=["About", "Gallery", "Requirements", "Rates & Services", "Team", "Reviews", "Register"]
      
   return (
     <>
+      <hr id="Register"/>
+
       <NavBarMain navItems={navItems} />
 
       <div className="container my-5 main-container">

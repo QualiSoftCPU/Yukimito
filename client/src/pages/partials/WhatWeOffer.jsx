@@ -1,3 +1,4 @@
+import { height } from '@mui/system';
 import crsl2 from '../../assets/images/crsl3.png';
 
 import h1 from '../../assets/images/gallery/h1.PNG';
@@ -6,6 +7,8 @@ import h3 from '../../assets/images/gallery/h3.PNG';
 import v1 from '../../assets/images/gallery/v1.PNG';
 import v2 from '../../assets/images/gallery/v2.PNG';
 import v3 from '../../assets/images/gallery/v3.PNG';
+
+import pp from '../../assets/images/pp.jpeg'
 
 
 export default function WhatWeOffer() {
@@ -138,7 +141,7 @@ export default function WhatWeOffer() {
           </div>
         </div>
 
-        <hr id='Gallery' />
+        <hr id='Gallery' className='mb-5 pb-5'/>
 
         <div class="px-4 py-3 my-5 text-center">
           <h4>
@@ -197,7 +200,7 @@ export default function WhatWeOffer() {
           </div>
         </div>
 
-        <hr id='Requirements'/>
+        <hr id='Requirements' className='mb-5 pb-5'/>
 
         <div class="my-5">
           <div class="row align-items-center">
@@ -276,7 +279,7 @@ export default function WhatWeOffer() {
           </div>
         </div>
 
-        <hr id='Rates & Services'/>
+        <hr id='Rates & Services' className='mb-5 pb-5'/>
 
         <div class="px-4 my-5 text-center">
           <h4>
@@ -294,43 +297,52 @@ export default function WhatWeOffer() {
 
           <div class="col-lg-12 mx-auto col-12">
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-              <div class="row">
+              <div class="row g-5">
                 <div class="col-sm-4">
                   <div class="card shadow">
-                    <div class="card-body">
+                    <div className="card-header">
                       <h5 class="card-title">Errand Service</h5>
-                      <span className='text-secondary'>(1-4 hours)</span>
-                      <h3 className='pt-3 display-6 fw-bold'>₱175</h3>
-                      <p class="card-text text-secondary">Small & Medium</p>
-                      <h3 className='pt-3 display-6 fw-bold'>₱200</h3>
-                      <p class="card-text text-secondary">Large & X-Large</p>
-                      <a class="btn btn-primary button-color" href="#Log In">Get Service</a>
+                    </div>
+                    <div class="card-body">
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">An item</li>
+                        <li class="list-group-item">A second item</li>
+                        <li class="list-group-item">
+                          <a class="btn btn-primary button-color" href="#Log In">Get Service</a>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
                 <div class="col-sm-4">
                   <div class="card shadow">
+                    <div className="card-header">
+                      <h5 class="card-title">Errand Service</h5>
+                    </div>
                     <div class="card-body">
-                      <h5 class="card-title">Day Care Service</h5>
-                      <span className='text-secondary'>(5-10 hours)</span>
-                      <h3 className='pt-3 display-6 fw-bold'>₱250</h3>
-                      <p class="card-text text-secondary">Small & Medium</p>
-                      <h3 className='pt-3 display-6 fw-bold'>₱275</h3>
-                      <p class="card-text text-secondary">Large & X-Large</p>
-                      <a class="btn btn-primary button-color" href="#Log In">Get Service</a>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">An item</li>
+                        <li class="list-group-item">A second item</li>
+                        <li class="list-group-item">
+                          <a class="btn btn-primary button-color" href="#Log In">Get Service</a>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
                 <div class="col-sm-4">
                   <div class="card shadow">
+                    <div className="card-header">
+                      <h5 class="card-title">Errand Service</h5>
+                    </div>
                     <div class="card-body">
-                      <h5 class="card-title">Home Care (Per Night)</h5>
-                      <span className='text-secondary'>Check-In @ 12nn <br /> Check-Out @ 11am</span>
-                      <h3 className='pt-3 display-6 fw-bold'>₱175</h3>
-                      <p class="card-text text-secondary">Small & Medium</p>
-                      <h3 className='pt-3 display-6 fw-bold'>₱200</h3>
-                      <p class="card-text text-secondary">Large & X-Large</p>
-                      <a class="btn btn-primary button-color" href="#Log In">Get Service</a>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">An item</li>
+                        <li class="list-group-item">A second item</li>
+                        <li class="list-group-item">
+                          <a class="btn btn-primary button-color" href="#Log In">Get Service</a>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -338,6 +350,182 @@ export default function WhatWeOffer() {
             </div>
           </div>
         </div>
+
+        <hr id='Team' className='pb-5 mb-5'/>
+
+        <div class="row flex-lg-row align-items-center g-5 pb-5">
+          <div class="col-10 col-sm-8 col-lg-6">
+            <h4>
+              The Team
+            </h4>
+            <h1 class="display-5 fw-bold lh-1 mb-3 yuki-font-color">
+                Meet Our Team 
+              <br /> 
+              <span className="black-font">
+                Of True Pet Lovers
+              </span>
+            </h1>
+            <p class="lead">
+              Our staff spends time interacting with and monitoring the pets to ensure their safety and happiness while they are with us. 
+              <br />
+              <br />
+              Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line. Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits dramatically visualize.
+            </p>
+          </div>
+          <div className="col-10 col-sm-8 col-lg-6">
+            
+            <div id="carouselExampleDark1" class="carousel carousel-light slide">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+              <div class="carousel-inner rounded-3 shadow border">
+                <div class="carousel-item active" data-bs-interval="10000">
+                  <img src={crsl2} class="d-block w-100" alt="..."/>
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Team Photos</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                  </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                  <img src={crsl2} class="d-block w-100" alt="..."/>
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Team Photos</h5>
+                    <p>Some representative placeholder content for the second slide.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src={crsl2} class="d-block w-100" alt="..."/>
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Team Photos</h5>
+                    <p>Some representative placeholder content for the third slide.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark1" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark1" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+
+          </div>
+
+          <div class="row py-5 g-3 text-center">
+            <div class="col-sm-4">
+              <div class="card shadow">
+                <div class="card-body">
+                  <div class="text-center">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="rounded-circle mb-3" style={{width: '150px'}} alt="Avatar" />
+                  </div>
+                  <h5 class="card-title">Isabella Santos Cruz</h5>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <a class="btn btn-primary button-color" href="#Log In">More Info</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card shadow">
+                <div class="card-body">
+                  <div class="text-center">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="rounded-circle mb-3" style={{width: '150px'}} alt="Avatar" />
+                  </div>
+                  <h5 class="card-title">Sophia Reyes Ramos</h5>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <a class="btn btn-primary button-color" href="#Log In">More Info</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card shadow">
+                <div class="card-body">
+                  <div class="text-center">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="rounded-circle mb-3" style={{width: '150px'}} alt="Avatar" />
+                  </div>
+                  <h5 class="card-title">Gabriela Limjoco Cruz</h5>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <a class="btn btn-primary button-color" href="#Log In">More Info</a>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+
+        </div>
+
+        <hr id='Reviews' className='pb-5 mb-5'/>
+        <div class="px-4 py-3 my-5 text-center">
+          <h4>
+            Ratings and Reviews
+          </h4>
+          <h1 class="display-5 fw-bold">We Value Your <span className='yuki-font-color'>Trust</span>.</h1>
+          <hr className='w-25 mx-auto py-3'/>
+          <div class="col-lg-12 mx-auto">
+
+            <div id="myCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active" aria-current="true"></button>
+              <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item pt-3">
+                <div style={{height: '350px'}} className='text-center'>
+                  <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="rounded-circle mb-3 shadow" style={{width: '150px'}} alt="Avatar" /> 
+                </div>
+                <div class="container">
+                  <div class="carousel-caption">
+                    <h1 className='black-font'>Mateo Reyes Cruz</h1>
+                    <p className='black-font'>
+                    "Yukimito had a pawsitively delightful stay at Purrfection Pet Hotel! The staff showered her with love and attention, and we were impressed by the cozy accommodations. Five-star service for our fur baby!"
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item active pt-3">
+                <div style={{height: '350px'}} className='text-center'>
+                  <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="rounded-circle mb-3 shadow" style={{width: '150px'}} alt="Avatar" /> 
+                </div>
+                <div class="container">
+                  <div class="carousel-caption">
+                    <h1 className='black-font'>Alessandra Santos Dela Rosa</h1>
+                    <p className='black-font'>
+                    "Yukimito had a pawsitively delightful stay at Purrfection Pet Hotel! The staff showered her with love and attention, and we were impressed by the cozy accommodations. Five-star service for our fur baby!"
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item pt-3">
+                <div style={{height: '350px'}} className='text-center'>
+                  <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="rounded-circle mb-3 shadow" style={{width: '150px'}} alt="Avatar" /> 
+                </div>
+                <div class="container">
+                  <div class="carousel-caption">
+                    <h1 className='black-font'>Rafael Manalo Aguilar</h1>
+                    <p className='black-font'>
+                    "Yukimito had a pawsitively delightful stay at Purrfection Pet Hotel! The staff showered her with love and attention, and we were impressed by the cozy accommodations. Five-star service for our fur baby!"
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon black-font" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon black-font" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+          </div>
+        </div>
+      
 
         <hr />
 

@@ -80,6 +80,10 @@ body {
   padding-top: 1rem !important;
 }
 
+.nav-link.active {
+  background-color: #0DCFDB !important;
+}
+
 .non-inline {
   width: 100%;
 }
