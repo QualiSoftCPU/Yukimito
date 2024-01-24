@@ -21,19 +21,19 @@ export default function NavBarMain(props) {
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0 nav-pills">
                 {navItems.map((item) => {
                   return (
-                    <li class="nav-item active px-3 align-middle">
-                      <a class="nav-link text-white display-6" href={"#" + item}>{item}</a>
+                    <li className="nav-item active px-3 align-middle">
+                      <a className="nav-link text-white display-6" href={"#" + item}>{item}</a>
                     </li>
                   )
                 })}
                 <li class="nav-item active px-3 align-middle yuki-font-color">
-                  <a class="nav-link display-6 yuki-font-color" href={"#Log In"}>Log In</a>
+                  {props.customLink}
                 </li>
               </ul>
             </div>
           </nav>
         </div>
-    </div>
+      </div>
     </>
   )
 };

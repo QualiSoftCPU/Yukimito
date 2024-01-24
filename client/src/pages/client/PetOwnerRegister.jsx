@@ -3,9 +3,7 @@ import { Box, TextField } from "@mui/material";
 import Card from "@mui/material/Card";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import WhatWeOffer from '../partials/WhatWeOffer';
-import Footer from '../partials/Footer';
-import NavBarMain from '../partials/NavBarMain';
+import Navbar from '../partials/NavBar';
 import HeroRegistration from '../partials/HeroRegistration';
 
 const inputDetails = [
@@ -80,33 +78,27 @@ export default function ClientRegister() {
       });
   }
 
-  const navItems=["About", "Gallery", "Requirements", "Rates & Services", "Team", "Reviews", "Register"]
-     
   return (
     <>
       <hr id="Register"/>
 
-      <NavBarMain navItems={navItems} />
+      <Navbar/>
 
       <div className="container my-5 main-container">
         <div className="row">
 
-          <div className="col-sm mt-3 d-flex justify-content-center text-center">
-            <div>
-              <HeroRegistration />
-            </div>
-          </div>
-
-          <div className="col-sm mt-3 p-0">
+          <div className="col-sm mt-3 p-0 d-flex flex-row justify-content-center">
             <div className='mx-3'>
-              <Box sx={{ gridArea: 'form'}}>
+              <HeroRegistration />
+              <div className="form d-flex flex-row justify-content-center">
+              <Box sx={{ gridArea: 'form'}} style={{maxWidth: "30rem"}}>
                 <Box>
                     <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                    <Card className='form-bg-color form-styles'>
+                    <Card className='form-bg-color form-styles shadow'>
                         <Box className="input-container">
 
-                        <p className='text-center h4 mb-3'>
-                            Register to Yukimito!
+                        <p className='text-center h4 mb-3 fw-bold'>
+                            Create a new account
                         </p>
 
                         {inputDetails.map((details, index) => {
@@ -141,6 +133,7 @@ export default function ClientRegister() {
                     </Box>
                   </Box>
                 </Box>
+              </div>
             </div>
           </div>
 
@@ -148,13 +141,11 @@ export default function ClientRegister() {
 
       </div>
 
-      <div className="container">
-        <hr id='About'/>
-      </div>
-
-      <WhatWeOffer />
-
-      <Footer />
+      <div class="container fixed-bottom">
+      <footer class="py-3 my-4">
+        <p class="text-center text-muted">© {new Date().getFullYear()} QUALISOFT Services.</p>
+      </footer>
+    </div>
     </>
   );
 };

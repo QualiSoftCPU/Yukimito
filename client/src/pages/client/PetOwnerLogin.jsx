@@ -77,7 +77,7 @@ const PetOwnerLogin = () => {
     <>
       <hr id="Log In"/>
       
-      <NavBarMain navItems={navItems} />
+      <NavBarMain navItems={navItems} customLink={<a class="nav-link yuki-font-color" href="#Log In">Log In</a>}/>
 
       <div className="container my-5 main-container pt-5">
         <div className="row">
@@ -92,13 +92,13 @@ const PetOwnerLogin = () => {
 
           <div className="col-sm mt-3 p-0">
             <div className='mx-3'>
-              <Box sx={{ gridArea: 'form'}}>
+              <Box sx={{ gridArea: 'form' }} >
                   <Box>
                     <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                       <Card className='form-bg-color form-styles shadow'>
                         <Box className="input-container">
 
-                          <p className='text-center h4 mb-3 black-font'>
+                          <p className='text-center h4 mb-3 black-font fw-bold'>
                             Login to Yukimito!
                           </p>
 
@@ -136,7 +136,6 @@ const PetOwnerLogin = () => {
                 </Box>
             </div>
           </div>
-
         </div>
 
       </div>

@@ -11,9 +11,7 @@ export default function Logout() {
 
   return (
     <>
-      <li onClick={handleLogout} class="nav-item active px-3 align-middle text-white">
-        <u><a class="nav-link text-white" href="/">Logout</a></u>
-      </li>
+      <a onClick={handleLogout} class="nav-link yuki-font-color" href="/">Log out</a>
     </>
   )
 };

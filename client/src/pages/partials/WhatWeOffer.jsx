@@ -507,8 +507,8 @@ export default function WhatWeOffer() {
                 <div style={{height: '350px'}} className='text-center'>
                   <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="rounded-circle mb-3 shadow" style={{width: '150px'}} alt="Avatar" /> 
                 </div>
-                <div class="container">
-                  <div class="carousel-caption">
+                <div className="container">
+                  <div className="carousel-caption">
                     <h1 className='black-font'>Alessandra Santos Dela Rosa</h1>
                     <div className="ratings pb-2">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F5CE02" class="bi bi-star-fill mx-1" viewBox="0 0 16 16">
@@ -533,7 +533,7 @@ export default function WhatWeOffer() {
                   </div>
                 </div>
               </div>
-              <div class="carousel-item pt-3">
+              <div className="carousel-item pt-3">
                 <div style={{height: '350px'}} className='text-center'>
                   <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="rounded-circle mb-3 shadow" style={{width: '150px'}} alt="Avatar" /> 
                 </div>
