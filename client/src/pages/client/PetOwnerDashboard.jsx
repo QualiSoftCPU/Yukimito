@@ -33,14 +33,6 @@ export default function PetOwnerDashboard() {
     petOwnerId: userSelected.id
   });
 
-  // const [formData, setFormData] = useState({
-  //   ownerName: userSelected.name,
-  //   contactNumber: userSelected.contact_number,
-  //   email: userSelected.email,
-  //   username: userSelected.username,
-  // });
-
-
   const [ open, setOpen ] = useState(false);
   const [ openEdit, setOpenEdit ] = useState(false);
 
@@ -49,27 +41,28 @@ export default function PetOwnerDashboard() {
       ...pet,
       [event.target.name]: event.target.value,
     });
-
   };
-
   const handleDateChange = (date) => {
     setPet({ ...pet, birthday: date.format('MM-DD-YYYY') });
   };
-
-  const handleEditOpen = () => { 
-    setOpenEdit(true);  
-  };
-
-  const handleEditCancel = () => {
-    setOpenEdit(false);
-  };
-
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleCancel = () => {
     setOpen(false);
+  };
+
+  const handleEdit = (event) => {
+    setPetOwnerDetails({
+      ...petOwnerDetails,
+      [event.target.name]: event.target.value,
+    });
+  };
+  const handleEditOpen = () => { 
+    setOpenEdit(true);
+  };
+  const handleEditCancel = () => {
+    setOpenEdit(false);
   };
 
   async function handleAdd () {
@@ -94,28 +87,29 @@ export default function PetOwnerDashboard() {
     }
   };
 
-  // const handleUpdate = async () => {
+  const handleUpdate = async () => {
     
-  //   const ownerId = userSelected.id;
+    const ownerId = userSelected.id;
+    console.log(petOwnerDetails)
 
-  //   try {
-  //     const response = await axios.put(`http://localhost:4269/api/auth/editProfile/petowner/${ownerId}`,
-  //       formData, {
-  //       headers: {
-  //         'Authorization': `Bearer ${token}`
-  //       }
-  //     });
-
-  //     if (response.status === 200) {
-  //       console.log("Successfully updated!");
-  //       window.location.reload();
-  //     } else {
-  //       console.log("Update failed!")
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
+    try {
+      const response = await axios.put(`http://localhost:4269/api/auth/editProfile/petowner/${ownerId}`,
+        petOwnerDetails, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      
+      if (response.status === 200) {
+        console.log("Successfully updated!");
+        window.location.reload();
+      } else {
+        console.log("Update failed!")
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -154,14 +148,6 @@ export default function PetOwnerDashboard() {
     
 
   }, [navigate, userSelected.id]);
-
-  // const updateFormData = (event) => {
-  //   console.log(event.target.name);
-  //   setFormData({
-  //     ...formData,
-  //     [event.target.name]: event.target.value,
-  //   });
-  // };
 
     const navItems = [
       {
@@ -219,6 +205,8 @@ export default function PetOwnerDashboard() {
                       <div>
                         <EditPetProfileForm
                           openEdit={openEdit}
+                          handleUpdate={handleUpdate}
+                          updateFormData={handleEdit}
                           handleEditOpen={handleEditOpen}
                           handleEditCancel={handleEditCancel}
                           />
