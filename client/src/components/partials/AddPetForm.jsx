@@ -25,23 +25,17 @@ const dialogueNames = [
 ];
 
 export default function EditItemForm(props) {
-
+  
   return (
     <Fragment>
       <button onClick={props.handleClickOpen} type="button" class="btn btn-primary yuki-color button-border-color" data-toggle="modal">
-        <span className="px-1">
-          <svg xmlns="http://www.w3.org/2000/svg" height="25" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-          </svg>
-        </span>
-        
-        Add a pet
+        Add pet
       </button>
       <Dialog open={props.open} onClose={props.handleCancel}>
         <DialogTitle>
-          <h5>
+          <Typography className='yuki-font-color' variant='h5'>
             Officially add your pet to the family!
-          </h5>
+          </Typography>
         </DialogTitle>
           <DialogContent style={{ maxWidth: '500px' }}>
             {dialogueNames.map((result) => {
@@ -72,8 +66,8 @@ export default function EditItemForm(props) {
                 onChange={props.handleChange}
                 name='size'
               >
-                <MenuItem value={'small'}>small</MenuItem>
-                <MenuItem value={'medium'}>medium</MenuItem>
+                <MenuItem value={'small'}>Small</MenuItem>
+                <MenuItem value={'medium'}>Medium</MenuItem>
                 <MenuItem value={'large'}>large</MenuItem>
               </Select>
             </FormControl>
