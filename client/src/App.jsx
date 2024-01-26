@@ -27,6 +27,7 @@ import PetOwnerLogin from "./pages/client/PetOwnerLogin";
 import SuccessTestPage from "./pages/SuccessTestpage";
 import LandingPage from "./pages/LandingPage";
 import PetOwnerDashboard from "./pages/client/PetOwnerDashboard";
+import PetOwnerBooking from "./pages/client/PetOwnerBooking";
 
 export default function App() {
 
@@ -42,6 +43,7 @@ export default function App() {
         <Route path="/PetOwnerRates" element={<PetOwnerRates />} />
         <Route path="/PetOwnerPhotos" element={<PetOwnerPhotos />} />
         <Route path="/PetOwnerRequirements" element={<PetOwnerRequirements />} />
+        <Route path="/PetOwnerBooking" element={<PetOwnerBooking />} />
 
         {/* admin pages */} 
 
