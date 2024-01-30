@@ -4,10 +4,27 @@ import { Box, Paper, Chip } from "@mui/material";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import Select, { SelectChangeEvent } from '@mui/material/Select'
+import { TextField, Autocomplete } from "@mui/material";
 
+
+
+const names = [
+  "Humaira Sims",
+  "Santiago Solis",
+  "Dawid Floyd",
+  "Mateo Barlow",
+  "Samia Navarro",
+  "Kaden Fields",
+  "Genevieve Watkins",
+  "Mariah Hickman",
+  "Rocco Richardson",
+  "Harris Glenn"
+];
 
 const PetOwnerBooking2 = () => {
+
+
+  
 
   const navItems = [
     {
@@ -84,6 +101,7 @@ const PetOwnerBooking2 = () => {
                           <DateTimePicker
                             label="Check In"
                             name="startDateTime"
+                            className='input-margin non-inline input-styling'
                           />
                         </LocalizationProvider>
 
@@ -99,6 +117,7 @@ const PetOwnerBooking2 = () => {
                           <DateTimePicker
                             label="Check Out"
                             name="startDateTime"
+                            className='input-margin non-inline input-styling'
                           />
                         </LocalizationProvider>
 
@@ -113,7 +132,8 @@ const PetOwnerBooking2 = () => {
                         <h5 className="display-10 fw-bold lh-1">Select Pets</h5>
                         <input type="date" id="SelectPet" name="SelectPet" />
                       </form> */}
-                      <Select
+                     
+                     {/*  <Select
                         multiple
                         defaultValue={["dog", "cat"]}
                         renderValue={(selected) => (
@@ -135,13 +155,38 @@ const PetOwnerBooking2 = () => {
                             },
                           },
                         }}
-                      > 
-                      {/* problem with option and selectinput   */}
-                        {/* <Option value="dog">Dog</Option>
+                      >
+
+
+
+
+
+                        problem with option and selectinput   
+                       <Option value="dog">Dog</Option>
                         <Option value="cat">Cat</Option>
                         <Option value="fish">Fish</Option>
-                        <Option value="bird">Bird</Option> */}
-                      </Select>
+                        <Option value="bird">Bird</Option> 
+                      </Select>*/}
+
+
+<Autocomplete
+      sx={{width: 400 }}
+      multiple
+      options={names}
+      getOptionLabel={(option) => option}
+      disableCloseOnSelect
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          variant="outlined"
+          label="Select Pets"
+          placeholder="Select Pets"
+        />
+      )}
+    />
+
+
+                      
                     </div>
                   }
                   <div class="col-lg-6 center" className="flex-container">

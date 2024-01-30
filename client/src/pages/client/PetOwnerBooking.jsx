@@ -141,7 +141,7 @@ const PetOwnerBooking = () => {
                 Starting at: <span className="yuki-font-color">₱425/1380mins</span>
               </h5>
 
-              <a class="btn btn-primary button-color" href="#Log In">
+              <a class="btn btn-primary button-color" href="/PetOwnerBooking2">
                 Book
               </a>
               
