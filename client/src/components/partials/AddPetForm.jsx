@@ -68,7 +68,7 @@ export default function EditItemForm(props) {
               >
                 <MenuItem value={'small'}>Small</MenuItem>
                 <MenuItem value={'medium'}>Medium</MenuItem>
-                <MenuItem value={'large'}>large</MenuItem>
+                <MenuItem value={'large'}>Large</MenuItem>
               </Select>
             </FormControl>
             <UploadFile />

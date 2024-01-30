@@ -56,7 +56,6 @@ const PetOwnerLogin = () => {
     console.log(success)
 
     if (success) {
-      
       navigate('/PetOwnerDashboard');
     } else {
       alert("Invalid username or password!");

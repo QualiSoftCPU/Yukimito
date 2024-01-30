@@ -6,16 +6,13 @@ import profilePicture from '../../assets/images/pp.jpeg'
 import AddPetForm from '../../components/partials/AddPetForm';
 import EditPetProfileForm from "../../components/partials/EditPetProfileForm";
 // import ProfileMenu from "../../components/partials/ProfileMenu";
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; 
-
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
-import NavBarUser from "../partials/NavBarUser";
+// import NavBarUser from "../partials/NavBarUser";
 import NavBarMain from "../partials/NavBarMain";
 import Logout from "../partials/Logout";
-
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 export default function PetOwnerDashboard() {
@@ -23,10 +20,17 @@ export default function PetOwnerDashboard() {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
 
-  const userSelected = jwtDecode(token);
-
+  let userSelected = jwtDecode(token);
+  
+  
   const [ pets, setPets ] = useState([]);
-  const [petOwnerDetails, setPetOwnerDetails] = useState({});
+  const [petOwnerDetails, setPetOwnerDetails] = useState({
+    ownerName: String,
+    username: String,
+    address: String,
+    contactNumber: String,
+    email: String,
+  });
   const [ pet, setPet ] = useState({
     name: String,
     breed: String,
@@ -34,7 +38,7 @@ export default function PetOwnerDashboard() {
     size: String,
     petOwnerId: userSelected.id
   });
-
+  const [ userInfo, setuserInfo] = useState({});
   const [ open, setOpen ] = useState(false);
   const [ openEdit, setOpenEdit ] = useState(false);
 
@@ -54,6 +58,9 @@ export default function PetOwnerDashboard() {
     setOpen(false);
   };
 
+  const handleUpdateUser = (updatedUser) => { 
+    setPetOwnerDetails(updatedUser);
+  };
   const handleEdit = (event) => {
     setPetOwnerDetails({
       ...petOwnerDetails,
@@ -62,9 +69,11 @@ export default function PetOwnerDashboard() {
   };
   const handleEditOpen = () => { 
     setOpenEdit(true);
+    
   };
   const handleEditCancel = () => {
     setOpenEdit(false);
+    window.location.reload();
   };
 
   async function handleAdd () {
@@ -92,8 +101,9 @@ export default function PetOwnerDashboard() {
   const handleUpdate = async () => {
     
     const ownerId = userSelected.id;
+    console.log("debug")
     console.log(petOwnerDetails)
-
+    
     try {
       const response = await axios.put(`http://localhost:4269/api/auth/editProfile/petowner/${ownerId}`,
         petOwnerDetails, {
@@ -103,6 +113,9 @@ export default function PetOwnerDashboard() {
       });
       
       if (response.status === 200) {
+        setuserInfo(petOwnerDetails);
+        console.log(response.data.name)
+        console.log(userSelected.name)
         console.log("Successfully updated!");
         window.location.reload();
       } else {
@@ -136,13 +149,22 @@ export default function PetOwnerDashboard() {
       .then((response) => {
 
         const userDetails = response.data;
-
         setPetOwnerDetails({
           ownerName: userDetails.name,
           username: userDetails.username,
+          address: "No address",
           contactNumber: userDetails.contact_number,
           email: userDetails.email,
         });
+        setuserInfo({
+          ownerName: userDetails.name,
+          username: userDetails.username,
+          address: "No address",
+          contactNumber: userDetails.contact_number,
+          email: userDetails.email,
+        
+        });
+        
       })
       .catch((error) => {
         console.log(error);
@@ -166,7 +188,10 @@ export default function PetOwnerDashboard() {
       fontSize: '35px'
     };
 
-    console.log(userSelected)
+  console.log(userSelected)
+  console.log(petOwnerDetails)
+  console.log(userInfo)
+
 
   return (
     <> 
@@ -190,18 +215,19 @@ export default function PetOwnerDashboard() {
                   <div class="d-flex justify-content-between align-content-center">
                     <div className="col">
                       <h1>
-                      {userSelected.name} <AutoAwesomeIcon style={iconStyle} className="yuki-font-color"/>
+                      {userInfo.ownerName} <AutoAwesomeIcon style={iconStyle} className="yuki-font-color"/>
                       </h1>
                     </div>
                     <div class="col d-flex flex-row-reverse lg">
                       <div>
                         <EditPetProfileForm
-                          ownerName={userSelected.name}
-                          username={userSelected.username}
-                          contactNumber={userSelected.contact_number}
-                          address={userSelected.address}
-                          email={userSelected.email}
+                          // ownerName={userSelected.name}
+                          // username={userSelected.username}
+                          // contactNumber={userSelected.contact_number}
+                          // address={userSelected.address}
+                          // email={userSelected.email}
                           openEdit={openEdit}
+                          handleUpdateUser={handleUpdateUser}
                           handleUpdate={handleUpdate}
                           updateFormData={handleEdit}
                           handleEditOpen={handleEditOpen}
@@ -237,21 +263,21 @@ export default function PetOwnerDashboard() {
               </div>
               <div className="col">
                 <h5 className="text-secondary">
-                  @{petOwnerDetails.username}
+                  @{userInfo.username}
                 </h5>
               </div>
               <hr />
               <div className="py-3">
                 <div className="card">
                   <div class="card-header">
-                    <b>Pet Owner Introduction</b>
+                    <b>Here's your info!</b>
                   </div>
                   <div class="card-body">
-                    <h5 class="card-title">San Pedro, San Jose de Buenavista, Antique</h5>
+                    <h5 class="card-title">{userInfo.address}</h5>
                     <p class="card-text text-secondary">
-                      Contact Number: {petOwnerDetails.contactNumber}
+                      Contact Number: {userInfo.contactNumber}
                       <br />
-                      Email: {petOwnerDetails.email}
+                      Email: {userInfo.email}
                     </p>
                   </div>
                 </div>
@@ -281,31 +307,39 @@ export default function PetOwnerDashboard() {
               </div>
             </div>
             <div className="row">
-              <div className="col">
-                {pets.map(pet => {
-                  return (
-                    <div className="card my-2">
-                      <div class="card-header">
-                        {pet.breed}
-                      </div>
-                      <div class="card-body">
-                        <span className="card-title h5">
-                          {pet.name}
-                        </span>
-                        &nbsp;
-                        <span className="span">
-                           ({pet.size})
-                        </span>
-                        <p class="card-text text-secondary">
-                          {pet.birthday}
-                          <br />
-                        </p>
-                      </div>
-                    </div>
-                  )
-              })}
+  <div className="col">
+    {pets.map(pet => {
+      return (
+        <div className="card my-2">
+          <div className="card-header">
+            {pet.breed}
+          </div>
+          <div className="card-body">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <span className="card-title h5">
+                  {pet.name}
+                </span>
+                &nbsp;
+                <span className="span">
+                  ({pet.size})
+                </span>
+              </div>
+              <div>
+                <button>Edit</button>
+                <button>Delete</button>
               </div>
             </div>
+            <p className="card-text text-secondary">
+              {pet.birthday}
+              <br />
+            </p>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</div>
             </div>
 
           {/* <Grid item xs={12}>
