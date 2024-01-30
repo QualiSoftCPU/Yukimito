@@ -221,11 +221,11 @@ export default function PetOwnerDashboard() {
                     <div class="col d-flex flex-row-reverse lg">
                       <div>
                         <EditPetProfileForm
-                          // ownerName={userSelected.name}
-                          // username={userSelected.username}
-                          // contactNumber={userSelected.contact_number}
-                          // address={userSelected.address}
-                          // email={userSelected.email}
+                          ownerName={petOwnerDetails.ownerName}
+                          username={petOwnerDetails.username}
+                          contactNumber={petOwnerDetails.contactNumber}
+                          address={petOwnerDetails.address}
+                          email={petOwnerDetails.email}
                           openEdit={openEdit}
                           handleUpdateUser={handleUpdateUser}
                           handleUpdate={handleUpdate}
