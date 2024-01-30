@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function Logout() {
 
@@ -11,7 +12,7 @@ export default function Logout() {
 
   return (
     <>
-      <a onClick={handleLogout} class="nav-link yuki-font-color" href="/">Log out</a>
+      <a onClick={handleLogout} class="nav-link text-white" href="/"><LogoutIcon className="me-1"/>Log out</a>
     </>
   )
 };

@@ -12,6 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Typography } from '@mui/material';
 import BasicDatePicker from './BasicDatePicker';
+import AddIcon from '@mui/icons-material/Add';
 
 const dialogueNames = [
   {
@@ -29,6 +30,7 @@ export default function EditItemForm(props) {
   return (
     <Fragment>
       <button onClick={props.handleClickOpen} type="button" class="btn btn-primary yuki-color button-border-color" data-toggle="modal">
+        <AddIcon className='me-1'/>
         Add pet
       </button>
       <Dialog open={props.open} onClose={props.handleCancel}>

@@ -8,6 +8,7 @@ import WhatWeOffer from '../partials/WhatWeOffer';
 import Footer from '../partials/Footer';
 import NavBarMain from '../partials/NavBarMain';
 import LoginHero from '../partials/HeroLogin';
+import LoginIcon from '@mui/icons-material/Login';
 
 const inputDetails = [
   {
@@ -76,7 +77,7 @@ const PetOwnerLogin = () => {
     <>
       <hr id="Log In"/>
       
-      <NavBarMain navItems={navItems} customLink={<a class="nav-link yuki-font-color" href="#Log In">Log In</a>}/>
+      <NavBarMain navItems={navItems} customLink={<a class="nav-link text-white nav-link display-6" href="#Log In"><LoginIcon className='me-1'/>Log In</a>}/>
 
       <div className="container my-5 main-container pt-5">
         <div className="row">

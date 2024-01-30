@@ -6,6 +6,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Typography } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+
 
 export default function EditPetProfileForm(props) {
 
@@ -18,6 +20,7 @@ export default function EditPetProfileForm(props) {
         type="button" 
         class="btn btn-primary yuki-color button-border-color" 
         data-toggle="modal">
+          <EditIcon className='me-1'/>
           Edit Profile
       </Button>
       <Dialog open={props.openEdit} onClose={props.handleEditCancel}>

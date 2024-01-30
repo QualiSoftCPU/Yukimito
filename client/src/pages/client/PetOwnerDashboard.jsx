@@ -2,7 +2,7 @@ import Footer from "../partials/Footer";
 import Box from '@mui/material/Box';
 // import ProfileMenu from '../../components/partials/ProfileMenu';
 import Avatar from '@mui/material/Avatar';
-import profilePicture from '../../assets/images/pp.jpeg'
+import profilePicture from '../../assets/images/pp1.jpeg'
 import AddPetForm from '../../components/partials/AddPetForm';
 import EditPetProfileForm from "../../components/partials/EditPetProfileForm";
 // import ProfileMenu from "../../components/partials/ProfileMenu";
@@ -14,7 +14,6 @@ import axios from 'axios';
 import NavBarMain from "../partials/NavBarMain";
 import Logout from "../partials/Logout";
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-
 export default function PetOwnerDashboard() {
 
   const navigate = useNavigate();
@@ -73,7 +72,6 @@ export default function PetOwnerDashboard() {
   };
   const handleEditCancel = () => {
     setOpenEdit(false);
-    window.location.reload();
   };
 
   async function handleAdd () {
@@ -149,6 +147,7 @@ export default function PetOwnerDashboard() {
       .then((response) => {
 
         const userDetails = response.data;
+
         setPetOwnerDetails({
           ownerName: userDetails.name,
           username: userDetails.username,
@@ -156,6 +155,7 @@ export default function PetOwnerDashboard() {
           contactNumber: userDetails.contact_number,
           email: userDetails.email,
         });
+
         setUserData({
           ownerName: userDetails.name,
           username: userDetails.username,
@@ -173,15 +173,7 @@ export default function PetOwnerDashboard() {
 
   }, [navigate, userSelected.id]);
 
-    const navItems = ["Home", "Book Now"
-    // <ProfileMenu
-    //   updateFormData={updateFormData}
-    //   handleUpdate={handleUpdate}
-    //   ownerName={formData.ownerName}
-    //   username={formData.username}
-    //   contactNumber={formData.contactNumber}
-    //   email={formData.email}
-    // />
+    const navItems = [
     ];
 
     const iconStyle = {
@@ -208,7 +200,7 @@ export default function PetOwnerDashboard() {
                 <Avatar 
                     alt="Profile Picture"
                     src={profilePicture}
-                    sx={{ width: 150, height: 150 }} />
+                    sx={{ width: 125, height: 125 }} />
               </div>
               <div className="col align-middle">
                 
@@ -266,11 +258,17 @@ export default function PetOwnerDashboard() {
                   @{userData.username}
                 </h5>
               </div>
+
               <hr />
+
+              <div className="d-flex justify-content-center mx-auto">
+                <a className="btn yuki-color text-white" href="/">Book Now!</a>
+              </div>
+              
               <div className="py-3">
-                <div className="card">
+                <div className="card shadow-sm">
                   <div class="card-header">
-                    <b>Here's your info!</b>
+                    <b>Pet Owner Details</b>
                   </div>
                   <div class="card-body">
                     <h5 class="card-title">{userData.address}</h5>
@@ -286,61 +284,101 @@ export default function PetOwnerDashboard() {
 
             <hr />
 
-            <div>
-            <div className="row py-3">
-              <div className="col align-middle">
-                <h5>
-                  <b>
-                    My Pets
-                  </b>
-                </h5>
-              </div>
-              <div className="col d-flex flex-row-reverse">
-                  <AddPetForm
-                    handleDateChange={handleDateChange}
-                    open={open}
-                    handleAdd={handleAdd}
-                    handleCancel={handleCancel}
-                    handleChange={handleChange}
-                    handleClickOpen={handleClickOpen}
-                    />
-              </div>
-            </div>
             <div className="row">
-  <div className="col">
-    {pets.map(pet => {
-      return (
-        <div className="card my-2">
-          <div className="card-header">
-            {pet.breed}
-          </div>
-          <div className="card-body">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <span className="card-title h5">
-                  {pet.name}
-                </span>
-                &nbsp;
-                <span className="span">
-                  ({pet.size})
-                </span>
+
+              <div className="row col">
+
+                <div>
+                  <h5 className="py-3">
+                    <b>
+                      Rates and Services
+                    </b>
+                  </h5>
+                  <div className="card my-2">
+                      <div className="card-header">
+                        Here are the services that we offer:
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">An item</li>
+                        <li class="list-group-item">A second item</li>
+                        <li class="list-group-item">A third item</li>
+                      </ul>
+                  </div>
+
+                  <h5 className="py-3">
+                    <b>
+                      Boarding Requirements
+                    </b>
+                  </h5>
+                  <div className="card my-2">
+                      <div className="card-header">
+                        Before boarding in, let's check if you meet the requirements:
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">An item</li>
+                        <li class="list-group-item">A second item</li>
+                        <li class="list-group-item">A third item</li>
+                      </ul>
+                  </div>
+                </div>
+                
               </div>
-              <div>
-                <button>Edit</button>
-                <button>Delete</button>
+
+              <div className="col">
+                <div className="row py-3">
+                  <div className="col align-middle">
+                    <h5>
+                      <b>
+                        My Pets
+                      </b>
+                    </h5>
+                  </div>
+                  <div className="col d-flex flex-row-reverse">
+                    <AddPetForm
+                      handleDateChange={handleDateChange}
+                      open={open}
+                      handleAdd={handleAdd}
+                      handleCancel={handleCancel}
+                      handleChange={handleChange}
+                      handleClickOpen={handleClickOpen}
+                      />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col">
+                    {pets.map(pet => {
+                      return (
+                        <div className="card my-2 shadow-sm">
+                          <div className="card-header">
+                            {pet.breed}
+                          </div>
+                          <div className="card-body">
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                              <div>
+                                <span className="card-title h5">
+                                  {pet.name}
+                                </span>
+                                &nbsp;
+                                <span className="span">
+                                  ({pet.size})
+                                </span>
+                              </div>
+                              <div>
+                                <button className="btn btn-primary yuki-color button-border-color mx-2"> Edit</button>
+                                <button className="btn btn-danger">Delete</button>
+                              </div>
+                            </div>
+                            <p className="card-text text-secondary">
+                              {pet.birthday}
+                              <br />
+                            </p>
+                          </div>
+                        </div>
+                        )})}
+                    </div>  
+                  </div>
+                </div>
               </div>
-            </div>
-            <p className="card-text text-secondary">
-              {pet.birthday}
-              <br />
-            </p>
-          </div>
-        </div>
-      );
-    })}
-  </div>
-</div>
-            </div>
 
           {/* <Grid item xs={12}>
             <div style={{padding: '1rem', backgroundColor: 'white', borderRadius: '15px'}}>
