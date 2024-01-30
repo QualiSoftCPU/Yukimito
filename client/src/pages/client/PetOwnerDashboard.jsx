@@ -38,7 +38,7 @@ export default function PetOwnerDashboard() {
     size: String,
     petOwnerId: userSelected.id
   });
-  const [ userInfo, setuserInfo] = useState({});
+  const [newData, setNewData] = useState({});
   const [ open, setOpen ] = useState(false);
   const [ openEdit, setOpenEdit ] = useState(false);
 
@@ -113,7 +113,7 @@ export default function PetOwnerDashboard() {
       });
       
       if (response.status === 200) {
-        setuserInfo(petOwnerDetails);
+        // setNewData(petOwnerDetails);
         console.log(response.data.name)
         console.log(userSelected.name)
         console.log("Successfully updated!");
@@ -156,7 +156,7 @@ export default function PetOwnerDashboard() {
           contactNumber: userDetails.contact_number,
           email: userDetails.email,
         });
-        setuserInfo({
+        setNewData({
           ownerName: userDetails.name,
           username: userDetails.username,
           address: "No address",
@@ -190,7 +190,7 @@ export default function PetOwnerDashboard() {
 
   console.log(userSelected)
   console.log(petOwnerDetails)
-  console.log(userInfo)
+  console.log(newData)
 
 
   return (
@@ -215,7 +215,7 @@ export default function PetOwnerDashboard() {
                   <div class="d-flex justify-content-between align-content-center">
                     <div className="col">
                       <h1>
-                      {userInfo.ownerName} <AutoAwesomeIcon style={iconStyle} className="yuki-font-color"/>
+                      {newData.ownerName} <AutoAwesomeIcon style={iconStyle} className="yuki-font-color"/>
                       </h1>
                     </div>
                     <div class="col d-flex flex-row-reverse lg">
@@ -263,7 +263,7 @@ export default function PetOwnerDashboard() {
               </div>
               <div className="col">
                 <h5 className="text-secondary">
-                  @{userInfo.username}
+                  @{newData.username}
                 </h5>
               </div>
               <hr />
@@ -273,11 +273,11 @@ export default function PetOwnerDashboard() {
                     <b>Here's your info!</b>
                   </div>
                   <div class="card-body">
-                    <h5 class="card-title">{userInfo.address}</h5>
+                    <h5 class="card-title">{newData.address}</h5>
                     <p class="card-text text-secondary">
-                      Contact Number: {userInfo.contactNumber}
+                      Contact Number: {newData.contactNumber}
                       <br />
-                      Email: {userInfo.email}
+                      Email: {newData.email}
                     </p>
                   </div>
                 </div>
