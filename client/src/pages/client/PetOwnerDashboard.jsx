@@ -262,7 +262,7 @@ export default function PetOwnerDashboard() {
               <hr />
 
               <div className="d-flex justify-content-center mx-auto">
-                <a className="btn yuki-color text-white" href="/">Book Now!</a>
+                <a className="btn yuki-color text-white" href="/PetOwnerBooking">Book Now!</a>
               </div>
               
               <div className="py-3">
