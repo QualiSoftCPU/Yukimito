@@ -1,6 +1,8 @@
 import React from "react";
 import NavBarMain from "../../pages/partials/NavBarMain";
 import crsl2 from "../../assets/images/crsl3.png";
+import Footer from "../partials/Footer";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const PetOwnerBooking = () => {
   const navItems = [];
