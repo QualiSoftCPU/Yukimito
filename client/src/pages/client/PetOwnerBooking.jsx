@@ -1,6 +1,7 @@
 import React from "react";
 import NavBarUser from "../partials/NavBarUser";
 import crsl2 from "../../assets/images/crsl3.png";
+import Footer from "../partials/Footer";
 
 const PetOwnerBooking = () => {
   const navItems = [
@@ -79,15 +80,12 @@ const PetOwnerBooking = () => {
               <div class="carousel-inner rounded-3 shadow">
                 <div class="carousel-item active" data-bs-interval="10000">
                   <img src={crsl2} class="d-block w-100" alt="..." />
-                 
                 </div>
                 <div class="carousel-item" data-bs-interval="2000">
                   <img src={crsl2} class="d-block w-100" alt="..." />
-                
                 </div>
                 <div class="carousel-item">
                   <img src={crsl2} class="d-block w-100" alt="..." />
-                
                 </div>
               </div>
               <button
@@ -123,30 +121,35 @@ const PetOwnerBooking = () => {
                 <span>Home Care</span>
               </h1>
 
-            <p class="lead mb-4" style={{fontSize: "17px"}}>
+              <p class="lead mb-4" style={{ fontSize: "17px" }}>
                 Going for a vacation or business trip and worried about your
                 pet, Home Care service is your choiice. We take every precaution
-                to provide a safe and stress-free boarding experience for your pet. 
-            </p>
-              <p class = "text-start">
+                to provide a safe and stress-free boarding experience for your
+                pet.
+              </p>
+              <p class="text-start">
                 <p>Check In: 12 noon - 4:30 PM only</p>
                 <p>Check Out: 11:00 AM</p>
-                
+
                 <p>Fee of ₱50/hr for early check in or late check out</p>
-                 <p>Please inform our staff if your pets has any allergies or specific needs.</p>
-                 <p>Rates depends on Pet size</p>
+                <p>
+                  Please inform our staff if your pets has any allergies or
+                  specific needs.
+                </p>
+                <p>Rates depends on Pet size</p>
               </p>
 
               <h5>
-                Starting at: <span className="yuki-font-color">₱425/1380mins</span>
+                Starting at:{" "}
+                <span className="yuki-font-color">₱425/1380mins</span>
               </h5>
 
-              <a class="btn btn-primary button-color" href="/PetOwnerBooking2">
+              <a
+                class="btn btn-primary button-color"
+                href="/PetOwnerBookingHomeCare"
+              >
                 Book
               </a>
-              
-               
-              
             </div>
             {/* 
             <div className="flex-container ">
@@ -197,15 +200,12 @@ const PetOwnerBooking = () => {
               <div class="carousel-inner rounded-3 shadow">
                 <div class="carousel-item active" data-bs-interval="10000">
                   <img src={crsl2} class="d-block w-100" alt="..." />
-                 
                 </div>
                 <div class="carousel-item" data-bs-interval="2000">
                   <img src={crsl2} class="d-block w-100" alt="..." />
-                  
                 </div>
                 <div class="carousel-item">
                   <img src={crsl2} class="d-block w-100" alt="..." />
-                
                 </div>
               </div>
               <button
@@ -241,26 +241,32 @@ const PetOwnerBooking = () => {
                 <span>Day Care</span>
               </h1>
 
-              <p class="lead mb-4" style={{fontSize: "17px"}}>
+              <p class="lead mb-4" style={{ fontSize: "17px" }}>
                 If youre leaving home for a day under 10 hours, Day Care service
-                is your best option. Bring your furry loved one in the morning and will 
-                take care all the needs of your pet.
+                is your best option. Bring your furry loved one in the morning
+                and will take care all the needs of your pet.
               </p>
 
-              <p class = "text-start">
+              <p class="text-start">
                 <p>7:30 AM - 7:00 PM</p>
                 <p>5-10 hours and strictly no late pick up</p>
                 <p>Overnight rate is applied if you pick up after 7:00 PM</p>
-                
-                <p>A treat is provided, please inform our staff if your pet has any allergies.</p>
-                 
+
+                <p>
+                  A treat is provided, please inform our staff if your pet has
+                  any allergies.
+                </p>
               </p>
 
               <h5>
-                Starting at: <span className="yuki-font-color">₱250/600mins</span>
+                Starting at:{" "}
+                <span className="yuki-font-color">₱250/600mins</span>
               </h5>
 
-              <a class="btn btn-primary button-color" href="#Log In">
+              <a
+                class="btn btn-primary button-color"
+                href="/PetOwnerBookingDayCare"
+              >
                 Book
               </a>
             </div>
@@ -313,15 +319,12 @@ const PetOwnerBooking = () => {
               <div class="carousel-inner rounded-3 shadow">
                 <div class="carousel-item active" data-bs-interval="10000">
                   <img src={crsl2} class="d-block w-100" alt="..." />
-                
                 </div>
                 <div class="carousel-item" data-bs-interval="2000">
                   <img src={crsl2} class="d-block w-100" alt="..." />
-                 
                 </div>
                 <div class="carousel-item">
                   <img src={crsl2} class="d-block w-100" alt="..." />
-                 
                 </div>
               </div>
               <button
@@ -357,26 +360,33 @@ const PetOwnerBooking = () => {
                 <span>Errands Care</span>
               </h1>
 
-              <p class="lead mb-4" style={{fontSize: "17px"}}>
+              <p class="lead mb-4" style={{ fontSize: "17px" }}>
                 Going to church, grocery, or an important meeting for a short
-                period of time and you cant attend to your pet needs, Errand service is for you.
+                period of time and you cant attend to your pet needs, Errand
+                service is for you.
               </p>
 
-              <p class = "text-start">
+              <p class="text-start">
                 <p>7:30 AM - 4:30 PM</p>
                 <p>1-4 hours and strictly no late pick up</p>
                 <p>7:00 PM if the last pick up</p>
                 <p>Overnight rate is applied if you pick up after 7:00 PM</p>
-                
-                <p>A treat is provided, please inform our staff if your pet has any allergies.</p>
-                 
+
+                <p>
+                  A treat is provided, please inform our staff if your pet has
+                  any allergies.
+                </p>
               </p>
 
               <h5>
-                Starting at: <span className="yuki-font-color">₱180/240mins</span>
+                Starting at:{" "}
+                <span className="yuki-font-color">₱180/240mins</span>
               </h5>
 
-              <a class="btn btn-primary button-color" href="#Log In">
+              <a
+                class="btn btn-primary button-color"
+                href="/PetOwnerBookingErrandsCare"
+              >
                 Book
               </a>
             </div>
@@ -396,6 +406,7 @@ const PetOwnerBooking = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

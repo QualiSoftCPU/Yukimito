@@ -1,12 +1,12 @@
 import React from "react";
 import NavBarUser from "../partials/NavBarUser";
-import { Box, Paper, Chip } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TextField, Autocomplete } from "@mui/material";
-
-
+import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import Footer from "../partials/Footer";
 
 const names = [
   "Humaira Sims",
@@ -18,14 +18,10 @@ const names = [
   "Genevieve Watkins",
   "Mariah Hickman",
   "Rocco Richardson",
-  "Harris Glenn"
+  "Harris Glenn",
 ];
 
-const PetOwnerBooking2 = () => {
-
-
-  
-
+const PetOwnerBookingErrandsCare = () => {
   const navItems = [
     {
       name: (
@@ -78,7 +74,7 @@ const PetOwnerBooking2 = () => {
                 "& > :not(style)": {
                   m: 1,
                   width: 500,
-                  height: 500,
+                  height: 600,
                 },
                 textAlign: "center",
               }}
@@ -101,12 +97,12 @@ const PetOwnerBooking2 = () => {
                           <DateTimePicker
                             label="Check In"
                             name="startDateTime"
-                            className='input-margin non-inline input-styling'
+                            className="input-margin non-inline input-styling"
                           />
                         </LocalizationProvider>
 
                         {/* <h5 className="display-10 fw-bold lh-1">Check In</h5>
-                        <input type="date" id="CheckIn" name="CheckIn" /> */}
+                            <input type="date" id="CheckIn" name="CheckIn" /> */}
                       </form>
 
                       <form
@@ -117,83 +113,82 @@ const PetOwnerBooking2 = () => {
                           <DateTimePicker
                             label="Check Out"
                             name="startDateTime"
-                            className='input-margin non-inline input-styling'
+                            className="input-margin non-inline input-styling"
                           />
                         </LocalizationProvider>
 
                         {/* <h5 className="display-10 fw-bold lh-1">Check Out</h5>
-                        <input type="date" id="CheckOut" name="CheckOut" /> */}
+                            <input type="date" id="CheckOut" name="CheckOut" /> */}
                       </form>
 
                       {/* <form
-                        action="/action_page.php"
-                        className="form-container center"
-                      >
-                        <h5 className="display-10 fw-bold lh-1">Select Pets</h5>
-                        <input type="date" id="SelectPet" name="SelectPet" />
-                      </form> */}
-                     
-                     {/*  <Select
+                            action="/action_page.php"
+                            className="form-container center"
+                          >
+                            <h5 className="display-10 fw-bold lh-1">Select Pets</h5>
+                            <input type="date" id="SelectPet" name="SelectPet" />
+                          </form> */}
+
+                      {/*  <Select
+                            multiple
+                            defaultValue={["dog", "cat"]}
+                            renderValue={(selected) => (
+                              <Box sx={{ display: "flex", gap: "0.25rem" }}>
+                                {selected.map((selectedOption) => (
+                                  <Chip variant="soft" color="primary">
+                                    {selectedOption.label}
+                                  </Chip>
+                                ))}
+                              </Box>
+                            )}
+                            sx={{
+                              minWidth: "16rem",
+                            }}
+                            slotProps={{
+                              listbox: {
+                                sx: {
+                                  width: "100%",
+                                },
+                              },
+                            }}
+                          >
+    
+    
+    
+    
+    
+                            problem with option and selectinput   
+                           <Option value="dog">Dog</Option>
+                            <Option value="cat">Cat</Option>
+                            <Option value="fish">Fish</Option>
+                            <Option value="bird">Bird</Option> 
+                          </Select>*/}
+
+                      <Autocomplete
+                        sx={{ width: 400 }}
                         multiple
-                        defaultValue={["dog", "cat"]}
-                        renderValue={(selected) => (
-                          <Box sx={{ display: "flex", gap: "0.25rem" }}>
-                            {selected.map((selectedOption) => (
-                              <Chip variant="soft" color="primary">
-                                {selectedOption.label}
-                              </Chip>
-                            ))}
-                          </Box>
+                        options={names}
+                        getOptionLabel={(option) => option}
+                        disableCloseOnSelect
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            variant="outlined"
+                            label="Select Pets"
+                            placeholder="Select Pets"
+                          />
                         )}
-                        sx={{
-                          minWidth: "16rem",
-                        }}
-                        slotProps={{
-                          listbox: {
-                            sx: {
-                              width: "100%",
-                            },
-                          },
-                        }}
-                      >
+                      />
 
+                      <br />
+                      <h5>Availability</h5>
 
-
-
-
-                        problem with option and selectinput   
-                       <Option value="dog">Dog</Option>
-                        <Option value="cat">Cat</Option>
-                        <Option value="fish">Fish</Option>
-                        <Option value="bird">Bird</Option> 
-                      </Select>*/}
-
-
-<Autocomplete
-      sx={{width: 400 }}
-      multiple
-      options={names}
-      getOptionLabel={(option) => option}
-      disableCloseOnSelect
-      renderInput={(params) => (
-        <TextField
-          {...params}
-          variant="outlined"
-          label="Select Pets"
-          placeholder="Select Pets"
-        />
-      )}
-    />
-
-
-                      
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DateCalendar />
+                      </LocalizationProvider>
                     </div>
                   }
-                  <div class="col-lg-6 center" className="flex-container">
-                    <a class="btn btn-primary button-color" href="#Log In">
-                      Book
-                    </a>
-                  </div>
+                  <div class="col-lg-6 center" className="flex-container"></div>
                 </div>
               </Paper>
             </Box>
@@ -202,38 +197,46 @@ const PetOwnerBooking2 = () => {
             <Box>
               <div className="container">
                 <h1 class="display-6 fw-bold lh-1">
-                  <span>Home Care</span>
+                  <span>Errands Care</span>
                 </h1>
 
                 <p class="lead mb-4" style={{ fontSize: "17px" }}>
-                  Going for a vacation or business trip and worried about your
-                  pet, Home Care service is your choiice. We take every
-                  precaution to provide a safe and stress-free boarding
-                  experience for your pet.
+                  Going to church, grocery, or an important meeting for a short
+                  period of time and you cant attend to your pet needs, Errand
+                  service is for you.
                 </p>
-                <p class="text-start">
-                  <p>Check In: 12 noon - 4:30 PM only</p>
-                  <p>Check Out: 11:00 AM</p>
 
-                  <p>Fee of ₱50/hr for early check in or late check out</p>
+                <p class="text-start">
+                  <p>7:30 AM - 4:30 PM</p>
+                  <p>1-4 hours and strictly no late pick up</p>
+                  <p>7:00 PM if the last pick up</p>
+                  <p>Overnight rate is applied if you pick up after 7:00 PM</p>
+
                   <p>
-                    Please inform our staff if your pets has any allergies or
-                    specific needs.
+                    A treat is provided, please inform our staff if your pet has
+                    any allergies.
                   </p>
-                  <p>Rates depends on Pet size</p>
                 </p>
 
                 <h5>
                   Starting at:{" "}
-                  <span className="yuki-font-color">₱425/1380mins</span>
+                  <span className="yuki-font-color">₱180/240mins</span>
                 </h5>
+
+                <a
+                  class="btn btn-primary button-color"
+                  href="/PetOwnerBookingErrandsCare"
+                >
+                  Book
+                </a>
               </div>
             </Box>
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
 
-export default PetOwnerBooking2;
+export default PetOwnerBookingErrandsCare;

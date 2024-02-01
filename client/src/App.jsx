@@ -28,7 +28,9 @@ import SuccessTestPage from "./pages/SuccessTestpage";
 import LandingPage from "./pages/LandingPage";
 import PetOwnerDashboard from "./pages/client/PetOwnerDashboard";
 import PetOwnerBooking from "./pages/client/PetOwnerBooking";
-import PetOwnerBooking2 from "./pages/client/PetOwnerBooking2";
+import PetOwnerBookingHomeCare from "./pages/client/PetOwnerBookingHomeCare";
+import PetOwnerBookingDayCare from "./pages/client/PetOwnerBookingDayCare";
+import PetOwnerBookingErrandsCare from "./pages/client/PetOwnerBookingErrandsCare"; 
 
 export default function App() {
 
@@ -45,8 +47,9 @@ export default function App() {
         <Route path="/PetOwnerPhotos" element={<PetOwnerPhotos />} />
         <Route path="/PetOwnerRequirements" element={<PetOwnerRequirements />} />
         <Route path="/PetOwnerBooking" element={<PetOwnerBooking />} />
-        <Route path="/PetOwnerBooking2" element={<PetOwnerBooking2 />} />
-
+        <Route path="/PetOwnerBookingHomeCare" element={<PetOwnerBookingHomeCare />} />
+        <Route path="/PetOwnerBookingDayCare" element={<PetOwnerBookingDayCare />} />
+        <Route path="/PetOwnerBookingErrandsCare" element={<PetOwnerBookingErrandsCare />} />
         {/* admin pages */} 
 
 
