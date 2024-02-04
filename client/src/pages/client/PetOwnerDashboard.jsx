@@ -14,6 +14,7 @@ import axios from 'axios';
 import NavBarMain from "../partials/NavBarMain";
 import Logout from "../partials/Logout";
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+
 export default function PetOwnerDashboard() {
 
   const navigate = useNavigate();
@@ -188,11 +189,10 @@ export default function PetOwnerDashboard() {
   return (
     <> 
       <NavBarMain navItems={navItems} customLink={<Logout />}/>
-
-      <div className="container px-5">
-        <div>
+      <div className="mt-5 pt-3 px-5 yuki-color2 text-center">
           Welcome back to Yukimito Services!
-        </div>
+      </div>
+      <div className="container px-5">
         <Box sx={{ flexGrow: 1 }}>
 
             <div className="mt-5">
@@ -228,7 +228,6 @@ export default function PetOwnerDashboard() {
                       </div>
                     </div>
                   </div>
-                    
 
                   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -266,7 +265,7 @@ export default function PetOwnerDashboard() {
               </div>
               
               <div className="py-3">
-                <div className="card shadow-sm">
+                <div className="card shadow">
                   <div class="card-header">
                     <b>Pet Owner Details</b>
                   </div>
@@ -294,7 +293,7 @@ export default function PetOwnerDashboard() {
                       Rates and Services
                     </b>
                   </h5>
-                  <div className="card my-2">
+                  <div className="card my-2 shadow">
                       <div className="card-header">
                         Here are the services that we offer:
                       </div>
@@ -310,7 +309,7 @@ export default function PetOwnerDashboard() {
                       Boarding Requirements
                     </b>
                   </h5>
-                  <div className="card my-2">
+                  <div className="card my-2 shadow">
                       <div className="card-header">
                         Before boarding in, let's check if you meet the requirements:
                       </div>
@@ -346,35 +345,41 @@ export default function PetOwnerDashboard() {
                 </div>
                 <div className="row">
                   <div className="col">
-                    {pets.map(pet => {
-                      return (
-                        <div className="card my-2 shadow-sm">
-                          <div className="card-header">
-                            {pet.breed}
-                          </div>
-                          <div className="card-body">
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                              <div>
-                                <span className="card-title h5">
-                                  {pet.name}
-                                </span>
-                                &nbsp;
-                                <span className="span">
-                                  ({pet.size})
-                                </span>
+                    <div className="overflow-auto card shadow">
+                    <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light" style={{maxWidth: "800px", maxHeight: "500px"}}>
+                      {pets.map(pet => {
+                          return (
+                            <div className="card my-2 shadow-sm">
+                              <div className="card-header">
+                                {pet.breed}
                               </div>
-                              <div>
-                                <button className="btn btn-primary yuki-color button-border-color mx-2"> Edit</button>
-                                <button className="btn btn-danger">Delete</button>
+                              <div className="card-body">
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                  <div>
+                                    <span className="card-title h5">
+                                      {pet.name}
+                                    </span>
+                                    &nbsp;
+                                    <span className="span">
+                                      ({pet.size})
+                                    </span>
+                                  </div>
+                                  <div>
+                                    <button className="btn btn-primary yuki-color button-border-color mx-2"> Edit</button>
+                                    <button className="btn btn-danger">Delete</button>
+                                  </div>
+                                </div>
+                                <p className="card-text text-secondary">
+                                  {pet.birthday}
+                                  <br />
+                                </p>
                               </div>
                             </div>
-                            <p className="card-text text-secondary">
-                              {pet.birthday}
-                              <br />
-                            </p>
-                          </div>
-                        </div>
-                        )})}
+                          )})}  
+                    </div>
+                      
+                    </div>
+                    
                     </div>  
                   </div>
                 </div>

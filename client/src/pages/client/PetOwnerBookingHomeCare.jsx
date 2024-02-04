@@ -1,5 +1,6 @@
-import React from "react";
-import NavBarUser from "../partials/NavBarUser";
+import { React, useEffect, useState} from "react";
+import NavBarMain from "../../pages/partials/NavBarMain";
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { Box, Paper } from "@mui/material";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -7,56 +8,58 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TextField, Autocomplete } from "@mui/material";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import Footer from "../partials/Footer";
-
-const names = [
-  "Humaira Sims",
-  "Santiago Solis",
-  "Dawid Floyd",
-  "Mateo Barlow",
-  "Samia Navarro",
-  "Kaden Fields",
-  "Genevieve Watkins",
-  "Mariah Hickman",
-  "Rocco Richardson",
-  "Harris Glenn",
-];
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
+import { jwtDecode } from "jwt-decode";
 
 const PetOwnerBookingHomeCare = () => {
+
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+
+  let userSelected = jwtDecode(token);
+
+  const [ pets, setPets ] = useState([]);
+
+  const petList = pets.map(pet => pet.name)
+
   const navItems = [
-    {
-      name: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="40"
-          fill="currentColor"
-          class="bi bi-person-circle"
-          viewBox="0 0 16 16"
-        >
-          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-          <path
-            fill-rule="evenodd"
-            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-          />
-        </svg>
-      ),
-      link: "/PetOwnerDashboard",
-    },
-    {
-      name: "Home",
-      link: "",
-    },
-    {
-      name: "BookNow",
-      link: "/PetOwnerBooking",
-    },
+   
   ];
+
+  const { service } = useParams();
+  console.log(service);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/');
+    }
+
+    fetch(`http://localhost:4269/api/getPets/pet/${userSelected.id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then((response) => response.json())
+      .then((fetchedPets) => setPets(fetchedPets))  
+      .catch((error) => console.log(error));
+    
+
+  }, [navigate, userSelected.id]);
+
+
   return (
     <>
-      <NavBarUser navItems={navItems} />
+      <NavBarMain navItems={navItems} customLink={
+        <li class="nav-item active px-3 align-middle yuki-font-color">
+          <a class="nav-link text-white" href="/PetOwnerBooking"><KeyboardReturnIcon className="me-1"/>Back to Services</a>
+        </li>
+      } />
 
-      <div class="my-5 container px-1">
+      <div class="my-5 pt-5 container px-1">
         <h1 class="display-5 fw-bold">
-          We are ready to <span className="yuki-font-color">SERVE</span>
+          Booking <span className="yuki-font-color">Confirmation</span>
         </h1>
         <p class="lead mb-4">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra
@@ -167,7 +170,7 @@ const PetOwnerBookingHomeCare = () => {
                       <Autocomplete
                         sx={{ width: 400 }}
                         multiple
-                        options={names}
+                        options={petList}
                         getOptionLabel={(option) => option}
                         disableCloseOnSelect
                         renderInput={(params) => (
@@ -197,7 +200,7 @@ const PetOwnerBookingHomeCare = () => {
             <Box>
               <div className="container">
                 <h1 class="display-6 fw-bold lh-1">
-                  <span>Home Care</span>
+                  <span>{service}</span>
                 </h1>
 
                 <p class="lead mb-4" style={{ fontSize: "17px" }}>
@@ -228,6 +231,7 @@ const PetOwnerBookingHomeCare = () => {
                   class="btn btn-primary button-color"
                   data-toggle="modal"
                   data-target="#HomeCareBookNow"
+                  href="/"
                 >
                   Book
                 </a>
@@ -263,10 +267,10 @@ const PetOwnerBookingHomeCare = () => {
               lobortis urna, nec posuere enim orci sed dolor.
             </div>
             <div class="modal-footer">
-              <a type="button" class="btn btn-secondary" data-dismiss="modal" >
+              <a type="button" class="btn btn-secondary" data-dismiss="modal" href="/">
                 Cancel
               </a>
-              <a type="button" class="btn btn-primary button-color">
+              <a type="button" class="btn btn-primary button-color" href="/">
                 Confirm
               </a>
             </div>
