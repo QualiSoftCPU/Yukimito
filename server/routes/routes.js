@@ -4,6 +4,8 @@ const router = express.Router();
 const petOwnerController = require("../controllers/petOwnerController");
 const adminController = require("../controllers/adminController");
 const petController = require("../controllers/petController");
+const bookingController = require("../controllers/bookingController");
+const serviceController = require("../controllers/serviceController");
 
 router.post("/api/auth/signup/petowner", petOwnerController.signup);
 router.post("/api/auth/signin/petowner", petOwnerController.signin);
@@ -17,4 +19,11 @@ router.get("/api/getPets/pet/:petOwnerId", petController.getAll);
 router.post("/api/addPet/pet", petController.createPet);
 router.get("/api/getPet/:petId", petController.getPet);
 
- module.exports = router;
+router.post("/api/createBooking/booking", bookingController.createBooking);
+router.get("/api/getBooking/:petOwnerId", bookingController.getBooking);
+router.put("/api/updateBooking/:bookingId", bookingController.updateBooking);
+ 
+router.post("/api/addService", serviceController.createService);
+router.get("/api/getService/:serviceId", serviceController.getService);
+router.put("/api/updateService/:serviceId", serviceController.updateService);
+module.exports = router;
