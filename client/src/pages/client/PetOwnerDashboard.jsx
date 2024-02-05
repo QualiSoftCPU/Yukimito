@@ -1,19 +1,19 @@
 import Footer from "../partials/Footer";
 import Box from '@mui/material/Box';
-// import ProfileMenu from '../../components/partials/ProfileMenu';
+// import ProfileMenu from '../../components/partials/ProfileMenu'
 import Avatar from '@mui/material/Avatar';
 import profilePicture from '../../assets/images/pp1.jpeg'
 import AddPetForm from '../../components/partials/AddPetForm';
 import EditPetProfileForm from "../../components/partials/EditPetProfileForm";
-// import ProfileMenu from "../../components/partials/ProfileMenu";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; 
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
-// import NavBarUser from "../partials/NavBarUser";
 import NavBarMain from "../partials/NavBarMain";
 import Logout from "../partials/Logout";
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import VerifiedIcon from '@mui/icons-material/Verified';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import VaccinesIcon from '@mui/icons-material/Vaccines';
 
 export default function PetOwnerDashboard() {
 
@@ -195,7 +195,7 @@ export default function PetOwnerDashboard() {
       <div className="container px-5">
         <Box sx={{ flexGrow: 1 }}>
 
-            <div className="mt-5">
+            <div className="mt-3">
               <div className="col">
                 <Avatar 
                     alt="Profile Picture"
@@ -207,7 +207,7 @@ export default function PetOwnerDashboard() {
                   <div class="d-flex justify-content-between align-content-center">
                     <div className="col">
                       <h1>
-                      {userData.ownerName} <AutoAwesomeIcon style={iconStyle} className="yuki-font-color"/>
+                      {userData.ownerName} <VerifiedIcon style={iconStyle} className="yuki-font-color"/>
                       </h1>
                     </div>
                     <div class="col d-flex flex-row-reverse lg">
@@ -283,135 +283,114 @@ export default function PetOwnerDashboard() {
 
             <hr />
 
-            <div className="row">
+          <div className="row">
 
-              <div className="row col">
+            <div className="row col">
 
-                <div>
-                  <h5 className="py-3">
-                    <b>
-                      Rates and Services
-                    </b>
-                  </h5>
-                  <div className="card my-2 shadow">
-                      <div className="card-header">
-                        Here are the services that we offer:
-                      </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
-                      </ul>
-                  </div>
-
-                  <h5 className="py-3">
-                    <b>
-                      Boarding Requirements
-                    </b>
-                  </h5>
-                  <div className="card my-2 shadow">
-                      <div className="card-header">
-                        Before boarding in, let's check if you meet the requirements:
-                      </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
-                      </ul>
-                  </div>
-                </div>
-                
-              </div>
-
-              <div className="col">
-                <div className="row py-3">
-                  <div className="col align-middle">
-                    <h5>
-                      <b>
-                        My Pets
-                      </b>
-                    </h5>
-                  </div>
-                  <div className="col d-flex flex-row-reverse">
-                    <AddPetForm
-                      handleDateChange={handleDateChange}
-                      open={open}
-                      handleAdd={handleAdd}
-                      handleCancel={handleCancel}
-                      handleChange={handleChange}
-                      handleClickOpen={handleClickOpen}
-                      />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col">
-                    <div className="overflow-auto card shadow">
-                    <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light" style={{maxWidth: "800px", maxHeight: "500px"}}>
-                      {pets.map(pet => {
-                          return (
-                            <div className="card my-2 shadow-sm">
-                              <div className="card-header">
-                                {pet.breed}
-                              </div>
-                              <div className="card-body">
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                  <div>
-                                    <span className="card-title h5">
-                                      {pet.name}
-                                    </span>
-                                    &nbsp;
-                                    <span className="span">
-                                      ({pet.size})
-                                    </span>
-                                  </div>
-                                  <div>
-                                    <button className="btn btn-primary yuki-color button-border-color mx-2"> Edit</button>
-                                    <button className="btn btn-danger">Delete</button>
-                                  </div>
-                                </div>
-                                <p className="card-text text-secondary">
-                                  {pet.birthday}
-                                  <br />
-                                </p>
-                              </div>
-                            </div>
-                          )})}  
+              <div>
+                <h5 className="py-3">
+                  <b>
+                    Rates and Services
+                  </b>
+                </h5>
+                <div className="card my-2 shadow">
+                    <div className="card-header">
+                      Here are the services that we offer:
                     </div>
-                      
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><CheckCircleOutlineIcon className="me-1 text-success"/>Home Care (24 Hours) starting at ₱450.00</li>
+                      <li class="list-group-item"><CheckCircleOutlineIcon className="me-1 text-success"/>Day Care (10 Hours) starting at ₱250.00</li>
+                      <li class="list-group-item"><CheckCircleOutlineIcon className="me-1 text-success"/>Errands Care (4 Hours) starting at ₱180.00</li>
+                    </ul>
+                </div>
+
+                <h5 className="py-3">
+                  <b>
+                    Boarding Requirements
+                  </b>
+                </h5>
+                <div className="card my-2 shadow">
+                    <div className="card-header">
+                      Before boarding in, let's check if you meet the requirements:
                     </div>
-                    
-                    </div>  
-                  </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><CheckCircleOutlineIcon className="me-1 text-success"/>Updated Vaccine Cards</li>
+                      <li class="list-group-item"><CheckCircleOutlineIcon className="me-1 text-success"/>Recent Tick and Flea Treatment</li>
+                      <li class="list-group-item"><CheckCircleOutlineIcon className="me-1 text-success"/>Bath/Clean Pets</li>
+                      <li class="list-group-item"><CheckCircleOutlineIcon className="me-1 text-success"/>1 Diaper per Day/Stay</li>
+                    </ul>
                 </div>
               </div>
-
-          {/* <Grid item xs={12}>
-            <div style={{padding: '1rem', backgroundColor: 'white', borderRadius: '15px'}}>
-              {pets.map(pet => {
-                return (
-                  <Paper key={pet.id} style={{padding: '1rem 1rem', marginBottom: '1rem', display: 'flex', justifyContent: 'space-between'}}>
-                    <div>
-                      <Typography variant="h6">
-                        {pet.name}
-                      </Typography>
-                      <Typography variant="h7" style={{color: 'gray'}}>
-                        {pet.breed}
-                      </Typography>
-                    </div>
-                    <div>
-                      <PetProfileDetails 
-                        id={pet.id} 
-                        petName={pet.name} 
-                        breed={pet.breed}
-                        birthday={pet.birthday}
-                        size={pet.size}
-                        />
-                    </div>
-                  </Paper>
-                )
-              })}
+              
             </div>
-          </Grid> */}
+
+            <div className="col">
+              <div className="row py-3">
+                <div className="col align-middle">
+                  <h5>
+                    <b>
+                      My Pets
+                    </b>
+                  </h5>
+                </div>
+                <div className="col d-flex flex-row-reverse">
+                  <AddPetForm
+                    handleDateChange={handleDateChange}
+                    open={open}
+                    handleAdd={handleAdd}
+                    handleCancel={handleCancel}
+                    handleChange={handleChange}
+                    handleClickOpen={handleClickOpen}
+                    />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">
+                  <div className="overflow-auto card shadow">
+                  <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light" style={{maxWidth: "800px", maxHeight: "500px"}}>
+                    {pets.map(pet => {
+                        return (
+                          <div className="card my-2 shadow-sm">
+                            <div className="card-header">
+                              {pet.breed}
+                            </div>
+                            <div className="card-body">
+                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <div>
+                                  <Avatar 
+                                  className="img-fluid"
+                                  alt="Profile Picture"
+                                  src={profilePicture}
+                                  sx={{ width: 75, height: 75 }} />
+                                  <span className="card-title h5">
+                                    {pet.name}
+                                  </span>
+                                  &nbsp;
+                                  <span className="span">
+                                    ({pet.size})
+                                  </span>
+                                  <VaccinesIcon className="yuki-font-color"/>
+                                </div>
+                                <div>
+                                  <button className="btn btn-primary yuki-color button-border-color mx-2"> Edit</button>
+                                  <button className="btn btn-danger">Delete</button>
+                                </div>
+                              </div>
+                              <p className="card-text text-secondary">
+                                {pet.birthday}
+                                <br />
+                              </p>
+                            </div>
+                          </div>
+                        )})}  
+                  </div>
+                    
+                  </div>
+                  
+                  </div>  
+                </div>
+              </div>
+            </div>
         </Box>
       </div>
 

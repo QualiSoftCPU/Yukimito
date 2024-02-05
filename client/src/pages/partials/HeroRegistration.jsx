@@ -1,6 +1,3 @@
-
-import Cats from '../../assets/images/cat.png';
-
 export default function HeroRegistration() {
   return (
     <>

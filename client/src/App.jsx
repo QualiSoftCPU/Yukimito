@@ -28,7 +28,7 @@ import SuccessTestPage from "./pages/SuccessTestpage";
 import LandingPage from "./pages/LandingPage";
 import PetOwnerDashboard from "./pages/client/PetOwnerDashboard";
 import PetOwnerBooking from "./pages/client/PetOwnerBooking";
-import PetOwnerBookingHomeCare from "./pages/client/PetOwnerBookingHomeCare";
+import PetOwnerBookingHomeCare from "./pages/client/PetOwnerBookingConfirmation";
 import PetOwnerBookingDayCare from "./pages/client/PetOwnerBookingDayCare";
 import PetOwnerBookingErrandsCare from "./pages/client/PetOwnerBookingErrandsCare"; 
 
