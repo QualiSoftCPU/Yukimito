@@ -6,6 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Typography } from '@mui/material';
+// import { useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 
 
@@ -39,6 +40,8 @@ export default function EditPetProfileForm(props) {
               id="name outline-basic"
               label="Full Name"
               type="text"
+              error={props.ownerNameError}
+              helperText={props.ownerNameError}
               variant="outlined"
               style={{ width: '100%', marginTop: '1rem', marginBottom: '1rem'}}
             />
@@ -52,6 +55,8 @@ export default function EditPetProfileForm(props) {
               label="Username"
               type="text"
               variant="outlined"
+              error={props.usernameError}
+              helperText={props.usernameError}
               style={{ width: '100%', marginTop: '1rem', marginBottom: '1rem'}}
             />
             <TextField
@@ -64,6 +69,8 @@ export default function EditPetProfileForm(props) {
               label="Contact Number"
               type="text"
               variant="outlined"
+              error={props.contactNumberError}
+              helperText={props.contactNumberError}
               style={{ width: '100%', marginTop: '1rem', marginBottom: '1rem'}}
             />
             <TextField
@@ -88,6 +95,8 @@ export default function EditPetProfileForm(props) {
               label="Email"
               type="text"
               variant="outlined"
+              error={props.emailError}
+              helperText={props.emailError}
               style={{ width: '100%', marginTop: '1rem', marginBottom: '1rem'}}
             />
           </DialogContent>

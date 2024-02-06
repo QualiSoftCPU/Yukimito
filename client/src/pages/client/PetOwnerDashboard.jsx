@@ -28,7 +28,7 @@ export default function PetOwnerDashboard() {
     ownerName: String,
     username: String,
     address: String,
-    contactNumber: String,
+    contactNumber: Number,
     email: String,
   });
   const [ pet, setPet ] = useState({
@@ -41,6 +41,12 @@ export default function PetOwnerDashboard() {
   const [userData, setUserData] = useState({});
   const [ open, setOpen ] = useState(false);
   const [ openEdit, setOpenEdit ] = useState(false);
+
+  const [ ownerNameError, setOwnerNameError ] = useState('');
+  const [ usernameError, setUsernameError ] = useState('');
+  const [ contactNumberError, setContactNumberError ] = useState('');
+  const [ emailError, setEmailError ] = useState('');
+  // const [ addressError, setAddressError ] = useState('');
 
   const handleChange = (event) => {
     setPet({
@@ -61,11 +67,33 @@ export default function PetOwnerDashboard() {
   const handleUpdateUser = (updatedUser) => { 
     setPetOwnerDetails(updatedUser);
   };
-  const handleEdit = (event) => {
+ 
+  const updateFormData = (event) => {
+    const regex = /^[0-9\b]+$/;
     setPetOwnerDetails({
       ...petOwnerDetails,
       [event.target.name]: event.target.value,
     });
+    if (petOwnerDetails.ownerName.length <= 5) {
+      setOwnerNameError('Name must be at least 5 characters long');
+    } else {
+      setOwnerNameError('');
+    };
+    if (petOwnerDetails.username.length <= 5) {
+      setUsernameError('Username must be at least 5 characters long');
+    } else {  
+      setUsernameError('');
+    };
+    if (regex.test(petOwnerDetails.contactNumber) && petOwnerDetails.contactNumber.length >= 11-1) {
+      setContactNumberError(``);
+    } else {
+      setContactNumberError('Invalid Contact Number');
+    };
+    if (petOwnerDetails.email.length < 5) {
+      setEmailError('Invalid Email Address');
+    } else {
+      setEmailError('');
+    };
   };
   const handleEditOpen = () => { 
     setOpenEdit(true);
@@ -73,6 +101,7 @@ export default function PetOwnerDashboard() {
   };
   const handleEditCancel = () => {
     setOpenEdit(false);
+    window.location.reload();
   };
 
   async function handleAdd () {
@@ -100,10 +129,15 @@ export default function PetOwnerDashboard() {
   const handleUpdate = async () => {
     
     const ownerId = userSelected.id;
-    console.log("debug")
-    console.log(petOwnerDetails)
+    // console.log("debug")
+    // console.log(petOwnerDetails)
     
     try {
+      // if (textField is valid) {
+      //   const response  
+      // } else {
+      //   setError('Invalid input')
+      // }
       const response = await axios.put(`http://localhost:4269/api/auth/editProfile/petowner/${ownerId}`,
         petOwnerDetails, {
         headers: {
@@ -181,9 +215,9 @@ export default function PetOwnerDashboard() {
       fontSize: '35px'
     };
 
-  console.log(userSelected)
-  console.log(petOwnerDetails)
-  console.log(userData)
+  // console.log(userSelected)
+  // console.log(petOwnerDetails)
+  // console.log(userData)
 
 
   return (
@@ -221,9 +255,13 @@ export default function PetOwnerDashboard() {
                           openEdit={openEdit}
                           handleUpdateUser={handleUpdateUser}
                           handleUpdate={handleUpdate}
-                          updateFormData={handleEdit}
+                          updateFormData={updateFormData}
                           handleEditOpen={handleEditOpen}
                           handleEditCancel={handleEditCancel}
+                          ownerNameError={ownerNameError}
+                          usernameError={usernameError}
+                          contactNumberError={contactNumberError}
+                          emailError={emailError}
                           />
                       </div>
                     </div>
