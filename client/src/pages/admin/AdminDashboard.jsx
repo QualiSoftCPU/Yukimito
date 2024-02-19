@@ -44,7 +44,59 @@ const AdminDashBoard = () => {
                     Reject
                   </a>
 
-                
+                  <div
+                    class="modal fade"
+                    id="AdminBooking"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="AdminBookingCenterTitle"
+                    aria-hidden="true"
+                  >
+                    <div
+                      class="modal-dialog modal-dialog-centered"
+                      role="document"
+                    >
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="AdminBookingLongTitle">
+                            Reject Booking
+                          </h5>
+                        </div>
+                        <div class="modal-body">
+                          Are you sure you want to reject booking?
+                        </div>
+                        <form>
+                          <div class="form-group p-3">
+                            <label for="exampleFormControlTextarea1">
+                              Reason for regecting booking
+                            </label>
+                            <textarea
+                              class="form-control"
+                              id="exampleFormControlTextarea1"
+                              rows="5"
+                            ></textarea>
+                          </div>
+                        </form>
+                        <div class="modal-footer">
+                          <a
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                            href="/"
+                          >
+                            Cancel
+                          </a>
+                          <a
+                            type="button"
+                            class="btn btn-primary button-color"
+                            href="/AdminDashboard"
+                          >
+                            Yes
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
