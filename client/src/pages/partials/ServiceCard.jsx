@@ -1,4 +1,11 @@
+import { jwtDecode } from "jwt-decode";
+
 export default function ServicecCard(props) {
+
+  const token = localStorage.getItem('token');
+
+  let userSelected = jwtDecode(token);
+
   return (
     <>
       <div class="col-md-4">

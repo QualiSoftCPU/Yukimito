@@ -368,6 +368,9 @@ export default function PetOwnerDashboard() {
 
           <div className="row">
             <div className="row col">
+
+            <div className="row col-4">
+
               <div>
                 <h5 className="py-3">
                   <b>Rates and Services</b>
@@ -422,7 +425,7 @@ export default function PetOwnerDashboard() {
               </div>
             </div>
 
-            <div className="col">
+            <div className="col-8">
               <div className="row py-3">
                 <div className="col align-middle">
                   <h5>
@@ -542,6 +545,7 @@ export default function PetOwnerDashboard() {
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </Box>
       </div>

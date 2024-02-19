@@ -27,7 +27,7 @@ import PetOwnerLogin from "./pages/client/PetOwnerLogin";
 import SuccessTestPage from "./pages/SuccessTestpage";
 import LandingPage from "./pages/LandingPage";
 import PetOwnerDashboard from "./pages/client/PetOwnerDashboard";
-import PetOwnerBooking from "./pages/client/PetOwnerBooking";
+import PetOwnerBookingServices from "./pages/client/PetOwnerBookingServices";
 import PetOwnerBookingHomeCare from "./pages/client/PetOwnerBookingConfirmation";
 import PetOwnerBookingDayCare from "./pages/client/PetOwnerBookingDayCare";
 import PetOwnerBookingErrandsCare from "./pages/client/PetOwnerBookingErrandsCare"; 
@@ -46,7 +46,7 @@ export default function App() {
         <Route path="/PetOwnerRates" element={<PetOwnerRates />} />
         <Route path="/PetOwnerPhotos" element={<PetOwnerPhotos />} />
         <Route path="/PetOwnerRequirements" element={<PetOwnerRequirements />} />
-        <Route path="/PetOwnerBooking" element={<PetOwnerBooking />} />
+        <Route path="/PetOwnerBooking" element={<PetOwnerBookingServices />} />
         <Route path="/PetOwnerBookingHomeCare/:service" element={<PetOwnerBookingHomeCare />} />
         <Route path="/PetOwnerBookingDayCare" element={<PetOwnerBookingDayCare />} />
         <Route path="/PetOwnerBookingErrandsCare" element={<PetOwnerBookingErrandsCare />} />
