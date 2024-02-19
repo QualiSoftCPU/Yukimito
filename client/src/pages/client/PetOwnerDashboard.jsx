@@ -478,9 +478,55 @@ export default function PetOwnerDashboard() {
                                     {" "}
                                     Edit
                                   </button>
-                                  <button className="btn btn-danger">
-                                    Delete
-                                  </button>
+
+
+
+
+                                 
+
+                                  <a
+                  type="button"
+                  class="btn btn-danger"
+                  data-toggle="modal"
+                  data-target="#HomeCareBookNow"
+                  href="/"
+                >
+                  Delete
+                </a>
+
+                                  <div
+        class="modal fade"
+        id="HomeCareBookNow"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="HomeCareBookNowCenterTitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="HomeCareBookNowLongTitle">
+              Delete Pet
+              </h5>
+            </div>
+            <div class="modal-body">
+            Are you sure you want to delete pet?
+            </div>
+            <div class="modal-footer">
+              <a type="button" class="btn btn-secondary" data-dismiss="modal" href="/">
+                Cancel
+              </a>
+              <a type="button" class="btn btn-primary button-color" href="/">
+                Yes
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
                                 </div>
                               </div>
                               <p className="card-text text-secondary">
