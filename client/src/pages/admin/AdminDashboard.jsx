@@ -11,7 +11,7 @@ const AdminDashBoard = () => {
   return (
     <>
       <div className="container px-5">
-        <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light">
+        <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3">
           <h1 class="display-5 fw-bold">
             <span className="yuki-font-color">Yukimito</span> Bookings
           </h1>
