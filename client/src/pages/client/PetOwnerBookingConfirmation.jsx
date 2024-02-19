@@ -1,12 +1,11 @@
 import { React, useEffect, useState} from "react";
-import NavBarMain from "../partials/NavBarMain";
+import NavBarMain from "../../pages/partials/NavBarMain";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
+import { Box, Paper } from "@mui/material";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TextField, Autocomplete } from "@mui/material";
-import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import Footer from "../partials/Footer";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom"; 
 import { jwtDecode } from "jwt-decode";
@@ -19,15 +18,43 @@ const PetOwnerBookingHomeCare = () => {
   let userSelected = jwtDecode(token);
 
   const [ pets, setPets ] = useState([]);
+  
+  const [ bookingDetails, setBookingDetails ] = useState({
+    checkInDate: "",
+    checkOutDate: "",
+    petsSelected: []
+  });
 
   const petList = pets.map(pet => pet.name)
+  // const petId = pets.map(pet => pet.id);
 
   const navItems = [
    
   ];
 
   const { service } = useParams();
-  console.log(service);
+
+  function handleCheckInInput (event) {
+    setBookingDetails({
+      ...bookingDetails,
+      "checkInDate": event.$d
+    });
+  }
+
+  function handleCheckOutInput (event) {
+    setBookingDetails({
+      ...bookingDetails,
+      "checkOutDate": event.$d
+    });
+  }
+
+  function handlePetSelection (event) {
+    console.log(bookingDetails);
+    setBookingDetails(prevState => ({
+      ...prevState,
+      "petsSelected": [...new Set(event.target.innerText.trim())]
+    }));
+  }
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -47,10 +74,6 @@ const PetOwnerBookingHomeCare = () => {
 
   }, [navigate, userSelected.id]);
 
-  const showDetails = (event) => {
-    console.log(event.target)
-  };
-
 
   return (
     <>
@@ -60,84 +83,101 @@ const PetOwnerBookingHomeCare = () => {
         </li>
       } />
 
-      <div class="container px-1 my-5 pt-5  px-5">
-
+      <div class="my-5 pt-5 container px-5">
         <h1 class="display-5 fw-bold">
           Booking <span className="yuki-font-color">Confirmation</span>
         </h1>
         <p class="lead mb-4">
-          Thank you for choosing our {service} service! Please select your check-in and check-out date.
+          Please provide us the date of your check-in and check-out.
         </p>
+        {/* content */}
         <div class="row align-items-center justify-content-center">
-          <div class="col-md-6 card shadow">
-            <div >
-              {
-                <div className="container p-5" style={{ flex: 1 }}>
-                  <form
-                    action="/action_page.php"
-                    className="form-container center"
-                  >
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                      <DateTimePicker
-                        onChange={showDetails}
-                        label="Check In"
-                        name="startDateTime"
-                        className="input-margin non-inline input-styling"
-                      />
-                    </LocalizationProvider>
+          <div class="col-lg-6">
+            <div
+             class= "card"
+            >
+              <Paper elevation={3} style={{ padding: "50px" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "100%",
+                  }}
+                >
+                  {
+                    <div className="flex-container" style={{ flex: 1 }}>
+                      <form
+                        action="/action_page.php"
+                        className="form-container center"
+                      >
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                          <DateTimePicker
+                            label="Check In"
+                            name="startDateTime"
+                            className="input-margin non-inline input-styling"
+                            onChange={handleCheckInInput}
+                          />
+                        </LocalizationProvider>
+                      </form>
 
-                  </form>
+                      <form
+                        action="/action_page.php"
+                        className="form-container center"
+                      >
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                          <DateTimePicker
+                            label="Check Out"
+                            name="startDateTime"
+                            className="input-margin non-inline input-styling"
+                            onChange={handleCheckOutInput}
+                          />
+                        </LocalizationProvider>
+                      </form>
 
-                  <form
-                    action="/action_page.php"
-                    className="form-container center"
-                  >
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                      <DateTimePicker
-                        label="Check Out"
-                        name="startDateTime"
-                        className="input-margin non-inline input-styling"
-                      />
-                    </LocalizationProvider>
-                  </form>
+                    <Autocomplete
+                          sx={{
+                            width: '100%',
+                          }}
+                          multiple
+                          options={petList}
+                          onChange={handlePetSelection}
+                          getOptionLabel={(option) => option}
+                          disableCloseOnSelect
+                          renderInput={(params) => (
+                            <TextField
+                              {...params}
+                              variant="outlined"
+                              label="Select Pets"
+                              placeholder="Select Pets"
+                            />
+                          )}
+                        />
 
-                  <Autocomplete
-                    multiple
-                    options={petList}
-                    getOptionLabel={(option) => option}
-                    disableCloseOnSelect
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="outlined"
-                        label="Select Pets"
-                        placeholder="Select Pets"
-                      />
-                    )}
-                  />
-
-                  <br />
-                  <h5 className="text-center">Availability</h5>
-
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DateCalendar className="card" />
-                  </LocalizationProvider>
+                    </div>
+                  }
+                  <div class="col-lg-6 center" className="flex-container"></div>
                 </div>
-              }
+              </Paper>
             </div>
-          </div>
+            
 
-          <div class="col-md-6 pt-1">
-          
-            <div className="d-flex align-items-stretch">
-              <div className="content p-5">
-                <h1 class="lead">
-                  <span>{service} Service Details:</span>
+          </div>
+       
+
+          <div class="col-lg-6 text-center pt-1">
+            <Box>
+              <div className="container">
+                <h1 class="display-6 fw-bold lh-1">
+                  <span>{service}</span>
                 </h1>
 
-                <hr />
-
-                <p class="">
+                <p class="lead mb-4" style={{ fontSize: "17px" }}>
+                  Going for a vacation or business trip and worried about your
+                  pet, Home Care service is your choiice. We take every
+                  precaution to provide a safe and stress-free boarding
+                  experience for your pet.
+                </p>
+                <p class="text-start">
                   <p>Check In: 12 noon - 4:30 PM only</p>
                   <p>Check Out: 11:00 AM</p>
 
@@ -154,8 +194,6 @@ const PetOwnerBookingHomeCare = () => {
                   <span className="yuki-font-color">₱425/1380mins</span>
                 </h5>
 
-                <hr />
-                
                 <a
                   type="button"
                   class="btn btn-primary button-color"
@@ -163,15 +201,14 @@ const PetOwnerBookingHomeCare = () => {
                   data-target="#HomeCareBookNow"
                   href="/"
                 >
-                  Confirm Booking
+                  Book
                 </a>
               </div>
-            </div>
+            </Box>
           </div>
         </div>
       </div>
-      
-      {/* Modal */}
+
       <div
         class="modal fade"
         id="HomeCareBookNow"
@@ -184,11 +221,18 @@ const PetOwnerBookingHomeCare = () => {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="HomeCareBookNowLongTitle">
-                Booking Confirmation
+                {service} Booking Confirmation
               </h5>
+              {/* <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>*/}
             </div>
             <div class="modal-body">
-            Confirm Booking for {service} Service?
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
+              viverra aliquet tellus suscipit malesuada. Nullam id sollicitudin
+              est. Proin interdum ligula ac elit condimentum, vitae lacinia erat
+              porta. Donec dictum, nisl quis aliquet volutpat, diam enim
+              lobortis urna, nec posuere enim orci sed dolor.
             </div>
             <div class="modal-footer">
               <a type="button" class="btn btn-secondary" data-dismiss="modal" href="/">
@@ -201,7 +245,6 @@ const PetOwnerBookingHomeCare = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

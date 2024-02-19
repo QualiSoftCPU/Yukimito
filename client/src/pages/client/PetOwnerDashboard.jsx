@@ -1,19 +1,20 @@
 import Footer from "../partials/Footer";
 import Box from '@mui/material/Box';
-// import ProfileMenu from '../../components/partials/ProfileMenu'
 import Avatar from '@mui/material/Avatar';
 import profilePicture from '../../assets/images/pp1.jpeg'
 import AddPetForm from '../../components/partials/AddPetForm';
 import EditPetProfileForm from "../../components/partials/EditPetProfileForm";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; 
-import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
 import NavBarMain from "../partials/NavBarMain";
 import Logout from "../partials/Logout";
 import VerifiedIcon from '@mui/icons-material/Verified';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import VaccinesIcon from '@mui/icons-material/Vaccines';
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
+
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; 
+import { jwtDecode } from "jwt-decode";
 
 export default function PetOwnerDashboard() {
 
@@ -21,8 +22,7 @@ export default function PetOwnerDashboard() {
   const token = localStorage.getItem('token');
 
   let userSelected = jwtDecode(token);
-  
-  
+
   const [ pets, setPets ] = useState([]);
   const [petOwnerDetails, setPetOwnerDetails] = useState({
     ownerName: String,
@@ -323,9 +323,24 @@ export default function PetOwnerDashboard() {
 
           <div className="row">
 
-            <div className="row col">
+            <div className="row col-4">
 
               <div>
+                <h5 className="py-3">
+                  <b>
+                    Ongoing Bookings <ArrowOutwardIcon />
+                  </b>
+                </h5>
+                <div className="card my-2 shadow">
+                    <div className="card-header">
+                      Your recent bookings:
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                        <p className="text-secondary">You have no bookings so far...</p>
+                      </li>
+                    </ul>
+                </div>
                 <h5 className="py-3">
                   <b>
                     Rates and Services
@@ -362,7 +377,7 @@ export default function PetOwnerDashboard() {
               
             </div>
 
-            <div className="col">
+            <div className="col-8">
               <div className="row py-3">
                 <div className="col align-middle">
                   <h5>
