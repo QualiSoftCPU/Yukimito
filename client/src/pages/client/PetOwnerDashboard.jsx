@@ -13,6 +13,7 @@ import NavBarMain from "../partials/NavBarMain";
 import Logout from "../partials/Logout";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import CircleIcon from "@mui/icons-material/Circle";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
 import coverImage from "../../assets/images/coverImage.jpeg";
 
@@ -232,7 +233,7 @@ export default function PetOwnerDashboard() {
           <div style={{ position: "relative" }} >
             <img
               src={coverImage}
-              alt="Cover Photo"
+              alt="Cover"
               style={{ width: "100%", height: "400px", objectFit: "cover" }}
             />
 
@@ -419,6 +420,20 @@ export default function PetOwnerDashboard() {
                     <li class="list-group-item">
                       <CheckCircleOutlineIcon className="me-1 text-success" />1
                       Diaper per Day/Stay
+                    </li>
+                  </ul>
+                </div>
+                <h5 className="py-3">
+                  <b>Booking Status</b>
+                </h5>
+                <div className="card my-2 shadow">
+                  <div className="card-header">
+                    Here are your bookings: 
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      <CircleIcon className="me-1 text-success" />
+                      Booking Confirmed for (Pet Name)
                     </li>
                   </ul>
                 </div>
