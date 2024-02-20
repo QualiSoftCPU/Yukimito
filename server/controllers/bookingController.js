@@ -1,25 +1,203 @@
 const db = require('../models');
 const Booking = db.booking;
+const Pet = db.pet;
 
-const createBooking = (req, res) => {
-    let totalPrice = 0;;
+async function createHomeCareBooking(req, res) {
+  const { pets, checkIn, checkOut } = req.body;
+  const checkInDate = new Date(req.body.checkIn);
+  const checkOutDate = new Date(req.body.checkOut);
+  let totalPrice =  0;
 
-    Booking.create({
-        petOwnerId: req.body.petOwnerId,
-        pets: req.body.pets,
-        checkIn_date: new Date(req.body.checkIn_date),
-        checkOut_date: new Date(req.body.checkOut_date),
-        total_price: req.body.service_list.forEach(service => { totalPrice += service.rate }),
-        status: req.body.status,
-        service_list: req.body.service_list
-    })
-        .then(booking => {
-        res.send({ message: "Booking was created successfully!" });
-        })
-        .catch(err => {
-        res.status(500).send({ message: err.message });
-        });
-    }
+  if (!pets || !pets.length) {
+      return res.status(400).send({ message: "Please provide one or more pets for the booking." });
+  }
+
+  if (!(checkInDate instanceof Date) || !(checkOutDate instanceof Date)) {
+      return res.status(400).send({ message: 'Invalid date format. Please provide Date objects.' });
+  }
+
+  const missingPets = [];
+  for (const petId of pets) {
+      const pet = await Pet.findByPk(petId);
+
+      if (!pet) {
+          missingPets.push(petId);
+          continue;
+      }
+
+      let rate =  0;
+      switch (pet.size) {
+          case 'extra-small':
+              rate =  425;
+              break;
+          case 'small':
+              rate =  475;
+              break;
+          case 'medium':
+              rate =  525;
+              break;
+          case 'large':
+              rate =  575;
+              break;
+          case 'extra-large':
+              rate =  650;
+              break;
+      }
+
+      const oneDay =  1000 *  60 *  60 *  24;
+      const durationInDays = Math.ceil((checkOutDate - checkInDate) / oneDay);
+      let petPrice = rate * durationInDays;
+
+      totalPrice += petPrice;
+  }
+
+  if (missingPets.length <  0) {
+      return res.status(404).send({ message: `Pets with IDs ${missingPets.join(', ')} not found.` });
+  }
+
+  try {
+      await Booking.create({
+          service_type: 'homeCare',
+          petOwnerId: req.body.petOwnerId,
+          checkIn: checkIn,
+          checkOut: checkOut,
+          total_price: totalPrice,
+          pets: pets,
+          status: 'pending'
+      });
+  } catch (error) {
+      console.error('Failed to create booking:', error);
+      return res.status(500).send({ message: 'Failed to create booking.' });
+  }
+
+  res.send({ message: `Home care booking created successfully! The total price is ${totalPrice}` });
+}
+
+async function createErrandsCareBooking(req, res) {
+  const { pets, checkIn, checkOut } = req.body;
+  const checkInDate = new Date(req.body.checkIn);
+  const checkOutDate = new Date(req.body.checkOut);
+  let totalPrice =  0;
+
+  if (!pets || !pets.length) {
+      return res.status(400).send({ message: "Please provide one or more pets for the booking." });
+  }
+
+  if (!(checkInDate instanceof Date) || !(checkOutDate instanceof Date)) {
+      return res.status(400).send({ message: 'Invalid date format. Please provide Date objects.' });
+  }
+
+  const missingPets = [];
+  for (const petId of pets) {
+      const pet = await Pet.findByPk(petId);
+
+      if (!pet) {
+          missingPets.push(petId);
+          continue;
+      }
+
+      let rate =  0;
+      switch (pet.size) {
+          case 'small':
+          case 'medium':
+              rate =  175;
+              break;
+          case 'large':
+          case 'extra-large':
+              rate =  200;
+              break;
+      }
+
+      const durationInHours = Math.ceil((checkOutDate - checkInDate) / (1000 *  60 *  60));
+      let additionalHours =  50 * Math.max(0, durationInHours -   4);
+      let petPrice = rate + additionalHours;
+      totalPrice += petPrice;
+  }
+
+  if (missingPets.length <  0) {
+      return res.status(404).send({ message: `Pets with IDs ${missingPets.join(', ')} not found.` });
+  }
+
+  try {
+      await Booking.create({
+          service_type: 'errandsCare',
+          petOwnerId: req.body.petOwnerId,
+          checkIn: checkIn,
+          checkOut: checkOut,
+          total_price: totalPrice,
+          pets: pets,
+          status: 'pending'
+      });
+  } catch (error) {
+      console.error('Failed to create booking:', error);
+      return res.status(500).send({ message: 'Failed to create booking.' });
+  }
+
+  res.send({ message: `Errands care booking created successfully! The total price is ${totalPrice}` });
+}
+
+async function createDayCareBooking(req, res) {
+  const { pets, checkIn, checkOut } = req.body;
+  const checkInDate = new Date(req.body.checkIn);
+  const checkOutDate = new Date(req.body.checkOut);
+  let totalPrice =  0;
+
+  if (!pets || !pets.length) {
+      return res.status(400).send({ message: "Please provide one or more pets for the booking." });
+  }
+
+  if (!(checkInDate instanceof Date) || !(checkOutDate instanceof Date)) {
+      return res.status(400).send({ message: 'Invalid date format. Please provide Date objects.' });
+  }
+
+  const missingPets = [];
+  for (const petId of pets) {
+      const pet = await Pet.findByPk(petId);
+
+      if (!pet) {
+          missingPets.push(petId);
+          continue;
+      }
+
+      let rate =  0;
+      switch (pet.size) {
+          case 'small':
+          case 'medium':
+              rate =  250;
+              break;
+          case 'large':
+          case 'extra-large':
+              rate =  275;
+              break;
+      }
+
+      const durationInHours = Math.ceil((checkOutDate - checkInDate) / (1000 *  60 *  60));
+      let additionalHours =  50 * Math.max(0, durationInHours - 10);
+      let petPrice = rate + additionalHours;
+      totalPrice += petPrice;
+  }
+
+  if (missingPets.length >  0) {
+      return res.status(404).send({ message: `Pets with IDs ${missingPets.join(', ')} not found.` });
+  }
+
+  try {
+      await Booking.create({
+          service_type: 'dayCare',
+          petOwnerId: req.body.petOwnerId,
+          checkIn: checkIn,
+          checkOut: checkOut,
+          total_price: totalPrice,
+          pets: pets,
+          status: 'pending'
+      });
+  } catch (error) {
+      console.error('Failed to create booking:', error);
+      return res.status(500).send({ message: 'Failed to create booking.' });
+  }
+
+  res.send({ message: `Daycare booking created successfully! The total price is ${totalPrice}` });
+}
 
 const getBooking = (req, res) => {
     Booking.findAll({ where: { petOwnerId: req.params.petOwnerId } })
@@ -47,4 +225,4 @@ const updateBooking = (req, res) => {
         });
     } 
 
-module.exports = {  createBooking, getBooking, updateBooking };
+module.exports = {  createHomeCareBooking, createErrandsCareBooking, createDayCareBooking, getBooking, updateBooking };

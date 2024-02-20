@@ -2,23 +2,44 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const db = require("../models");
 const petOwner = db.petOwner;
+const { check, validationResult } = require("express-validator");
 
-const signup = (req, res) => {
 
- petOwner.create({
-   username: req.body.username,
-   name: req.body.ownerName,
-   contact_number: req.body.contactNumber,
-   email: req.body.email,
-   password: bcrypt.hashSync(req.body.password, 8),
- })
-   .then(petOwner => {
-     res.send({ message: "Pet Owner was registered successfully!" });
-   })
-   .catch(err => {
-     res.status(500).send({ message: err.message });
-   });
-};
+
+const signup = async (req, res) => {
+  check("username", "Username is required").notEmpty();
+  check("ownerName", "Owner name is required").notEmpty();
+  check("contactNumber", "Contact number is required").notEmpty();
+  check("password", "Password is required").notEmpty().isLength({ min: 8 }).matches(/^(?=.*[a-z])(?=.*[A-Z])/);
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    const existingUser = await petOwner.findOne({ where: { username: req.body.username } });
+
+    if (existingUser) {
+      return res.status(400).json({ errors: [{ field: "username", message: "Username is already taken" }] });
+    }
+
+        const passwordHash = await bcrypt.hash(req.body.password, 8);
+        const newPetOwner = await petOwner.create({
+          username: req.body.username,
+          name: req.body.ownerName,
+          contact_number: req.body.contactNumber,
+          password: passwordHash,
+        });
+
+        res.send({ message: "Pet Owner was registered successfully!" });
+      }
+      catch (err)  {
+        console.error(err);
+        res.status(500).send({ message: "Internal server error" });
+      };
+  }
+
 
 const signin = (req, res) => {
  petOwner.findOne({
@@ -43,7 +64,7 @@ const signin = (req, res) => {
        });
      }
 
-     var token = jwt.sign({ 
+     let token = jwt.sign({ 
       id: petOwner.id,
       name: petOwner.name,
       username: petOwner.username,
