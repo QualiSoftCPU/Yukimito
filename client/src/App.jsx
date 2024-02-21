@@ -31,6 +31,7 @@ import PetOwnerBookingServices from "./pages/client/PetOwnerBookingServices";
 import PetOwnerBookingHomeCare from "./pages/client/PetOwnerBookingConfirmation";
 import PetOwnerBookingDayCare from "./pages/client/PetOwnerBookingDayCare";
 import PetOwnerBookingErrandsCare from "./pages/client/PetOwnerBookingErrandsCare"; 
+import PetOwnerPartialPaymentBreakdown from "./pages/client/PetOwnerPartialPaymentBreakdown";
 
 export default function App() {
 
@@ -50,6 +51,7 @@ export default function App() {
         <Route path="/PetOwnerBookingHomeCare/:service" element={<PetOwnerBookingHomeCare />} />
         <Route path="/PetOwnerBookingDayCare" element={<PetOwnerBookingDayCare />} />
         <Route path="/PetOwnerBookingErrandsCare" element={<PetOwnerBookingErrandsCare />} />
+        <Route path="/PetOwnerPartialPaymentBreakdown" element={<PetOwnerPartialPaymentBreakdown />} />
         {/* admin pages */} 
 
 
