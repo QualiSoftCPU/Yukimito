@@ -35,8 +35,12 @@ const signup = async (req, res) => {
         res.send({ message: "Pet Owner was registered successfully!" });
       }
       catch (err)  {
-        console.error(err);
-        res.status(500).send({ message: "Internal server error" });
+        if (!error.response) {
+          // network error
+          this.errorStatus = 'Error: Network Error';
+      } else {
+          this.errorStatus = error.response.data.message;
+      }
       };
   }
 

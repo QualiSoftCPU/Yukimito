@@ -18,6 +18,7 @@ router.post("/api/auth/signin/admin", adminController.signin);
 router.get("/api/getPets/pet/:petOwnerId", petController.getAll);
 router.post("/api/addPet/pet", petController.createPet);
 router.get("/api/getPet/:petId", petController.getPet);
+router.delete("/api/deletePet/:petOwnerId/:petId", petController.deletePet);
 
 router.post("/api/createHomeCareBooking", bookingController.createHomeCareBooking);
 router.post("/api/createErrandsCareBooking", bookingController.createErrandsCareBooking);
