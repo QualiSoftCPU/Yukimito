@@ -16,15 +16,12 @@ module.exports = (sequelize, DataTypes) => {
   pet.init({
     name: DataTypes.STRING,
     breed: DataTypes.STRING,
-    birthday: DataTypes.DATEONLY,
-    size: DataTypes.ENUM('small', 'medium', 'large'),
-    petOwnerId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'petOwners',
-        key: 'id'
-      }
-    }
-  }, { sequelize, modelName: 'pet' });
+    birthday: DataTypes.DATE,
+    size: DataTypes.STRING,
+    petOwnerId: DataTypes.INTEGER
+  }, {
+    sequelize,
+    modelName: 'pet',
+  });
   return pet;
 };

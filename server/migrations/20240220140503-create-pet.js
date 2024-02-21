@@ -1,8 +1,7 @@
 'use strict';
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     await queryInterface.createTable('pets', {
       id: {
         allowNull: false,
@@ -11,30 +10,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.STRING
       },
       breed: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.STRING
       },
       birthday: {
-        type: Sequelize.DATEONLY,
-        allowNull: false
+        type: Sequelize.DATE
       },
       size: {
-        type: Sequelize.ENUM('small', 'medium', 'large'),
-        allowNull: false
+        type: Sequelize.STRING
       },
-      petOwnerId: {
+      petOwner: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'petOwners',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -46,8 +35,7 @@ module.exports = {
       }
     });
   },
-
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('pets');
   }
 };

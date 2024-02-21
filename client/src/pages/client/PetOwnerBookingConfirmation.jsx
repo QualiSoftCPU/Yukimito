@@ -194,7 +194,7 @@ const PetOwnerBookingHomeCare = () => {
                   class="btn btn-primary button-color"
                   data-toggle="modal"
                   data-target="#HomeCareBookNow"
-                  href="/"
+                  href="/PetOwnerPartialPaymentBreakdown"
                 >
                   Book
                 </a>
@@ -298,7 +298,7 @@ const PetOwnerBookingHomeCare = () => {
               >
                 Cancel
               </a>
-              <a type="button" class="btn btn-primary button-color" href="/">
+              <a type="button" class="btn btn-primary button-color" href="/PetOwnerPartialPaymentBreakdown">
                 Confirm
               </a>
             </div>

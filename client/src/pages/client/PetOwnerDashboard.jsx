@@ -1,6 +1,5 @@
 import Footer from "../partials/Footer";
 import Box from "@mui/material/Box";
-// import ProfileMenu from '../../components/partials/ProfileMenu'
 import Avatar from "@mui/material/Avatar";
 import profilePicture from "../../assets/images/pp1.jpeg";
 import AddPetForm from "../../components/partials/AddPetForm";
@@ -13,9 +12,9 @@ import NavBarMain from "../partials/NavBarMain";
 import Logout from "../partials/Logout";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import CircleIcon from "@mui/icons-material/Circle";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
 import coverImage from "../../assets/images/coverImage.jpeg";
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 
 export default function PetOwnerDashboard() {
   const navigate = useNavigate();
@@ -217,10 +216,6 @@ export default function PetOwnerDashboard() {
     fontSize: "35px",
   };
 
-  // console.log(userSelected)
-  // console.log(petOwnerDetails)
-  // console.log(userData)
-
   return (
     <>
       <NavBarMain navItems={navItems} customLink={<Logout />} />
@@ -232,13 +227,14 @@ export default function PetOwnerDashboard() {
         <Box sx={{ flexGrow: 1 }} >
           <div style={{ position: "relative" }} >
             <img
+              className="rounded-bottom"
               src={coverImage}
-              alt="Cover"
+              alt="Cover_Photo"
               style={{ width: "100%", height: "400px", objectFit: "cover" }}
             />
 
-            <div className="mt-3">
-              <div className="col mt-3">
+            <div className="mt-1">
+              <div className="col mt-1">
                 <Avatar
                   alt="Profile Picture"
                   src={profilePicture}
@@ -374,6 +370,17 @@ export default function PetOwnerDashboard() {
 
               <div>
                 <h5 className="py-3">
+                  <b>Ongoing Bookings <ArrowOutwardIcon /></b>
+                </h5>
+                <div className="card my-2 shadow">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-secondary">
+                      You have no ongoing bookings yet...
+                    </li>
+                  </ul>
+                </div>
+
+                <h5 className="py-3">
                   <b>Rates and Services</b>
                 </h5>
                 <div className="card my-2 shadow">
@@ -420,20 +427,6 @@ export default function PetOwnerDashboard() {
                     <li class="list-group-item">
                       <CheckCircleOutlineIcon className="me-1 text-success" />1
                       Diaper per Day/Stay
-                    </li>
-                  </ul>
-                </div>
-                <h5 className="py-3">
-                  <b>Booking Status</b>
-                </h5>
-                <div className="card my-2 shadow">
-                  <div className="card-header">
-                    Here are your bookings: 
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                      <CircleIcon className="me-1 text-success" />
-                      Booking Confirmed for (Pet Name)
                     </li>
                   </ul>
                 </div>
