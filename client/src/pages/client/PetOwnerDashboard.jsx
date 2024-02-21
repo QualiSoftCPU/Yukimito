@@ -231,7 +231,6 @@ export default function PetOwnerDashboard() {
               className="rounded-bottom"
               src={coverImage}
               alt="Cover_Photo"
-              alt="Cover"
               style={{ width: "100%", height: "400px", objectFit: "cover" }}
             />
 
