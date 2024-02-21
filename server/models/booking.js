@@ -15,11 +15,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   booking.init({
     petOwnerId: DataTypes.INTEGER,
+    checkIn: DataTypes.DATE,
+    checkOut: DataTypes.DATE,
+    service_type: DataTypes.STRING,
     pets: DataTypes.ARRAY(DataTypes.INTEGER),
-    checkIn_date: DataTypes.DATE,
-    checkOut_date: DataTypes.DATE,
-    status: DataTypes.ENUM('pending', 'approved', 'rejected'),
-    service_list: DataTypes.ARRAY(DataTypes.STRING)
+    status: DataTypes.STRING,
+    total_price: DataTypes.FLOAT
   }, {
     sequelize,
     modelName: 'booking',
