@@ -1,4 +1,7 @@
 'use strict';
+
+const { all } = require('../routes/routes');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -9,20 +12,30 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      petOwnerId: {
-        type: Sequelize.INTEGER
+      petOwner: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      checkIn: {
+        type: Sequelize.DATE
+      },
+      checkOut: {
+        type: Sequelize.DATE
+      },
+      service_type: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       pets: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
+        type: Sequelize.ARRAY(Sequelize.INTEGER),
+        allowNull: false
       },
-      checkIn_date: {
-        type: Sequelize.DATE
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
-      checkOut_date: {
-        type: Sequelize.DATE
-      },
-      service_list: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
+      total_price: {
+        type: Sequelize.FLOAT
       },
       createdAt: {
         allowNull: false,
