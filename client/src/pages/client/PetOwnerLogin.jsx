@@ -10,10 +10,9 @@ import Footer from '../partials/Footer';
 import NavBarMain from '../partials/NavBarMain';
 import LoginHero from '../partials/HeroLogin';
 import LoginIcon from '@mui/icons-material/Login';
-import LoginError from '../../components/partials/LoginError';
 import AlertTitle from '@mui/material/AlertTitle';
 import Stack from '@mui/material/Stack';
-import Collapse from '@mui/material/Collapse';
+
 
 const inputDetails = [
   {
@@ -129,13 +128,13 @@ const PetOwnerLogin = () => {
                           <Stack spacing={2}>
                           
                           {isInvalidLogin && (
-                            <Collapse in={open}>
+  
                             <Alert severity="error" 
                             >
-                              <AlertTitle>Error</AlertTitle>
+                              <AlertTitle><h5><b>Error</b></h5></AlertTitle>
                               Invalid login! Please check your credentials.
                             </Alert>
-                            </Collapse>
+            
                           )}
                           </Stack>
                           <div class="d-grid gap-2 my-2">
