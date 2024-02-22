@@ -40,7 +40,7 @@ export default function ServicecCard(props) {
           <div class="card-footer d-flex justify-content-center">
             <a
               class="btn btn-primary button-color mt-1"
-              href={"/PetOwnerBookingHomeCare/" + props.service}
+              href={"/PetOwnerBooking/" + props.service}
             >
               Book This Service
             </a>

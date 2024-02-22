@@ -23,6 +23,7 @@ export default function PetOwnerDashboard() {
   let userSelected = jwtDecode(token);
 
   const [pets, setPets] = useState([]);
+
   const [petOwnerDetails, setPetOwnerDetails] = useState({
     ownerName: String,
     username: String,
@@ -30,6 +31,7 @@ export default function PetOwnerDashboard() {
     contactNumber: Number,
     email: String,
   });
+
   const [pet, setPet] = useState({
     name: String,
     breed: String,
@@ -37,6 +39,8 @@ export default function PetOwnerDashboard() {
     size: String,
     petOwnerId: userSelected.id,
   });
+
+  const [bookings, setBookings] = useState([]);
   const [userData, setUserData] = useState({});
   const [open, setOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
@@ -102,7 +106,6 @@ export default function PetOwnerDashboard() {
   };
   const handleEditCancel = () => {
     setOpenEdit(false);
-    window.location.reload();
   };
 
   async function handleAdd() {
@@ -199,9 +202,19 @@ export default function PetOwnerDashboard() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+
     if (!token) {
       navigate("/");
     }
+
+    fetch(`http://localhost:4269/api/getBookings/${userSelected.id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((fetchedBookings) => setBookings(fetchedBookings))
+      .catch((error) => console.log(error));
 
     fetch(`http://localhost:4269/api/getPets/pet/${userSelected.id}`, {
       headers: {
@@ -248,7 +261,9 @@ export default function PetOwnerDashboard() {
     fontSize: "35px",
   };
 
-  return (
+  console.log(bookings);
+
+  return ( 
     <>
       <NavBarMain navItems={navItems} customLink={<Logout />} />
       <div className="mt-5 pt-3 px-5 yuki-color2 text-center">
@@ -525,7 +540,7 @@ export default function PetOwnerDashboard() {
                                             type="button"
                                             class="btn btn-danger"
                                             data-toggle="modal"
-                                            data-target="#HomeCareBookNow"
+                                          data-target={"#HomeCareBookNow" + pet.id}
                                             href="/"
                                           >
                                             Delete
@@ -533,7 +548,7 @@ export default function PetOwnerDashboard() {
 
                                   <div
                                     class="modal fade"
-                                    id="HomeCareBookNow"
+                                    id={"HomeCareBookNow" + pet.id}
                                     tabindex="-1"
                                     role="dialog"
                                     aria-labelledby="HomeCareBookNowCenterTitle"
@@ -553,7 +568,7 @@ export default function PetOwnerDashboard() {
                                           <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={handleCancel}>
                                             Cancel
                                           </button>
-                                          <button type="button" class="btn btn-primary button-color" onClick={() => handleDeletePet(pet.id)}>
+                                          <button id={pet.id} type="button" class="btn btn-primary button-color" onClick={() => handleDeletePet(pet.id)}>
                                             Yes
                                           </button>
                                         </div>

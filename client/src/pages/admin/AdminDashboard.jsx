@@ -1,15 +1,31 @@
 import { Button } from "@mui/material";
-import React from "react";
-import Footer from "../partials/Footer";
+import { React, useState } from "react";
+import NavBarMain from "../partials/NavBarMain";
 
 const AdminDashBoard = () => {
+
+  const [ reason, setReason ] = useState("");
+
   function handleSubmit() {
     localStorage.clear();
     window.location.href = "/AdminLogin";
   }
 
+  function handleRejectionReason(event) {
+    let input = event.target.value;
+
+    setReason(input);
+    console.log(reason);
+  };
+
+  const navItems = [];
+
   return (
     <>
+      <NavBarMain navItems={navItems}/>
+      <div className="mt-5 pt-3 px-5 yuki-color2 text-center">
+        Welcome back, Admin!
+      </div>
       <div className="container px-5">
         <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3">
           <h1 class="display-5 fw-bold">
@@ -74,6 +90,7 @@ const AdminDashBoard = () => {
                               class="form-control"
                               id="exampleFormControlTextarea1"
                               rows="5"
+                              onChange={handleRejectionReason}
                             ></textarea>
                           </div>
                         </form>
@@ -91,7 +108,7 @@ const AdminDashBoard = () => {
                             class="btn btn-primary button-color"
                             href="/AdminDashboard"
                           >
-                            Yes
+                            Submit
                           </a>
                         </div>
                       </div>
@@ -112,7 +129,6 @@ const AdminDashBoard = () => {
           </Button>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

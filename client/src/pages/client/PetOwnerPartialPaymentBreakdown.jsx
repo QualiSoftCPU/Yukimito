@@ -36,7 +36,7 @@ export default function PetOwnerPartialPaymentBreakdown( ) {
                 </li>
               </ul>
               <div className="card-footer">
-                <a href="/" class="btn btn-primary button-color" type="button">Confirm</a>
+                <a href="/PetOwnerDashboard" class="btn btn-primary button-color" type="button">Confirm</a>
               </div>
             </div>
           </div>
