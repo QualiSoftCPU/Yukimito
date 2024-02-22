@@ -23,6 +23,7 @@ export default function PetOwnerDashboard() {
   let userSelected = jwtDecode(token);
 
   const [pets, setPets] = useState([]);
+
   const [petOwnerDetails, setPetOwnerDetails] = useState({
     ownerName: String,
     username: String,
@@ -30,6 +31,7 @@ export default function PetOwnerDashboard() {
     contactNumber: Number,
     email: String,
   });
+
   const [pet, setPet] = useState({
     name: String,
     breed: String,
@@ -37,6 +39,8 @@ export default function PetOwnerDashboard() {
     size: String,
     petOwnerId: userSelected.id,
   });
+
+  const [bookings, setBookings] = useState([]);
   const [userData, setUserData] = useState({});
   const [open, setOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
@@ -102,7 +106,6 @@ export default function PetOwnerDashboard() {
   };
   const handleEditCancel = () => {
     setOpenEdit(false);
-    window.location.reload();
   };
 
   async function handleAdd() {
@@ -165,11 +168,53 @@ export default function PetOwnerDashboard() {
     }
   };
 
+  const handleDeletePet = async(petId) => {
+
+    const ownerId = userSelected.id;
+    console.log(petId)
+
+    try {
+      // if (textField is valid) {
+      //   const response
+      // } else {
+      //   setError('Invalid input')
+      // }
+      const response = await axios.delete(
+        `http://127.0.0.1:4269/api/deletePet/${ownerId}/${petId}`,
+        petOwnerDetails,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("Successfully deleted a pet!");
+        window.location.reload();
+      } else {
+        console.log("Deletion failed!");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   useEffect(() => {
     const token = localStorage.getItem("token");
+
     if (!token) {
       navigate("/");
     }
+
+    fetch(`http://localhost:4269/api/getBookings/${userSelected.id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((fetchedBookings) => setBookings(fetchedBookings))
+      .catch((error) => console.log(error));
 
     fetch(`http://localhost:4269/api/getPets/pet/${userSelected.id}`, {
       headers: {
@@ -216,7 +261,9 @@ export default function PetOwnerDashboard() {
     fontSize: "35px",
   };
 
-  return (
+  console.log(bookings);
+
+  return ( 
     <>
       <NavBarMain navItems={navItems} customLink={<Logout />} />
       <div className="mt-5 pt-3 px-5 yuki-color2 text-center">
@@ -437,56 +484,46 @@ export default function PetOwnerDashboard() {
                                   <button className="btn btn-primary yuki-color button-border-color mx-2">
                                     {" "}
                                     Edit
-                                  </button>
-
-
-
-
-                                 
-
+                                  </button>   
                                   <a
-                  type="button"
-                  class="btn btn-danger"
-                  data-toggle="modal"
-                  data-target="#HomeCareBookNow"
-                  href="/"
-                >
-                  Delete
-                </a>
+                                            type="button"
+                                            class="btn btn-danger"
+                                            data-toggle="modal"
+                                          data-target={"#HomeCareBookNow" + pet.id}
+                                            href="/"
+                                          >
+                                            Delete
+                                          </a>
 
                                   <div
-        class="modal fade"
-        id="HomeCareBookNow"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="HomeCareBookNowCenterTitle"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="HomeCareBookNowLongTitle">
-              Delete Pet
-              </h5>
-            </div>
-            <div class="modal-body">
-            Are you sure you want to delete pet?
-            </div>
-            <div class="modal-footer">
-              <a type="button" class="btn btn-secondary" data-dismiss="modal" href="/">
-                Cancel
-              </a>
-              <a type="button" class="btn btn-primary button-color" href="/">
-                Yes
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-
+                                    class="modal fade"
+                                    id={"HomeCareBookNow" + pet.id}
+                                    tabindex="-1"
+                                    role="dialog"
+                                    aria-labelledby="HomeCareBookNowCenterTitle"
+                                    aria-hidden="true"
+                                  >
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="HomeCareBookNowLongTitle">
+                                          Delete Pet
+                                          </h5>
+                                        </div>
+                                        <div class="modal-body">
+                                        Are you sure you want to delete pet?
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={handleCancel}>
+                                            Cancel
+                                          </button>
+                                          <button id={pet.id} type="button" class="btn btn-primary button-color" onClick={() => handleDeletePet(pet.id)}>
+                                            Yes
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                               <p className="card-text text-secondary">

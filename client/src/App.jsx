@@ -28,7 +28,7 @@ import SuccessTestPage from "./pages/SuccessTestpage";
 import LandingPage from "./pages/LandingPage";
 import PetOwnerDashboard from "./pages/client/PetOwnerDashboard";
 import PetOwnerBookingServices from "./pages/client/PetOwnerBookingServices";
-import PetOwnerBookingHomeCare from "./pages/client/PetOwnerBookingConfirmation";
+import PetOwnerBookingConfirmation from "./pages/client/PetOwnerBookingConfirmation";
 import PetOwnerBookingDayCare from "./pages/client/PetOwnerBookingDayCare";
 import PetOwnerBookingErrandsCare from "./pages/client/PetOwnerBookingErrandsCare"; 
 import PetOwnerPartialPaymentBreakdown from "./pages/client/PetOwnerPartialPaymentBreakdown";
@@ -48,7 +48,7 @@ export default function App() {
         <Route path="/PetOwnerPhotos" element={<PetOwnerPhotos />} />
         <Route path="/PetOwnerRequirements" element={<PetOwnerRequirements />} />
         <Route path="/PetOwnerBooking" element={<PetOwnerBookingServices />} />
-        <Route path="/PetOwnerBookingHomeCare/:service" element={<PetOwnerBookingHomeCare />} />
+        <Route path="/PetOwnerBooking/:service" element={<PetOwnerBookingConfirmation />} />
         <Route path="/PetOwnerBookingDayCare" element={<PetOwnerBookingDayCare />} />
         <Route path="/PetOwnerBookingErrandsCare" element={<PetOwnerBookingErrandsCare />} />
         <Route path="/PetOwnerPartialPaymentBreakdown" element={<PetOwnerPartialPaymentBreakdown />} />
