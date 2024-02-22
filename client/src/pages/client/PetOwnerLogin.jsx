@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, TextField } from "@mui/material";
 import Card from "@mui/material/Card";
 // import logoFooter from '../../assets/images/IMG_075.PNG'
+import Alert from '@mui/material/Alert';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import WhatWeOffer from '../partials/WhatWeOffer';
@@ -9,6 +10,10 @@ import Footer from '../partials/Footer';
 import NavBarMain from '../partials/NavBarMain';
 import LoginHero from '../partials/HeroLogin';
 import LoginIcon from '@mui/icons-material/Login';
+import LoginError from '../../components/partials/LoginError';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
+import Collapse from '@mui/material/Collapse';
 
 const inputDetails = [
   {
@@ -25,7 +30,9 @@ const inputDetails = [
   }
 ];
 
+
 async function loginUser(credentials) {
+  
   try {
     const response = await axios.post('http://localhost:4269/api/auth/signin/petowner', credentials);
     localStorage.setItem('token', response.data.accessToken); // Store the token in localStorage
@@ -37,7 +44,7 @@ async function loginUser(credentials) {
 }
 
 const PetOwnerLogin = () => {
-
+  const [isInvalidLogin, setIsInvalidLogin] = useState(false);
   const navigate = useNavigate();
   const [input, setInput] = useState({
     username: '',
@@ -53,14 +60,15 @@ const PetOwnerLogin = () => {
 
   async function handleLogin() {
     const success = await loginUser(input);
-
+    let test;
     console.log(success)
 
     if (success) {
       navigate('/PetOwnerDashboard');
     } else {
-      alert("Invalid username or password!");
+      setIsInvalidLogin(true);
     }
+    return test
   }
 
   function handleInput(event) {
@@ -72,7 +80,7 @@ const PetOwnerLogin = () => {
   }
 
   const navItems=["About", "Gallery", "Requirements", "Rates & Services", "Team", "Reviews"]
-
+  const [open, setOpen] = React.useState(true);
   return (
     <>
       <hr id="Log In"/>
@@ -113,11 +121,23 @@ const PetOwnerLogin = () => {
                                 type={details.type}
                                 id="outlined-basic" 
                                 label={details.label} 
-                                variant="outlined"
+                                variant="outlined"          
                                 required
                               />
                             )
                           })}
+                          <Stack spacing={2}>
+                          
+                          {isInvalidLogin && (
+                            <Collapse in={open}>
+                            <Alert severity="error" 
+                            >
+                              <AlertTitle>Error</AlertTitle>
+                              Invalid login! Please check your credentials.
+                            </Alert>
+                            </Collapse>
+                          )}
+                          </Stack>
                           <div class="d-grid gap-2 my-2">
                             <button class="btn btn-primary button-color" onClick={handleLogin} type="button">Login</button>
                           </div>
