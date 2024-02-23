@@ -9,7 +9,6 @@ import { TextField, Autocomplete } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import { yellow } from "@mui/material/colors";
 
 const PetOwnerBookingHomeCare = () => {
   const navigate = useNavigate();
@@ -46,12 +45,19 @@ const PetOwnerBookingHomeCare = () => {
     });
   }
 
-  function handlePetSelection(event) {
+  function handlePetSelection(event, index) {
+
+    const selectedPetName = event.target.innerText;
+    const selectedPet = pets.find(pet => pet.name === selectedPetName);
+    
+    if (selectedPet && !bookingDetails.petsSelected.includes(selectedPet.id)) {
+      setBookingDetails((prevState) => ({
+        ...prevState,
+        petsSelected: [...prevState.petsSelected, selectedPet.id],
+      }));
+    }
+
     console.log(bookingDetails);
-    setBookingDetails((prevState) => ({
-      ...prevState,
-      petsSelected: [...new Set(event.target.innerText.trim())],
-    }));
   }
 
   useEffect(() => {
@@ -92,9 +98,10 @@ const PetOwnerBookingHomeCare = () => {
           Please provide us the date of your check-in and check-out.
         </p>
         {/* content */}
+        <hr />
         <div class="row align-items-center justify-content-center">
           <div class="col-lg-6">
-            <div class="card">
+            <div class="card shadow">
               <Paper elevation={3} style={{ padding: "50px" }}>
                 <div
                   style={{

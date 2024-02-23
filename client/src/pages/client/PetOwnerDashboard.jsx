@@ -360,9 +360,9 @@ export default function PetOwnerDashboard() {
           <hr />
 
           <div className="row">
-            <div className="row col">
+            <div className="row">
 
-            <div className="row col-4">
+            <div className="row col-lg-4 col-s-12">
 
               <div>
                 <h5 className="py-3">
@@ -429,7 +429,7 @@ export default function PetOwnerDashboard() {
               </div>
             </div>
 
-            <div className="col-8">
+            <div className="col-lg-8 col-s-12">
               <div className="row py-3">
                 <div className="col align-middle">
                   <h5>
