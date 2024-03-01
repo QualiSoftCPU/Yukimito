@@ -54,8 +54,6 @@ export default function App() {
         <Route path="/PetOwnerPartialPaymentBreakdown" element={<PetOwnerPartialPaymentBreakdown />} />
         {/* admin pages */} 
 
-
-
         <Route path="/Landing" element={<LandingPage />} />
         <Route path="/" element={<PetOwnerLogin />} />
         <Route path="/ClientRegister" element={<ClientRegister />} />

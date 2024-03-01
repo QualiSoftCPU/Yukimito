@@ -1,7 +1,9 @@
+import axios from "axios";
 import { React, useEffect, useState } from "react";
 import NavBarMain from "../../pages/partials/NavBarMain";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-import { Box, Divider, Paper, List, ListItem } from "@mui/material";
+import BookingConfirmationInfoCard from '../partials/BookingConfirmationInfoCard';
+import { Divider, Paper, List, ListItem } from "@mui/material";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -9,6 +11,9 @@ import { TextField, Autocomplete } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import SelectServiceInput from "../partials/SelectServiceInput";
+import HailIcon from '@mui/icons-material/Hail';
+import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 
 const PetOwnerBookingHomeCare = () => {
   const navigate = useNavigate();
@@ -19,9 +24,10 @@ const PetOwnerBookingHomeCare = () => {
   const [pets, setPets] = useState([]);
 
   const [bookingDetails, setBookingDetails] = useState({
-    checkInDate: "",
-    checkOutDate: "",
-    petsSelected: [],
+    checkIn: "",
+    checkOut: "",
+    petList: [],
+    petOwnerId: userSelected.id
   });
 
   const petList = pets.map((pet) => pet.name);
@@ -34,14 +40,14 @@ const PetOwnerBookingHomeCare = () => {
   function handleCheckInInput(event) {
     setBookingDetails({
       ...bookingDetails,
-      checkInDate: event.$d,
+      checkIn: event.$d,
     });
   }
 
   function handleCheckOutInput(event) {
     setBookingDetails({
       ...bookingDetails,
-      checkOutDate: event.$d,
+      checkOut: event.$d,
     });
   }
 
@@ -50,14 +56,72 @@ const PetOwnerBookingHomeCare = () => {
     const selectedPetName = event.target.innerText;
     const selectedPet = pets.find(pet => pet.name === selectedPetName);
     
-    if (selectedPet && !bookingDetails.petsSelected.includes(selectedPet.id)) {
+    if (selectedPet && !bookingDetails.petList.includes(selectedPet.id)) {
       setBookingDetails((prevState) => ({
         ...prevState,
-        petsSelected: [...prevState.petsSelected, selectedPet.id],
+        petList: [...prevState.petList, selectedPet.id],
       }));
     }
 
     console.log(bookingDetails);
+  }
+
+  async function handleBookingAppointmentConfirmation() {
+    console.log("Clicked!");
+    console.log(service)
+    console.log(bookingDetails);
+
+    if (service === "Home Care") {
+
+      axios.post('http://localhost:4269/api/createHomeCareBooking', bookingDetails)
+      .then((response) => {
+        console.log(response.data);
+        // handle success here
+        alert('Home Care Booking successful!');
+        navigate('/');
+      })
+      .catch((error) => {
+          console.error(error.message);
+          // handle error here
+          alert('Home Care Booking failed!');
+      });
+
+    } else if (service === "Day Care") {
+
+      axios.post('http://localhost:4269/api/createDayCareBooking', bookingDetails)
+      .then((response) => {
+        console.log(response.data);
+        // handle success here
+        alert('Day Care Booking successful!');
+        navigate('/');
+      })
+      .catch((error) => {
+          console.error(error.message);
+          // handle error here
+          alert('Day Care Booking failed!');
+      });
+      
+    } else if (service === "Errands Care") {
+
+      try {
+        const response = await axios.post(
+          "http://localhost:4269/api/createErrandsCareBooking",
+          bookingDetails,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+  
+        if (response.status === 200) {
+          navigate('/');
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+
+    }
   }
 
   useEffect(() => {
@@ -94,120 +158,100 @@ const PetOwnerBookingHomeCare = () => {
         <h1 class="display-5 fw-bold">
           Booking <span className="yuki-font-color">Confirmation</span>
         </h1>
-        <p class="lead mb-4">
-          Please provide us the date of your check-in and check-out.
-        </p>
         {/* content */}
         <hr />
         <div class="row align-items-center justify-content-center">
-          <div class="col-lg-6">
-            <div class="card shadow">
+          <div class="col-lg-12">
+            <div class="card">
               <Paper elevation={3} style={{ padding: "50px" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    height: "100%",
-                  }}
-                >
-                  {
-                    <div className="flex-container" style={{ flex: 1 }}>
-                      <form
-                        action="/action_page.php"
-                        className="form-container center"
-                      >
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                          <DateTimePicker
-                            label="Check In"
-                            name="startDateTime"
-                            className="input-margin non-inline input-styling"
-                            onChange={handleCheckInInput}
-                          />
-                        </LocalizationProvider>
-                      </form>
+                <div className="row">
+                  <div className="col"
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      height: "100%",
+                    }}
+                  >
+                    {
+                      <div className="flex-container" style={{ flex: 1 }}>
+                        <form
+                          action="/action_page.php"
+                          className="form-container center"
+                        >
 
-                      <form
-                        action="/action_page.php"
-                        className="form-container center"
-                      >
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                          <DateTimePicker
-                            label="Check Out"
-                            name="startDateTime"
-                            className="input-margin non-inline input-styling"
-                            onChange={handleCheckOutInput}
-                          />
-                        </LocalizationProvider>
-                      </form>
+                        <p class="lead mb-4">
+                          Please provide us the date for your Check-in.
+                        </p>
+                        <SelectServiceInput />
+                          <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DateTimePicker
+                              label="Check In"
+                              name="startDateTime"
+                              className="input-margin non-inline input-styling"
+                              onChange={handleCheckInInput}
+                            />
+                          </LocalizationProvider>
+                          <p>Your Suggested Chekout Time: Checkout Time</p>
+                        </form>
 
-                      <Autocomplete
-                        sx={{
-                          width: "100%",
-                        }}
-                        multiple
-                        options={petList}
-                        onChange={handlePetSelection}
-                        getOptionLabel={(option) => option}
-                        disableCloseOnSelect
-                        renderInput={(params) => (
-                          <TextField
-                            {...params}
-                            variant="outlined"
-                            label="Select Pets"
-                            placeholder="Select Pets"
-                          />
-                        )}
-                      />
-                    </div>
-                  }
-                  <div class="col-lg-6 center" className="flex-container"></div>
+                        <form
+                          action="/action_page.php"
+                          className="form-container center"
+                        >
+                        </form>
+
+                        <Autocomplete
+                          sx={{
+                            width: "100%",
+                          }}
+                          multiple
+                          options={petList}
+                          onChange={handlePetSelection}
+                          getOptionLabel={(option) => option}
+                          disableCloseOnSelect
+                          renderInput={(params) => (
+                            <TextField
+                              {...params}
+                              variant="outlined"
+                              label="Select Pets"
+                              placeholder="Select Pets"
+                            />
+                          )}
+                        />
+                      </div>
+                    }
+                  </div>
+                  <div className="col">
+                  <BookingConfirmationInfoCard 
+                    service="Home Care (24 Hours)"
+                    checkIn={
+                      <span className="text-success">
+                        <DirectionsWalkIcon />
+                        Check In: 12 noon - 4:30 PM only &nbsp;
+                      </span>}
+                    checkOut={
+                      <span className="text-danger">
+                        <HailIcon />Check Out: 11:00 AM
+                      </span>
+                    }
+                    description="Going for a vacation or business trip and worried about your
+                      pet, Home Care service is your choice. We take every precaution
+                      to provide a safe and stress-free boarding experience for your
+                      pet."
+                    
+                    price={450}
+                    duration={24}
+                  />
                 </div>
+                </div>
+                
+                
+                
               </Paper>
             </div>
           </div>
 
-          <div class="col-lg-6 text-center pt-1">
-            <Box>
-              <div className="container">
-                <h1 class="display-6 fw-bold lh-1">
-                  <span>{service}</span>
-                </h1>
-
-                <p class="lead mb-4" style={{ fontSize: "17px" }}>
-                  Going for a vacation or business trip and worried about your
-                  pet, Home Care service is your choiice. We take every
-                  precaution to provide a safe and stress-free boarding
-                  experience for your pet.
-                </p>
-                <p class="text-start">
-                  <p>Check In: 12 noon - 4:30 PM only</p>
-                  <p>Check Out: 11:00 AM</p>
-
-                  <p>Fee of ₱50/hr for early check in or late check out</p>
-                  <p>
-                    Please inform our staff if your pets has any allergies or
-                    specific needs.
-                  </p>
-                  <p>Rates depends on Pet size</p>
-                </p>
-
-                <h5>
-                  Starting at:{" "}
-                  <span className="yuki-font-color">₱425/1380mins</span>
-                </h5>
-
-                <a
-                  type="button"
-                  class="btn btn-primary button-color"
-                  data-toggle="modal"
-                  data-target="#HomeCareBookNow"
-                  href="/PetOwnerPartialPaymentBreakdown"
-                >
-                  Book
-                </a>
-              </div>
-            </Box>
-          </div>
+         
         </div>
       </div>
 
@@ -305,9 +349,9 @@ const PetOwnerBookingHomeCare = () => {
               >
                 Cancel
               </a>
-              <a type="button" class="btn btn-primary button-color" href="/PetOwnerPartialPaymentBreakdown">
+              <button type="button" class="btn btn-primary button-color" onClick={handleBookingAppointmentConfirmation}>
                 Confirm
-              </a>
+              </button>
             </div>
           </div>
         </div>

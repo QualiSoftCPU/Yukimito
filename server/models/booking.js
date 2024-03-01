@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     checkIn: DataTypes.DATE,
     checkOut: DataTypes.DATE,
     service_type: DataTypes.STRING,
-    pets: DataTypes.ARRAY(DataTypes.INTEGER),
+    petList: DataTypes.ARRAY(DataTypes.INTEGER),
     status: DataTypes.STRING,
     total_price: DataTypes.FLOAT
   }, {

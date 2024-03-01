@@ -101,9 +101,11 @@ export default function PetOwnerDashboard() {
       setEmailError("");
     }
   };
+
   const handleEditOpen = () => {
     setOpenEdit(true);
   };
+
   const handleEditCancel = () => {
     setOpenEdit(false);
   };
@@ -207,7 +209,7 @@ export default function PetOwnerDashboard() {
       navigate("/");
     }
 
-    fetch(`http://localhost:4269/api/getBookings/${userSelected.id}`, {
+    fetch(`http://localhost:4269/api/getBooking/${userSelected.id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -280,7 +282,7 @@ export default function PetOwnerDashboard() {
               style={{ width: "100%", height: "400px", objectFit: "cover" }}
             />
 
-            <div className="mt-1">
+            <div className="mt-1" style={{maxHeight: "50px"}}>
               <div className="col mt-1">
                 <Avatar
                   alt="Profile Picture"
@@ -366,12 +368,23 @@ export default function PetOwnerDashboard() {
 
               <div>
                 <h5 className="py-3">
-                  <b>Ongoing Bookings <ArrowOutwardIcon /></b>
+                  <b>Bookings <ArrowOutwardIcon /></b>
                 </h5>
-                <div className="card my-2 shadow">
+                <div className="card my-2 shadow overflow-auto p-3 mb-3 mb-md-0 mr-md-3"
+                      style={{ maxWidth: "800px", maxHeight: "500px" }}>
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item text-secondary">
-                      You have no ongoing bookings yet...
+                      {bookings.map(booking => {
+                        return <p>Booking ID: {booking.id} 
+                        <br/>
+                        Service availed: {booking.service_type}
+                        <br />
+                        Total Price: {booking.total_price}
+                        <br />
+                        Status: {booking.status}
+                        <hr />
+                        </p>
+                      })}
                     </li>
                   </ul>
                 </div>

@@ -3,12 +3,12 @@ const Booking = db.booking;
 const Pet = db.pet;
 
 async function createHomeCareBooking(req, res) {
-  const { pets, checkIn, checkOut } = req.body;
+  const { petList, checkIn, checkOut } = req.body;
   const checkInDate = new Date(req.body.checkIn);
   const checkOutDate = new Date(req.body.checkOut);
   let totalPrice =  0;
 
-  if (!pets || !pets.length) {
+  if (!petList || !petList.length) {
       return res.status(400).send({ message: "Please provide one or more pets for the booking." });
   }
 
@@ -17,7 +17,7 @@ async function createHomeCareBooking(req, res) {
   }
 
   const missingPets = [];
-  for (const petId of pets) {
+  for (const petId of petList) {
       const pet = await Pet.findByPk(petId);
 
       if (!pet) {
@@ -62,7 +62,7 @@ async function createHomeCareBooking(req, res) {
           checkIn: checkIn,
           checkOut: checkOut,
           total_price: totalPrice,
-          pets: pets,
+          petList: petList,
           status: 'pending'
       });
   } catch (error) {
@@ -74,12 +74,12 @@ async function createHomeCareBooking(req, res) {
 }
 
 async function createErrandsCareBooking(req, res) {
-  const { pets, checkIn, checkOut } = req.body;
+  const { petList, checkIn, checkOut } = req.body;
   const checkInDate = new Date(req.body.checkIn);
   const checkOutDate = new Date(req.body.checkOut);
   let totalPrice =  0;
 
-  if (!pets || !pets.length) {
+  if (!petList || !petList.length) {
       return res.status(400).send({ message: "Please provide one or more pets for the booking." });
   }
 
@@ -88,7 +88,7 @@ async function createErrandsCareBooking(req, res) {
   }
 
   const missingPets = [];
-  for (const petId of pets) {
+  for (const petId of petList) {
       const pet = await Pet.findByPk(petId);
 
       if (!pet) {
@@ -125,24 +125,24 @@ async function createErrandsCareBooking(req, res) {
           checkIn: checkIn,
           checkOut: checkOut,
           total_price: totalPrice,
-          pets: pets,
+          petList: petList,
           status: 'pending'
       });
   } catch (error) {
       console.error('Failed to create booking:', error);
-      return res.status(500).send({ message: 'Failed to create booking.' });
+      return res.status(500).send(error.message);
   }
 
   res.send({ message: `Errands care booking created successfully! The total price is ${totalPrice}` });
 }
 
 async function createDayCareBooking(req, res) {
-  const { pets, checkIn, checkOut } = req.body;
+  const { petList, checkIn, checkOut } = req.body;
   const checkInDate = new Date(req.body.checkIn);
   const checkOutDate = new Date(req.body.checkOut);
   let totalPrice =  0;
 
-  if (!pets || !pets.length) {
+  if (!petList || !petList.length) {
       return res.status(400).send({ message: "Please provide one or more pets for the booking." });
   }
 
@@ -151,7 +151,7 @@ async function createDayCareBooking(req, res) {
   }
 
   const missingPets = [];
-  for (const petId of pets) {
+  for (const petId of petList) {
       const pet = await Pet.findByPk(petId);
 
       if (!pet) {
@@ -188,7 +188,7 @@ async function createDayCareBooking(req, res) {
           checkIn: checkIn,
           checkOut: checkOut,
           total_price: totalPrice,
-          pets: pets,
+          petList: petList,
           status: 'pending'
       });
   } catch (error) {

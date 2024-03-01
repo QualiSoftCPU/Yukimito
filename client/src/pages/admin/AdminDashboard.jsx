@@ -84,7 +84,7 @@ const AdminDashBoard = () => {
                         <form>
                           <div class="form-group p-3">
                             <label for="exampleFormControlTextarea1">
-                              Reason for regecting booking
+                              Reason for rejecting booking
                             </label>
                             <textarea
                               class="form-control"
