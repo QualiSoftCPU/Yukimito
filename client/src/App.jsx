@@ -47,7 +47,7 @@ export default function App() {
         <Route path="/PetOwnerRates" element={<PetOwnerRates />} />
         <Route path="/PetOwnerPhotos" element={<PetOwnerPhotos />} />
         <Route path="/PetOwnerRequirements" element={<PetOwnerRequirements />} />
-        <Route path="/PetOwnerBooking" element={<PetOwnerBookingServices />} />
+        <Route path="/PetOwnerBookingConfirmation" element={<PetOwnerBookingConfirmation />} />
         <Route path="/PetOwnerBooking/:service" element={<PetOwnerBookingConfirmation />} />
         <Route path="/PetOwnerBookingDayCare" element={<PetOwnerBookingDayCare />} />
         <Route path="/PetOwnerBookingErrandsCare" element={<PetOwnerBookingErrandsCare />} />

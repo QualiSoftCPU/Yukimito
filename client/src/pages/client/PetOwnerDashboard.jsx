@@ -337,7 +337,7 @@ export default function PetOwnerDashboard() {
             <hr />
 
             <div className="d-flex justify-content-center mx-auto">
-              <a className="btn yuki-color text-white" href="/PetOwnerBooking">
+              <a className="btn yuki-color text-white" href="/PetOwnerBookingConfirmation">
                 Book Now!
               </a>
             </div>
@@ -375,7 +375,7 @@ export default function PetOwnerDashboard() {
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item text-secondary">
                       {bookings.map(booking => {
-                        return <p>Booking ID: {booking.id} 
+                        return <p><a href="#" className="yuki-font-color" >Booking ID: {booking.id} </a>
                         <br/>
                         Service availed: {booking.service_type}
                         <br />

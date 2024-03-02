@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Box, TextField } from "@mui/material";
 import Card from "@mui/material/Card";
 // import logoFooter from '../../assets/images/IMG_075.PNG'
-import Alert from '@mui/material/Alert';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import WhatWeOffer from '../partials/WhatWeOffer';
@@ -11,6 +10,7 @@ import NavBarMain from '../partials/NavBarMain';
 import LoginHero from '../partials/HeroLogin';
 import LoginIcon from '@mui/icons-material/Login';
 import AlertTitle from '@mui/material/AlertTitle';
+import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 
 

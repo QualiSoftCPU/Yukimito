@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 import { React, useEffect, useState } from "react";
 import NavBarMain from "../../pages/partials/NavBarMain";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
@@ -14,6 +15,9 @@ import { jwtDecode } from "jwt-decode";
 import SelectServiceInput from "../partials/SelectServiceInput";
 import HailIcon from '@mui/icons-material/Hail';
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
+import Stack from '@mui/material/Stack';
+import AlertTitle from '@mui/material/AlertTitle';
+import Alert from '@mui/material/Alert';
 
 const PetOwnerBookingHomeCare = () => {
   const navigate = useNavigate();
@@ -24,6 +28,7 @@ const PetOwnerBookingHomeCare = () => {
   const [pets, setPets] = useState([]);
 
   const [bookingDetails, setBookingDetails] = useState({
+    service: "",
     checkIn: "",
     checkOut: "",
     petList: [],
@@ -38,16 +43,43 @@ const PetOwnerBookingHomeCare = () => {
   const { service } = useParams();
 
   function handleCheckInInput(event) {
-    setBookingDetails({
-      ...bookingDetails,
-      checkIn: event.$d,
-    });
+
+    if (bookingDetails.service) {
+
+      let service = bookingDetails.service;
+
+      if (service === "Home Care") {
+        setBookingDetails({
+          ...bookingDetails,
+          checkIn: event.$d,
+          checkOut: moment(event.$d).add(24, 'h').toDate()
+        });
+      } else if (service === "Day Care") {
+        setBookingDetails({
+          ...bookingDetails,
+          checkIn: event.$d,
+          checkOut: moment(event.$d).add(10, 'h').toDate()
+        });
+      } else {
+        setBookingDetails({
+          ...bookingDetails,
+          checkIn: event.$d,
+          checkOut: moment(event.$d).add(4, 'h').toDate()
+        });
+      }
+
+
+    } else {
+      alert("Please select a service first!")
+    }
   }
 
-  function handleCheckOutInput(event) {
+  function handleServiceSelection(event) {
+    console.log(bookingDetails)
+
     setBookingDetails({
       ...bookingDetails,
-      checkOut: event.$d,
+      service: event.target.innerText,
     });
   }
 
@@ -71,57 +103,57 @@ const PetOwnerBookingHomeCare = () => {
     console.log(service)
     console.log(bookingDetails);
 
-    if (service === "Home Care") {
+    // if (service === "Home Care") {
 
-      axios.post('http://localhost:4269/api/createHomeCareBooking', bookingDetails)
-      .then((response) => {
-        console.log(response.data);
-        // handle success here
-        alert('Home Care Booking successful!');
-        navigate('/');
-      })
-      .catch((error) => {
-          console.error(error.message);
-          // handle error here
-          alert('Home Care Booking failed!');
-      });
+    //   axios.post('http://localhost:4269/api/createHomeCareBooking', bookingDetails)
+    //   .then((response) => {
+    //     console.log(response.data);
+    //     // handle success here
+    //     alert('Home Care Booking successful!');
+    //     navigate('/');
+    //   })
+    //   .catch((error) => {
+    //       console.error(error.message);
+    //       // handle error here
+    //       alert('Home Care Booking failed!');
+    //   });
 
-    } else if (service === "Day Care") {
+    // } else if (service === "Day Care") {
 
-      axios.post('http://localhost:4269/api/createDayCareBooking', bookingDetails)
-      .then((response) => {
-        console.log(response.data);
-        // handle success here
-        alert('Day Care Booking successful!');
-        navigate('/');
-      })
-      .catch((error) => {
-          console.error(error.message);
-          // handle error here
-          alert('Day Care Booking failed!');
-      });
+    //   axios.post('http://localhost:4269/api/createDayCareBooking', bookingDetails)
+    //   .then((response) => {
+    //     console.log(response.data);
+    //     // handle success here
+    //     alert('Day Care Booking successful!');
+    //     navigate('/');
+    //   })
+    //   .catch((error) => {
+    //       console.error(error.message);
+    //       // handle error here
+    //       alert('Day Care Booking failed!');
+    //   });
       
-    } else if (service === "Errands Care") {
+    // } else if (service === "Errands Care") {
 
-      try {
-        const response = await axios.post(
-          "http://localhost:4269/api/createErrandsCareBooking",
-          bookingDetails,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+    //   try {
+    //     const response = await axios.post(
+    //       "http://localhost:4269/api/createErrandsCareBooking",
+    //       bookingDetails,
+    //       {
+    //         headers: {
+    //           Authorization: `Bearer ${token}`,
+    //         },
+    //       }
+    //     );
   
-        if (response.status === 200) {
-          navigate('/');
-        }
-      } catch (error) {
-        console.log(error.message);
-      }
+    //     if (response.status === 200) {
+    //       navigate('/');
+    //     }
+    //   } catch (error) {
+    //     console.log(error.message);
+    //   }
 
-    }
+    // }
   }
 
   useEffect(() => {
@@ -146,7 +178,7 @@ const PetOwnerBookingHomeCare = () => {
         navItems={navItems}
         customLink={
           <li class="nav-item active px-3 align-middle yuki-font-color">
-            <a class="nav-link text-white" href="/PetOwnerBooking">
+            <a class="nav-link text-white" href="/">
               <KeyboardReturnIcon className="me-1" />
               Back to Services
             </a>
@@ -182,7 +214,9 @@ const PetOwnerBookingHomeCare = () => {
                         <p class="lead mb-4">
                           Please provide us the date for your Check-in.
                         </p>
-                        <SelectServiceInput />
+                        <SelectServiceInput 
+                          onClick={handleServiceSelection}
+                        />
                           <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DateTimePicker
                               label="Check In"
@@ -191,7 +225,18 @@ const PetOwnerBookingHomeCare = () => {
                               onChange={handleCheckInInput}
                             />
                           </LocalizationProvider>
-                          <p>Your Suggested Chekout Time: Checkout Time</p>
+                          <Stack spacing={2} className="mb-2">
+                          
+                          {bookingDetails.checkOut && (
+  
+                            <Alert severity="warning"
+                            >
+                              <AlertTitle><h5><b>Expected Check Out Time:</b></h5></AlertTitle>
+                              {bookingDetails.checkOut.toString()}
+                            </Alert>
+            
+                          )}
+                          </Stack>
                         </form>
 
                         <form

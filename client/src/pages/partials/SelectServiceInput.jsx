@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function SelectServiceInput() {
+export default function SelectServiceInput(props) {
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
@@ -23,9 +23,9 @@ export default function SelectServiceInput() {
           label="Age"
           onChange={handleChange}
         >
-          <MenuItem value={"Home Care"}>Home Care</MenuItem>
-          <MenuItem value={"Day Care"}>Day Care</MenuItem>
-          <MenuItem value={"Errands Care"}>Errands Care</MenuItem>
+          <MenuItem onClick={props.onClick} value={"Home Care"}>Home Care</MenuItem>
+          <MenuItem onClick={props.onClick} value={"Day Care"}>Day Care</MenuItem>
+          <MenuItem onClick={props.onClick} value={"Errands Care"}>Errands Care</MenuItem>
         </Select>
       </FormControl>
     </Box>

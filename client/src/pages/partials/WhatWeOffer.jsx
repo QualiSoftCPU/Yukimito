@@ -1,4 +1,3 @@
-import { height } from '@mui/system';
 import crsl2 from '../../assets/images/crsl3.png';
 
 import h1 from '../../assets/images/gallery/h1.PNG';
@@ -7,9 +6,6 @@ import h3 from '../../assets/images/gallery/h3.PNG';
 import v1 from '../../assets/images/gallery/v1.PNG';
 import v2 from '../../assets/images/gallery/v2.PNG';
 import v3 from '../../assets/images/gallery/v3.PNG';
-
-import pp from '../../assets/images/pp.jpeg'
-
 
 export default function WhatWeOffer() {
 
