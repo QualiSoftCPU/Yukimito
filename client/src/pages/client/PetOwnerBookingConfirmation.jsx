@@ -1,4 +1,3 @@
-import axios from "axios";
 import moment from "moment";
 import { React, useEffect, useState } from "react";
 import NavBarMain from "../../pages/partials/NavBarMain";
@@ -13,11 +12,10 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import SelectServiceInput from "../partials/SelectServiceInput";
-import HailIcon from '@mui/icons-material/Hail';
-import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 import Stack from '@mui/material/Stack';
 import AlertTitle from '@mui/material/AlertTitle';
 import Alert from '@mui/material/Alert';
+import { homeCare, dayCare, errandsCare } from './data/ServiceDetails'
 
 const PetOwnerBookingHomeCare = () => {
   const navigate = useNavigate();
@@ -34,6 +32,8 @@ const PetOwnerBookingHomeCare = () => {
     petList: [],
     petOwnerId: userSelected.id
   });
+
+  const [ serviceDetails, setServiceDetails ] = useState(homeCare);
 
   const petList = pets.map((pet) => pet.name);
   // const petId = pets.map(pet => pet.id);
@@ -76,6 +76,15 @@ const PetOwnerBookingHomeCare = () => {
 
   function handleServiceSelection(event) {
     console.log(bookingDetails)
+    let service = event.target.innerText;
+
+    if (service === "Home Care") {
+      setServiceDetails(homeCare);
+    } else if (service === "Day Care") {
+      setServiceDetails(dayCare);
+    } else {
+      setServiceDetails(errandsCare);
+    }
 
     setBookingDetails({
       ...bookingDetails,
@@ -268,24 +277,25 @@ const PetOwnerBookingHomeCare = () => {
                   </div>
                   <div className="col">
                   <BookingConfirmationInfoCard 
-                    service="Home Care (24 Hours)"
+                    service={serviceDetails.title + " (24 Hours)"}
                     checkIn={
                       <span className="text-success">
-                        <DirectionsWalkIcon />
-                        Check In: 12 noon - 4:30 PM only &nbsp;
+                        {serviceDetails.checkInTime}
                       </span>}
                     checkOut={
                       <span className="text-danger">
-                        <HailIcon />Check Out: 11:00 AM
+                        {serviceDetails.checkOutTime}
                       </span>
                     }
-                    description="Going for a vacation or business trip and worried about your
-                      pet, Home Care service is your choice. We take every precaution
-                      to provide a safe and stress-free boarding experience for your
-                      pet."
+                    operatingTime={
+                      <span className="text-danger">
+                        {serviceDetails.operatingTime}
+                      </span>
+                    }
+                    description={serviceDetails.description}
                     
-                    price={450}
-                    duration={24}
+                    price={serviceDetails.price}
+                    duration={serviceDetails.duration}
                   />
                 </div>
                 </div>

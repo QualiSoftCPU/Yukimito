@@ -12,9 +12,9 @@ export default function ServicecCard(props) {
               <span>{props.service}</span>
             </h1>
             <p>
-              {props.checkIn}
-              <br />
-              {props.checkOut}
+              <div>{props.checkIn}</div>
+              <div>{props.checkOut}</div>
+              <div>{props.operatingTime}</div>
             </p>
 
             <hr />
@@ -29,7 +29,7 @@ export default function ServicecCard(props) {
               Starting at:
               <br />
               <span className="h1 fw-bold">₱{props.price}.00</span><span className="text-secondary"> 
-              <br />
+              <br /> 
               for {props.duration}hrs.</span>
             </h5>
           </div>
