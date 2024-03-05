@@ -263,8 +263,6 @@ export default function PetOwnerDashboard() {
     fontSize: "35px",
   };
 
-  console.log(bookings);
-
   return ( 
     <>
       <NavBarMain navItems={navItems} customLink={<Logout />} />
@@ -279,7 +277,7 @@ export default function PetOwnerDashboard() {
               className="rounded-bottom"
               src={coverImage}
               alt="Cover_Photo"
-              style={{ width: "100%", height: "400px", objectFit: "cover" }}
+              style={{ width: "100%", height: "300px", objectFit: "cover" }}
             />
 
             <div className="mt-1" style={{maxHeight: "50px"}}>

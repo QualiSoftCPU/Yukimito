@@ -27,10 +27,7 @@ import PetOwnerLogin from "./pages/client/PetOwnerLogin";
 import SuccessTestPage from "./pages/SuccessTestpage";
 import LandingPage from "./pages/LandingPage";
 import PetOwnerDashboard from "./pages/client/PetOwnerDashboard";
-import PetOwnerBookingServices from "./pages/client/PetOwnerBookingServices";
 import PetOwnerBookingConfirmation from "./pages/client/PetOwnerBookingConfirmation";
-import PetOwnerBookingDayCare from "./pages/client/PetOwnerBookingDayCare";
-import PetOwnerBookingErrandsCare from "./pages/client/PetOwnerBookingErrandsCare"; 
 import PetOwnerPartialPaymentBreakdown from "./pages/client/PetOwnerPartialPaymentBreakdown";
 
 export default function App() {
@@ -49,8 +46,6 @@ export default function App() {
         <Route path="/PetOwnerRequirements" element={<PetOwnerRequirements />} />
         <Route path="/PetOwnerBookingConfirmation" element={<PetOwnerBookingConfirmation />} />
         <Route path="/PetOwnerBooking/:service" element={<PetOwnerBookingConfirmation />} />
-        <Route path="/PetOwnerBookingDayCare" element={<PetOwnerBookingDayCare />} />
-        <Route path="/PetOwnerBookingErrandsCare" element={<PetOwnerBookingErrandsCare />} />
         <Route path="/PetOwnerPartialPaymentBreakdown" element={<PetOwnerPartialPaymentBreakdown />} />
         {/* admin pages */} 
 

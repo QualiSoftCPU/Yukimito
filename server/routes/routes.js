@@ -24,6 +24,7 @@ router.post("/api/createHomeCareBooking", bookingController.createHomeCareBookin
 router.post("/api/createErrandsCareBooking", bookingController.createErrandsCareBooking);
 router.post("/api/createDayCareBooking", bookingController.createDayCareBooking);
 router.get("/api/getBooking/:petOwnerId", bookingController.getBooking);
+router.get("/api/getAllBookings", bookingController.getAllBookings);
 router.put("/api/updateBooking/:bookingId", bookingController.updateBooking);
  
 // router.post("/api/addService", serviceController.createService);

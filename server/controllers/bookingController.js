@@ -199,6 +199,16 @@ async function createDayCareBooking(req, res) {
   res.send({ message: `Daycare booking created successfully! The total price is ${totalPrice}` });
 }
 
+async function getAllBookings(req, res) {
+    try {
+        const bookings = await Booking.findAll();
+        res.send(bookings);
+    } catch (error) {
+        console.error('Failed to fetch bookings:', error);
+        res.status(500).send({ message: 'Failed to fetch bookings.' });
+    }
+}
+
 const getBooking = (req, res) => {
     Booking.findAll({ where: { petOwnerId: req.params.petOwnerId } })
         .then(booking => {
@@ -225,4 +235,5 @@ const updateBooking = (req, res) => {
         });
     } 
 
-module.exports = {  createHomeCareBooking, createErrandsCareBooking, createDayCareBooking, getBooking, updateBooking };
+
+module.exports = {  createHomeCareBooking, createErrandsCareBooking, createDayCareBooking, getBooking, updateBooking, getAllBookings };

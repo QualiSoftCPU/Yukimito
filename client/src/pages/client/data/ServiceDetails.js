@@ -7,7 +7,7 @@ const homeCare = {
   duration: 24,
   checkInTime: <>
     <DirectionsWalkIcon />
-    Check In: 12 noon - 4:30 PM only&nbsp;
+    Check In: 12 noon - 4:30 PM only &nbsp;
   </>,
   checkOutTime: <>
     <HailIcon />

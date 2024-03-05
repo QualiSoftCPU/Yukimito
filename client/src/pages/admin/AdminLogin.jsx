@@ -60,7 +60,7 @@ export default function AdminLogin() {
   async function handleSubmit() {
     const success = await loginAdmin(input);
     if (success) {
-      window.location.href = "/SuccessTestPage";
+      window.location.href = "/AdminDashboard";
     }
   }
 
