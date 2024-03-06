@@ -233,7 +233,29 @@ const updateBooking = (req, res) => {
         .catch(err => {
         res.status(500).send({ message: err.message });
         });
-    } 
+    }
+     
+async function cancelBooking(req, res) {
+  const bookingId = req.params.bookingId;
+  const userId = req.params.petOwnerId;
 
+  try {
+    const booking = await Booking.findOne({
+      where: {
+        id: bookingId,
+        petOwnerId: userId
+      }
+    });
+
+    if (!booking) {
+      return res.status(404).json({ message: 'Booking not found' });
+    }
+
+    await booking.destroy();
+    res.json({ message: 'Successfully cancelled booking' });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
 
 module.exports = {  createHomeCareBooking, createErrandsCareBooking, createDayCareBooking, getBooking, updateBooking, getAllBookings };
