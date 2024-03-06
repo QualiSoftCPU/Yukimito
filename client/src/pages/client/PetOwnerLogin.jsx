@@ -79,7 +79,6 @@ const PetOwnerLogin = () => {
   }
 
   const navItems=["About", "Gallery", "Requirements", "Rates & Services", "Team", "Reviews"]
-  const [open, setOpen] = React.useState(true);
   return (
     <>
       <hr id="Log In"/>

@@ -3,18 +3,19 @@ import { React, useEffect, useState } from "react";
 import NavBarMain from "../../pages/partials/NavBarMain";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import BookingConfirmationInfoCard from '../partials/BookingConfirmationInfoCard';
-import { Divider, Paper, List, ListItem } from "@mui/material";
+import { Paper } from "@mui/material";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TextField, Autocomplete } from "@mui/material";
-import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import SelectServiceInput from "../partials/SelectServiceInput";
 import Stack from '@mui/material/Stack';
 import AlertTitle from '@mui/material/AlertTitle';
 import Alert from '@mui/material/Alert';
+
+import calculatePaymentBreakdown from "./controllers/CalculatePaymentBreakdown";
 import { homeCare, dayCare, errandsCare } from './data/ServiceDetails'
 
 const PetOwnerBookingHomeCare = () => {
@@ -23,24 +24,23 @@ const PetOwnerBookingHomeCare = () => {
 
   let userSelected = jwtDecode(token);
 
-  const [pets, setPets] = useState([]);
+  const [ pets, setPets] = useState([]);
 
   const [bookingDetails, setBookingDetails] = useState({
     service: "",
-    checkIn: "",
+    checkIn: "",  
     checkOut: "",
     petList: [],
     petOwnerId: userSelected.id
   });
 
   const [ serviceDetails, setServiceDetails ] = useState(homeCare);
+  const [ paymentBreakdown, setPaymentBreakdown] = useState([]); 
+  const [ totalPayment, setTotalPayment] = useState(0);
 
   const petList = pets.map((pet) => pet.name);
-  // const petId = pets.map(pet => pet.id);
-
+  // console.log(pets);
   const navItems = [];
-
-  const { service } = useParams();
 
   function handleCheckInInput(event) {
 
@@ -93,24 +93,43 @@ const PetOwnerBookingHomeCare = () => {
   }
 
   function handlePetSelection(event, index) {
-
     const selectedPetName = event.target.innerText;
-    const selectedPet = pets.find(pet => pet.name === selectedPetName);
-    
+    const selectedPet = pets.find((pet) => pet.name === selectedPetName);
+  
     if (selectedPet && !bookingDetails.petList.includes(selectedPet.id)) {
+      const updatedPetList = [...bookingDetails.petList, selectedPet.id];
       setBookingDetails((prevState) => ({
         ...prevState,
-        petList: [...prevState.petList, selectedPet.id],
+        petList: updatedPetList,
       }));
     }
-
-    console.log(bookingDetails);
   }
 
   async function handleBookingAppointmentConfirmation() {
-    console.log("Clicked!");
-    console.log(service)
+    console.log("Final Details:");
     console.log(bookingDetails);
+    console.log(paymentBreakdown);
+
+    const selectedService = bookingDetails.service;
+
+      const petsIncluded = []
+      
+      for (const id of bookingDetails.petList) {
+        const pet = pets.find(pet => pet.id === id);
+        if (pet) {
+          petsIncluded.push(pet);
+        }
+      }
+
+      if (selectedService) {
+        const finalPaymentBreakdown = calculatePaymentBreakdown(petsIncluded, selectedService);
+        setPaymentBreakdown(finalPaymentBreakdown);
+
+        setTotalPayment(paymentBreakdown
+          .map((pet) => {return pet.rate})
+          .reduce((total, rate) => {return total + rate})
+        );
+      }
 
     // if (service === "Home Care") {
 
@@ -277,7 +296,7 @@ const PetOwnerBookingHomeCare = () => {
                   </div>
                   <div className="col">
                   <BookingConfirmationInfoCard 
-                    service={serviceDetails.title + " (24 Hours)"}
+                    service={serviceDetails.title + " (" + serviceDetails.duration + " Hours)"}
                     checkIn={
                       <span className="text-success">
                         {serviceDetails.checkInTime}
@@ -293,9 +312,9 @@ const PetOwnerBookingHomeCare = () => {
                       </span>
                     }
                     description={serviceDetails.description}
-                    
                     price={serviceDetails.price}
                     duration={serviceDetails.duration}
+                    bookNow={handleBookingAppointmentConfirmation}
                   />
                 </div>
                 </div>
@@ -310,103 +329,50 @@ const PetOwnerBookingHomeCare = () => {
         </div>
       </div>
 
-      <div
-        class="modal fade"
-        id="HomeCareBookNow"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="HomeCareBookNowCenterTitle"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="HomeCareBookNowLongTitle">
-                {service} Booking Confirmation
-              </h5>
-              {/* <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>*/}
+              <h1 class="modal-title fs-5" id="exampleModalLabel">You have booked for {bookingDetails.service}!</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div
-              class="modal-body"
-              style={{ display: "flex", flexDirection: "column" }}
-            >
-              <h1 class="display-6 fw-bold text-center lh-1">Thank you</h1>
-              {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-              viverra aliquet tellus suscipit malesuada. Nullam id sollicitudin
-              est. Proin interdum ligula ac elit condimentum, vitae lacinia erat
-              porta. Donec dictum, nisl quis aliquet volutpat, diam enim
-              lobortis urna, nec posuere enim orci sed dolor. */}
-              <div> Thank you for availing our {service} service. Please review the
-              details of your reservation and kindly wait for our staff to review and confirm your reservation.
-              </div>
-
-              <Paper elevation={3} style={{ padding: "30px" , marginTop:"15px"}}>
-                <Paper
-                  elevation={0}
-                  style={{
-                    padding: "5px",
-                    backgroundColor: "yellow",
-                    textAlign: "center",
-                  }}
-                >
-                  Reservation Details
-                </Paper>
-                <List
-                  style={{
-                    borderRadius: 2,
-                    backgroundColor: "background.paper",
-                  }}
-                  aria-label="mailbox folders"
-                >
-                  <ListItem>
-                    <div>Check In: {}</div>
-                  </ListItem>
-                  <Divider component="li" />
-                  <ListItem>
-                    <div>Check Out: {}</div>
-                  </ListItem>
-                  <Divider component="li" />
-                  <ListItem>
-                    <div>Pet(s): {}</div>
-                  </ListItem>
-                  <Divider component="li" />
-                  <ListItem>
-                    <div>
-                      Total Charge:
-                      <p>(Price is subject to change)</p>
-                    </div>
-                  </ListItem>
-                </List>
-
-                {/* <Paper
-                  elevation={0}
-                  style={{
-                    padding: "5px",
-                    backgroundColor: "Red",
-                    textAlign: "center",
-                    color: "white",
-                  }}
-                >
-                  {" "}
-                  Subject to confirmation
-                </Paper> */}
-              </Paper>
+            <div class="modal-body">
+              <h1 className="text-center">Thank You!</h1>
+              <hr />
+              <table class="table"> 
+                <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Size</th>
+                  <th scope="col">Rate</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {paymentBreakdown.map((pet, index) => {
+                    return (
+                      <tr>
+                        <th scope="row">{index}</th>
+                        <td>{pet.petName}</td>
+                        <td>{pet.size}</td>
+                        <td>{pet.rate}</td>
+                      </tr>
+                    )
+                  })}
+                  <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td>Total Payment:</td>
+                    <td>
+                      {totalPayment}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-
             <div class="modal-footer">
-              <a
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-                href="/"
-              >
-                Cancel
-              </a>
-              <button type="button" class="btn btn-primary button-color" onClick={handleBookingAppointmentConfirmation}>
-                Confirm
-              </button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>

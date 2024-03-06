@@ -262,12 +262,16 @@ export default function PetOwnerDashboard() {
     fontSize: "35px",
   };
 
+<<<<<<< HEAD
   console.log(bookings);
 
 
   const [selectedBookingId, setSelectedBookingId] = useState(null);
 
   return (
+=======
+  return ( 
+>>>>>>> a4d53adfff4f15cdadce7725cd38ede9470f51f3
     <>
       <NavBarMain navItems={navItems} customLink={<Logout />} />
       <div className="mt-5 pt-3 px-5 yuki-color2 text-center">
@@ -281,7 +285,7 @@ export default function PetOwnerDashboard() {
               className="rounded-bottom"
               src={coverImage}
               alt="Cover_Photo"
-              style={{ width: "100%", height: "400px", objectFit: "cover" }}
+              style={{ width: "100%", height: "300px", objectFit: "cover" }}
             />
 
             <div className="mt-1" style={{ maxHeight: "50px" }}>
