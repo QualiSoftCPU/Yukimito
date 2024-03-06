@@ -14,7 +14,7 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
 import coverImage from "../../assets/images/coverImage.jpeg";
-import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
 export default function PetOwnerDashboard() {
   const navigate = useNavigate();
@@ -170,10 +170,9 @@ export default function PetOwnerDashboard() {
     }
   };
 
-  const handleDeletePet = async(petId) => {
-
+  const handleDeletePet = async (petId) => {
     const ownerId = userSelected.id;
-    console.log(petId)
+    console.log(petId);
 
     try {
       // if (textField is valid) {
@@ -200,7 +199,7 @@ export default function PetOwnerDashboard() {
     } catch (error) {
       console.log(error.message);
     }
-  }
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -265,16 +264,19 @@ export default function PetOwnerDashboard() {
 
   console.log(bookings);
 
-  return ( 
+
+  const [selectedBookingId, setSelectedBookingId] = useState(null);
+
+  return (
     <>
       <NavBarMain navItems={navItems} customLink={<Logout />} />
       <div className="mt-5 pt-3 px-5 yuki-color2 text-center">
         Welcome back to Yukimito Services!
       </div>
 
-      <div className="container px-5" >
-        <Box sx={{ flexGrow: 1 }} >
-          <div style={{ position: "relative" }} >
+      <div className="container px-5">
+        <Box sx={{ flexGrow: 1 }}>
+          <div style={{ position: "relative" }}>
             <img
               className="rounded-bottom"
               src={coverImage}
@@ -282,7 +284,7 @@ export default function PetOwnerDashboard() {
               style={{ width: "100%", height: "400px", objectFit: "cover" }}
             />
 
-            <div className="mt-1" style={{maxHeight: "50px"}}>
+            <div className="mt-1" style={{ maxHeight: "50px" }}>
               <div className="col mt-1">
                 <Avatar
                   alt="Profile Picture"
@@ -296,7 +298,7 @@ export default function PetOwnerDashboard() {
               </div>
             </div>
             <div className="col align-middle">
-              <div class="d-flex justify-content-between align-content-center" >
+              <div class="d-flex justify-content-between align-content-center">
                 <div className="col">
                   <h1>
                     {userData.ownerName}{" "}
@@ -328,7 +330,6 @@ export default function PetOwnerDashboard() {
                   </div>
                 </div>
               </div>
-
             </div>
             <div className="col">
               <h5 className="text-secondary">@{userData.username}</h5>
@@ -337,7 +338,10 @@ export default function PetOwnerDashboard() {
             <hr />
 
             <div className="d-flex justify-content-center mx-auto">
-              <a className="btn yuki-color text-white" href="/PetOwnerBookingConfirmation">
+              <a
+                className="btn yuki-color text-white"
+                href="/PetOwnerBookingConfirmation"
+              >
                 Book Now!
               </a>
             </div>
@@ -363,196 +367,303 @@ export default function PetOwnerDashboard() {
 
           <div className="row">
             <div className="row">
-
-            <div className="row col-lg-4 col-s-12">
-
-              <div>
-                <h5 className="py-3">
-                  <b>Bookings <ArrowOutwardIcon /></b>
-                </h5>
-                <div className="card my-2 shadow overflow-auto p-3 mb-3 mb-md-0 mr-md-3"
-                      style={{ maxWidth: "800px", maxHeight: "500px" }}>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-secondary">
-                      {bookings.map(booking => {
-                        return <p><a href="#" className="yuki-font-color" >Booking ID: {booking.id} </a>
-                        <br/>
-                        Service availed: {booking.service_type}
-                        <br />
-                        Total Price: {booking.total_price}
-                        <br />
-                        Status: {booking.status}
-                        <hr />
-                        </p>
-                      })}
-                    </li>
-                  </ul>
-                </div>
-
-                <h5 className="py-3">
-                  <b>Rates and Services</b>
-                </h5>
-                <div className="card my-2 shadow">
-                  <div className="card-header">
-                    Here are the services that we offer:
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                      <CheckCircleOutlineIcon className="me-1 text-success" />
-                      Home Care (24 Hours) starting at ₱450.00
-                    </li>
-                    <li class="list-group-item">
-                      <CheckCircleOutlineIcon className="me-1 text-success" />
-                      Day Care (10 Hours) starting at ₱250.00
-                    </li>
-                    <li class="list-group-item">
-                      <CheckCircleOutlineIcon className="me-1 text-success" />
-                      Errands Care (4 Hours) starting at ₱180.00
-                    </li>
-                  </ul>
-                </div>
-
-                <h5 className="py-3">
-                  <b>Boarding Requirements</b>
-                </h5>
-                <div className="card my-2 shadow">
-                  <div className="card-header">
-                    Before boarding in, let's check if you meet the
-                    requirements:
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                      <CheckCircleOutlineIcon className="me-1 text-success" />
-                      Updated Vaccine Cards
-                    </li>
-                    <li class="list-group-item">
-                      <CheckCircleOutlineIcon className="me-1 text-success" />
-                      Recent Tick and Flea Treatment
-                    </li>
-                    <li class="list-group-item">
-                      <CheckCircleOutlineIcon className="me-1 text-success" />
-                      Bath/Clean Pets
-                    </li>
-                    <li class="list-group-item">
-                      <CheckCircleOutlineIcon className="me-1 text-success" />1
-                      Diaper per Day/Stay
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-8 col-s-12">
-              <div className="row py-3">
-                <div className="col align-middle">
-                  <h5>
-                    <b>My Pets</b>
+              <div className="row col-lg-4 col-s-12">
+                <div>
+                  <h5 className="py-3">
+                    <b>
+                      Bookings <ArrowOutwardIcon />
+                    </b>
                   </h5>
-                </div>
-                <div className="col d-flex flex-row-reverse">
-                  <AddPetForm
-                    handleDateChange={handleDateChange}
-                    open={open}
-                    handleAdd={handleAdd}
-                    handleCancel={handleCancel}
-                    handleChange={handleChange}
-                    handleClickOpen={handleClickOpen}
-                  />
+
+                  <div
+                    className="card my-2 shadow overflow-auto p-3 mb-3 mb-md-0 mr-md-3"
+                    style={{ maxWidth: "800px", maxHeight: "500px" }}
+                    data-toggle="modal"
+                    data-target="#exampleModalCenter"
+                  >
+                    <div
+                      class="modal fade"
+                      id="exampleModalCenter"
+                      tabindex="-1"
+                      role="dialog"
+                      aria-labelledby="exampleModalCenterTitle"
+                      aria-hidden="true"
+                    >
+                      <div
+                        class="modal-dialog modal-dialog-centered"
+                        role="document"
+                      >
+                        <div class="modal-content">
+                          <div class="modal-header"></div>
+                          <div class="modal-body">
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item text-secondary">
+                                {bookings.map((booking) => {
+                                  return (
+                                    <p>
+                                      <h4
+                                        className="font-weight-bold text-black"
+                                        id="exampleModalLongTitle"
+                                      >
+                                        {booking.service_type} Booking Details
+                                      </h4>
+                                      <br />
+                                      Checkin Time: 
+                                      <br />
+                                      Checkout Time: 
+                                      <br />
+                                      Total Price: {booking.total_price}
+                                      <br />
+                                      Pets: {booking.pets}
+                                      <br />
+                                      <div>
+                                      
+                                    <span>
+                                      Status:&nbsp; 
+                                      </span>
+                                      <span className="text-warning fs-5">
+                                       {booking.status}
+                                   </span>
+                                     </div>
+                                    </p>
+                                  );
+                                })}
+                              </li>
+                            </ul>
+                          </div>
+
+
+
+                          
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-dismiss="modal"
+                            >
+                              Cancel Booking
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                 
+                    
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item text-secondary p-1">
+                          {bookings.map((booking) => {
+                            return (
+                              <div
+                              className="card my-2 shadow overflow-auto p-1 mb-3 mb-md-0 mr-md-2"
+                              style={{ maxWidth: "800px", maxHeight: "500px" }}
+                              onClick={() => setSelectedBookingId(booking.id)}
+                            >
+                              <div className="card-body">
+                                <h5 className="card-title">{booking.service_type} Booking Details</h5>
+                                <p>Total Price: {booking.total_price}</p>
+                                <span>
+                                      Status:&nbsp; 
+                                      </span>
+                                      <span className="text-warning fs-5">
+                                       {booking.status}
+                                   </span>
+                              </div>
+                            </div>
+                        
+                            );
+                          })}
+                        </li>
+                      </ul>
+                     
+                   
+                  </div>
+
+                  
+                  
+
+                  <h5 className="py-3">
+                    <b>Rates and Services</b>
+                  </h5>
+                  <div className="card my-2 shadow">
+                    <div className="card-header">
+                      Here are the services that we offer:
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                        <CheckCircleOutlineIcon className="me-1 text-success" />
+                        Home Care (24 Hours) starting at ₱450.00
+                      </li>
+                      <li class="list-group-item">
+                        <CheckCircleOutlineIcon className="me-1 text-success" />
+                        Day Care (10 Hours) starting at ₱250.00
+                      </li>
+                      <li class="list-group-item">
+                        <CheckCircleOutlineIcon className="me-1 text-success" />
+                        Errands Care (4 Hours) starting at ₱180.00
+                      </li>
+                    </ul>
+                  </div>
+
+                  <h5 className="py-3">
+                    <b>Boarding Requirements</b>
+                  </h5>
+                  <div className="card my-2 shadow">
+                    <div className="card-header">
+                      Before boarding in, let's check if you meet the
+                      requirements:
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                        <CheckCircleOutlineIcon className="me-1 text-success" />
+                        Updated Vaccine Cards
+                      </li>
+                      <li class="list-group-item">
+                        <CheckCircleOutlineIcon className="me-1 text-success" />
+                        Recent Tick and Flea Treatment
+                      </li>
+                      <li class="list-group-item">
+                        <CheckCircleOutlineIcon className="me-1 text-success" />
+                        Bath/Clean Pets
+                      </li>
+                      <li class="list-group-item">
+                        <CheckCircleOutlineIcon className="me-1 text-success" />
+                        1 Diaper per Day/Stay
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-              <div className="row">
-                <div className="col">
-                  <div className="overflow-auto card shadow">
-                    <div
-                      class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light"
-                      style={{ maxWidth: "800px", maxHeight: "500px" }}
-                    >
-                      {pets.map((pet) => {
-                        return (
-                          <div className="card my-2 shadow-sm">
-                            <div className="card-header">{pet.breed}</div>
-                            <div className="card-body">
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <div>
-                                  <Avatar
-                                    className="img-fluid"
-                                    alt="Profile Picture"
-                                    src={profilePicture}
-                                    sx={{ width: 75, height: 75 }}
-                                  />
-                                  <span className="card-title h5">
-                                    {pet.name}
-                                  </span>
-                                  &nbsp;
-                                  <span className="span">({pet.size})</span>
-                                  <VaccinesIcon className="yuki-font-color" />
-                                </div>
-                                <div>
-                                  <button className="btn btn-primary yuki-color button-border-color mx-2">
-                                    {" "}
-                                    Edit
-                                  </button>   
-                                  <a
-                                            type="button"
-                                            class="btn btn-danger"
-                                            data-toggle="modal"
-                                          data-target={"#HomeCareBookNow" + pet.id}
-                                            href="/"
-                                          >
-                                            Delete
-                                          </a>
 
-                                  <div
-                                    class="modal fade"
-                                    id={"HomeCareBookNow" + pet.id}
-                                    tabindex="-1"
-                                    role="dialog"
-                                    aria-labelledby="HomeCareBookNowCenterTitle"
-                                    aria-hidden="true"
-                                  >
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h5 class="modal-title" id="HomeCareBookNowLongTitle">
-                                          Delete Pet
-                                          </h5>
-                                        </div>
-                                        <div class="modal-body">
-                                        Are you sure you want to delete pet?
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={handleCancel}>
-                                            Cancel
-                                          </button>
-                                          <button id={pet.id} type="button" class="btn btn-primary button-color" onClick={() => handleDeletePet(pet.id)}>
-                                            Yes
-                                          </button>
+              <div className="col-lg-8 col-s-12">
+                <div className="row py-3">
+                  <div className="col align-middle">
+                    <h5>
+                      <b>My Pets</b>
+                    </h5>
+                  </div>
+                  <div className="col d-flex flex-row-reverse">
+                    <AddPetForm
+                      handleDateChange={handleDateChange}
+                      open={open}
+                      handleAdd={handleAdd}
+                      handleCancel={handleCancel}
+                      handleChange={handleChange}
+                      handleClickOpen={handleClickOpen}
+                    />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col">
+                    <div className="overflow-auto card shadow">
+                      <div
+                        class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light"
+                        style={{ maxWidth: "800px", maxHeight: "500px" }}
+                      >
+                        {pets.map((pet) => {
+                          return (
+                            <div className="card my-2 shadow-sm">
+                              <div className="card-header">{pet.breed}</div>
+                              <div className="card-body">
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                  }}
+                                >
+                                  <div>
+                                    <Avatar
+                                      className="img-fluid"
+                                      alt="Profile Picture"
+                                      src={profilePicture}
+                                      sx={{ width: 75, height: 75 }}
+                                    />
+                                    <span className="card-title h5">
+                                      {pet.name}
+                                    </span>
+                                    &nbsp;
+                                    <span className="span">({pet.size})</span>
+                                    <VaccinesIcon className="yuki-font-color" />
+                                  </div>
+                                  <div>
+                                    <button className="btn btn-primary yuki-color button-border-color mx-2">
+                                      {" "}
+                                      Edit
+                                    </button>
+                                    <a
+                                      type="button"
+                                      class="btn btn-danger"
+                                      data-toggle="modal"
+                                      data-target={"#HomeCareBookNow" + pet.id}
+                                      href="/"
+                                    >
+                                      Delete
+                                    </a>
+
+                                    <div
+                                      class="modal fade"
+                                      id={"HomeCareBookNow" + pet.id}
+                                      tabindex="-1"
+                                      role="dialog"
+                                      aria-labelledby="HomeCareBookNowCenterTitle"
+                                      aria-hidden="true"
+                                    >
+                                      <div
+                                        class="modal-dialog modal-dialog-centered"
+                                        role="document"
+                                      >
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5
+                                              class="modal-title"
+                                              id="HomeCareBookNowLongTitle"
+                                            >
+                                              Delete Pet
+                                            </h5>
+                                          </div>
+                                          <div class="modal-body">
+                                            Are you sure you want to delete pet?
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button
+                                              type="button"
+                                              class="btn btn-secondary"
+                                              data-dismiss="modal"
+                                              onClick={handleCancel}
+                                            >
+                                              Cancel
+                                            </button>
+                                            <button
+                                              id={pet.id}
+                                              type="button"
+                                              class="btn btn-primary button-color"
+                                              onClick={() =>
+                                                handleDeletePet(pet.id)
+                                              }
+                                            >
+                                              Yes
+                                            </button>
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
+                                <p className="card-text text-secondary">
+                                  {pet.birthday}
+                                  <br />
+                                </p>
                               </div>
-                              <p className="card-text text-secondary">
-                                {pet.birthday}
-                                <br />
-                              </p>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
           </div>
         </Box>
       </div>
