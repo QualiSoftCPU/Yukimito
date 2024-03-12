@@ -1,24 +1,20 @@
-import { Button } from "@mui/material";
-
-
 export default function AdminBookingCard(props) {
   return (
     <>
       <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3">
-        <h1 class="display-5 fw-bold">
-          <span className="yuki-font-color">Yukimito</span> Bookings
-        </h1>
         <div className="py-3">
           <div className="card shadow">
             <div class="card-header">
               <b>Booking Details</b>
             </div>
             <div class="card-body">
-              <h5 class="card-title">Pet Owner Name: {props.petOwnerName}</h5>
+              <h5 class="card-title">Pet Owner ID: {props.petOwnerId}</h5>
               <p class="card-text text-secondary">
-                Contact Number: {props.contactNumber}
+                Service Availed: {props.service}
                 <br />
-                Pet Name: {props.petName}
+                Check In Time: {props.checkIn}
+                <br />
+                Expected Check Out Time: {props.checkOut}
               </p>
 
               <div className="d-flex justify-content-end ">
@@ -95,15 +91,6 @@ export default function AdminBookingCard(props) {
             </div>
           </div>
         </div>
-
-        <Button
-          className="button-color"
-          variant="contained"
-          onClick={props.handleSubmit}
-          style={{ marginRight: "10px" }}
-        >
-          LOG OUT
-        </Button>
       </div>
     </>
   )
