@@ -258,4 +258,4 @@ async function cancelBooking(req, res) {
   }
 }
 
-module.exports = {  createHomeCareBooking, createErrandsCareBooking, createDayCareBooking, getBooking, updateBooking, getAllBookings };
+module.exports = {  createHomeCareBooking, createErrandsCareBooking, createDayCareBooking, getBooking, updateBooking, getAllBookings, cancelBooking };
