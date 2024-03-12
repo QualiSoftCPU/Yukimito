@@ -18,10 +18,56 @@ export default function AdminBookingCard(props) {
               </p>
 
               <div className="d-flex justify-content-end ">
-                <button className="btn btn-primary yuki-color button-border-color mx-2">
+                <button
+                  className="btn btn-primary yuki-color button-border-color mx-2"
+                  data-toggle="modal"
+                  data-target="#AdminBookingAccept"
+                  href="/"
+                >
                   {" "}
                   Accept
                 </button>
+                <div
+                  class="modal fade"
+                  id="AdminBookingAccept"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-labelledby="AdminBookingCenterTitle"
+                  aria-hidden="true"
+                >
+                  <div
+                    class="modal-dialog modal-dialog-centered"
+                    role="document"
+                  >
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="AdminBookingLongTitle">
+                          Confirm Booking
+                        </h5>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure you want to confirm booking?
+                      </div>
+                      <div class="modal-footer">
+                        <a
+                          type="button"
+                          class="btn btn-secondary"
+                          data-dismiss="modal"
+                          href="/"
+                        >
+                          Cancel
+                        </a>
+                        <a
+                          type="button"
+                          class="btn btn-primary button-color"
+                          href="/AdminDashboard"
+                        >
+                          Confirm
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <a
                   type="button"
@@ -93,5 +139,5 @@ export default function AdminBookingCard(props) {
         </div>
       </div>
     </>
-  )
-};
+  );
+}
