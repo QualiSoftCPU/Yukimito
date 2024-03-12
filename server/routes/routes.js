@@ -14,6 +14,8 @@ router.put("/api/auth/editProfile/petowner/:petOwnerId", petOwnerController.upda
 
 router.post("/api/auth/signup/admin", adminController.signup);
 router.post("/api/auth/signin/admin", adminController.signin);
+router.put("/api/admin/booking/accept/:id", adminController.acceptBooking);
+router.put("/api/admin/booking/reject/:id", adminController.rejectBooking);
 
 router.get("/api/getPets/pet/:petOwnerId", petController.getAll);
 router.post("/api/addPet/pet", petController.createPet);
