@@ -49,6 +49,7 @@ export default function PetOwnerDashboard() {
   const [usernameError, setUsernameError] = useState("");
   const [contactNumberError, setContactNumberError] = useState("");
   const [emailError, setEmailError] = useState("");
+
   // const [ addressError, setAddressError ] = useState('');
 
   const handleChange = (event) => {
@@ -201,6 +202,10 @@ export default function PetOwnerDashboard() {
     }
   };
 
+  function handleBookingDetailsDisplay() {
+    console.log("Clicked!");
+  }
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -261,11 +266,6 @@ export default function PetOwnerDashboard() {
   const iconStyle = {
     fontSize: "35px",
   };
-
-  console.log(bookings);
-
-
-  const [selectedBookingId, setSelectedBookingId] = useState(null);
 
   return (
  
@@ -398,44 +398,40 @@ export default function PetOwnerDashboard() {
                           <div class="modal-header"></div>
                           <div class="modal-body">
                             <ul class="list-group list-group-flush">
-                              <li class="list-group-item text-secondary">
-                                {bookings.map((booking) => {
-                                  return (
-                                    <p>
-                                      <h4
-                                        className="font-weight-bold text-black"
-                                        id="exampleModalLongTitle"
-                                      >
-                                        {booking.service_type} Booking Details
-                                      </h4>
-                                      <br />
-                                      Checkin Time: 
-                                      <br />
-                                      Checkout Time: 
-                                      <br />
-                                      Total Price: {booking.total_price}
-                                      <br />
-                                      Pets: {booking.pets}
-                                      <br />
-                                      <div>
-                                      
+                            {bookings.map((booking) => {
+                              return (
+                                <li class="list-group-item text-secondary">
+                                  <p>
+                                    <h4
+                                      className="font-weight-bold text-black"
+                                      id="exampleModalLongTitle"
+                                    >
+                                      {booking.service_type} Booking Details
+                                    </h4>
+                                    <br />
+                                    Checkin Time: {booking.checkIn}
+                                    <br />
+                                    Checkout Time: {booking.checkOut}
+                                    <br />
+                                    Total Price: {booking.total_price}
+                                    <br />
+                                    Pets: {booking.pets}
+                                    <br />
+                                    <div>
+                                    
                                     <span>
                                       Status:&nbsp; 
                                       </span>
                                       <span className="text-warning fs-5">
-                                       {booking.status}
-                                   </span>
-                                     </div>
-                                    </p>
-                                  );
-                                })}
-                              </li>
+                                      {booking.status}
+                                    </span>
+                                    </div>
+                                  </p>
+                                </li>
+                              );
+                            })}
                             </ul>
                           </div>
-
-
-
-                          
                           <div class="modal-footer">
                             <button
                               type="button"
@@ -458,7 +454,7 @@ export default function PetOwnerDashboard() {
                               <div
                               className="card my-2 shadow overflow-auto p-1 mb-3 mb-md-0 mr-md-2"
                               style={{ maxWidth: "800px", maxHeight: "500px" }}
-                              onClick={() => setSelectedBookingId(booking.id)}
+                              onClick={handleBookingDetailsDisplay}
                             >
                               <div className="card-body">
                                 <h5 className="card-title">{booking.service_type} Booking Details</h5>

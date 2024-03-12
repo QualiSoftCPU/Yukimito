@@ -1,4 +1,5 @@
 import moment from "moment";
+import axios from "axios";
 import { React, useEffect, useState } from "react";
 import NavBarMain from "../../pages/partials/NavBarMain";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
@@ -33,6 +34,9 @@ const PetOwnerBookingHomeCare = () => {
     petList: [],
     petOwnerId: userSelected.id
   });
+
+  const [ calculated, setCalculated ] = useState(false);
+  const [ petsIncluded , setPetsIncluded ] = useState([]);
 
   const [ serviceDetails, setServiceDetails ] = useState(homeCare);
   const [ paymentBreakdown, setPaymentBreakdown] = useState([]); 
@@ -101,7 +105,29 @@ const PetOwnerBookingHomeCare = () => {
       setBookingDetails((prevState) => ({
         ...prevState,
         petList: updatedPetList,
-      }));
+      }))
+
+      setPetsIncluded((prevState) => ([
+        ...prevState, selectedPet
+      ]));
+    }
+    console.log(petsIncluded);
+  }
+
+  function handlePaymentBreakdown() {
+    const selectedService = bookingDetails.service;
+
+    if (selectedService && paymentBreakdown && !calculated) {
+      const finalPaymentBreakdown = calculatePaymentBreakdown(petsIncluded, selectedService);
+      setPaymentBreakdown(finalPaymentBreakdown);
+
+      setTotalPayment(
+        finalPaymentBreakdown
+        .map((pet) => {return pet.rate})
+        .reduce((total, rate) => total + rate, totalPayment)
+      );
+
+      setCalculated(true);
     }
   }
 
@@ -109,79 +135,63 @@ const PetOwnerBookingHomeCare = () => {
     console.log("Final Details:");
     console.log(bookingDetails);
     console.log(paymentBreakdown);
+    
+    console.log("Payment List: ", paymentBreakdown.map((pet) => {return pet.rate}));
 
-    const selectedService = bookingDetails.service;
+    if (bookingDetails.service === "Home Care") {
 
-      const petsIncluded = []
+      axios.post('http://localhost:4269/api/createHomeCareBooking', bookingDetails)
+      .then((response) => {
+        console.log(response.data);
+        // handle success here
+        alert('Home Care Booking successful!');
+        navigate('/');
+        window.location.reload();
+      })
+      .catch((error) => {
+          console.error(error.message);
+          // handle error here
+          alert('Home Care Booking failed!');
+      });
+
+    } else if (bookingDetails.service === "Day Care") {
+
+      axios.post('http://localhost:4269/api/createDayCareBooking', bookingDetails)
+      .then((response) => {
+        console.log(response.data);
+        // handle success here
+        alert('Day Care Booking successful!');
+        navigate('/');
+        window.location.reload();
+      })
+      .catch((error) => {
+          console.error(error.message);
+          // handle error here
+          alert('Day Care Booking failed!');
+      });
       
-      for (const id of bookingDetails.petList) {
-        const pet = pets.find(pet => pet.id === id);
-        if (pet) {
-          petsIncluded.push(pet);
-        }
-      }
+    } else if (bookingDetails.service === "Errands Care") {
 
-      if (selectedService) {
-        const finalPaymentBreakdown = calculatePaymentBreakdown(petsIncluded, selectedService);
-        setPaymentBreakdown(finalPaymentBreakdown);
-
-        setTotalPayment(paymentBreakdown
-          .map((pet) => {return pet.rate})
-          .reduce((total, rate) => {return total + rate})
+      try {
+        const response = await axios.post(
+          "http://localhost:4269/api/createErrandsCareBooking",
+          bookingDetails,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
+  
+        if (response.status === 200) {
+          navigate('/');
+          window.location.reload();
+        }
+      } catch (error) {
+        console.log(error.message);
       }
 
-    // if (service === "Home Care") {
-
-    //   axios.post('http://localhost:4269/api/createHomeCareBooking', bookingDetails)
-    //   .then((response) => {
-    //     console.log(response.data);
-    //     // handle success here
-    //     alert('Home Care Booking successful!');
-    //     navigate('/');
-    //   })
-    //   .catch((error) => {
-    //       console.error(error.message);
-    //       // handle error here
-    //       alert('Home Care Booking failed!');
-    //   });
-
-    // } else if (service === "Day Care") {
-
-    //   axios.post('http://localhost:4269/api/createDayCareBooking', bookingDetails)
-    //   .then((response) => {
-    //     console.log(response.data);
-    //     // handle success here
-    //     alert('Day Care Booking successful!');
-    //     navigate('/');
-    //   })
-    //   .catch((error) => {
-    //       console.error(error.message);
-    //       // handle error here
-    //       alert('Day Care Booking failed!');
-    //   });
-      
-    // } else if (service === "Errands Care") {
-
-    //   try {
-    //     const response = await axios.post(
-    //       "http://localhost:4269/api/createErrandsCareBooking",
-    //       bookingDetails,
-    //       {
-    //         headers: {
-    //           Authorization: `Bearer ${token}`,
-    //         },
-    //       }
-    //     );
-  
-    //     if (response.status === 200) {
-    //       navigate('/');
-    //     }
-    //   } catch (error) {
-    //     console.log(error.message);
-    //   }
-
-    // }
+    }
   }
 
   useEffect(() => {
@@ -314,7 +324,7 @@ const PetOwnerBookingHomeCare = () => {
                     description={serviceDetails.description}
                     price={serviceDetails.price}
                     duration={serviceDetails.duration}
-                    bookNow={handleBookingAppointmentConfirmation}
+                    onClick={handlePaymentBreakdown}
                   />
                 </div>
                 </div>
@@ -372,7 +382,7 @@ const PetOwnerBookingHomeCare = () => {
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn button-color text-white" onClick={handleBookingAppointmentConfirmation}>Confirm Booking</button>
             </div>
           </div>
         </div>

@@ -33,7 +33,7 @@ export default function ServicecCard(props) {
             </h5>
           </div>
           <div class="card-footer d-flex justify-content-center">
-            <button type="button" class="btn btn-primary" onClick={props.bookNow} data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn text-white button-color" data-bs-toggle="modal" onClick={props.onClick} data-bs-target="#exampleModal">
               Book Now
             </button>
           </div>

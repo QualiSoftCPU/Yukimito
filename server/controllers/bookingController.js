@@ -254,8 +254,8 @@ async function cancelBooking(req, res) {
     await booking.destroy();
     res.json({ message: 'Successfully cancelled booking' });
   } catch (error) {
-    res.status(500).json({ message: 'Internal server error' });
+    res.send(error.message);
   }
 }
 
-module.exports = {  createHomeCareBooking, createErrandsCareBooking, createDayCareBooking, getBooking, updateBooking, getAllBookings };
+module.exports = {  createHomeCareBooking, createErrandsCareBooking, createDayCareBooking, getBooking, updateBooking, getAllBookings, cancelBooking };

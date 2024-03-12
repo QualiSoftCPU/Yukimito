@@ -22,6 +22,7 @@ router.delete("/api/deletePet/:petOwnerId/:petId", petController.deletePet);
 
 router.post("/api/createHomeCareBooking", bookingController.createHomeCareBooking);
 router.post("/api/createErrandsCareBooking", bookingController.createErrandsCareBooking);
+router.delete("/api/cancelBooking/:petOwnerId/:bookingId", bookingController.cancelBooking);
 router.post("/api/createDayCareBooking", bookingController.createDayCareBooking);
 router.get("/api/getBooking/:petOwnerId", bookingController.getBooking);
 router.get("/api/getAllBookings", bookingController.getAllBookings);
