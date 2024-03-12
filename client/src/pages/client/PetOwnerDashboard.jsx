@@ -50,7 +50,6 @@ export default function PetOwnerDashboard() {
   const [usernameError, setUsernameError] = useState("");
   const [contactNumberError, setContactNumberError] = useState("");
   const [emailError, setEmailError] = useState("");
-
   // const [ addressError, setAddressError ] = useState('');
 
   const handleChange = (event) => {
@@ -203,10 +202,6 @@ export default function PetOwnerDashboard() {
     }
   };
 
-  function handleBookingDetailsDisplay() {
-    console.log("Clicked!");
-  }
-
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -270,12 +265,10 @@ export default function PetOwnerDashboard() {
 
   console.log(bookings);
 
-
   const [selectedBookingId, setSelectedBookingId] = useState(null);
-  const specificBookingId = selectedBookingId; 
+  const specificBookingId = selectedBookingId;
 
   return (
- 
     <>
       <NavBarMain navItems={navItems} customLink={<Logout />} />
       <div className="mt-5 pt-3 px-5 yuki-color2 text-center">
@@ -406,111 +399,73 @@ export default function PetOwnerDashboard() {
                           <div class="modal-body">
                             <ul class="list-group list-group-flush">
                               <li class="list-group-item text-secondary">
-                              {bookings
-  .filter(booking => booking.id === specificBookingId)
-  .map((booking) => {
-    return (
-      <p>
-        <h4
-          className="font-weight-bold text-black"
-          id="exampleModalLongTitle"
-        >
-          {booking.service_type} Booking Details
-        </h4>
-        <br />
-        Checkin Time: {booking.checkin_time}
-        <br />
-        Checkout Time: {booking.checkout_time}
-        <br />
-        Total Price: {booking.total_price}
-        <br />
-        Pets: {booking.pets}
-        <br />
-        <div>
-          <span>Status:&nbsp;</span>
-          <span className="text-warning fs-5">
-            {booking.status}
-          </span>
-        </div>
-      </p>
-    );
-  })}
-
+                                {bookings
+                                  .filter(
+                                    (booking) =>
+                                      booking.id === specificBookingId
+                                  )
+                                  .map((booking) => {
+                                    return (
+                                      <p>
+                                        <h4
+                                          className="font-weight-bold text-black"
+                                          id="exampleModalLongTitle"
+                                        >
+                                          {booking.service_type} Booking Details
+                                        </h4>
+                                        <br />
+                                        Checkin Time: {booking.checkin_time}
+                                        <br />
+                                        Checkout Time: {booking.checkout_time}
+                                        <br />
+                                        Total Price: {booking.total_price}
+                                        <br />
+                                        Pets: {booking.pets}
+                                        <br />
+                                        <div>
+                                          <span>Status:&nbsp;</span>
+                                          <span className="text-warning fs-5">
+                                            {booking.status}
+                                          </span>
+                                        </div>
+                                      </p>
+                                    );
+                                  })}
                               </li>
-                            {bookings.map((booking) => {
-                              return (
-                                <li class="list-group-item text-secondary">
-                                  <p>
-                                    <h4
-                                      className="font-weight-bold text-black"
-                                      id="exampleModalLongTitle"
-                                    >
-                                      {booking.service_type} Booking Details
-                                    </h4>
-                                    <br />
-                                    Checkin Time: {booking.checkIn}
-                                    <br />
-                                    Checkout Time: {booking.checkOut}
-                                    <br />
-                                    Total Price: {booking.total_price}
-                                    <br />
-                                    Pets: {booking.pets}
-                                    <br />
-                                    <div>
-                                    
-                                    <span>
-                                      Status:&nbsp; 
-                                      </span>
-                                      <span className="text-warning fs-5">
-                                      {booking.status}
-                                    </span>
-                                    </div>
-                                  </p>
-                                </li>
-                              );
-                            })}
                             </ul>
                           </div>
                           <div class="modal-footer">
-                            <DeleteBooking/>
+                            <DeleteBooking />
                           </div>
                         </div>
                       </div>
                     </div>
 
-                 
-                    
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-secondary p-1">
-                          {bookings.map((booking) => {
-                            return (
-                              <div
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item text-secondary p-1">
+                        {bookings.map((booking) => {
+                          return (
+                            <div
                               className="card my-2 shadow overflow-auto p-1 mb-3 mb-md-0 mr-md-2"
                               style={{ maxWidth: "800px", maxHeight: "500px" }}
-                              onClick={handleBookingDetailsDisplay}
+                              onClick={() => setSelectedBookingId(booking.id)}
                             >
                               <div className="card-body">
-                                <h5 className="card-title">{booking.service_type} Booking Details</h5>
+                                <h5 className="card-title">
+                                  {booking.service_type} Booking Details
+                                </h5>
                                 <p>Total Price: {booking.total_price}</p>
-                                <span>
-                                      Status:&nbsp; 
-                                      </span>
-                                      <span className="text-warning fs-5">
-                                       {booking.status}
-                                   </span>
+                                <span>Status:&nbsp;</span>
+                                <span className="text-warning fs-5">
+                                  {booking.status}
+                                </span>
                               </div>
                             </div>
-                        
-                            );
-                          })}
-                        </li>
-                      </ul>
-                     
-                   
+                          );
+                        })}
+                      </li>
+                    </ul>
                   </div>
-
-                  
-                  
 
                   <h5 className="py-3">
                     <b>Rates and Services</b>
