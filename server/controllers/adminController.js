@@ -55,5 +55,56 @@ const signin = (req, res) => {
    });
 };
 
+async function acceptBooking(req, res) {
+  const { id } = req.params;
 
-module.exports = { signup, signin};
+  try {
+    const booking = await Booking.findByPk(id);
+    if (!booking) {
+      return res.status(404).json({ message: 'Booking not found' });
+    }
+
+    if (booking.status === 'accepted') {
+      return res.status(400).json({ message: 'Booking already accepted' });
+    }
+
+    booking.status = 'accepted';
+    await booking.save();
+    res.json(booking);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error accepting booking' });
+  }
+}
+
+async function rejectBooking(req, res) {
+  const { id } = req.params;
+  const { reasonForRejecting } = req.body;
+
+  if (!reasonForRejecting) {
+    return res.status(400).json({ message: 'Please provide a reason for rejection' });
+  }
+
+  try {
+    const booking = await Booking.findByPk(id);
+    if (!booking) {
+      return res.status(404).json({ message: 'Booking not found' });
+    }
+
+    if (booking.status === 'rejected') {
+      return res.status(400).json({ message: 'Booking already rejected' });
+    }
+
+    booking.status = 'rejected';
+    booking.reasonOfRejection = reasonForRejecting;
+    await booking.save();
+    res.json(booking);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error rejecting booking' });
+  }
+}
+
+
+
+module.exports = { signup, signin, acceptBooking, rejectBooking};
