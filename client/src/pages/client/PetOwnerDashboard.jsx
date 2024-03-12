@@ -15,6 +15,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
 import coverImage from "../../assets/images/coverImage.jpeg";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import { DeleteBooking } from "../../components/partials/DeleteBooking";
 
 export default function PetOwnerDashboard() {
   const navigate = useNavigate();
@@ -433,13 +434,7 @@ export default function PetOwnerDashboard() {
                             </ul>
                           </div>
                           <div class="modal-footer">
-                            <button
-                              type="button"
-                              class="btn btn-secondary"
-                              data-dismiss="modal"
-                            >
-                              Cancel Booking
-                            </button>
+                            <DeleteBooking/>
                           </div>
                         </div>
                       </div>
