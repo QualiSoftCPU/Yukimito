@@ -267,6 +267,7 @@ export default function PetOwnerDashboard() {
 
 
   const [selectedBookingId, setSelectedBookingId] = useState(null);
+  const specificBookingId = selectedBookingId; 
 
   return (
  
@@ -400,36 +401,36 @@ export default function PetOwnerDashboard() {
                           <div class="modal-body">
                             <ul class="list-group list-group-flush">
                               <li class="list-group-item text-secondary">
-                                {bookings.map((booking) => {
-                                  return (
-                                    <p>
-                                      <h4
-                                        className="font-weight-bold text-black"
-                                        id="exampleModalLongTitle"
-                                      >
-                                        {booking.service_type} Booking Details
-                                      </h4>
-                                      <br />
-                                      Checkin Time: 
-                                      <br />
-                                      Checkout Time: 
-                                      <br />
-                                      Total Price: {booking.total_price}
-                                      <br />
-                                      Pets: {booking.pets}
-                                      <br />
-                                      <div>
-                                      
-                                    <span>
-                                      Status:&nbsp; 
-                                      </span>
-                                      <span className="text-warning fs-5">
-                                       {booking.status}
-                                   </span>
-                                     </div>
-                                    </p>
-                                  );
-                                })}
+                              {bookings
+  .filter(booking => booking.id === specificBookingId)
+  .map((booking) => {
+    return (
+      <p>
+        <h4
+          className="font-weight-bold text-black"
+          id="exampleModalLongTitle"
+        >
+          {booking.service_type} Booking Details
+        </h4>
+        <br />
+        Checkin Time: {booking.checkin_time}
+        <br />
+        Checkout Time: {booking.checkout_time}
+        <br />
+        Total Price: {booking.total_price}
+        <br />
+        Pets: {booking.pets}
+        <br />
+        <div>
+          <span>Status:&nbsp;</span>
+          <span className="text-warning fs-5">
+            {booking.status}
+          </span>
+        </div>
+      </p>
+    );
+  })}
+
                               </li>
                             </ul>
                           </div>
