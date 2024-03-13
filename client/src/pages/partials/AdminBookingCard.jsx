@@ -9,6 +9,7 @@ export default function AdminBookingCard(props) {
             </div>
             <div class="card-body">
               <h5 class="card-title">Pet Owner ID: {props.petOwnerId}</h5>
+              <p>Booking #: 000000{props.bookingId}</p>
               <p class="card-text text-secondary">
                 Service Availed: {props.service}
                 <br />
@@ -21,53 +22,59 @@ export default function AdminBookingCard(props) {
                 <button
                   className="btn btn-primary yuki-color button-border-color mx-2"
                   data-toggle="modal"
-                  data-target="#AdminBookingAccept"
+                  data-target={"#AdminBookingAccept" + props.bookingId}
                   href="/"
                 >
                   {" "}
                   Accept
                 </button>
-                <div
-                  class="modal fade"
-                  id="AdminBookingAccept"
-                  tabindex="-1"
-                  role="dialog"
-                  aria-labelledby="AdminBookingCenterTitle"
-                  aria-hidden="true"
-                >
-                  <div
-                    class="modal-dialog modal-dialog-centered"
-                    role="document"
-                  >
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="AdminBookingLongTitle">
-                          Confirm Booking
-                        </h5>
-                      </div>
-                      <div class="modal-body">
-                        Are you sure you want to confirm booking?
-                      </div>
-                      <div class="modal-footer">
-                        <a
-                          type="button"
-                          class="btn btn-secondary"
-                          data-dismiss="modal"
-                          href="/"
-                        >
-                          Cancel
-                        </a>
-                        <a
-                          type="button"
-                          class="btn btn-primary button-color"
-                          href="/AdminDashboard"
-                        >
-                          Confirm
-                        </a>
+
+                {props.bookings.map(booking => {
+                  return (
+                    <div
+                      class="modal fade"
+                      id={"AdminBookingAccept" + booking.id}
+                      tabindex="-1"
+                      role="dialog"
+                      aria-labelledby="AdminBookingCenterTitle"
+                      aria-hidden="true"
+                    >
+                      <div
+                        class="modal-dialog modal-dialog-centered"
+                        role="document"
+                      >
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="AdminBookingLongTitle">
+                              Confirm Booking
+                            </h5>
+                          </div>
+                          <div class="modal-body">
+                            Are you sure you want to confirm booking?
+                          </div>
+                          <div class="modal-footer">
+                            <a
+                              type="button"
+                              class="btn btn-secondary"
+                              data-dismiss="modal"
+                              href="/"
+                            >
+                              Cancel
+                            </a>
+                            <button
+                              id={booking.id}
+                              type="button"
+                              class="btn btn-primary button-color"
+                              onClick={() => props.handleBookingAcceptance(booking.id)}
+                            >
+                              Confirm
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
+                  )
+                })}
 
                 <a
                   type="button"
@@ -105,34 +112,23 @@ export default function AdminBookingCard(props) {
                           <label for="exampleFormControlTextarea1">
                             Reason for rejecting booking
                           </label>
-                          <textarea
-                            class="form-control"
-                            id="exampleFormControlTextarea1"
-                            rows="5"
-                            onChange={props.handleRejectionReason}
+                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" onChange={props.handleRejectionReason}
                           ></textarea>
                         </div>
                       </form>
                       <div class="modal-footer">
-                        <a
-                          type="button"
-                          class="btn btn-secondary"
-                          data-dismiss="modal"
-                          href="/"
-                        >
+                        <a type="button" class="btn btn-secondary" data-dismiss="modal" href="/">
                           Cancel
                         </a>
-                        <a
-                          type="button"
-                          class="btn btn-primary button-color"
-                          href="/AdminDashboard"
-                        >
+                        <a type="button" class="btn btn-primary button-color" href="/AdminDashboard">
                           Submit
                         </a>
                       </div>
                     </div>
                   </div>
                 </div>
+
+
               </div>
             </div>
           </div>

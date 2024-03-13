@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const db = require("../models");
+const Booking = db.booking;
 const Admin = db.admin;
 
 const signup = (req, res) => {

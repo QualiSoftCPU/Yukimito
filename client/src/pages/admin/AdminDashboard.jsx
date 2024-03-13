@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import NavBarMain from "../partials/NavBarMain";
 import AdminBookingCard from "../partials/AdminBookingCard";
 import { Button } from "@mui/material";
+import axios from "axios";
 
 
 const AdminDashBoard = () => {
@@ -25,9 +26,30 @@ const AdminDashBoard = () => {
     console.log(reason);
   };
 
+  async function handleBookingAcceptance(bookingId) {
+    console.log(bookingId);
+
+    try {
+      await axios.put(
+        `http://localhost:4269/api/admin/booking/accept/${bookingId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      alert("Successfully accepted booking!");
+
+    } catch (error) {
+        console.log(error.message);
+    }
+  };
+
   const navItems = [];
 
   useEffect(() => {
+  
     if (!token) {
       navigate("/");
     }
@@ -58,14 +80,19 @@ const AdminDashBoard = () => {
         </h1>
         {bookings.map((booking) => {
           return (
-            <AdminBookingCard 
-              handleRejectionReason={handleRejectionReason}
-              handleSubmit={handleSubmit}
-              petOwnerId={booking.petOwnerId}
-              service={booking.service_type}
-              checkIn={booking.checkIn}
-              checkOut={booking.checkOut}
-            />
+            <>
+              <AdminBookingCard 
+                bookings={bookings}
+                handleRejectionReason={handleRejectionReason}
+                handleSubmit={handleSubmit}
+                handleBookingAcceptance={handleBookingAcceptance}
+                bookingId={booking.id}
+                petOwnerId={booking.petOwnerId}
+                service={booking.service_type}
+                checkIn={booking.checkIn}
+                checkOut={booking.checkOut}
+              />
+            </>
           )
         })}
         <Button
