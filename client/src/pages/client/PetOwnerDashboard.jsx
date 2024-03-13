@@ -426,16 +426,17 @@ export default function PetOwnerDashboard() {
                                           <span>Status:&nbsp;</span>
                                           <span className="text-warning fs-5">
                                             {booking.status}
-                                          </span>
+
+                                          </span>                                         
+                                        </div>
+                                        <div class = "modal-footer">
+                                          <DeleteBooking bookingId ={booking.id}/>
                                         </div>
                                       </p>
                                     );
                                   })}
                               </li>
                             </ul>
-                          </div>
-                          <div class="modal-footer">
-                            <DeleteBooking />
                           </div>
                         </div>
                       </div>
