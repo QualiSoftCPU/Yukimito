@@ -15,6 +15,7 @@ const AdminDashBoard = () => {
 
   function handleSubmit() {
     window.location.href = "/AdminLogin";
+    localStorage.removeItem("token");
   }
 
   function handleRejectionReason(event) {
