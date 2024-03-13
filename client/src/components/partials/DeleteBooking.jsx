@@ -31,6 +31,7 @@ export function DeleteBooking(props) {
       email: String,
     });
     const handleOpen = () => {
+      console.log()
       setOpen(true);
     };
     const handleClose = () => {
@@ -44,8 +45,7 @@ export function DeleteBooking(props) {
   
       try {
         const response = await axios.delete(
-          `http://localhost/api/cancelBooking/${ownerId}/${bookingId}`,
-          petOwnerDetails,
+          `http://localhost:4269/api/cancelBooking/${ownerId}/${bookingId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -80,7 +80,7 @@ export function DeleteBooking(props) {
             </p>
             <div class= "modal-footer">
               <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleDeleteBooking}>Confirm</Button>
+              <Button onClick={() => handleDeleteBooking(props.bookingId)}>Confirm</Button>
             </div>
             
           </Box>

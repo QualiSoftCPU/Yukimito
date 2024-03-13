@@ -343,19 +343,22 @@ const PetOwnerBookingHomeCare = () => {
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">You have booked for {bookingDetails.service}!</h1>
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Thank you for availing our  {bookingDetails.service} service!</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <h1 className="text-center">Thank You!</h1>
+              <p>Please review the
+              details of your reservation and kindly wait for our staff to review and confirm your reservation.</p>
               <hr />
               <table class="table"> 
                 <thead>
+               
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Name</th>
                   <th scope="col">Size</th>
                   <th scope="col">Rate</th>
+               
                 </tr>
                 </thead>
                 <tbody>
@@ -366,6 +369,7 @@ const PetOwnerBookingHomeCare = () => {
                         <td>{pet.petName}</td>
                         <td>{pet.size}</td>
                         <td>{pet.rate}</td>
+                  
                       </tr>
                     )
                   })}
