@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     service_type: DataTypes.STRING,
     petList: DataTypes.ARRAY(DataTypes.INTEGER),
     status: DataTypes.STRING,
-    total_price: DataTypes.FLOAT
+    total_price: DataTypes.FLOAT,
+    reasonOfRejection: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'booking',

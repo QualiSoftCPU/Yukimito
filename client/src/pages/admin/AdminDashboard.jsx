@@ -21,9 +21,28 @@ const AdminDashBoard = () => {
 
   function handleRejectionReason(event) {
     let input = event.target.value;
-
     setReason(input);
     console.log(reason);
+  };
+
+  async function handleBookingRejection(bookingId) {
+    try {
+      await axios.put(
+        `http://localhost:4269/api/admin/booking/reject/${bookingId}`,
+        {"reasonForRejecting": reason},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      alert("Successfully rejected booking!");
+      window.location.reload();
+
+    } catch (error) {
+        console.log(error.message);
+    }
   };
 
   async function handleBookingAcceptance(bookingId) {
@@ -40,6 +59,7 @@ const AdminDashBoard = () => {
       );
 
       alert("Successfully accepted booking!");
+      window.location.reload();
 
     } catch (error) {
         console.log(error.message);
@@ -84,6 +104,7 @@ const AdminDashBoard = () => {
               <AdminBookingCard 
                 bookings={bookings}
                 handleRejectionReason={handleRejectionReason}
+                handleBookingRejection={handleBookingRejection}
                 handleSubmit={handleSubmit}
                 handleBookingAcceptance={handleBookingAcceptance}
                 bookingId={booking.id}

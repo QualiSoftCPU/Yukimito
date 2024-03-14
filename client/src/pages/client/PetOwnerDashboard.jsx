@@ -426,8 +426,7 @@ export default function PetOwnerDashboard() {
                                           <span>Status:&nbsp;</span>
                                           <span className="text-warning fs-5">
                                             {booking.status}
-
-                                          </span>                                         
+                                          </span>                       
                                         </div>
                                         <div class = "modal-footer">
                                           <DeleteBooking bookingId ={booking.id}/>
@@ -460,6 +459,9 @@ export default function PetOwnerDashboard() {
                                 <span className="text-warning fs-5">
                                   {booking.status}
                                 </span>
+                                <p>
+                                  {booking.status === "rejected" && (<p>Reason for Rejection: {booking.reasonOfRejection}</p>)}
+                                </p>    
                               </div>
                             </div>
                           );

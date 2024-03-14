@@ -80,7 +80,7 @@ export default function AdminBookingCard(props) {
                   type="button"
                   class="btn btn-danger"
                   data-toggle="modal"
-                  data-target="#AdminBooking"
+                  data-target={"#AdminRejectBooking" + props.bookingId}
                   href="/"
                 >
                   Reject
@@ -88,7 +88,7 @@ export default function AdminBookingCard(props) {
 
                 <div
                   class="modal fade"
-                  id="AdminBooking"
+                  id={"AdminRejectBooking" + props.bookingId}
                   tabindex="-1"
                   role="dialog"
                   aria-labelledby="AdminBookingCenterTitle"
@@ -101,11 +101,8 @@ export default function AdminBookingCard(props) {
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="AdminBookingLongTitle">
-                          Reject Booking
-                        </h5>
-                      </div>
-                      <div class="modal-body">
                         Are you sure you want to reject booking?
+                        </h5>
                       </div>
                       <form>
                         <div class="form-group p-3">
@@ -120,9 +117,9 @@ export default function AdminBookingCard(props) {
                         <a type="button" class="btn btn-secondary" data-dismiss="modal" href="/">
                           Cancel
                         </a>
-                        <a type="button" class="btn btn-primary button-color" href="/AdminDashboard">
-                          Submit
-                        </a>
+                        <button type="button" class="btn btn-danger" onClick={() => props.handleBookingRejection(props.bookingId)}>
+                          Reject Booking
+                        </button>
                       </div>
                     </div>
                   </div>

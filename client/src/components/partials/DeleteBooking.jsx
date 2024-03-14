@@ -66,7 +66,7 @@ export function DeleteBooking(props) {
   
     return (
       <React.Fragment>
-        <Button onClick={handleOpen}>Delete Booking</Button>
+        <button onClick={handleOpen} className="btn btn-danger">Cancel Booking</button>
         <Modal
           open={open}
           onClose={handleClose}
@@ -74,13 +74,13 @@ export function DeleteBooking(props) {
           aria-describedby="child-modal-description"
         >
           <Box sx={{ ...style, width: 600 }} className="card my-2 shadow overflow-auto p-3 mb-3 mb-md-0 mr-md-3">
-            <h2 id="child-modal-title">Delete Booking?</h2>
+            <h2 id="child-modal-title">Cancel Booking?</h2>
             <p id="child-modal-description">
-              Are you sure to delete this booking?
+              Are you sure to cancel this booking?
             </p>
             <div class= "modal-footer">
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={() => handleDeleteBooking(props.bookingId)}>Confirm</Button>
+              <button className="btn btn" onClick={handleClose}>Cancel</button>
+              <button className="btn btn-danger" onClick={() => handleDeleteBooking(props.bookingId)}>Cancel Booking</button>
             </div>
             
           </Box>
