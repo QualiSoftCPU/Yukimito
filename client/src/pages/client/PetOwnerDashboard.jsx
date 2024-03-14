@@ -406,14 +406,16 @@ export default function PetOwnerDashboard() {
                                   )
                                   .map((booking) => {
                                     return (
+                                      <div>
                                       <p>
                                         <h4
                                           className="font-weight-bold text-black"
                                           id="exampleModalLongTitle"
+                                          style={{marginBottom:'-15px'}}
                                         >
                                           {booking.service_type} Booking Details
                                         </h4>
-                                        <br />
+                                        <br style={{marginTop:'0px'}}/>
                                         Checkin Time: {booking.checkin_time}
                                         <br />
                                         Checkout Time: {booking.checkout_time}
@@ -428,10 +430,11 @@ export default function PetOwnerDashboard() {
                                             {booking.status}
                                           </span>                       
                                         </div>
-                                        <div class = "modal-footer">
-                                          <DeleteBooking bookingId ={booking.id}/>
-                                        </div>
                                       </p>
+                                      <div class = "modal-footer" style={{marginBottom:'-15px'}}>
+                                      <DeleteBooking bookingId ={booking.id}/>
+                                    </div>
+                                    </div>
                                     );
                                   })}
                               </li>

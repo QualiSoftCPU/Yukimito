@@ -82,7 +82,6 @@ export function DeleteBooking(props) {
               <button className="btn btn" onClick={handleClose}>Cancel</button>
               <button className="btn btn-danger" onClick={() => handleDeleteBooking(props.bookingId)}>Cancel Booking</button>
             </div>
-            
           </Box>
         </Modal>
       </React.Fragment>
