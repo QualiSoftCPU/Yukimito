@@ -12,6 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Typography } from '@mui/material';
 import BasicDatePicker from './BasicDatePicker';
+import AddIcon from '@mui/icons-material/Add';
 
 const dialogueNames = [
   {
@@ -25,16 +26,13 @@ const dialogueNames = [
 ];
 
 export default function EditItemForm(props) {
-
+  
   return (
     <Fragment>
-      <Button 
-        onClick={props.handleClickOpen}
-        className='button-color' 
-        variant="contained"
-        style={{marginRight: '10px'}}>
-          Add A Pet
-      </Button>
+      <button onClick={props.handleClickOpen} type="button" class="btn btn-primary yuki-color button-border-color" data-toggle="modal">
+        <AddIcon className='me-1'/>
+        Add pet
+      </button>
       <Dialog open={props.open} onClose={props.handleCancel}>
         <DialogTitle>
           <Typography className='yuki-font-color' variant='h5'>
@@ -45,6 +43,8 @@ export default function EditItemForm(props) {
             {dialogueNames.map((result) => {
               return (
                   <TextField
+                    value={props.value}
+                    required
                     autocomplete="off"
                     autoFocus
                     name={result.title}
@@ -68,9 +68,9 @@ export default function EditItemForm(props) {
                 onChange={props.handleChange}
                 name='size'
               >
-                <MenuItem value={'small'}>small</MenuItem>
-                <MenuItem value={'medium'}>medium</MenuItem>
-                <MenuItem value={'large'}>large</MenuItem>
+                <MenuItem value={'small'}>Small</MenuItem>
+                <MenuItem value={'medium'}>Medium</MenuItem>
+                <MenuItem value={'large'}>Large</MenuItem>
               </Select>
             </FormControl>
             <UploadFile />

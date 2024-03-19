@@ -46,4 +46,27 @@ const createPet = (req, res) => {
     });
 };
 
-module.exports = { getAll, createPet, getPet};
+async function deletePet(req, res) {
+  const petId = req.params.petId;
+  const userId = req.params.petOwnerId;
+
+  try {
+    const pet = await Pet.findOne({
+      where: {
+        id: petId,
+        petOwnerId: userId
+      }
+    });
+
+    if (!pet) {
+      return res.status(404).json({ message: 'Pet not found for the specified user' });
+    }
+
+    await pet.destroy();
+    res.json({ message: 'Pet deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+module.exports = { getAll, createPet, getPet, deletePet};

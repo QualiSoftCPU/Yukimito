@@ -53,7 +53,8 @@ function DrawerAppBar(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ flexGrow: 1, maxWidth: 1200 }} >
+    <div className="container">
+      <Box sx={{ flexGrow: 1, maxWidth: 1200 }} >
       <CssBaseline />
       <AppBar className='yuki-color no-box-shadow' component="nav">
         <Toolbar>
@@ -109,6 +110,7 @@ function DrawerAppBar(props) {
         <Toolbar />
       </Box>
     </Box>
+    </div>
     );
 }
 
