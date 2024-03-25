@@ -375,6 +375,7 @@ export default function PetOwnerDashboard() {
                     <b>
                       Bookings <ArrowOutwardIcon />
                     </b>
+                    <span className="text-secondary"> Click card to expand details.</span>
                   </h5>
 
                   <div
@@ -430,13 +431,13 @@ export default function PetOwnerDashboard() {
                                         <br />
                                         Checkout Time: {new Date(booking.checkOut).toDateString()}
                                         <br />
-                                        Total Price: {booking.total_price}
+                                        Total Price: ₱{booking.total_price}.00
                                         <br />
                                         Pets Included: {pets.filter(pet => booking.petList.includes(pet.id)).map(pet => pet.name).map(petName => <span>{petName + ", "}</span>)}
                                         <br />
                                         <div>
                                           <span>Status:&nbsp;</span>
-                                          <span className="text-warning fs-5">
+                                          <span className="fs-5" style={{color: booking.status === 'pending' ? '#ffc007' : booking.status === 'rejected' ? '#dc3444' : '#198753'}}>
                                             {booking.status}
                                           </span>                       
                                         </div>
@@ -476,9 +477,9 @@ export default function PetOwnerDashboard() {
                                     )}
                                   &nbsp;Booking Details
                                 </h5>
-                                <p>Total Price: {booking.total_price}</p>
+                                <p>Total Price: ₱{booking.total_price}.00</p>
                                 <span>Status:&nbsp;</span>
-                                <span className={"text-warning fs-5" + (booking.status === "rejected" && ('border-danger'))}>
+                                <span className="fs-5" style={{color: booking.status === 'pending' ? '#ffc007' : booking.status === 'rejected' ? '#dc3444' : '#198753'}}>
                                   {booking.status}
                                 </span>
                                 <p>
