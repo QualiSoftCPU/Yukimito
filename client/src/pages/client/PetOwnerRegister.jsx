@@ -49,6 +49,36 @@ export default function ClientRegister() {
     confirmPassword: '',
   });
 
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const errors = {};
+    if (!form.username.trim()) {
+      errors.username = 'Username is required';
+    }
+    if (!form.name.trim()) {
+      errors.name = 'Name is required';
+    }
+    if (!form.contact_number.trim()) {
+      errors.contact_number = 'Contact number is required';
+    }
+    if (!form.email.trim()) {
+      errors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+      errors.email = 'Email is invalid';
+    }
+    if (!form.password.trim()) {
+      errors.password = 'Password is required';
+    } else if (form.password.length < 6) {
+      errors.password = 'Password must be at least 6 characters';
+    }
+    if (form.password !== form.confirmPassword) {
+      errors.confirmPassword = 'Passwords do not match';
+    }
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleInput = (e) => {
     setForm({
       ...form,
@@ -59,10 +89,8 @@ export default function ClientRegister() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (form.password !== form.confirmPassword) {
-      alert('Error: Passwords do not match.');
-      return;
-    }
+    const isValid = validateForm();
+    if (!isValid) return;
 
     axios.post('http://localhost:4269/api/auth/signup/petowner', form)
       .then((response) => {
@@ -114,6 +142,8 @@ export default function ClientRegister() {
                                 label={details.label} 
                                 variant="outlined"
                                 required
+                                error={errors[details.name] ? true : false}
+                                helperText={errors[details.name]}
                             />
                             )
                         })}
