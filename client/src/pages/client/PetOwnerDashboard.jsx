@@ -264,6 +264,7 @@ export default function PetOwnerDashboard() {
   };
 
   console.log(bookings);
+  console.log(pets)
 
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const specificBookingId = selectedBookingId;
@@ -374,6 +375,7 @@ export default function PetOwnerDashboard() {
                     <b>
                       Bookings <ArrowOutwardIcon />
                     </b>
+                    <span className="text-secondary"> Click card to expand details.</span>
                   </h5>
 
                   <div
@@ -413,20 +415,29 @@ export default function PetOwnerDashboard() {
                                           id="exampleModalLongTitle"
                                           style={{marginBottom:'-15px'}}
                                         >
-                                          {booking.service_type} Booking Details
+                                          {booking.service_type === "dayCare" && (
+                                            <span>Day Care</span>
+                                            )}
+                                          {booking.service_type === "errandsCare" && (
+                                            <span>Errands Care</span>
+                                            )}
+                                          {booking.service_type === "homeCare" && (
+                                            <span>Home Care</span>
+                                            )}
+                                          &nbsp;Booking Details
                                         </h4>
                                         <br style={{marginTop:'0px'}}/>
-                                        Checkin Time: {booking.checkin_time}
+                                        Checkin Time: {new Date(booking.checkIn).toDateString()}
                                         <br />
-                                        Checkout Time: {booking.checkout_time}
+                                        Checkout Time: {new Date(booking.checkOut).toDateString()}
                                         <br />
-                                        Total Price: {booking.total_price}
+                                        Total Price: ₱{booking.total_price}.00
                                         <br />
-                                        Pets: {booking.pets}
+                                        Pets Included: {pets.filter(pet => booking.petList.includes(pet.id)).map(pet => pet.name).map(petName => <span>{petName + ", "}</span>)}
                                         <br />
                                         <div>
                                           <span>Status:&nbsp;</span>
-                                          <span className="text-warning fs-5">
+                                          <span className="fs-5" style={{color: booking.status === 'pending' ? '#ffc007' : booking.status === 'rejected' ? '#dc3444' : '#198753'}}>
                                             {booking.status}
                                           </span>                       
                                         </div>
@@ -448,18 +459,27 @@ export default function PetOwnerDashboard() {
                       <li class="list-group-item text-secondary p-1">
                         {bookings.map((booking) => {
                           return (
-                            <div
+                            <div 
                               className="card my-2 shadow overflow-auto p-1 mb-3 mb-md-0 mr-md-2"
                               style={{ maxWidth: "800px", maxHeight: "500px" }}
                               onClick={() => setSelectedBookingId(booking.id)}
                             >
                               <div className="card-body">
                                 <h5 className="card-title">
-                                  {booking.service_type} Booking Details
+                                  {booking.service_type === "dayCare" && (
+                                    <span>Day Care</span>
+                                    )}
+                                  {booking.service_type === "errandsCare" && (
+                                    <span>Errands Care</span>
+                                    )}
+                                  {booking.service_type === "homeCare" && (
+                                    <span>Home Care</span>
+                                    )}
+                                  &nbsp;Booking Details
                                 </h5>
-                                <p>Total Price: {booking.total_price}</p>
+                                <p>Total Price: ₱{booking.total_price}.00</p>
                                 <span>Status:&nbsp;</span>
-                                <span className="text-warning fs-5">
+                                <span className="fs-5" style={{color: booking.status === 'pending' ? '#ffc007' : booking.status === 'rejected' ? '#dc3444' : '#198753'}}>
                                   {booking.status}
                                 </span>
                                 <p>
