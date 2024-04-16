@@ -30,7 +30,7 @@ async function getPet(req, res) {
 const createPet = (req, res) => {
 
   const { name, breed, birthday, size, petOwnerId } = req.body;
-
+  console.log(name);
   Pet.create({
     name: name,
     breed: breed,
