@@ -53,21 +53,23 @@ export default function ClientRegister() {
 
   const validateForm = () => {
     const errors = {};
-    if (!form.username.trim()) {
+    if (!form.username) {
       errors.username = 'Username is required';
     }
-    if (!form.name.trim()) {
-      errors.name = 'Name is required';
+    if (!form.ownerName) {
+      errors.ownerName = 'Name is required';
     }
-    if (!form.contact_number.trim()) {
-      errors.contact_number = 'Contact number is required';
+    if (!form.contactNumber) {
+      errors.contactNumber = 'Contact number is required';
+    } else if (!/^\d{11}$/.test(form.contactNumber.trim())) {
+      errors.contactNumber = 'Contact number must be 11 digits long';
     }
-    if (!form.email.trim()) {
+    if (!form.email) {
       errors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(form.email)) {
       errors.email = 'Email is invalid';
     }
-    if (!form.password.trim()) {
+    if (!form.password) {
       errors.password = 'Password is required';
     } else if (form.password.length < 6) {
       errors.password = 'Password must be at least 6 characters';
