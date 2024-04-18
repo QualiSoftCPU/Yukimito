@@ -92,9 +92,11 @@ export default function ClientRegister() {
     e.preventDefault();
 
     const isValid = validateForm();
-    if (!isValid) return;
 
-    axios.post('http://localhost:4269/api/auth/signup/petowner', form)
+    console.log(isValid);
+
+    if (!isValid) {
+      axios.post('http://localhost:4269/api/auth/signup/petowner', form)
       .then((response) => {
         console.log(response.data);
         // handle success here
@@ -106,6 +108,9 @@ export default function ClientRegister() {
           // handle error here
           alert('Registration failed!');
       });
+    } else {
+      return;
+    };
   }
 
   return (
