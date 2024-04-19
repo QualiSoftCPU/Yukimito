@@ -65,6 +65,13 @@ export default function AdminLogin() {
     }
   }
 
+// when enter is pressed
+  const handleKeyPress = (event) => {
+    if (event.keyCode === 13 || event.which === 13) {
+      handleSubmit();
+    }
+ }
+
   return (
     <>
       <NavBar navItems={[]} />
@@ -108,6 +115,7 @@ export default function AdminLogin() {
                               id="outlined-basic"
                               label={details.label}
                               variant="outlined"
+                              onKeyPress={handleKeyPress}
                               required
                             />
                           );
