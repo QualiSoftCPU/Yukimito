@@ -2,7 +2,7 @@ import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBarMain from "../partials/NavBarMain";
 import AdminBookingCard from "../partials/AdminBookingCard";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import axios from "axios";
 
 
@@ -82,8 +82,7 @@ const AdminDashBoard = () => {
       .then((response) => response.json())
       .then((fetchedBookings) => setBookings(fetchedBookings))
       .catch((error) => console.log(error));
-  }, [navigate, token]); 
-  
+  }, [navigate, token]);
 
   console.log(bookings);
 
@@ -96,26 +95,126 @@ const AdminDashBoard = () => {
 
       <div className="container px-5">
         <h1 class="display-5 fw-bold">
-          <span className="yuki-font-color">Yukimito</span> Bookings
+          <span className="yuki-font-color">Welcome Back</span> ...
         </h1>
-        {bookings.map((booking) => {
-          return (
-            <>
-              <AdminBookingCard 
-                bookings={bookings}
-                handleRejectionReason={handleRejectionReason}
-                handleBookingRejection={handleBookingRejection}
-                handleSubmit={handleSubmit}
-                handleBookingAcceptance={handleBookingAcceptance}
-                bookingId={booking.id}
-                petOwnerId={booking.petOwnerId}
-                service={booking.service_type}
-                checkIn={booking.checkIn}
-                checkOut={booking.checkOut}
-              />
-            </>
-          )
-        })}
+
+        <Box sx={{ flexGrow: 1, margin:5 }} >
+          <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="booking-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#booking"
+                type="button"
+                role="tab"
+                aria-controls="booking"
+                aria-selected="true"
+              >
+                Bookings
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="petowners-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#petowners"
+                type="button"
+                role="tab"
+                aria-controls="petowners"
+                aria-selected="false"
+              >
+                Pet Owners
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="vaccine-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#vaccine"
+                type="button"
+                role="tab"
+                aria-controls="vaccine"
+                aria-selected="false"
+              >
+                Vaccine Inventory
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="content-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#content"
+                type="button"
+                role="tab"
+                aria-controls="content"
+                aria-selected="false"
+              >
+                Content Management
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="controls-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#controls"
+                type="button"
+                role="tab"
+                aria-controls="controls"
+                aria-selected="false"
+              >
+                Admin Controls
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div
+              class="tab-pane fade show active"
+              id="booking"
+              role="tabpanel"
+              aria-labelledby="booking-tab"
+            >
+              {bookings.map((booking) => {
+                return (
+                  <>
+                    <AdminBookingCard
+                      bookings={bookings}
+                      handleRejectionReason={handleRejectionReason}
+                      handleBookingRejection={handleBookingRejection}
+                      handleSubmit={handleSubmit}
+                      handleBookingAcceptance={handleBookingAcceptance}
+                      bookingId={booking.id}
+                      petOwnerId={booking.petOwnerId}
+                      service={booking.service_type}
+                      checkIn={booking.checkIn}
+                      checkOut={booking.checkOut}
+                    />
+                  </>
+                )
+              })}
+            </div>
+            <div
+              class="tab-pane fade"
+              id="petowners"
+              role="tabpanel"
+              aria-labelledby="petowners-tab"
+            >
+              ...
+            </div>
+            <div
+              class="tab-pane fade"
+              id="vaccine"
+              role="tabpanel"
+              aria-labelledby="vaccine-tab"
+            >
+              ...
+            </div>
+          </div>
+        </Box>
         <Button
           className="button-color"
           variant="contained"
