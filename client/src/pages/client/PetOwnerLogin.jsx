@@ -78,6 +78,13 @@ const PetOwnerLogin = () => {
     }); 
   }
 
+
+  const handleKeyPress = (event) => {
+    if (event.keyCode === 13 || event.which === 13) {
+      handleLogin();
+    }
+ }
+
   const navItems=["About", "Gallery", "Requirements", "Rates & Services", "Team", "Reviews"]
   return (
     <>
@@ -119,7 +126,8 @@ const PetOwnerLogin = () => {
                                 type={details.type}
                                 id="outlined-basic" 
                                 label={details.label} 
-                                variant="outlined"          
+                                variant="outlined" 
+                                onKeyPress={handleKeyPress}         
                                 required
                               />
                             )
