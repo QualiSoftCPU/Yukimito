@@ -266,7 +266,18 @@ const AdminDashBoard = () => {
                       <div class="card-body">
                         <h5 class="card-title">Vaccine Name</h5>
                         <p class="card-text text-secondary">Manufacturer:</p>
+
+                        <div class="d-flex justify-content-end">
+                                <button class="btn btn-outline-secondary">
+                                  Edit Vaccine Details
+                                </button>
+                                <button class="btn btn-outline-secondary mx-2">
+                                  View Vaccine Details
+                                </button>
+                              </div>
+
                       </div>
+                      
                     </div>
                   </div>
                 </div>
