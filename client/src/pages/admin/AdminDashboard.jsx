@@ -4,14 +4,15 @@ import NavBarMain from "../partials/NavBarMain";
 import AdminBookingCard from "../partials/AdminBookingCard";
 import { Box, Button } from "@mui/material";
 import axios from "axios";
-
+import { DateCalendar } from "@mui/x-date-pickers";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const AdminDashBoard = () => {
-
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-  const [ reason, setReason ] = useState("");
+  const [reason, setReason] = useState("");
   const [bookings, setBookings] = useState([]);
 
   function handleSubmit() {
@@ -23,13 +24,13 @@ const AdminDashBoard = () => {
     let input = event.target.value;
     setReason(input);
     console.log(reason);
-  };
+  }
 
   async function handleBookingRejection(bookingId) {
     try {
       await axios.put(
         `http://localhost:4269/api/admin/booking/reject/${bookingId}`,
-        {"reasonForRejecting": reason},
+        { reasonForRejecting: reason },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -39,11 +40,10 @@ const AdminDashBoard = () => {
 
       alert("Successfully rejected booking!");
       window.location.reload();
-
     } catch (error) {
-        console.log(error.message);
+      console.log(error.message);
     }
-  };
+  }
 
   async function handleBookingAcceptance(bookingId) {
     console.log(bookingId);
@@ -60,20 +60,18 @@ const AdminDashBoard = () => {
 
       alert("Successfully accepted booking!");
       window.location.reload();
-
     } catch (error) {
-        console.log(error.message);
+      console.log(error.message);
     }
-  };
+  }
 
   const navItems = [];
 
   useEffect(() => {
-  
     if (!token) {
       navigate("/");
     }
-  
+
     fetch(`http://localhost:4269/api/getAllBookings`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -88,7 +86,7 @@ const AdminDashBoard = () => {
 
   return (
     <>
-      <NavBarMain navItems={navItems}/>
+      <NavBarMain navItems={navItems} />
       <div className="mt-5 pt-3 px-5 yuki-color2 text-center">
         Welcome back, Admin!
       </div>
@@ -98,8 +96,12 @@ const AdminDashBoard = () => {
           <span className="yuki-font-color">Welcome Back</span> ...
         </h1>
 
-        <Box sx={{ flexGrow: 1, margin:5 }} >
-          <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+        <Box sx={{ flexGrow: 1, margin: 5 }}>
+          <ul
+            class="nav nav-tabs justify-content-center"
+            id="myTab"
+            role="tablist"
+          >
             <li class="nav-item" role="presentation">
               <button
                 class="nav-link active"
@@ -171,32 +173,66 @@ const AdminDashBoard = () => {
               </button>
             </li>
           </ul>
+
+          {/* contents */}
           <div class="tab-content" id="myTabContent">
+            {/* booking content */}
             <div
               class="tab-pane fade show active"
               id="booking"
               role="tabpanel"
-              aria-labelledby="booking-tab"
-            >
-              {bookings.map((booking) => {
-                return (
-                  <>
-                    <AdminBookingCard
-                      bookings={bookings}
-                      handleRejectionReason={handleRejectionReason}
-                      handleBookingRejection={handleBookingRejection}
-                      handleSubmit={handleSubmit}
-                      handleBookingAcceptance={handleBookingAcceptance}
-                      bookingId={booking.id}
-                      petOwnerId={booking.petOwnerId}
-                      service={booking.service_type}
-                      checkIn={booking.checkIn}
-                      checkOut={booking.checkOut}
-                    />
-                  </>
-                )
-              })}
+              aria-labelledby="booking-tab">
+              <Box sx={{ flexGrow: 1, marginTop: "30px" }}>
+                <div className="row">
+                  <div className="row">
+                    <div className="row col-lg-4 col-s-12">
+                      <div className="overflow-auto card shadow">
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                          <DateCalendar />
+                        </LocalizationProvider>
+                      </div>
+                    </div>
+
+                    <div className="col-lg-8 col-s-12">
+                      <div className="row">
+                        <div className="col">
+                          <div className="overflow-auto card shadow">
+                            <div
+                              class="overflow-auto p-3 mb-3 mb-md-0 bg-light"
+                              style={{ maxWidth: "800px", maxHeight: "500px" }}
+                            >
+                              <h4>Pending Bookings</h4>
+                              {bookings.map((booking) => {
+                                return (
+                                  <div>
+                                    <>
+                                      <AdminBookingCard
+                                        bookings={bookings}
+                                        handleRejectionReason={handleRejectionReason}
+                                        handleBookingRejection={handleBookingRejection}
+                                        handleSubmit={handleSubmit}
+                                        handleBookingAcceptance={handleBookingAcceptance}
+                                        bookingId={booking.id}
+                                        petOwnerId={booking.petOwnerId}
+                                        service={booking.service_type}
+                                        checkIn={booking.checkIn}
+                                        checkOut={booking.checkOut}
+                                      />
+                                    </>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Box>
             </div>
+
+            {/* pet owner content */}
             <div
               class="tab-pane fade"
               id="petowners"
@@ -205,6 +241,8 @@ const AdminDashBoard = () => {
             >
               ...
             </div>
+
+            {/* vaccine content */}
             <div
               class="tab-pane fade"
               id="vaccine"
@@ -224,7 +262,6 @@ const AdminDashBoard = () => {
           LOG OUT
         </Button>
       </div>
-      
     </>
   );
 };
