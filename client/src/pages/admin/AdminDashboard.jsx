@@ -250,13 +250,13 @@ const AdminDashBoard = () => {
 
                         <div class="d-flex justify-content-end">
                          
-                          {/* <button
+                          <button
                             class="btn btn-outline-secondary mx-2"
                             data-toggle="modal"
                             data-target="#viewVaccineModal"
                           >
-                            View Vaccine Details
-                          </button> */}
+                            View Pet Owner Details
+                          </button>
                         </div>
                       </div>
                     </div>
