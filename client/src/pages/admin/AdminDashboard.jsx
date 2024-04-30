@@ -237,30 +237,31 @@ const AdminDashBoard = () => {
                   </div>
                 </div>
 
-                {/* <div class="card border">
+                <div class="card border">
                   <div class="card-body">
                     <div class="card shadow">
-                      <div class="card-header">
-                        <b>Vaccine ID </b>
-                      </div>
+                      {/* <div class="card-header">
+                        <b>Pet Owner Name </b>
+                      </div> */}
                       <div class="card-body">
-                        <h5 class="card-title">Vaccine Name</h5>
-                        <p class="card-text text-secondary">Manufacturer:</p>
+                        <h5 class="card-title">Pet Owner Name</h5>
+                        <p class="card-text text-secondary">Number of Pets:</p>
+                        <p class="card-text text-secondary">Status:</p>
 
                         <div class="d-flex justify-content-end">
                          
-                          <button
+                          {/* <button
                             class="btn btn-outline-secondary mx-2"
                             data-toggle="modal"
                             data-target="#viewVaccineModal"
                           >
                             View Vaccine Details
-                          </button>
+                          </button> */}
                         </div>
                       </div>
                     </div>
                   </div>
-                </div> */}
+                </div>
               </div>
 
 
