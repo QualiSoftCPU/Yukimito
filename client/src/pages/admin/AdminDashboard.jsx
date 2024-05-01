@@ -236,17 +236,124 @@ const AdminDashBoard = () => {
 
             {/* pet owner content */}
               
+            {/* pet owners */}
             <div
               class="tab-pane fade"
               id="petowners"
               role="tabpanel"
               aria-labelledby="petowners-tab"
             >
-              ...
+              <div class="container py-3">
+                <div class="row">
+                  <div>
+                    <div class="col align-middle">
+                      <div class="input-group mb-3">
+                        <input
+                          type="search"
+                          class="form-control rounded"
+                          placeholder="Search"
+                          aria-label="Search"
+                          aria-describedby="search-addon"
+                        />
+                        <span
+                          class="input-group-text border-0"
+                          id="search-addon"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-search"
+                            viewBox="0 0 16 16"
+                          >
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card border">
+                  <div class="card-body">
+                    <div class="card shadow">
+                      <div class="card-body p-3">
+                        <div class="card-body d-flex">
+                          
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="100"
+                            height="100"
+                            fill="currentColor"
+                            viewBox="0 0 16 16"
+                            class="bi bi-person-square me-3"
+                            
+                          >
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+                          </svg>
+                          <i class="bi bi-person"></i>
+                          <div>
+                          <h5 class="card-title">
+                            Pet Owner Name
+                            </h5>
+                          <p class="card-text text-secondary">
+                            Number of Pets:
+                          </p>
+                          <p class="card-text text-secondary">Status:</p>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                          <button
+                            class="btn btn-outline-secondary mx-2"
+                            data-toggle="modal"
+                            data-target="#viewPetOwnerModal"
+                          >
+                            View Pet Owner Details
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* <!-- View Vaccine Details Modal --> */}
+
+              <div
+                class="modal fade"
+                id="viewPetOwnerModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="viewPetOwnerModalTitle"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="viewPetOwnerModalTitle">
+                        Pet Owner Name
+                      </h5>
+                    </div>
+                    <div class="modal-body">...</div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
 
             {/* vaccine content */}
+            {/* vaccine */}
             <div
               class="tab-pane fade"
               id="vaccine"
@@ -254,50 +361,52 @@ const AdminDashBoard = () => {
               aria-labelledby="vaccine-tab"
             >
               <div class="container py-3">
-                
-                  <div class="row">
-                    <div >
-                      <div class="col align-middle">
-                        
-                            <div class="input-group mb-3">
-                              <input
-                                type="search"
-                                class="form-control rounded"
-                                placeholder="Search"
-                                aria-label="Search"
-                                aria-describedby="search-addon"
-                              />
-                              <span
-                                class="input-group-text border-0"
-                                id="search-addon"
-                              >
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="16"
-                                  height="16"
-                                  fill="currentColor"
-                                  class="bi bi-search"
-                                  viewBox="0 0 16 16"
-                                >
-                                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                                </svg>
-                              </span>
-                              <div class="d-flex justify-content-end">
-                                <button class="btn btn-primary yuki-color button-border-color mx-2" data-toggle="modal" data-target="#AddVaccineModal">
-                                  Add Vaccine
-                                </button>
-                                <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#RemoveVaccineModal">
-                                  Remove Vaccine
-                                </button>
-                              </div>
-                            </div>
-                            
-                         
+                <div class="row">
+                  <div>
+                    <div class="col align-middle">
+                      <div class="input-group mb-3">
+                        <input
+                          type="search"
+                          class="form-control rounded"
+                          placeholder="Search"
+                          aria-label="Search"
+                          aria-describedby="search-addon"
+                        />
+                        <span
+                          class="input-group-text border-0"
+                          id="search-addon"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-search"
+                            viewBox="0 0 16 16"
+                          >
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                          </svg>
+                        </span>
+                        <div class="d-flex justify-content-end">
+                          <button
+                            class="btn btn-primary yuki-color button-border-color mx-2"
+                            data-toggle="modal"
+                            data-target="#AddVaccineModal"
+                          >
+                            Add Vaccine
+                          </button>
+                          <button
+                            class="btn btn-danger mx-2"
+                            data-toggle="modal"
+                            data-target="#RemoveVaccineModal"
+                          >
+                            Remove Vaccine
+                          </button>
+                        </div>
                       </div>
                     </div>
-                    
                   </div>
-                
+                </div>
 
                 <div class="card border">
                   <div class="card-body">
@@ -310,111 +419,170 @@ const AdminDashBoard = () => {
                         <p class="card-text text-secondary">Manufacturer:</p>
 
                         <div class="d-flex justify-content-end">
-                                <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#editVaccineModal">
-                                  Edit Vaccine Details
-                                </button>
-                                <button class="btn btn-outline-secondary mx-2" data-toggle="modal" data-target="#viewVaccineModal">
-                                  View Vaccine Details
-                                </button>
-                              </div>
-
+                          <button
+                            class="btn btn-outline-secondary"
+                            data-toggle="modal"
+                            data-target="#editVaccineModal"
+                          >
+                            Edit Vaccine Details
+                          </button>
+                          <button
+                            class="btn btn-outline-secondary mx-2"
+                            data-toggle="modal"
+                            data-target="#viewVaccineModal"
+                          >
+                            View Vaccine Details
+                          </button>
+                        </div>
                       </div>
-                      
                     </div>
                   </div>
                 </div>
               </div>
 
+              {/* <!-- Add Vaccine Modal --> */}
 
+              <div
+                class="modal fade"
+                id="AddVaccineModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="AddVaccineModalTitle"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="AddVaccineModalTitle">
+                        Add Vaccine
+                      </h5>
+                    </div>
+                    <div class="modal-body">...</div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary yuki-color button-border-color"
+                      >
+                        Add Vaccine
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-                            {/* <!-- Add Vaccine Modal --> */}
-           
-<div class="modal fade" id="AddVaccineModal" tabindex="-1" role="dialog" aria-labelledby="AddVaccineModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="AddVaccineModalTitle">Add Vaccine</h5>
-        
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary yuki-color button-border-color">Add Vaccine</button>
-      </div>
-    </div>
-  </div>
-</div>
+              {/* <!-- Remove Vaccine Modal --> */}
 
-
-                   {/* <!-- Remove Vaccine Modal --> */}
-           
-                   <div class="modal fade" id="RemoveVaccineModal" tabindex="-1" role="dialog" aria-labelledby="RemoveVaccineModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="RemoveVaccineModalTitle">Remove Vaccine</h5>
-        
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary yuki-color button-border-color">Remove Vaccine</button>
-      </div>
-    </div>
-  </div>
-</div>
+              <div
+                class="modal fade"
+                id="RemoveVaccineModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="RemoveVaccineModalTitle"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="RemoveVaccineModalTitle">
+                        Remove Vaccine
+                      </h5>
+                    </div>
+                    <div class="modal-body">...</div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary yuki-color button-border-color"
+                      >
+                        Remove Vaccine
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               {/* <!-- Edit Vaccine Details Modal --> */}
-           
-<div class="modal fade" id="editVaccineModal" tabindex="-1" role="dialog" aria-labelledby="editVaccineModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editVaccineModalTitle">Edit Vaccine Detail</h5>
-        
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary yuki-color button-border-color">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
+              <div
+                class="modal fade"
+                id="editVaccineModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="editVaccineModalTitle"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="editVaccineModalTitle">
+                        Edit Vaccine Detail
+                      </h5>
+                    </div>
+                    <div class="modal-body">...</div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary yuki-color button-border-color"
+                      >
+                        Save changes
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
- {/* <!-- View Vaccine Details Modal --> */}
-           
- <div class="modal fade" id="viewVaccineModal" tabindex="-1" role="dialog" aria-labelledby="viewVaccineModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="viewVaccineModalTitle">Vaccine Detail</h5>
-        
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        {/* <button type="button" class="btn btn-primary yuki-color button-border-color">Save changes</button> */}
-      </div>
-    </div>
-  </div>
-</div>
+              {/* <!-- View Vaccine Details Modal --> */}
 
-
-
-
-
+              <div
+                class="modal fade"
+                id="viewVaccineModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="viewVaccineModalTitle"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="viewVaccineModalTitle">
+                        Vaccine Detail
+                      </h5>
+                    </div>
+                    <div class="modal-body">...</div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      {/* <button type="button" class="btn btn-primary yuki-color button-border-color">Save changes</button> */}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-
 
           </div>
         </Box>
