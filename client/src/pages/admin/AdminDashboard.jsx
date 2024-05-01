@@ -268,7 +268,7 @@ const AdminDashBoard = () => {
                           <button
                             class="btn btn-outline-secondary mx-2"
                             data-toggle="modal"
-                            data-target="#viewVaccineModal"
+                            data-target="#viewPetOwnerModal"
                           >
                             View Pet Owner Details
                           </button>
@@ -283,16 +283,16 @@ const AdminDashBoard = () => {
 
               <div
                 class="modal fade"
-                id="viewVaccineModal"
+                id="viewPetOwnerModal"
                 tabindex="-1"
                 role="dialog"
-                aria-labelledby="viewVaccineModalTitle"
+                aria-labelledby="viewPetOwnerModalTitle"
                 aria-hidden="true"
               >
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="viewVaccineModalTitle">
+                      <h5 class="modal-title" id="viewPetOwnerModalTitle">
                         Pet Owner Name
                       </h5>
                     </div>
