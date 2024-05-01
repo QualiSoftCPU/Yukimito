@@ -598,7 +598,7 @@ const AdminDashBoard = () => {
               {/* admin control modal */}
 
 
-              {/* <div
+              <div
                 class="modal fade"
                 id="adminControlModal"
                 tabindex="-1"
@@ -631,7 +631,7 @@ const AdminDashBoard = () => {
                     </div>
                   </div>
                 </div>
-              </div> */}
+              </div>
            
 
 
