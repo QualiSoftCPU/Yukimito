@@ -203,8 +203,7 @@ const AdminDashBoard = () => {
               role="tabpanel"
               aria-labelledby="petowners-tab"
             >
-             
-             <div class="container py-3">
+              <div class="container py-3">
                 <div class="row">
                   <div>
                     <div class="col align-middle">
@@ -231,7 +230,6 @@ const AdminDashBoard = () => {
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                           </svg>
                         </span>
-                       
                       </div>
                     </div>
                   </div>
@@ -240,16 +238,33 @@ const AdminDashBoard = () => {
                 <div class="card border">
                   <div class="card-body">
                     <div class="card shadow">
-                      {/* <div class="card-header">
-                        <b>Pet Owner Name </b>
-                      </div> */}
-                      <div class="card-body">
-                        <h5 class="card-title">Pet Owner Name</h5>
-                        <p class="card-text text-secondary">Number of Pets:</p>
-                        <p class="card-text text-secondary">Status:</p>
-
+                      <div class="card-body p-3">
+                        <div class="card-body d-flex">
+                          
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="100"
+                            height="100"
+                            fill="currentColor"
+                            viewBox="0 0 16 16"
+                            class="bi bi-person-square me-3"
+                            
+                          >
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+                          </svg>
+                          <i class="bi bi-person"></i>
+                          <div>
+                          <h5 class="card-title">
+                            Pet Owner Name
+                            </h5>
+                          <p class="card-text text-secondary">
+                            Number of Pets:
+                          </p>
+                          <p class="card-text text-secondary">Status:</p>
+                          </div>
+                        </div>
                         <div class="d-flex justify-content-end">
-                         
                           <button
                             class="btn btn-outline-secondary mx-2"
                             data-toggle="modal"
@@ -264,13 +279,9 @@ const AdminDashBoard = () => {
                 </div>
               </div>
 
-
-
-            
-
               {/* <!-- View Vaccine Details Modal --> */}
 
-              {/* <div
+              <div
                 class="modal fade"
                 id="viewVaccineModal"
                 tabindex="-1"
@@ -282,7 +293,7 @@ const AdminDashBoard = () => {
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="viewVaccineModalTitle">
-                        Vaccine Detail
+                        Pet Owner Name
                       </h5>
                     </div>
                     <div class="modal-body">...</div>
@@ -294,16 +305,11 @@ const AdminDashBoard = () => {
                       >
                         Close
                       </button>
-
                     </div>
                   </div>
                 </div>
-              </div> 
-*/}
-             
+              </div>
             </div>
-
-
 
             {/* vaccine */}
             <div
