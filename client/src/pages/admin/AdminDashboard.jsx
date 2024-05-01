@@ -556,7 +556,7 @@ const AdminDashBoard = () => {
                       </div>
                   <div class="card-body">
                     <div class="card shadow">
-                      {/* <div class="card-body p-3">
+                      <div class="card-body p-3">
                         <div class="card-body d-flex">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -586,7 +586,7 @@ const AdminDashBoard = () => {
                             Manage Account
                           </button>
                         </div>
-                      </div> */}
+                      </div>
                     </div>
                   </div>
                 </div>
