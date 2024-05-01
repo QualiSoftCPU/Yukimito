@@ -73,7 +73,7 @@ function DrawerAppBar(props) {
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
             <Box
-              className='nav-logo'
+              className='nav-logo py-3'
               component="img"
               sx={{ height: 80 }}
               alt="Logo"
