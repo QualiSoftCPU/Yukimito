@@ -263,7 +263,7 @@ export default function PetOwnerDashboard() {
     fontSize: "35px",
   };
 
-  console.log(bookings);
+  console.log("Sorted", bookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
   console.log(pets)
 
   const [selectedBookingId, setSelectedBookingId] = useState(null);
@@ -401,53 +401,63 @@ export default function PetOwnerDashboard() {
                           <div class="modal-body">
                             <ul class="list-group list-group-flush">
                               <li class="list-group-item text-secondary">
-                                {bookings
-                                  .filter(
-                                    (booking) =>
-                                      booking.id === specificBookingId
-                                  )
-                                  .map((booking) => {
-                                    return (
-                                      <div>
+                              {bookings
+                                .filter((booking) => booking.id === specificBookingId)
+                                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort bookings by creation time, recent first
+                                .map((booking) => {
+                                  return (
+                                    <div key={booking.id}>
                                       <p>
                                         <h4
                                           className="font-weight-bold text-black"
                                           id="exampleModalLongTitle"
-                                          style={{marginBottom:'-15px'}}
+                                          style={{ marginBottom: "-15px" }}
                                         >
-                                          {booking.service_type === "dayCare" && (
-                                            <span>Day Care</span>
-                                            )}
+                                          {booking.service_type === "dayCare" && <span>Day Care</span>}
                                           {booking.service_type === "errandsCare" && (
                                             <span>Errands Care</span>
-                                            )}
-                                          {booking.service_type === "homeCare" && (
-                                            <span>Home Care</span>
-                                            )}
+                                          )}
+                                          {booking.service_type === "homeCare" && <span>Home Care</span>}
                                           &nbsp;Booking Details
                                         </h4>
-                                        <br style={{marginTop:'0px'}}/>
+                                        <br style={{ marginTop: "0px" }} />
                                         Checkin Time: {new Date(booking.checkIn).toDateString()}
                                         <br />
                                         Checkout Time: {new Date(booking.checkOut).toDateString()}
                                         <br />
                                         Total Price: ₱{booking.total_price}.00
                                         <br />
-                                        Pets Included: {pets.filter(pet => booking.petList.includes(pet.id)).map(pet => pet.name).map(petName => <span>{petName + ", "}</span>)}
+                                        Pets Included:{" "}
+                                        {pets
+                                          .filter((pet) => booking.petList.includes(pet.id))
+                                          .map((pet) => pet.name)
+                                          .map((petName) => (
+                                            <span>{petName + ", "}</span>
+                                          ))}
                                         <br />
                                         <div>
                                           <span>Status:&nbsp;</span>
-                                          <span className="fs-5" style={{color: booking.status === 'pending' ? '#ffc007' : booking.status === 'rejected' ? '#dc3444' : '#198753'}}>
+                                          <span
+                                            className="fs-5"
+                                            style={{
+                                              color:
+                                                booking.status === "pending"
+                                                  ? "#ffc007"
+                                                  : booking.status === "rejected"
+                                                  ? "#dc3444"
+                                                  : "#198753",
+                                            }}
+                                          >
                                             {booking.status}
-                                          </span>                       
+                                          </span>
                                         </div>
                                       </p>
-                                      <div class = "modal-footer" style={{marginBottom:'-15px'}}>
-                                      <DeleteBooking bookingId ={booking.id}/>
+                                      <div className="modal-footer" style={{ marginBottom: "-15px" }}>
+                                        <DeleteBooking bookingId={booking.id} />
+                                      </div>
                                     </div>
-                                    </div>
-                                    );
-                                  })}
+                                  );
+                                })}
                               </li>
                             </ul>
                           </div>

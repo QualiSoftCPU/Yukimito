@@ -4,6 +4,9 @@ import NavBarMain from "../partials/NavBarMain";
 import AdminBookingCard from "../partials/AdminBookingCard";
 import { Box, Button } from "@mui/material";
 import axios from "axios";
+import { DateCalendar } from "@mui/x-date-pickers";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const AdminDashBoard = () => {
   const navigate = useNavigate();
@@ -170,32 +173,69 @@ const AdminDashBoard = () => {
               </button>
             </li>
           </ul>
+
+
+          {/* contents */}
           <div class="tab-content" id="myTabContent">
+            {/* booking content */}
             <div
               class="tab-pane fade show active"
               id="booking"
               role="tabpanel"
-              aria-labelledby="booking-tab"
-            >
-              {bookings.map((booking) => {
-                return (
-                  <>
-                    <AdminBookingCard
-                      bookings={bookings}
-                      handleRejectionReason={handleRejectionReason}
-                      handleBookingRejection={handleBookingRejection}
-                      handleSubmit={handleSubmit}
-                      handleBookingAcceptance={handleBookingAcceptance}
-                      bookingId={booking.id}
-                      petOwnerId={booking.petOwnerId}
-                      service={booking.service_type}
-                      checkIn={booking.checkIn}
-                      checkOut={booking.checkOut}
-                    />
-                  </>
-                );
-              })}
+
+              aria-labelledby="booking-tab">
+              <Box sx={{ flexGrow: 1, marginTop: "30px" }}>
+                <div className="row">
+                  <div className="row">
+                    <div className="row col-lg-4 col-s-12">
+                      <div className="overflow-auto card shadow">
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                          <DateCalendar />
+                        </LocalizationProvider>
+                      </div>
+                    </div>
+
+                    <div className="col-lg-8 col-s-12">
+                      <div className="row">
+                        <div className="col">
+                          <div className="overflow-auto card shadow">
+                            <div
+                              class="overflow-auto p-3 mb-3 mb-md-0 bg-light"
+                              style={{ maxWidth: "800px", maxHeight: "500px" }}
+                            >
+                              <h4>Pending Bookings</h4>
+                              {bookings.map((booking) => {
+                                return (
+                                  <div>
+                                    <>
+                                      <AdminBookingCard
+                                        bookings={bookings}
+                                        handleRejectionReason={handleRejectionReason}
+                                        handleBookingRejection={handleBookingRejection}
+                                        handleSubmit={handleSubmit}
+                                        handleBookingAcceptance={handleBookingAcceptance}
+                                        bookingId={booking.id}
+                                        petOwnerId={booking.petOwnerId}
+                                        service={booking.service_type}
+                                        checkIn={booking.checkIn}
+                                        checkOut={booking.checkOut}
+                                      />
+                                    </>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Box>
             </div>
+
+            {/* pet owner content */}
+              
             {/* pet owners */}
             <div
               class="tab-pane fade"
@@ -311,6 +351,8 @@ const AdminDashBoard = () => {
               </div>
             </div>
 
+
+            {/* vaccine content */}
             {/* vaccine */}
             <div
               class="tab-pane fade"
@@ -541,6 +583,7 @@ const AdminDashBoard = () => {
                 </div>
               </div>
             </div>
+
           </div>
         </Box>
         <Button
