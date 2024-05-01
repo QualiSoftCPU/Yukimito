@@ -155,15 +155,16 @@ const AdminDashBoard = () => {
                 Content Management
               </button>
             </li>
+
             <li class="nav-item" role="presentation">
               <button
                 class="nav-link"
-                id="controls-tab"
+                id="admin-controls-tab"
                 data-bs-toggle="tab"
-                data-bs-target="#controls"
+                data-bs-target="#admin-controls"
                 type="button"
                 role="tab"
-                aria-controls="controls"
+                aria-controls="admin-controls"
                 aria-selected="false"
               >
                 Admin Controls
@@ -240,7 +241,6 @@ const AdminDashBoard = () => {
                     <div class="card shadow">
                       <div class="card-body p-3">
                         <div class="card-body d-flex">
-                          
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="100"
@@ -248,20 +248,17 @@ const AdminDashBoard = () => {
                             fill="currentColor"
                             viewBox="0 0 16 16"
                             class="bi bi-person-square me-3"
-                            
                           >
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                             <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
                           </svg>
                           <i class="bi bi-person"></i>
                           <div>
-                          <h5 class="card-title">
-                            Pet Owner Name
-                            </h5>
-                          <p class="card-text text-secondary">
-                            Number of Pets:
-                          </p>
-                          <p class="card-text text-secondary">Status:</p>
+                            <h5 class="card-title">Pet Owner Name</h5>
+                            <p class="card-text text-secondary">
+                              Number of Pets:
+                            </p>
+                            <p class="card-text text-secondary">Status:</p>
                           </div>
                         </div>
                         <div class="d-flex justify-content-end">
@@ -279,7 +276,7 @@ const AdminDashBoard = () => {
                 </div>
               </div>
 
-              {/* <!-- View Vaccine Details Modal --> */}
+              {/* <!-- View Pet Owner Details Modal --> */}
 
               <div
                 class="modal fade"
@@ -540,6 +537,106 @@ const AdminDashBoard = () => {
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Admin Controls */}
+
+            <div
+              class="tab-pane fade"
+              id="admin-controls"
+              role="tabpanel"
+              aria-labelledby="admin-controls-tab"
+            >
+              <div class="container py-3">
+               
+             
+                <div class="card border">
+                   <div class="card-header">
+                        <h4>Admin Accounts</h4>
+                      </div>
+                  <div class="card-body">
+                    <div class="card shadow">
+                      {/* <div class="card-body p-3">
+                        <div class="card-body d-flex">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="100"
+                            height="100"
+                            fill="currentColor"
+                            viewBox="0 0 16 16"
+                            class="bi bi-person-square me-3"
+                          >
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+                          </svg>
+                          <i class="bi bi-person"></i>
+                          <div>
+                            <h5 class="card-title">Admin Name</h5>
+                            <p class="card-text text-secondary">
+                              Superadmin/admin:
+                            </p>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                          <button
+                            class="btn btn-outline-secondary mx-2"
+                            data-toggle="modal"
+                            data-target="#adminControlModal"
+                          >
+                            Manage Account
+                          </button>
+                        </div>
+                      </div> */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+              {/* admin control modal */}
+
+
+              {/* <div
+                class="modal fade"
+                id="adminControlModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="adminControlModalTitle"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="adminControlModalTitle">
+                        Admin Name
+                      </h5>
+                    </div>
+                    <div class="modal-body">...</div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary yuki-color button-border-color"
+                      >
+                        Save changes
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div> */}
+           
+
+
+
+
             </div>
           </div>
         </Box>
