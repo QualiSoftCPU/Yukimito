@@ -204,7 +204,7 @@ body {
 }
 
 .admin-nav .nav-link:not(.active) {
-  color: black !important; ; /* Font color when not active */
+  color: rgb(102, 102, 102) !important; ; /* Font color when not active */
 }
 
 

@@ -180,56 +180,62 @@ const AdminDashBoard = () => {
               class="tab-pane fade show active"
               id="booking"
               role="tabpanel"
-
               aria-labelledby="booking-tab">
-              <Box sx={{ flexGrow: 1, marginTop: "30px" }}>
-                <div className="row">
-                  <div className="row">
-                    <div className="row col-lg-4 col-s-12">
-                      <div className="overflow-auto card shadow">
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                          <DateCalendar />
-                        </LocalizationProvider>
-                      </div>
-                    </div>
+                
+                <div class="container py-3">
+            
+                <div class="card-body">
+                    <div class="card shadow">
+                      <div class="card-body p-3">
+                        <div class="card-body d-flex">
 
-                    <div className="col-lg-8 col-s-12">
-                      <div className="row">
-                        <div className="col">
-                          <div className="overflow-auto card shadow">
-                            <div
-                              class="overflow-auto p-3 mb-3 mb-md-0 bg-light"
-                              style={{ maxWidth: "800px", maxHeight: "500px" }}
-                            >
-                              <h4>Pending Bookings</h4>
-                              {bookings.map((booking) => {
-                                return (
-                                  <div>
-                                    <>
-                                      <AdminBookingCard
-                                        bookings={bookings}
-                                        handleRejectionReason={handleRejectionReason}
-                                        handleBookingRejection={handleBookingRejection}
-                                        handleSubmit={handleSubmit}
-                                        handleBookingAcceptance={handleBookingAcceptance}
-                                        bookingId={booking.id}
-                                        petOwnerId={booking.petOwnerId}
-                                        service={booking.service_type}
-                                        checkIn={booking.checkIn}
-                                        checkOut={booking.checkOut}
-                                      />
-                                    </>
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                        <div className="container">
+  <div className="row">
+    <div className="col-lg-4">
+      <div className="overflow-auto card shadow">
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DateCalendar />
+        </LocalizationProvider>
+      </div>
+    </div>
+
+    <div className="col-lg-8">
+      <div className="row">
+        <div className="col">
+          <div className="overflow-auto card shadow" style={{ maxWidth: "800px", maxHeight: "500px" }}>
+            <div className="overflow-auto p-3 mb-3 mb-md-0 bg-light">
+              <h4>Pending Bookings</h4>
+              {bookings.map((booking) => (
+                <div key={booking.id}>
+                  <AdminBookingCard
+                    bookings={bookings}
+                    handleRejectionReason={handleRejectionReason}
+                    handleBookingRejection={handleBookingRejection}
+                    handleSubmit={handleSubmit}
+                    handleBookingAcceptance={handleBookingAcceptance}
+                    bookingId={booking.id}
+                    petOwnerId={booking.petOwnerId}
+                    service={booking.service_type}
+                    checkIn={booking.checkIn}
+                    checkOut={booking.checkOut}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                  </div>
+                  </div>
                     </div>
                   </div>
-                </div>
-              </Box>
+                  
+              
+              </div>
             </div>
 
             {/* pet owner content */}
