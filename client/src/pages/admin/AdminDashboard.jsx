@@ -97,7 +97,7 @@ const AdminDashBoard = () => {
         </h1>
 
         <Box sx={{ flexGrow: 1, margin: 5 }}>
-        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+        <ul class="nav nav-tabs justify-content-center admin-nav" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
         <button
             class="nav-link active change-color"
@@ -114,6 +114,7 @@ const AdminDashBoard = () => {
     </li>
             <li class="nav-item" role="presentation">
               <button
+              className="admin-nav-link"
                 class="nav-link"
                 id="petowners-tab"
                 data-bs-toggle="tab"
