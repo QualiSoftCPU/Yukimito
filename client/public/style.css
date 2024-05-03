@@ -197,3 +197,14 @@ body {
   background-color: #fff !important;
 }
 
+
+.nav-link.active {
+  color: white !important;; /* Font color when active */
+  background-color: white; /* Background color when active */
+}
+
+.nav-link:not(.active) {
+  color: #9C9FA0 !important; ; /* Font color when not active */
+}
+
+

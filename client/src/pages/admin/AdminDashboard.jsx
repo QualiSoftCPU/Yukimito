@@ -65,7 +65,7 @@ const AdminDashBoard = () => {
     }
   }
 
-  const navItems = [];
+  const navItems = ["dashboard"];
 
   useEffect(() => {
     if (!token) {
@@ -93,29 +93,25 @@ const AdminDashBoard = () => {
 
       <div className="container px-5">
         <h1 class="display-5 fw-bold">
-          <span className="yuki-font-color">Welcome Back</span> ...
+          <span className="yuki-font-color">Welcome Back ...</span>
         </h1>
 
         <Box sx={{ flexGrow: 1, margin: 5 }}>
-          <ul
-            class="nav nav-tabs justify-content-center"
-            id="myTab"
-            role="tablist"
-          >
-            <li class="nav-item" role="presentation">
-              <button
-                class="nav-link active"
-                id="booking-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#booking"
-                type="button"
-                role="tab"
-                aria-controls="booking"
-                aria-selected="true"
-              >
-                Bookings
-              </button>
-            </li>
+        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button
+            class="nav-link active change-color"
+            id="booking-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#booking"
+            type="button"
+            role="tab"
+            aria-controls="booking"
+            aria-selected="true"
+        >
+            Bookings
+        </button>
+    </li>
             <li class="nav-item" role="presentation">
               <button
                 class="nav-link"
