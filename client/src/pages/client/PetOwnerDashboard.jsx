@@ -16,6 +16,7 @@ import VaccinesIcon from "@mui/icons-material/Vaccines";
 import coverImage from "../../assets/images/coverImage.jpeg";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { DeleteBooking } from "../../components/partials/DeleteBooking";
+import EditPetModal from "../../components/partials/EditPetModal";
 
 export default function PetOwnerDashboard() {
   const navigate = useNavigate();
@@ -608,10 +609,14 @@ export default function PetOwnerDashboard() {
                                     <VaccinesIcon className="yuki-font-color" />
                                   </div>
                                   <div>
-                                    <button className="btn btn-primary yuki-color button-border-color mx-2">
-                                      {" "}
-                                      Edit
-                                    </button>
+                                    <EditPetModal 
+                                    openEdit={openEdit}
+                                    handleUpdateUser={handleUpdateUser}
+                                    handleUpdate={handleUpdate}
+                                    updateFormData={updateFormData}
+                                    handleEditOpen={handleEditOpen}
+                                    handleEditCancel={handleEditCancel}
+                                    />
                                     <a
                                       type="button"
                                       class="btn btn-danger"
