@@ -1,12 +1,12 @@
 import React from "react";
  import crsl2 from "../../assets/images/crsl3.png";
 
-// import h1 from "../../assets/images/gallery/h1.PNG";
-// import h2 from "../../assets/images/gallery/h2.PNG";
-// import h3 from "../../assets/images/gallery/h3.PNG";
-// import v1 from "../../assets/images/gallery/v1.PNG";
-// import v2 from "../../assets/images/gallery/v2.PNG";
-// import v3 from "../../assets/images/gallery/v3.PNG";
+import h1 from "../../assets/images/gallery/h1.PNG";
+import h2 from "../../assets/images/gallery/h2.PNG";
+import h3 from "../../assets/images/gallery/h3.PNG";
+import v1 from "../../assets/images/gallery/v1.PNG";
+import v2 from "../../assets/images/gallery/v2.PNG";
+import v3 from "../../assets/images/gallery/v3.PNG";
 
 import NavBarMain from "../partials/NavBarMain";
 
@@ -212,7 +212,7 @@ const AdminHome = () => {
 
         <hr id="Gallery" className="mb-5 pb-5" />
 
-        {/* <div class="px-4 py-3 my-5 text-center">
+         <div class="px-4 py-3 my-5 text-center">
           <h4>Yukimito Gallery</h4>
           <h1 class="display-5 fw-bold">
             This is our <span className="yuki-font-color">HOME.</span>
@@ -270,7 +270,7 @@ const AdminHome = () => {
               </div>
             </div>
           </div>
-        </div> */}
+        </div> 
 
         <hr id="Requirements" className="mb-5 pb-5" />
 
