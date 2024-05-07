@@ -630,7 +630,7 @@ const AdminHome = () => {
         </div>
 
         <hr id="Reviews" className="pb-5 mb-5" />
-        {/* <div class="px-4 py-3 my-5 text-center">
+        <div class="px-4 py-3 my-5 text-center">
           <h4>Ratings and Reviews</h4>
           <h1 class="display-5 fw-bold">
             We Value Your <span className="yuki-font-color">Trust</span>.
@@ -915,7 +915,7 @@ const AdminHome = () => {
               </button>
             </div>
           </div>
-        </div> */}
+        </div> 
 
         <hr />
 
