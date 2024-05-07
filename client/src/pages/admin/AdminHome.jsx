@@ -131,7 +131,7 @@ const AdminHome = () => {
 
         <hr />
 
-        {/* <div class="row flex-lg-row align-items-center g-5 py-5">
+         <div class="row flex-lg-row align-items-center g-5 py-5">
           <div class="col-10 col-sm-8 col-lg-6">
             <h4>What we stand for</h4>
             <h1 class="display-5 fw-bold lh-1 mb-3 yuki-font-color">
@@ -208,7 +208,7 @@ const AdminHome = () => {
               </div>
             </div>
           </div>
-        </div> */}
+        </div> 
 
         <hr id="Gallery" className="mb-5 pb-5" />
 
