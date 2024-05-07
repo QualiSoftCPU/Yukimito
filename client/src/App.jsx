@@ -8,7 +8,7 @@
 // import AdminClient from "./pages/AdminClient";
 // import LandingPage from "./pages/LandingPage";
 // import ClientLogin from "./pages/ClientLogin";
-
+import AdminHome from "./pages/admin/AdminHome";
 
 // pet ownwer pages
 import PetOwnerHome from "./pages/client/PetOwnerHome";
@@ -49,6 +49,8 @@ export default function App() {
         <Route path="/PetOwnerPartialPaymentBreakdown" element={<PetOwnerPartialPaymentBreakdown />} />
         {/* admin pages */} 
 
+
+        <Route path="/AdminHome" element={<AdminHome />} />
         <Route path="/Landing" element={<LandingPage />} />
         <Route path="/" element={<PetOwnerLogin />} />
         <Route path="/ClientRegister" element={<ClientRegister />} />

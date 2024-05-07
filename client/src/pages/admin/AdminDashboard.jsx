@@ -8,6 +8,7 @@ import { DateCalendar } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
+
 const AdminDashBoard = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -65,7 +66,7 @@ const AdminDashBoard = () => {
     }
   }
 
-  const navItems = ["dashboard"];
+  const navItems = [""];
 
   useEffect(() => {
     if (!token) {
