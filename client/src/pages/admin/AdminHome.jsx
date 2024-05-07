@@ -451,7 +451,7 @@ const AdminHome = () => {
 
         <hr id="Team" className="pb-5 mb-5" />
 
-        {/* <div class="row flex-lg-row align-items-center g-5 pb-5">
+        <div class="row flex-lg-row align-items-center g-5 pb-5">
           <div class="col-10 col-sm-8 col-lg-6">
             <h4>The Team</h4>
             <h1 class="display-5 fw-bold lh-1 mb-3 yuki-font-color">
@@ -627,7 +627,7 @@ const AdminHome = () => {
               </div>
             </div>
           </div>
-        </div> */}
+        </div>
 
         <hr id="Reviews" className="pb-5 mb-5" />
         {/* <div class="px-4 py-3 my-5 text-center">
