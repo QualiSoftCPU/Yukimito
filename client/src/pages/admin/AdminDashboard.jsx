@@ -2,7 +2,7 @@ import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBarMain from "../partials/NavBarMain";
 import AdminBookingCard from "../partials/AdminBookingCard";
-import { Box, Button } from "@mui/material";
+import { Box, Button, modalClasses } from "@mui/material";
 import axios from "axios";
 import { DateCalendar } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -67,6 +67,29 @@ const AdminDashBoard = () => {
   }
 
   const navItems = [""];
+
+
+// For edit vaccine modal
+
+
+  // const vaccineDetails = [
+  //   {
+  //     name: 'username',
+  //     label: "Your Username",
+  //     placeholder: "Username",
+  //     type: "text"
+  //   }, 
+  //   {
+  //     name: 'password',
+  //     label: "Your Password",
+  //     placeholder: "Password",
+  //     type: "password"
+  //   }
+  // ];
+
+
+
+
 
   useEffect(() => {
     if (!token) {
@@ -337,7 +360,14 @@ const AdminDashBoard = () => {
                         Pet Owner Name
                       </h5>
                     </div>
-                    <div class="modal-body">...</div>
+                    <div class="modal-body">
+                      <a>Number of Pets: </a>
+                      <br/>
+                      <a>Status: </a>
+                      <br/>
+                      <a>Other details: </a>
+
+                    </div>
                     <div class="modal-footer">
                       <button
                         type="button"
