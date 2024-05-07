@@ -197,7 +197,16 @@ body {
   background-color: #fff !important;
 }
 
+.admin-nav .nav-link.active {
+  color: white !important;; /* Font color when active */
+  background-color: white; /* Background color when active */
+  font-weight: bold;
+}
 
+.admin-nav .nav-link:not(.active) {
+  color: rgb(102, 102, 102) !important; ; /* Font color when not active */
+
+}
 
 
 
