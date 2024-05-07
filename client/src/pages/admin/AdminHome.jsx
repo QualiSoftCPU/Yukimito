@@ -1,5 +1,5 @@
 import React from "react";
-// import crsl2 from "../../assets/images/crsl3.png";
+ import crsl2 from "../../assets/images/crsl3.png";
 
 // import h1 from "../../assets/images/gallery/h1.PNG";
 // import h2 from "../../assets/images/gallery/h2.PNG";
@@ -34,7 +34,7 @@ const AdminHome = () => {
       >
         <NavBarMain navItems={navItems} />
 
-        {/* <div class="my-5">
+     <div class="my-5">
           <div class="row align-items-center">
             <div class="col-lg-6">
               <div
@@ -127,7 +127,7 @@ const AdminHome = () => {
               </div>
             </div>
           </div>
-        </div> */}
+        </div> 
 
         <hr />
 
