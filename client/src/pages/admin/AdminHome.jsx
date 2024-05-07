@@ -274,7 +274,7 @@ const AdminHome = () => {
 
         <hr id="Requirements" className="mb-5 pb-5" />
 
-        {/* <div class="my-5">
+        <div class="my-5">
           <div class="row align-items-center">
             <div class="col-lg-6">
               <div class="card my-2 shadow">
@@ -364,7 +364,7 @@ const AdminHome = () => {
               </div>
             </div>
           </div>
-        </div> */}
+        </div>
 
         <hr id="Rates & Services" className="mb-5 pb-5" />
 
