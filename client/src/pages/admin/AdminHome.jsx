@@ -919,7 +919,7 @@ const AdminHome = () => {
 
         <hr />
 
-        {/* <div class="px-4 py-5 my-5 text-center">
+        <div class="px-4 py-5 my-5 text-center">
           <h1 class="display-5 fw-bold pt-3">
             Iloilo Pet Hotel and Boarding Services (Yukimito)
           </h1>
@@ -928,7 +928,7 @@ const AdminHome = () => {
               Pet Hotel & Service located in Mandurriao, Iloilo City
             </p>
           </div>
-        </div> */}
+        </div>
       </div>
     </>
   );
