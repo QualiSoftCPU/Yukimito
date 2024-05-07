@@ -368,7 +368,7 @@ const AdminHome = () => {
 
         <hr id="Rates & Services" className="mb-5 pb-5" />
 
-        {/* <div class="px-4 my-5 text-center">
+        <div class="px-4 my-5 text-center">
           <h4>Our Rates and Services</h4>
           <h1 class="display-5 fw-bold yuki">
             <span className="yuki-font-color">Choose the best</span>
@@ -447,7 +447,7 @@ const AdminHome = () => {
               </div>
             </div>
           </div>
-        </div> */}
+        </div>
 
         <hr id="Team" className="pb-5 mb-5" />
 
