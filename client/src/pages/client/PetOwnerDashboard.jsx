@@ -78,17 +78,21 @@ export default function PetOwnerDashboard() {
       ...petOwnerDetails,
       [event.target.name]: event.target.value,
     });
-    if (petOwnerDetails.ownerName.length <= 5) {
+    
+    if (petOwnerDetails.ownerName && petOwnerDetails.ownerName.length <= 5) {
       setOwnerNameError("Name must be at least 5 characters long");
     } else {
       setOwnerNameError("");
     }
-    if (petOwnerDetails.username.length <= 5) {
+    
+    if (petOwnerDetails.username && petOwnerDetails.username.length <= 5) {
       setUsernameError("Username must be at least 5 characters long");
     } else {
       setUsernameError("");
     }
+    
     if (
+      petOwnerDetails.contactNumber &&
       regex.test(petOwnerDetails.contactNumber) &&
       petOwnerDetails.contactNumber.length >= 11 - 1
     ) {
@@ -96,12 +100,14 @@ export default function PetOwnerDashboard() {
     } else {
       setContactNumberError("Invalid Contact Number");
     }
-    if (petOwnerDetails.email.length < 5) {
+    
+    if (petOwnerDetails.email && petOwnerDetails.email.length < 5) {
       setEmailError("Invalid Email Address");
     } else {
       setEmailError("");
     }
   };
+  
 
   const handleEditOpen = () => {
     setOpenEdit(true);
@@ -264,7 +270,7 @@ export default function PetOwnerDashboard() {
   };
 
   console.log("Sorted", bookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
-  console.log(pets)
+  console.log("User Data:", userData);
 
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const specificBookingId = selectedBookingId;
