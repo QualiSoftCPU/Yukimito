@@ -1,12 +1,17 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+
+const upload = multer({storage: multer.memoryStorage()});
 
 const petOwnerController = require("../controllers/petOwnerController");
 const adminController = require("../controllers/adminController");
 const petController = require("../controllers/petController");
 const bookingController = require("../controllers/bookingController");
+const uploadController = require("../controllers/uploadController");
 //const serviceController = require("../controllers/serviceController");
 
+router.post("/api/upload", upload.single('filename'), uploadController.uploadPhoto);
 router.post("/api/auth/signup/petowner", petOwnerController.signup);
 router.post("/api/auth/signin/petowner", petOwnerController.signin);
 router.get("/api/auth/getPetOwner/:petOwnerId", petOwnerController.getPetOwner);
