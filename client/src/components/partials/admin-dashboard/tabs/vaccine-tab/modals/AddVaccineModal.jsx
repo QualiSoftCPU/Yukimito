@@ -1,4 +1,18 @@
-const AddVaccineModal = () => {
+import TextField from '@mui/material/TextField';
+
+const textFields = [
+  {
+    title: "Vaccine Name",
+  },
+  {
+    title: "Description",
+  },
+  {
+    title: "Expiry Date",
+  },
+];
+
+const AddVaccineModal = (props) => {
   return (
     <div class="modal fade" id="AddVaccineModal" tabindex="-1" role="dialog" aria-labelledby="AddVaccineModalTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -8,7 +22,21 @@ const AddVaccineModal = () => {
             
           </div>
           <div class="modal-body">
-            ...
+            {textFields.map((textField) => {
+              return (
+                <TextField
+                  required
+                  autocomplete="off"
+                  autoFocus
+                  name={textField.title}
+                  id="name outline-basic"
+                  label={textField.title}
+                  type="text"
+                  variant="outlined"
+                  onChange={props.handleChange}
+                  style={{ width: '100%', marginTop: '1rem', marginBottom: '1rem'}} />
+              )
+            })}
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
