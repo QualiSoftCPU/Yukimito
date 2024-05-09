@@ -87,15 +87,6 @@ const AdminDashBoard = () => {
 
   console.log(bookings);
 
-  const items = [
-    "About",
-    "Gallery",
-    "Requirements",
-    "Rates & Services",
-    "Team",
-    "Reviews",
-  ];
-
   const navItems = [
     <a
       href="/AdminDashBoard"
@@ -103,16 +94,12 @@ const AdminDashBoard = () => {
     >
       Dashboard
     </a>,
-    ...items.map((item, index) => (
-      <li key={index}>
-        <a
-          href={`/AdminMainNav#${item}`}
-          style={{ textDecoration: "none", color: "white" }}
-        >
-        {item}
-        </a>
-      </li>
-    )),
+    <a
+    href="/AdminMainNav"
+    style={{ textDecoration: "none", color: "white" }}
+  >
+    Home
+  </a>
   ];
 
   return (
