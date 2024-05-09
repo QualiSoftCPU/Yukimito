@@ -2,24 +2,27 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('admins', {
-      id: {
+    await queryInterface.createTable('PetVaccine', {
+      pet_vaccine_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      username: {
+      pet_id: {
+        type: Sequelize.INTEGER
+      },
+      vaccine_id: {
+        type: Sequelize.INTEGER
+      },
+      dateGiven: {
+        type: Sequelize.DATE
+      },
+      expiryDate: {
+        type: Sequelize.DATE
+      },
+      vaccinePhoto: {
         type: Sequelize.STRING
-      },
-      password: {
-        type: Sequelize.STRING
-      },
-      petOwners: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
-      },
-      bookings: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +35,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('admins');
+    await queryInterface.dropTable('PetVaccine');
   }
 };

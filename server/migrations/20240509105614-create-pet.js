@@ -1,12 +1,9 @@
 'use strict';
-
-const { all } = require('../routes/routes');
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('petOwners', {
-      id: {
+    await queryInterface.createTable('Pet', {
+      pet_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -15,27 +12,19 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      contact_number: {
+      breed: {
         type: Sequelize.STRING
       },
-      username: {
-        type: Sequelize.STRING,
-        allowNull: false
+      birthday: {
+        type: Sequelize.DATE
       },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      email_address: {
+      size: {
         type: Sequelize.STRING
       },
-      pets: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
+      owner_id: {
+        type: Sequelize.INTEGER
       },
-      bookings: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
-      },
-      address: {
+      petPhoto: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -49,6 +38,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('petOwners');
+    await queryInterface.dropTable('Pet');
   }
 };
