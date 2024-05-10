@@ -10,8 +10,16 @@ import v3 from "../../assets/images/gallery/v3.PNG";
 
 import NavBarMain from "../partials/NavBarMain";
 
+const LinkToDashboard = () => {
+    return (
+        <div>
+            <a href="/AdminDashboard">Dashboard</a>
+        </div>
+    ) 
+}
+
 const navItems = [
-  "Dashboard",
+  <LinkToDashboard />,
   "About",
   "Gallery",
   "Requirements",
