@@ -39,6 +39,7 @@ export default function PetOwnerDashboard() {
     birthday: String,
     size: String,
     petOwnerId: userSelected.id,
+    filname: String
   });
 
   const [bookings, setBookings] = useState([]);
@@ -66,6 +67,15 @@ export default function PetOwnerDashboard() {
   };
   const handleCancel = () => {
     setOpen(false);
+  };
+
+  const handleUpload = (event) => {
+    setPet({
+      ...pet,
+      [event.target.name]: event.target.files[0],
+    });
+
+    console.log(pet);
   };
 
   const handleUpdateUser = (updatedUser) => {
@@ -120,12 +130,17 @@ export default function PetOwnerDashboard() {
   async function handleAdd() {
     const token = localStorage.getItem("token");
 
-    console.log(pet);
+    let formData = new FormData();
 
+    for ( let detail in pet ) {
+      console.log(pet[detail]);
+      formData.append(detail, pet[detail]);
+    }
+    
     try {
       const response = await axios.post(
         "http://localhost:4269/api/addPet/pet",
-        pet,
+        formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -138,7 +153,7 @@ export default function PetOwnerDashboard() {
         window.location.reload();
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   }
 
@@ -269,15 +284,12 @@ export default function PetOwnerDashboard() {
     fontSize: "35px",
   };
 
-  console.log("Sorted", bookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
-  console.log("User Data:", userData);
-
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const specificBookingId = selectedBookingId;
 
   return (
     <>
-      <NavBarMain navItems={navItems} customLink={<Logout />} />
+      <NavBarMain navItems={navItems} customLink={<Logout link="/"/>} />
       <div className="mt-5 pt-3 px-5 yuki-color2 text-center">
         Welcome back to Yukimito Services!
       </div>
@@ -577,6 +589,7 @@ export default function PetOwnerDashboard() {
                       handleCancel={handleCancel}
                       handleChange={handleChange}
                       handleClickOpen={handleClickOpen}
+                      handleUpload={handleUpload}
                     />
                   </div>
                 </div>
