@@ -1,5 +1,5 @@
 const db = require('../models');
-const Pet = db.Pet;
+const Pet = db.pet;
 const initializeApp = require('firebase/app').initializeApp
 const getStorage = require('firebase/storage').getStorage;
 const getDownloadURL = require('firebase/storage').getDownloadURL;

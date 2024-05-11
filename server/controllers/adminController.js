@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const db = require("../models");
-const Booking = db.Booking;
-const Admin = db.Admin;
+const Booking = db.booking;
+const Admin = db.admin;
 
 const signup = (req, res) => {
 
@@ -24,14 +24,14 @@ const signin = (req, res) => {
      username: req.body.username
    }
  })
-   .then(Admin => {
-     if (!Admin) {
+   .then(admin => {
+     if (!admin) {
        return res.status(404).send({ message: "Admin Not found." });
      }
 
      var passwordIsValid = bcrypt.compareSync(
        req.body.password,
-       Admin.password
+       admin.password
      );
 
      if (!passwordIsValid) {
@@ -41,13 +41,13 @@ const signin = (req, res) => {
        });
      }
 
-     var token = jwt.sign({ admin_id: Admin.admin_id }, process.env.JWT_SECRET, {
+     var token = jwt.sign({ id: admin.id }, process.env.JWT_SECRET, {
        expiresIn: 86400 // 24 hours
      });
 
      res.status(200).send({
-       admin_id: Admin.admin_id,
-       username: Admin.username,
+       id: admin.id,
+       username: admin.username,
        accessToken: token
      });
    })
@@ -106,4 +106,6 @@ async function rejectBooking(req, res) {
   }
 }
 
-module.exports = { signup, signin, acceptBooking, rejectBooking };
+
+
+module.exports = { signup, signin, acceptBooking, rejectBooking};
