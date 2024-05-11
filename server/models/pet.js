@@ -14,11 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Pet.init({
-    pet_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true, 
-      autoIncrement: true
-    },
+    pet_id: DataTypes.INTEGER,
     name: DataTypes.STRING,
     breed: DataTypes.STRING,
     birthday: DataTypes.DATE,

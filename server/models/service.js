@@ -14,11 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Service.init({
-    service_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true, 
-      autoIncrement: true
-    },
+    service_id: DataTypes.INTEGER,
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     price: DataTypes.FLOAT
