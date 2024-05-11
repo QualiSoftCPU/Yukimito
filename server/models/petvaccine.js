@@ -14,7 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   PetVaccine.init({
-    pet_vaccine_id: DataTypes.INTEGER,
+    pet_vaccine_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true, 
+      autoIncrement: true
+    },
     pet_id: DataTypes.INTEGER,
     vaccine_id: DataTypes.INTEGER,
     dateGiven: DataTypes.DATE,

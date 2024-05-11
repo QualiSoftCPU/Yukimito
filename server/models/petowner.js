@@ -14,7 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   PetOwner.init({
-    owner_id: DataTypes.INTEGER,
+    owner_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true, 
+      autoIncrement: true
+    },
     name: DataTypes.STRING,
     contactNumber: DataTypes.STRING,
     username: DataTypes.STRING,

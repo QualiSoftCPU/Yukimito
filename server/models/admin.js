@@ -14,7 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Admin.init({
-    admin_id: DataTypes.INTEGER,
+    admin_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true, 
+      autoIncrement: true
+    },
     username: DataTypes.STRING,
     password: DataTypes.STRING,
     isSuperAdmin: DataTypes.BOOLEAN
