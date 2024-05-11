@@ -1,6 +1,6 @@
 const db = require('../models');
-const Booking = db.booking;
-const Pet = db.pet;
+const Booking = db.Booking;
+const Pet = db.Pet;
 
 async function createHomeCareBooking(req, res) {
   const { petList, checkIn, checkOut } = req.body;
