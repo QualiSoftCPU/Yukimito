@@ -1,17 +1,13 @@
 import { React, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import NavBarMain from "../partials/NavBarMain";
 import AdminBookingCard from "../partials/AdminBookingCard";
-import { Box, Button, Hidden } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import axios from "axios";
 import adminDashboardTabs from "../../components/partials/admin-dashboard/adminDashboardTabs";
 import PetOwnersTabComponent from "../../components/partials/admin-dashboard/tabs/pet-owners-tab/PetOwnersTabComponent";
 import VaccineTabComponent from "../../components/partials/admin-dashboard/tabs/vaccine-tab/VaccineTabComponent";
-import { DateCalendar } from "@mui/x-date-pickers";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import AdminMainNav from "../../components/partials/admin-dashboard/AdminMainNav";
-import WhatWeOffer from "../partials/WhatWeOffer";
+import Logout from "../partials/Logout";
 
 const AdminDashBoard = () => {
   const navigate = useNavigate();
@@ -88,23 +84,17 @@ const AdminDashBoard = () => {
   console.log(bookings);
 
   const navItems = [
-    <a
-      href="/AdminDashBoard"
-      style={{ textDecoration: "none", color: "white" }}
-    >
+    <a href="/AdminDashBoard" style={{ textDecoration: "none", color: "white" }}>
       Dashboard
     </a>,
-    <a
-    href="/AdminMainNav"
-    style={{ textDecoration: "none", color: "white" }}
-  >
+    <a href="/AdminMainNav" style={{ textDecoration: "none", color: "white" }}>
     Home
-  </a>
+    </a>,
   ];
 
   return (
     <>
-      <NavBarMain navItems={navItems} />
+      <NavBarMain navItems={navItems} customLink={<Logout link="/AdminLogin"/>}/>
 
       <div className="mt-5 pt-3 px-5 yuki-color2 text-center">
         Welcome back, Admin!
