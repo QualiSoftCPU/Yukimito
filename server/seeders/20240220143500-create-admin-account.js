@@ -1,7 +1,7 @@
 'use strict';
 const bcrypt = require('bcrypt');
-const db = require('../models');
-const Admin = db.Admin;
+const db = require("../models");
+const Admin = db.admin;
 
 const username = process.env.ADMIN_USERNAME;
 const password = process.env.ADMIN_PASSWORD;
@@ -22,7 +22,8 @@ module.exports = {
     }
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Admin', null, {});
+    return queryInterface.bulkDelete('admins', null, {});
   }
   
 };
+
