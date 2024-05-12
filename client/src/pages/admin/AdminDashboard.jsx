@@ -2,7 +2,7 @@ import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBarMain from "../partials/NavBarMain";
 import AdminBookingCard from "../partials/AdminBookingCard";
-import { Box, Button, modalClasses } from "@mui/material";
+import { Box, Button, modalClasses, TextField } from "@mui/material";
 import axios from "axios";
 import { DateCalendar } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -69,23 +69,58 @@ const AdminDashBoard = () => {
   const navItems = [""];
 
 
-// For edit vaccine modal
+// For  vaccine modal
 
 
-  // const vaccineDetails = [
-  //   {
-  //     name: 'username',
-  //     label: "Your Username",
-  //     placeholder: "Username",
-  //     type: "text"
-  //   }, 
-  //   {
-  //     name: 'password',
-  //     label: "Your Password",
-  //     placeholder: "Password",
-  //     type: "password"
-  //   }
-  // ];
+  const addVaccineDetails = [
+    {
+      name: 'vaccineName',
+      label: "Vaccine Name",
+      placeholder: "Vaccine Name",
+      type: "text"
+    }, 
+    {
+      name: 'Manufacturer',
+      label: "Manufacturer",
+      placeholder: "Manufacturer",
+      type: "text"
+    }
+  ];
+
+  const editVaccineDetails = [
+    {
+      name: 'vaccineName',
+      label: "Vaccine Name",
+      placeholder: "Vaccine Name",
+      type: "text"
+    }, 
+    {
+      name: 'Manufacturer',
+      label: "Manufacturer",
+      placeholder: "Manufacturer",
+      type: "text"
+    }
+  ];
+
+  const manageAdminDetails = [
+    {
+      name: 'Name',
+      label: "Name",
+      placeholder: "Name",
+      type: "text"
+    }, 
+    {
+      name: 'Type',
+      label: "Type",
+      placeholder: "Type",
+      type: "dropdown", // Change the type to 'dropdown'
+      options: [ // Define the options for the dropdown
+        { label: "Super Admin", value: "option1" },
+        { label: "Admin", value: "option2" }]
+    }
+  ];
+
+
 
 
 
@@ -366,6 +401,8 @@ const AdminDashBoard = () => {
                       <a>Status: </a>
                       <br/>
                       <a>Other details: </a>
+                      <br/>
+                      <a>Pets: </a>
 
                     </div>
                     <div class="modal-footer">
@@ -488,7 +525,25 @@ const AdminDashBoard = () => {
                         Add Vaccine
                       </h5>
                     </div>
-                    <div class="modal-body">...</div>
+                    <div class="modal-body">
+                    {addVaccineDetails.map((details, index) => {
+                          return (
+                            <TextField
+                              key={index}
+                              className="input-margin non-inline input-styling"
+                           //   onChange={handleInput}
+                              name={details.name}
+                              placeholder={details.placeholder}
+                              type={details.type}
+                              id="outlined-basic"
+                              label={details.label}
+                              variant="outlined"
+                             // onKeyPress={handleKeyPress}
+                              required
+                            />
+                          );
+                        })}
+                    </div>
                     <div class="modal-footer">
                       <button
                         type="button"
@@ -525,7 +580,36 @@ const AdminDashBoard = () => {
                         Remove Vaccine
                       </h5>
                     </div>
-                    <div class="modal-body">...</div>
+                    <div class="modal-body">
+
+
+                    <ul class="list-group">
+  <li class="list-group-item">
+    Cras justo odio
+    <button class="close-btn">x</button>
+  </li>
+  <li class="list-group-item">
+    Dapibus ac facilisis in
+    <button class="close-btn">x</button>
+  </li>
+  <li class="list-group-item">
+    Morbi leo risus
+    <button class="close-btn">x</button>
+  </li>
+  <li class="list-group-item">
+    Porta ac consectetur ac
+    <button class="close-btn">x</button>
+  </li>
+  <li class="list-group-item">
+    Vestibulum at eros
+    <button class="close-btn">x</button>
+  </li>
+</ul>
+
+
+
+                      
+                    </div>
                     <div class="modal-footer">
                       <button
                         type="button"
@@ -538,7 +622,7 @@ const AdminDashBoard = () => {
                         type="button"
                         class="btn btn-primary yuki-color button-border-color"
                       >
-                        Remove Vaccine
+                        Save
                       </button>
                     </div>
                   </div>
@@ -562,7 +646,28 @@ const AdminDashBoard = () => {
                         Edit Vaccine Detail
                       </h5>
                     </div>
-                    <div class="modal-body">...</div>
+                    <div class="modal-body">
+
+                    {editVaccineDetails.map((details, index) => {
+                          return (
+                            <TextField
+                              key={index}
+                              className="input-margin non-inline input-styling"
+                           //   onChange={handleInput}
+                              name={details.name}
+                              placeholder={details.placeholder}
+                              type={details.type}
+                              id="outlined-basic"
+                              label={details.label}
+                              variant="outlined"
+                             // onKeyPress={handleKeyPress}
+                              required
+                            />
+                          );
+                        })}
+
+
+                    </div>
                     <div class="modal-footer">
                       <button
                         type="button"
@@ -599,7 +704,19 @@ const AdminDashBoard = () => {
                         Vaccine Detail
                       </h5>
                     </div>
-                    <div class="modal-body">...</div>
+                    <div class="modal-body">
+
+                    <a>Vaccine Name: </a>
+                      <br/>
+                      <a>Code: </a>
+                      <br/>
+                      <a>Manufacturer: </a>
+                      <br/>
+                      <a>Other details: </a>
+                     
+
+
+                    </div>
                     <div class="modal-footer">
                       <button
                         type="button"
@@ -689,7 +806,30 @@ const AdminDashBoard = () => {
                         Admin Name
                       </h5>
                     </div>
-                    <div class="modal-body">...</div>
+                    <div class="modal-body">
+
+
+
+                    {manageAdminDetails.map((details, index) => {
+                          return (
+                            <TextField
+                              key={index}
+                              className="input-margin non-inline input-styling"
+                           //   onChange={handleInput}
+                              name={details.name}
+                              placeholder={details.placeholder}
+                              type={details.type}
+                              id="outlined-basic"
+                              label={details.label}
+                              variant="outlined"
+                             // onKeyPress={handleKeyPress}
+                              required
+                            />
+                          );
+                        })}
+
+
+                    </div>
                     <div class="modal-footer">
                       <button
                         type="button"
