@@ -675,7 +675,7 @@ export default function PetOwnerDashboard() {
                                     </span>
                                     &nbsp;
                                     <span className="span">({pet.size})</span>
-                                    <VaccinesIcon className="yuki-font-color" />
+                                    {pets[index].vaccinated ? <VaccinesIcon className="text-success" /> : null}
                                   </div>
                                   <div>
                                     <button className="btn btn-primary yuki-color button-border-color mx-2">
