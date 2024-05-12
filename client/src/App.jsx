@@ -1,5 +1,5 @@
  import AdminDashBoard from "./pages/admin/AdminDashboard";
-import AdminMainNav from "./components/partials/admin-dashboard/AdminMainNav";
+import AdminMainNav from "./components/partials/admin-dashboard/AdminMainNav"
 // import AdminNavbar from "./components/AdminNavbar";
 // import AdminManageContent from "./pages/AdminManageContent";
 // import AdminCalendar from "./pages/AdminCalendar";
