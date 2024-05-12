@@ -1,7 +1,6 @@
 import Footer from "../partials/Footer";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import AddPetForm from "../../components/partials/AddPetForm";
 import EditPetProfileForm from "../../components/partials/EditPetProfileForm";
 import { useState, useEffect } from "react";
@@ -667,7 +666,7 @@ export default function PetOwnerDashboard() {
                                   <div>
                                     <Avatar
                                       className="img-fluid"
-                                      alt="Profile Picture"
+                                      alt={`${pets[index].name}`}
                                       src={pets[index].vaccinePhoto}
                                       sx={{ width: 75, height: 75 }}
                                     />
