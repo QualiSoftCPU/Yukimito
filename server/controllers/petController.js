@@ -11,7 +11,17 @@ initializeApp(config);
 
 const storage = getStorage();
 
-async function getAll(req, res)  {
+async function getAllPets(req, res) {
+  try {
+    const pets = await Pet.findAll();
+    res.json(pets);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+async function getAllPetsOfPetOwner(req, res)  {
   const userId = req.params.petOwnerId;
 
   console.log(userId);
@@ -24,6 +34,7 @@ async function getAll(req, res)  {
 
   res.json(pets);
 };
+
 
 async function getPet(req, res) {
   const petId = req.params.petId;
@@ -126,4 +137,4 @@ const giveCurrentDateTime = () => {
   return dateTime
 };
 
-module.exports = { getAll, createPet, getPet, deletePet, approvePetVaccine};
+module.exports = { getAllPets, getAllPetsOfPetOwner, createPet, getPet, deletePet, approvePetVaccine};
