@@ -23,7 +23,8 @@ router.post("/api/auth/signin/admin", adminController.signin);
 router.put("/api/admin/booking/accept/:id", adminController.acceptBooking);
 router.put("/api/admin/booking/reject/:id", adminController.rejectBooking);
 
-router.get("/api/getPets/pet/:petOwnerId", petController.getAll);
+router.get("/api/getAllPets", petController.getAllPets);
+router.get("/api/getPets/pet/:petOwnerId", petController.getAllPetsOfPetOwner);
 router.post("/api/addPet/pet", upload.single('filename'), petController.createPet);
 router.get("/api/getPet/:petId", petController.getPet);
 router.put("/api/pet/approveVaccinationRecord/:petId", petController.approvePetVaccine);

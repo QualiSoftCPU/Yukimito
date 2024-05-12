@@ -2,10 +2,10 @@ import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBarMain from "../partials/NavBarMain";
 import AdminBookingCard from "../partials/AdminBookingCard";
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import axios from "axios";
 import adminDashboardTabs from "../../components/partials/admin-dashboard/adminDashboardTabs";
-import PetOwnersTabComponent from "../../components/partials/admin-dashboard/tabs/pet-owners-tab/PetOwnersTabComponent";
+import PendingVaccinesTab from "../../components/partials/admin-dashboard/tabs/pending-vaccines-tab/PendingVaccinesTab";
 import VaccineTabComponent from "../../components/partials/admin-dashboard/tabs/vaccine-tab/VaccineTabComponent";
 import Logout from "../partials/Logout";
 
@@ -15,17 +15,18 @@ const AdminDashBoard = () => {
 
   const [reason, setReason] = useState("");
   const [bookings, setBookings] = useState([]);
+  const [pets, setPets] = useState([]);
 
   function handleSubmit() {
     window.location.href = "/AdminLogin";
     localStorage.removeItem("token");
-  }
+  };
 
   function handleRejectionReason(event) {
     let input = event.target.value;
     setReason(input);
     console.log(reason);
-  }
+  };
 
   async function handleBookingRejection(bookingId) {
     try {
@@ -44,7 +45,7 @@ const AdminDashBoard = () => {
     } catch (error) {
       console.log(error.message);
     }
-  }
+  };
 
   async function handleBookingAcceptance(bookingId) {
     console.log(bookingId);
@@ -64,11 +65,32 @@ const AdminDashBoard = () => {
     } catch (error) {
       console.log(error.message);
     }
+  };
+
+  // Define the handler function to accept a pending vaccine
+  async function handleAcceptVaccine(petId) {
+    try {
+      await axios.put(
+        `http://localhost:4269/api/pet/approveVaccinationRecord/${petId}`,
+        null,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      alert("Successfully accepted vaccine!");
+      // Refresh the page or update the pets data
+      window.location.reload();
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   useEffect(() => {
     if (!token) {
-      navigate("/");
+      navigate("/AdminLogin");
     }
 
     fetch(`http://localhost:4269/api/getAllBookings`, {
@@ -79,9 +101,18 @@ const AdminDashBoard = () => {
       .then((response) => response.json())
       .then((fetchedBookings) => setBookings(fetchedBookings))
       .catch((error) => console.log(error));
+
+    fetch(`http://localhost:4269/api/getAllPets`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((fetchedPets) => setPets(fetchedPets))
+      .catch((error) => console.log(error));
   }, [navigate, token]);
 
-  console.log(bookings);
+  console.log(pets);
 
   const navItems = [
     <a href="/AdminDashBoard" style={{ textDecoration: "none", color: "white" }}>
@@ -157,19 +188,14 @@ const AdminDashBoard = () => {
               })}
             </div>
 
-            <PetOwnersTabComponent />
+            <PendingVaccinesTab 
+              pets={pets}
+              handleAcceptVaccine={handleAcceptVaccine}
+            />
 
             <VaccineTabComponent />
           </div>
         </Box>
-        <Button
-          className="button-color"
-          variant="contained"
-          onClick={handleSubmit}
-          style={{ marginRight: "10px" }}
-        >
-          LOG OUT
-        </Button>
       </div>
     </>
   );
