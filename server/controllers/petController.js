@@ -74,7 +74,25 @@ const createPet = async (req, res) => {
   }
 };
 
+async function approvePetVaccine(req, res) {
+  const petId = req.params.petId;
 
+  try {
+    const pet = await Pet.findByPk(petId);
+
+    if (!pet) {
+      return res.status(404).json({ message: 'Pet not found' });
+    }
+
+    // Update the vaccinated field to true
+    await pet.update({ vaccinated: true });
+
+    res.status(200).json({ message: 'Pet vaccine approved successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
 
 async function deletePet(req, res) {
   const petId = req.params.petId;
@@ -108,4 +126,4 @@ const giveCurrentDateTime = () => {
   return dateTime
 };
 
-module.exports = { getAll, createPet, getPet, deletePet};
+module.exports = { getAll, createPet, getPet, deletePet, approvePetVaccine};
