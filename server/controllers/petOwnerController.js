@@ -151,9 +151,6 @@ const updateProfile = (req, res) => {
 
 const addProfilePicture = async (req, res) => {
   try {
-    if (!req.file) {
-      return res.status(400).json({ message: 'No file uploaded for profile picture' });
-    }
     
     const dateTime = giveCurrentDateTime();
     const storageRef = ref(storage, `files/${req.file.originalname + "     " + dateTime}`)

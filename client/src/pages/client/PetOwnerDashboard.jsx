@@ -1,7 +1,7 @@
 import Footer from "../partials/Footer";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
-import profilePicture from "../../assets/images/pp1.jpeg";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import AddPetForm from "../../components/partials/AddPetForm";
 import EditPetProfileForm from "../../components/partials/EditPetProfileForm";
 import { useState, useEffect } from "react";
@@ -23,15 +23,17 @@ export default function PetOwnerDashboard() {
 
   let userSelected = jwtDecode(token);
 
-  const [pets, setPets] = useState([]);
-
   const [petOwnerDetails, setPetOwnerDetails] = useState({
     ownerName: String,
     username: String,
     address: String,
     contactNumber: Number,
     email: String,
+    profilePhoto: String
   });
+
+  const [pets, setPets] = useState([]);
+  const [profilePicture, setProfilePicture] = useState(petOwnerDetails.profilePhoto);
 
   const [pet, setPet] = useState({
     name: String,
@@ -77,6 +79,62 @@ export default function PetOwnerDashboard() {
 
     console.log(pet);
   };
+
+  const handleUploadProfilePhoto = async (event) => {
+    const file = event.target.files[0];
+
+    setProfilePicture(file);
+
+    const ownerId = userSelected.id;
+
+    const formData = new FormData();
+
+    formData.append('_method', 'PUT');
+    formData.append("filename", file);
+
+    console.log([...formData]);
+
+    await axios.put(
+      `http://localhost:4269/api/auth/uploadProfilePicture/${ownerId}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Authorization": `Bearer ${token}`
+        },
+      }
+    )
+    .then(response => console.log(response))
+    .catch(error => console.log(error));
+    
+    window.location.reload();
+  };
+
+  // const handleSaveProfilePhoto = async () => {
+
+  //   const ownerId = userSelected.id;
+
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("profilePicture", profilePicture);
+
+  //     // Make a POST request to save the uploaded profile picture
+  //     const response = await axios.put(
+  //       `http://localhost:4269/api/auth/uploadProfilePicture/${ownerId}`,
+  //       formData,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //         },
+  //       }
+  //     );
+
+  //     console.log("Profile picture saved successfully:", response.data);
+  //   } catch (error) {
+  //     console.error("Error saving profile picture:", error);
+  //   }
+  // };
+
 
   const handleUpdateUser = (updatedUser) => {
     setPetOwnerDetails(updatedUser);
@@ -263,6 +321,7 @@ export default function PetOwnerDashboard() {
           address: "No address",
           contactNumber: userDetails.contact_number,
           email: userDetails.email,
+          profilePhoto: userDetails.profilePhoto
         });
 
         setUserData({
@@ -271,6 +330,7 @@ export default function PetOwnerDashboard() {
           address: "No address",
           contactNumber: userDetails.contact_number,
           email: userDetails.email,
+          profilePhoto: userDetails.profilePhoto
         });
       })
       .catch((error) => {
@@ -306,14 +366,23 @@ export default function PetOwnerDashboard() {
 
             <div className="mt-1" style={{ maxHeight: "50px" }}>
               <div className="col mt-1">
-                <Avatar
-                  alt="Profile Picture"
-                  src={profilePicture}
-                  sx={{
-                    transform: "translate(10%, -80%)",
-                    width: 150,
-                    height: 150,
-                  }}
+                <label htmlFor="profile-picture-upload">
+                  <Avatar
+                    alt="Profile Picture"
+                    src={petOwnerDetails.profilePhoto}
+                    sx={{
+                      transform: "translate(10%, -80%)",
+                      width: 150,
+                      height: 150,
+                    }}
+                  />
+                </label>
+                <input
+                  id="profile-picture-upload"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={handleUploadProfilePhoto}
                 />
               </div>
             </div>
