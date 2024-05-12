@@ -41,7 +41,7 @@ export default function PetOwnerDashboard() {
     birthday: String,
     size: String,
     petOwnerId: userSelected.id,
-    filname: String
+    filename: String
   });
 
   const [bookings, setBookings] = useState([]);
@@ -110,32 +110,6 @@ export default function PetOwnerDashboard() {
     window.location.reload();
   };
 
-  // const handleSaveProfilePhoto = async () => {
-
-  //   const ownerId = userSelected.id;
-
-  //   try {
-  //     const formData = new FormData();
-  //     formData.append("profilePicture", profilePicture);
-
-  //     // Make a POST request to save the uploaded profile picture
-  //     const response = await axios.put(
-  //       `http://localhost:4269/api/auth/uploadProfilePicture/${ownerId}`,
-  //       formData,
-  //       {
-  //         headers: {
-  //           "Content-Type": "multipart/form-data",
-  //         },
-  //       }
-  //     );
-
-  //     console.log("Profile picture saved successfully:", response.data);
-  //   } catch (error) {
-  //     console.error("Error saving profile picture:", error);
-  //   }
-  // };
-
-
   const handleUpdateUser = (updatedUser) => {
     setPetOwnerDetails(updatedUser);
   };
@@ -190,18 +164,27 @@ export default function PetOwnerDashboard() {
 
     let formData = new FormData();
 
-    for ( let detail in pet ) {
-      console.log(pet[detail]);
-      formData.append(detail, pet[detail]);
+    for (let detail in pet) {
+      console.log(detail, ":", pet[detail])
+      if (detail === 'vaccinePhoto') {
+        formData.append('filename', pet[detail])
+      } else {
+        formData.append(detail, pet[detail])
+      }
     }
-    
+
+    formData.append('_method', 'POST'); 
+
+    console.log([...formData]);
+
     try {
       const response = await axios.post(
         "http://localhost:4269/api/addPet/pet",
         formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+            "Authorization": `Bearer ${token}`
           },
         }
       );
@@ -369,7 +352,7 @@ export default function PetOwnerDashboard() {
                 <label htmlFor="profile-picture-upload">
                   <Avatar
                     alt="Profile Picture"
-                    src={petOwnerDetails.profilePhoto}
+                    src={profilePicture || petOwnerDetails.profilePhoto}
                     sx={{
                       transform: "translate(10%, -80%)",
                       width: 150,
@@ -669,7 +652,7 @@ export default function PetOwnerDashboard() {
                         class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light"
                         style={{ maxWidth: "800px", maxHeight: "500px" }}
                       >
-                        {pets.map((pet) => {
+                        {pets.map((pet, index) => {
                           return (
                             <div className="card my-2 shadow-sm">
                               <div className="card-header">{pet.breed}</div>
@@ -685,7 +668,7 @@ export default function PetOwnerDashboard() {
                                     <Avatar
                                       className="img-fluid"
                                       alt="Profile Picture"
-                                      src={profilePicture}
+                                      src={pets[index].vaccinePhoto}
                                       sx={{ width: 75, height: 75 }}
                                     />
                                     <span className="card-title h5">
