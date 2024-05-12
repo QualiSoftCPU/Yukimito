@@ -1,7 +1,6 @@
 import React from "react";
 
 import WhatWeOffer from "../../../pages/partials/WhatWeOffer";
-import AdminDashBoard from "../../../pages/admin/AdminDashboard";
 import NavBarMain from "../../../pages/partials/NavBarMain";
 
 const AdminMainNav = () => {

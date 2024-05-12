@@ -16,6 +16,7 @@ router.post("/api/auth/signup/petowner", petOwnerController.signup);
 router.post("/api/auth/signin/petowner", petOwnerController.signin);
 router.get("/api/auth/getPetOwner/:petOwnerId", petOwnerController.getPetOwner);
 router.put("/api/auth/editProfile/petowner/:petOwnerId", petOwnerController.updateProfile);
+router.put("/api/auth/uploadProfilePicture/:petOwnerId", upload.single('filename'), petOwnerController.addProfilePicture)
 
 router.post("/api/auth/signup/admin", adminController.signup);
 router.post("/api/auth/signin/admin", adminController.signin);
