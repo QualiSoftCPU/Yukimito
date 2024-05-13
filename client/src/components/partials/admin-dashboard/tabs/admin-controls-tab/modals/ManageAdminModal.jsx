@@ -1,26 +1,26 @@
 import React from 'react'
-// import { TextField } from '@mui/material'
+import { TextField } from '@mui/material'
 
 const ManageAdminModal = () => {
 
 
-    // const manageAdminDetails = [
-    //     {
-    //       name: 'Name',
-    //       label: "Name",
-    //       placeholder: "Name",
-    //       type: "text"
-    //     }, 
-    //     {
-    //       name: 'Type',
-    //       label: "Type",
-    //       placeholder: "Type",
-    //       type: "dropdown", 
-    //       options: [ 
-    //         { label: "Super Admin", value: "option1" },
-    //         { label: "Admin", value: "option2" }]
-    //     }
-    //   ];
+    const manageAdminDetails = [
+        {
+          name: 'Name',
+          label: "Name",
+          placeholder: "Name",
+          type: "text"
+        }, 
+        {
+          name: 'Type',
+          label: "Type",
+          placeholder: "Type",
+          type: "dropdown", 
+          options: [ 
+            { label: "Super Admin", value: "option1" },
+            { label: "Admin", value: "option2" }]
+        }
+      ];
 
   return (
     <div
@@ -39,7 +39,7 @@ const ManageAdminModal = () => {
           </h5>
         </div>
         <div class="modal-body">
-          {/* {manageAdminDetails.map((details, index) => {
+          {manageAdminDetails.map((details, index) => {
             return (
               <TextField
                 key={index}
@@ -55,7 +55,7 @@ const ManageAdminModal = () => {
                 required
               />
             );
-          })} */}
+          })}
         </div>
         <div class="modal-footer">
           <button
@@ -68,6 +68,7 @@ const ManageAdminModal = () => {
           <button
             type="button"
             class="btn btn-primary yuki-color button-border-color"
+            data-dismiss="modal"
           >
             Save changes
           </button>
