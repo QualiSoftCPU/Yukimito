@@ -39,7 +39,7 @@ const AdminControlsTabComponent = () => {
                     <p class="card-text text-secondary">Superadmin/admin:</p>
                   </div>
                 </div>
-                {/* <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-end">
                   <button
                     class="btn btn-outline-secondary mx-2"
                     data-toggle="modal"
@@ -47,7 +47,7 @@ const AdminControlsTabComponent = () => {
                   >
                     Manage Account
                   </button>
-                </div> */}
+                </div>
               </div>
             </div>
           </div>
