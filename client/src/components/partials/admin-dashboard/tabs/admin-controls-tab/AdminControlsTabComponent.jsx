@@ -1,6 +1,6 @@
 import React from "react";
 
-import ManageAdminModal from "./modals/ManageAdminModal";
+// import ManageAdminModal from "./modals/ManageAdminModal";
 
 const AdminControlsTabComponent = () => {
 
@@ -55,7 +55,7 @@ const AdminControlsTabComponent = () => {
       </div>
 
       {/* admin control modal */}
-<ManageAdminModal/>
+{/* <ManageAdminModal/> */}
    
     </div>
   );
