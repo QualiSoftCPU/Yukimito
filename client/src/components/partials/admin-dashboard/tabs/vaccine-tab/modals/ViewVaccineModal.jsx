@@ -8,7 +8,13 @@ const ViewVaccineModal = () => {
             
           </div>
           <div class="modal-body">
-            ...
+          <a>Vaccine Name: </a>
+                      <br/>
+                      <a>Code: </a>
+                      <br/>
+                      <a>Manufacturer: </a>
+                      <br/>
+                      <a>Other details: </a>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
