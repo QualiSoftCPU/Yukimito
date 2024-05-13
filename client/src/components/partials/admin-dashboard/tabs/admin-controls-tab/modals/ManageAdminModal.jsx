@@ -31,14 +31,14 @@ const ManageAdminModal = () => {
     aria-labelledby="adminControlModalTitle"
     aria-hidden="true"
   >
-    {/* <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="adminControlModalTitle">
             Admin Name
           </h5>
         </div>
-        <div class="modal-body">
+        {/* <div class="modal-body">
           {manageAdminDetails.map((details, index) => {
             return (
               <TextField
@@ -56,7 +56,7 @@ const ManageAdminModal = () => {
               />
             );
           })}
-        </div>
+        </div> */}
         <div class="modal-footer">
           <button
             type="button"
@@ -73,7 +73,7 @@ const ManageAdminModal = () => {
           </button>
         </div>
       </div>
-    </div> */}
+    </div>
   </div>
   )
 }
