@@ -197,3 +197,30 @@ body {
   background-color: #fff !important;
 }
 
+.list-group {
+  list-style-type: none;
+  padding: 0;
+}
+.list-group-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+.list-group-item .close-btn {
+  cursor: pointer;
+  padding: 5px;
+  background-color: #ccc;
+  border-radius: 50%;
+  border: none;
+  color: #fff;
+  width: 25px; /* Set width and height to make it a circle */
+  height: 25px; /* Set width and height to make it a circle */
+  display: flex; /* Add this line to center the text inside the circle */
+  align-items: center; /* Add this line to center the text inside the circle */
+  justify-content: center; /* Add this line to center the text inside the circle */
+}
+.list-group-item .close-btn:hover {
+  background-color: #999; /* Change background color on hover */
+}
