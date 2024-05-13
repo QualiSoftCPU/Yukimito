@@ -1,26 +1,26 @@
 import React from 'react'
-// import { TextField } from '@mui/material'
+import { TextField } from '@mui/material'
 
 const ManageAdminModal = () => {
 
 
-    // const manageAdminDetails = [
-    //     {
-    //       name: 'Name',
-    //       label: "Name",
-    //       placeholder: "Name",
-    //       type: "text"
-    //     }, 
-    //     {
-    //       name: 'Type',
-    //       label: "Type",
-    //       placeholder: "Type",
-    //       type: "dropdown", 
-    //       options: [ 
-    //         { label: "Super Admin", value: "option1" },
-    //         { label: "Admin", value: "option2" }]
-    //     }
-    //   ];
+    const manageAdminDetails = [
+        {
+          name: 'Name',
+          label: "Name",
+          placeholder: "Name",
+          type: "text"
+        }, 
+        {
+          name: 'Type',
+          label: "Type",
+          placeholder: "Type",
+          type: "dropdown", 
+          options: [ 
+            { label: "Super Admin", value: "option1" },
+            { label: "Admin", value: "option2" }]
+        }
+      ];
 
   return (
     <div
@@ -38,7 +38,7 @@ const ManageAdminModal = () => {
             Admin Name
           </h5>
         </div>
-        {/* <div class="modal-body">
+        <div class="modal-body">
           {manageAdminDetails.map((details, index) => {
             return (
               <TextField
@@ -56,7 +56,7 @@ const ManageAdminModal = () => {
               />
             );
           })}
-        </div> */}
+        </div>
         <div class="modal-footer">
           <button
             type="button"
