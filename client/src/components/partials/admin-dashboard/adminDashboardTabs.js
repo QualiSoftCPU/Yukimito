@@ -7,10 +7,10 @@ const adminDashboardTabs = [
       ariaSelected: "true"
     },
     {
-      title: "Pet Owners",
-      id: "petowners-tab",
-      dataBsTarget: "#petowners",
-      ariaControls: "petowners",
+      title: "Pending Vaccines",
+      id: "pending-vaccines-tab",
+      dataBsTarget: "#pending-vaccines",
+      ariaControls: "pending-vaccines",
       ariaSelected: "false"
     },
     {

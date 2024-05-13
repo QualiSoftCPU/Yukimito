@@ -3,8 +3,16 @@ const bcrypt = require("bcryptjs");
 const db = require("../models");
 const petOwner = db.petOwner;
 const { check, validationResult } = require("express-validator");
+const initializeApp = require('firebase/app').initializeApp
+const getStorage = require('firebase/storage').getStorage;
+const getDownloadURL = require('firebase/storage').getDownloadURL;
+const uploadBytesResumable = require('firebase/storage').uploadBytesResumable;
+const ref = require('firebase/storage').ref;
+const config = require('../config/firebase.config');
 
+initializeApp(config);
 
+const storage = getStorage();
 
 const signup = async (req, res) => {
   check("username", "Username is required").notEmpty();
@@ -141,4 +149,43 @@ const updateProfile = (req, res) => {
     });
 };
 
-module.exports = { signup, signin, getPetOwner, updateProfile};
+const addProfilePicture = async (req, res) => {
+  try {
+    
+    const dateTime = giveCurrentDateTime();
+    const storageRef = ref(storage, `files/${req.file.originalname + "     " + dateTime}`)
+    const metadata = {
+      contentType: req.file.mimetype,
+    };
+    const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
+    const downloadURL = await getDownloadURL(snapshot.ref);
+    
+    const { petOwnerId } = req.params;
+    
+    const petOwner = await db.petOwner.findByPk(petOwnerId);
+    
+    if (!petOwner) {
+      return res.status(404).json({ message: 'PetOwner not found' });
+    }
+
+    await petOwner.update({
+      profilePhoto: downloadURL
+    });
+
+    res.status(200).json(petOwner);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+const giveCurrentDateTime = () => {
+  const today = new Date();
+  const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  const dateTime = date + ' ' + time;
+
+  return dateTime
+};
+
+module.exports = { signup, signin, getPetOwner, updateProfile, addProfilePicture};

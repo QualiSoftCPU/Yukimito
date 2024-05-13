@@ -1,4 +1,5 @@
  import AdminDashBoard from "./pages/admin/AdminDashboard";
+import AdminMainNav from "./components/partials/admin-dashboard/AdminMainNav"
 // import AdminNavbar from "./components/AdminNavbar";
 // import AdminManageContent from "./pages/AdminManageContent";
 // import AdminCalendar from "./pages/AdminCalendar";
@@ -54,6 +55,7 @@ export default function App() {
         <Route path="/ClientRegister" element={<ClientRegister />} />
         <Route path="/AdminLogin" element={<AdminLogin />} />
         <Route path="/AdminDashboard" element={<AdminDashBoard />} />
+        <Route path="/AdminMainNav" element={<AdminMainNav />} />
         <Route path="/SuccessTestPage" element={<SuccessTestPage />} />
         <Route path="/PetOwnerDashboard" element={<PetOwnerDashboard />} />
       </Routes>

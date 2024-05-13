@@ -73,7 +73,7 @@ export default function EditItemForm(props) {
                 <MenuItem value={'large'}>Large</MenuItem>
               </Select>
             </FormControl>
-            <UploadFile />
+            <UploadFile handleUpload={props.handleUpload}/>
           </DialogContent>
         <DialogActions>
           <Button className='button-link' onClick={props.handleCancel}>Cancel</Button>

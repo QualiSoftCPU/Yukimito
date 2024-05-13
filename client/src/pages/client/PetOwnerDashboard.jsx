@@ -1,7 +1,6 @@
 import Footer from "../partials/Footer";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
-import profilePicture from "../../assets/images/pp1.jpeg";
 import AddPetForm from "../../components/partials/AddPetForm";
 import EditPetProfileForm from "../../components/partials/EditPetProfileForm";
 import { useState, useEffect } from "react";
@@ -23,15 +22,17 @@ export default function PetOwnerDashboard() {
 
   let userSelected = jwtDecode(token);
 
-  const [pets, setPets] = useState([]);
-
   const [petOwnerDetails, setPetOwnerDetails] = useState({
     ownerName: String,
     username: String,
     address: String,
     contactNumber: Number,
     email: String,
+    profilePhoto: String
   });
+
+  const [pets, setPets] = useState([]);
+  const [profilePicture, setProfilePicture] = useState(petOwnerDetails.profilePhoto);
 
   const [pet, setPet] = useState({
     name: String,
@@ -39,6 +40,7 @@ export default function PetOwnerDashboard() {
     birthday: String,
     size: String,
     petOwnerId: userSelected.id,
+    filename: String
   });
 
   const [bookings, setBookings] = useState([]);
@@ -68,6 +70,45 @@ export default function PetOwnerDashboard() {
     setOpen(false);
   };
 
+  const handleUpload = (event) => {
+    setPet({
+      ...pet,
+      [event.target.name]: event.target.files[0],
+    });
+
+    console.log(pet);
+  };
+
+  const handleUploadProfilePhoto = async (event) => {
+    const file = event.target.files[0];
+
+    setProfilePicture(file);
+
+    const ownerId = userSelected.id;
+
+    const formData = new FormData();
+
+    formData.append('_method', 'PUT');
+    formData.append("filename", file);
+
+    console.log([...formData]);
+
+    await axios.put(
+      `http://localhost:4269/api/auth/uploadProfilePicture/${ownerId}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Authorization": `Bearer ${token}`
+        },
+      }
+    )
+    .then(response => console.log(response))
+    .catch(error => console.log(error));
+    
+    window.location.reload();
+  };
+
   const handleUpdateUser = (updatedUser) => {
     setPetOwnerDetails(updatedUser);
   };
@@ -78,17 +119,21 @@ export default function PetOwnerDashboard() {
       ...petOwnerDetails,
       [event.target.name]: event.target.value,
     });
-    if (petOwnerDetails.ownerName.length <= 5) {
+    
+    if (petOwnerDetails.ownerName && petOwnerDetails.ownerName.length <= 5) {
       setOwnerNameError("Name must be at least 5 characters long");
     } else {
       setOwnerNameError("");
     }
-    if (petOwnerDetails.username.length <= 5) {
+    
+    if (petOwnerDetails.username && petOwnerDetails.username.length <= 5) {
       setUsernameError("Username must be at least 5 characters long");
     } else {
       setUsernameError("");
     }
+    
     if (
+      petOwnerDetails.contactNumber &&
       regex.test(petOwnerDetails.contactNumber) &&
       petOwnerDetails.contactNumber.length >= 11 - 1
     ) {
@@ -96,12 +141,14 @@ export default function PetOwnerDashboard() {
     } else {
       setContactNumberError("Invalid Contact Number");
     }
-    if (petOwnerDetails.email.length < 5) {
+    
+    if (petOwnerDetails.email && petOwnerDetails.email.length < 5) {
       setEmailError("Invalid Email Address");
     } else {
       setEmailError("");
     }
   };
+  
 
   const handleEditOpen = () => {
     setOpenEdit(true);
@@ -114,15 +161,29 @@ export default function PetOwnerDashboard() {
   async function handleAdd() {
     const token = localStorage.getItem("token");
 
-    console.log(pet);
+    let formData = new FormData();
+
+    for (let detail in pet) {
+      console.log(detail, ":", pet[detail])
+      if (detail === 'vaccinePhoto') {
+        formData.append('filename', pet[detail])
+      } else {
+        formData.append(detail, pet[detail])
+      }
+    }
+
+    formData.append('_method', 'POST'); 
+
+    console.log([...formData]);
 
     try {
       const response = await axios.post(
         "http://localhost:4269/api/addPet/pet",
-        pet,
+        formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+            "Authorization": `Bearer ${token}`
           },
         }
       );
@@ -132,7 +193,7 @@ export default function PetOwnerDashboard() {
         window.location.reload();
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   }
 
@@ -242,6 +303,7 @@ export default function PetOwnerDashboard() {
           address: "No address",
           contactNumber: userDetails.contact_number,
           email: userDetails.email,
+          profilePhoto: userDetails.profilePhoto
         });
 
         setUserData({
@@ -250,6 +312,7 @@ export default function PetOwnerDashboard() {
           address: "No address",
           contactNumber: userDetails.contact_number,
           email: userDetails.email,
+          profilePhoto: userDetails.profilePhoto
         });
       })
       .catch((error) => {
@@ -263,15 +326,12 @@ export default function PetOwnerDashboard() {
     fontSize: "35px",
   };
 
-  console.log("Sorted", bookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
-  console.log(pets)
-
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const specificBookingId = selectedBookingId;
 
   return (
     <>
-      <NavBarMain navItems={navItems} customLink={<Logout />} />
+      <NavBarMain navItems={navItems} customLink={<Logout link="/"/>} />
       <div className="mt-5 pt-3 px-5 yuki-color2 text-center">
         Welcome back to Yukimito Services!
       </div>
@@ -288,14 +348,23 @@ export default function PetOwnerDashboard() {
 
             <div className="mt-1" style={{ maxHeight: "50px" }}>
               <div className="col mt-1">
-                <Avatar
-                  alt="Profile Picture"
-                  src={profilePicture}
-                  sx={{
-                    transform: "translate(10%, -80%)",
-                    width: 150,
-                    height: 150,
-                  }}
+                <label htmlFor="profile-picture-upload">
+                  <Avatar
+                    alt="Profile Picture"
+                    src={profilePicture || petOwnerDetails.profilePhoto}
+                    sx={{
+                      transform: "translate(10%, -80%)",
+                      width: 150,
+                      height: 150,
+                    }}
+                  />
+                </label>
+                <input
+                  id="profile-picture-upload"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={handleUploadProfilePhoto}
                 />
               </div>
             </div>
@@ -571,6 +640,7 @@ export default function PetOwnerDashboard() {
                       handleCancel={handleCancel}
                       handleChange={handleChange}
                       handleClickOpen={handleClickOpen}
+                      handleUpload={handleUpload}
                     />
                   </div>
                 </div>
@@ -581,7 +651,7 @@ export default function PetOwnerDashboard() {
                         class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light"
                         style={{ maxWidth: "800px", maxHeight: "500px" }}
                       >
-                        {pets.map((pet) => {
+                        {pets.map((pet, index) => {
                           return (
                             <div className="card my-2 shadow-sm">
                               <div className="card-header">{pet.breed}</div>
@@ -596,8 +666,8 @@ export default function PetOwnerDashboard() {
                                   <div>
                                     <Avatar
                                       className="img-fluid"
-                                      alt="Profile Picture"
-                                      src={profilePicture}
+                                      alt={`${pets[index].name}`}
+                                      src={pets[index].vaccinePhoto}
                                       sx={{ width: 75, height: 75 }}
                                     />
                                     <span className="card-title h5">
@@ -605,7 +675,7 @@ export default function PetOwnerDashboard() {
                                     </span>
                                     &nbsp;
                                     <span className="span">({pet.size})</span>
-                                    <VaccinesIcon className="yuki-font-color" />
+                                    {pets[index].vaccinated ? <VaccinesIcon className="text-success" /> : null}
                                   </div>
                                   <div>
                                     <button className="btn btn-primary yuki-color button-border-color mx-2">

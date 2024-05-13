@@ -1,6 +1,6 @@
 import { Button } from "@mui/material"
 
-export default function UploadFile() {
+export default function UploadFile(props) {
   return (
     <>
       <Button className="button-color"
@@ -9,8 +9,10 @@ export default function UploadFile() {
       >
         Upload Vaccine
         <input
+          name="vaccinePhoto"
           type="file"
           hidden
+          onChange={props.handleUpload}
         />
       </Button>
     </>

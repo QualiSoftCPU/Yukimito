@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     pets: DataTypes.ARRAY(DataTypes.INTEGER),
     bookings: DataTypes.ARRAY(DataTypes.INTEGER),
-    address: DataTypes.STRING
+    address: DataTypes.STRING,
+    profilePhoto: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'petOwner',
