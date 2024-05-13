@@ -21,7 +21,7 @@ const AdminControlsTabComponent = () => {
           <div class="card-body">
             <div class="card shadow">
               <div class="card-body p-3">
-                {/* <div class="card-body d-flex">
+                <div class="card-body d-flex">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="100"
@@ -38,7 +38,7 @@ const AdminControlsTabComponent = () => {
                     <h5 class="card-title">Admin Name</h5>
                     <p class="card-text text-secondary">Superadmin/admin:</p>
                   </div>
-                </div> */}
+                </div>
                 {/* <div class="d-flex justify-content-end">
                   <button
                     class="btn btn-outline-secondary mx-2"
