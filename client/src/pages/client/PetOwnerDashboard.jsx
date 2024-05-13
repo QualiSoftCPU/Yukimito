@@ -48,7 +48,6 @@ export default function PetOwnerDashboard() {
   const [openEdit, setOpenEdit] = useState(false);
   const [openEditPet, setOpenEditPet] = useState(false);
 
-
   const [ownerNameError, setOwnerNameError] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [contactNumberError, setContactNumberError] = useState("");
@@ -71,13 +70,13 @@ export default function PetOwnerDashboard() {
     setOpen(false);
   };
 
-//edit
-const editPetOpen = () => {
-  setOpenEditPet(true)
-}
-const editPetCancel = () => {
-  setOpenEditPet(false)
-}
+  //edit
+  const editPetOpen = () => {
+    setOpenEditPet(true);
+  };
+  const editPetCancel = () => {
+    setOpenEditPet(false);
+  };
   // const handleUpdatePet = (updatedPet) => {
   //   setPet(updatedPet);
   // };
@@ -400,7 +399,6 @@ const editPetCancel = () => {
                       Bookings <ArrowOutwardIcon />
                     </b>
                     <span className="text-secondary">
-                      {" "}
                       Click card to expand details.
                     </span>
                   </h5>
@@ -678,7 +676,6 @@ const editPetCancel = () => {
                                     <VaccinesIcon className="yuki-font-color" />
                                   </div>
                                   <div>
-                                    
                                     <EditPetModal
                                       petName={pet.name}
                                       petBreed={pet.breed}
@@ -687,7 +684,7 @@ const editPetCancel = () => {
                                       editPetCancel={editPetCancel}
                                       updatePetForm={updatePetForm}
                                     />
-                                    
+
                                     <a
                                       type="button"
                                       class="btn btn-danger"
