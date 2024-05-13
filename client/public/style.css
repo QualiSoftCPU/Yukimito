@@ -224,3 +224,7 @@ body {
 .list-group-item .close-btn:hover {
   background-color: #999; /* Change background color on hover */
 }
+
+.border-custom {
+  border-color: #C4C4C4 !important;
+}

@@ -15,12 +15,10 @@ const ManageAdminModal = () => {
           name: 'Type',
           label: "Type",
           placeholder: "Type",
-          type: "dropdown", 
-          options: [ 
-            { label: "Super Admin", value: "option1" },
-            { label: "Admin", value: "option2" }]
+          options: ["Super Admin", "Admin"] 
         }
       ];
+      
 
   return (
     <div
@@ -39,23 +37,42 @@ const ManageAdminModal = () => {
           </h5>
         </div>
         <div class="modal-body">
-          {manageAdminDetails.map((details, index) => {
-            return (
+        <div className="modal-body">
+      {manageAdminDetails.map((details, index) => {
+        return (
+          <React.Fragment key={index}>
+            {details.type === 'text' ? (
               <TextField
-                key={index}
                 className="input-margin non-inline input-styling"
-                //   onChange={handleInput}
                 name={details.name}
                 placeholder={details.placeholder}
                 type={details.type}
                 id="outlined-basic"
                 label={details.label}
                 variant="outlined"
-                // onKeyPress={handleKeyPress}
                 required
               />
-            );
-          })}
+            ) : (
+                <div className="dropdown">
+  <select
+    className="form-select non-inline input-styling text-muted rounded-3.5 bg-white py-3 border border-custom" 
+    id={details.name}
+    name={details.name}
+    required
+  >
+    <option class="dropdown-item" value="" disabled selected>Select Admin Type</option>
+    {details.options.map((option, index) => (
+      <option class="dropdown-item" key={index} value={option}>{option}</option>
+    ))}
+  </select>
+</div>
+
+              
+            )}
+          </React.Fragment>
+        );
+      })}
+    </div>
         </div>
         <div class="modal-footer">
           <button
