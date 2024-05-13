@@ -64,11 +64,11 @@ export default function ClientRegister() {
     } else if (!/^\d{11}$/.test(form.contactNumber.trim())) {
       errors.contactNumber = 'Contact number must be 11 digits long';
     }
-    if (!form.email) {
-      errors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
-      errors.email = 'Email is invalid';
-    }
+    // if (!form.email) {
+    //   errors.email = 'Email is required';
+    // } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+    //   errors.email = 'Email is invalid';
+    // }
     if (!form.password) {
       errors.password = 'Password is required';
     } else if (form.password.length < 6) {
@@ -77,6 +77,7 @@ export default function ClientRegister() {
     if (form.password !== form.confirmPassword) {
       errors.confirmPassword = 'Passwords do not match';
     }
+    console.log("errors", errors)
     setErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -96,6 +97,8 @@ export default function ClientRegister() {
     console.log(isValid);
 
     if (!isValid) {
+      alert('Registration failed!');
+    } else {
       axios.post('http://localhost:4269/api/auth/signup/petowner', form)
       .then((response) => {
         console.log(response.data);
@@ -108,8 +111,6 @@ export default function ClientRegister() {
           // handle error here
           alert('Registration failed!');
       });
-    } else {
-      return;
     };
   }
 
