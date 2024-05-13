@@ -8,7 +8,29 @@ const RemoveVaccineModal = () => {
             
           </div>
           <div class="modal-body">
-            ...
+          <ul class="list-group">
+  <li class="list-group-item">
+    Cras justo odio
+    <button class="close-btn">x</button>
+  </li>
+  <li class="list-group-item">
+    Dapibus ac facilisis in
+    <button class="close-btn">x</button>
+  </li>
+  <li class="list-group-item">
+    Morbi leo risus
+    <button class="close-btn">x</button>
+  </li>
+  <li class="list-group-item">
+    Porta ac consectetur ac
+    <button class="close-btn">x</button>
+  </li>
+  <li class="list-group-item">
+    Vestibulum at eros
+    <button class="close-btn">x</button>
+  </li>
+</ul>
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
