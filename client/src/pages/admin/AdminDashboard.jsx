@@ -10,6 +10,7 @@ import VaccineTabComponent from "../../components/partials/admin-dashboard/tabs/
 import { DateCalendar } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import ContentManagementTabComponent from "../../components/partials/admin-dashboard/tabs/content-management-tab/ContentManagementTabComponent";
 
 const AdminDashBoard = () => {
   const navigate = useNavigate();
@@ -145,6 +146,8 @@ const AdminDashBoard = () => {
             <PetOwnersTabComponent />
 
             <VaccineTabComponent />
+
+            <ContentManagementTabComponent />
           </div>
 
         </Box>
