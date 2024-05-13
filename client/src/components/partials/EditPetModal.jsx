@@ -17,17 +17,17 @@ import Select from '@mui/material/Select';
 
 export default function EditPetModal(props) {
   return (
-    <Fragment>
+    <Fragment class="modal-backdrop fade in">
       <Button
         className="yuki-font-color2"
-        onClick={props.handleEditOpen}
+        onClick={props.editPetOpen}
         variant="text"
         type="button"
         class="btn btn-primary yuki-color button-border-color  mx-2"
         data-toggle="modal">
         Edit
         </Button>
-        <Dialog open={props.openEdit} onClose={props.handleEditCancel}>
+        <Dialog open={props.openEditPet} onClose={props.handleEditCancel}>
         <DialogTitle>
           <Typography className='yuki-font-color' variant='h5'>
             Edit Pet details
@@ -35,24 +35,24 @@ export default function EditPetModal(props) {
         </DialogTitle>
           <DialogContent style={{ maxWidth: '500px' }}>
             <TextField
-              onChange={props.updateFormData}
-              value={props.value}
+              onChange={props.updatePetForm}
+              value={props.petName}
               autocomplete="off"
               autoFocus
-              name=""
-              id=""
+              name="petName"
+              id="name outline-basic"
               label="Pet name"
               type="text"
               variant="outlined"
               style={{ width: '100%', marginTop: '1rem', marginBottom: '1rem'}}
             />
             <TextField
-              onChange={props.updateFormData}
-              value={props.value}
+              onChange={props.updatePetForm}
+              value={props.petBreed}
               autocomplete="off"
               autoFocus
-              name=""
-              id=""
+              name="petBreed"
+              id="name outline-basic"
               label="Breed"
               type="text"
               variant="outlined"
@@ -77,8 +77,8 @@ export default function EditPetModal(props) {
             <UploadFile />
           </DialogContent>
         <DialogActions>
-          <Button className='button-link' onClick={props.handleEditCancel}>Cancel</Button>
-          <Button className='button-link' onClick={props.handleUpdate}>Update</Button>
+          <Button className='button-link' onClick={props.editPetCancel}>Cancel</Button>
+          <Button className='button-link' onClick={props.updatePetForm}>Update</Button>
         </DialogActions>
       </Dialog>
     </Fragment>

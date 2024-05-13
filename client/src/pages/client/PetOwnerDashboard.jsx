@@ -46,6 +46,8 @@ export default function PetOwnerDashboard() {
   const [userData, setUserData] = useState({});
   const [open, setOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
+  const [openEditPet, setOpenEditPet] = useState(false);
+
 
   const [ownerNameError, setOwnerNameError] = useState("");
   const [usernameError, setUsernameError] = useState("");
@@ -67,6 +69,24 @@ export default function PetOwnerDashboard() {
   };
   const handleCancel = () => {
     setOpen(false);
+  };
+
+//edit
+const editPetOpen = () => {
+  setOpenEditPet(true)
+}
+const editPetCancel = () => {
+  setOpenEditPet(false)
+}
+  // const handleUpdatePet = (updatedPet) => {
+  //   setPet(updatedPet);
+  // };
+  const updatePetForm = (event) => {
+    setPet({
+      ...pet,
+      [event.target.name]: event.target.value,
+      [event.target.breed]: event.target.value,
+    });
   };
 
   const handleUpdateUser = (updatedUser) => {
@@ -264,8 +284,11 @@ export default function PetOwnerDashboard() {
     fontSize: "35px",
   };
 
-  console.log("Sorted", bookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
-  console.log(pets)
+  console.log(
+    "Sorted",
+    bookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  );
+  console.log(pets);
 
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const specificBookingId = selectedBookingId;
@@ -376,7 +399,10 @@ export default function PetOwnerDashboard() {
                     <b>
                       Bookings <ArrowOutwardIcon />
                     </b>
-                    <span className="text-secondary"> Click card to expand details.</span>
+                    <span className="text-secondary">
+                      {" "}
+                      Click card to expand details.
+                    </span>
                   </h5>
 
                   <div
@@ -402,63 +428,91 @@ export default function PetOwnerDashboard() {
                           <div class="modal-body">
                             <ul class="list-group list-group-flush">
                               <li class="list-group-item text-secondary">
-                              {bookings
-                                .filter((booking) => booking.id === specificBookingId)
-                                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort bookings by creation time, recent first
-                                .map((booking) => {
-                                  return (
-                                    <div key={booking.id}>
-                                      <p>
-                                        <h4
-                                          className="font-weight-bold text-black"
-                                          id="exampleModalLongTitle"
+                                {bookings
+                                  .filter(
+                                    (booking) =>
+                                      booking.id === specificBookingId
+                                  )
+                                  .sort(
+                                    (a, b) =>
+                                      new Date(b.createdAt) -
+                                      new Date(a.createdAt)
+                                  ) // Sort bookings by creation time, recent first
+                                  .map((booking) => {
+                                    return (
+                                      <div key={booking.id}>
+                                        <p>
+                                          <h4
+                                            className="font-weight-bold text-black"
+                                            id="exampleModalLongTitle"
+                                            style={{ marginBottom: "-15px" }}
+                                          >
+                                            {booking.service_type ===
+                                              "dayCare" && (
+                                              <span>Day Care</span>
+                                            )}
+                                            {booking.service_type ===
+                                              "errandsCare" && (
+                                              <span>Errands Care</span>
+                                            )}
+                                            {booking.service_type ===
+                                              "homeCare" && (
+                                              <span>Home Care</span>
+                                            )}
+                                            &nbsp;Booking Details
+                                          </h4>
+                                          <br style={{ marginTop: "0px" }} />
+                                          Checkin Time:{" "}
+                                          {new Date(
+                                            booking.checkIn
+                                          ).toDateString()}
+                                          <br />
+                                          Checkout Time:{" "}
+                                          {new Date(
+                                            booking.checkOut
+                                          ).toDateString()}
+                                          <br />
+                                          Total Price: ₱{booking.total_price}.00
+                                          <br />
+                                          Pets Included:{" "}
+                                          {pets
+                                            .filter((pet) =>
+                                              booking.petList.includes(pet.id)
+                                            )
+                                            .map((pet) => pet.name)
+                                            .map((petName) => (
+                                              <span>{petName + ", "}</span>
+                                            ))}
+                                          <br />
+                                          <div>
+                                            <span>Status:&nbsp;</span>
+                                            <span
+                                              className="fs-5"
+                                              style={{
+                                                color:
+                                                  booking.status === "pending"
+                                                    ? "#ffc007"
+                                                    : booking.status ===
+                                                      "rejected"
+                                                    ? "#dc3444"
+                                                    : "#198753",
+                                              }}
+                                            >
+                                              {booking.status}
+                                            </span>
+                                          </div>
+                                        </p>
+                                        <div
+                                          className="modal-footer"
                                           style={{ marginBottom: "-15px" }}
                                         >
-                                          {booking.service_type === "dayCare" && <span>Day Care</span>}
-                                          {booking.service_type === "errandsCare" && (
-                                            <span>Errands Care</span>
-                                          )}
-                                          {booking.service_type === "homeCare" && <span>Home Care</span>}
-                                          &nbsp;Booking Details
-                                        </h4>
-                                        <br style={{ marginTop: "0px" }} />
-                                        Checkin Time: {new Date(booking.checkIn).toDateString()}
-                                        <br />
-                                        Checkout Time: {new Date(booking.checkOut).toDateString()}
-                                        <br />
-                                        Total Price: ₱{booking.total_price}.00
-                                        <br />
-                                        Pets Included:{" "}
-                                        {pets
-                                          .filter((pet) => booking.petList.includes(pet.id))
-                                          .map((pet) => pet.name)
-                                          .map((petName) => (
-                                            <span>{petName + ", "}</span>
-                                          ))}
-                                        <br />
-                                        <div>
-                                          <span>Status:&nbsp;</span>
-                                          <span
-                                            className="fs-5"
-                                            style={{
-                                              color:
-                                                booking.status === "pending"
-                                                  ? "#ffc007"
-                                                  : booking.status === "rejected"
-                                                  ? "#dc3444"
-                                                  : "#198753",
-                                            }}
-                                          >
-                                            {booking.status}
-                                          </span>
+                                          <DeleteBooking
+                                            bookingId={booking.id}
+                                          />
                                         </div>
-                                      </p>
-                                      <div className="modal-footer" style={{ marginBottom: "-15px" }}>
-                                        <DeleteBooking bookingId={booking.id} />
                                       </div>
-                                    </div>
-                                  );
-                                })}
+                                    );
+                                  })}
                               </li>
                             </ul>
                           </div>
@@ -470,7 +524,7 @@ export default function PetOwnerDashboard() {
                       <li class="list-group-item text-secondary p-1">
                         {bookings.map((booking) => {
                           return (
-                            <div 
+                            <div
                               className="card my-2 shadow overflow-auto p-1 mb-3 mb-md-0 mr-md-2"
                               style={{ maxWidth: "800px", maxHeight: "500px" }}
                               onClick={() => setSelectedBookingId(booking.id)}
@@ -479,23 +533,38 @@ export default function PetOwnerDashboard() {
                                 <h5 className="card-title">
                                   {booking.service_type === "dayCare" && (
                                     <span>Day Care</span>
-                                    )}
+                                  )}
                                   {booking.service_type === "errandsCare" && (
                                     <span>Errands Care</span>
-                                    )}
+                                  )}
                                   {booking.service_type === "homeCare" && (
                                     <span>Home Care</span>
-                                    )}
+                                  )}
                                   &nbsp;Booking Details
                                 </h5>
                                 <p>Total Price: ₱{booking.total_price}.00</p>
                                 <span>Status:&nbsp;</span>
-                                <span className="fs-5" style={{color: booking.status === 'pending' ? '#ffc007' : booking.status === 'rejected' ? '#dc3444' : '#198753'}}>
+                                <span
+                                  className="fs-5"
+                                  style={{
+                                    color:
+                                      booking.status === "pending"
+                                        ? "#ffc007"
+                                        : booking.status === "rejected"
+                                        ? "#dc3444"
+                                        : "#198753",
+                                  }}
+                                >
                                   {booking.status}
                                 </span>
                                 <p>
-                                  {booking.status === "rejected" && (<p>Reason for Rejection: {booking.reasonOfRejection}</p>)}
-                                </p>    
+                                  {booking.status === "rejected" && (
+                                    <p>
+                                      Reason for Rejection:{" "}
+                                      {booking.reasonOfRejection}
+                                    </p>
+                                  )}
+                                </p>
                               </div>
                             </div>
                           );
@@ -609,14 +678,16 @@ export default function PetOwnerDashboard() {
                                     <VaccinesIcon className="yuki-font-color" />
                                   </div>
                                   <div>
-                                    <EditPetModal 
-                                    openEdit={openEdit}
-                                    handleUpdateUser={handleUpdateUser}
-                                    handleUpdate={handleUpdate}
-                                    updateFormData={updateFormData}
-                                    handleEditOpen={handleEditOpen}
-                                    handleEditCancel={handleEditCancel}
+                                    
+                                    <EditPetModal
+                                      petName={pet.name}
+                                      petBreed={pet.breed}
+                                      editPetOpen={editPetOpen}
+                                      openEditPet={openEditPet}
+                                      editPetCancel={editPetCancel}
+                                      updatePetForm={updatePetForm}
                                     />
+                                    
                                     <a
                                       type="button"
                                       class="btn btn-danger"
