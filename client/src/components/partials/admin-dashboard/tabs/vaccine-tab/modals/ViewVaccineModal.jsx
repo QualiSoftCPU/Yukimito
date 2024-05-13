@@ -28,7 +28,7 @@ const ViewVaccineModal = () => {
         </thead>
         <tbody>
           <tr>
-            <td>name</td>
+            <td>name of vaccine</td>
             <td>101</td>
             <td>vaccine manufacturer</td>
           </tr>
