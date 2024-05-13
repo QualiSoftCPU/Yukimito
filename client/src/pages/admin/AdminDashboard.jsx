@@ -383,7 +383,7 @@ const AdminDashBoard = () => {
               <div
                 class="modal fade"
                 id="viewPetOwnerModal"
-                tabindex="-1"
+                tabIndex="-1"
                 role="dialog"
                 aria-labelledby="viewPetOwnerModalTitle"
                 aria-hidden="true"
@@ -513,7 +513,7 @@ const AdminDashBoard = () => {
               <div
                 class="modal fade"
                 id="AddVaccineModal"
-                tabindex="-1"
+                tabIndex="-1"
                 role="dialog"
                 aria-labelledby="AddVaccineModalTitle"
                 aria-hidden="true"
@@ -568,7 +568,7 @@ const AdminDashBoard = () => {
               <div
                 class="modal fade"
                 id="RemoveVaccineModal"
-                tabindex="-1"
+                tabIndex="-1"
                 role="dialog"
                 aria-labelledby="RemoveVaccineModalTitle"
                 aria-hidden="true"
@@ -634,7 +634,7 @@ const AdminDashBoard = () => {
               <div
                 class="modal fade"
                 id="editVaccineModal"
-                tabindex="-1"
+                tabIndex="-1"
                 role="dialog"
                 aria-labelledby="editVaccineModalTitle"
                 aria-hidden="true"
@@ -692,7 +692,7 @@ const AdminDashBoard = () => {
               <div
                 class="modal fade"
                 id="viewVaccineModal"
-                tabindex="-1"
+                tabIndex="-1"
                 role="dialog"
                 aria-labelledby="viewVaccineModalTitle"
                 aria-hidden="true"
@@ -794,7 +794,7 @@ const AdminDashBoard = () => {
               <div
                 class="modal fade"
                 id="adminControlModal"
-                tabindex="-1"
+                tabIndex="-1"
                 role="dialog"
                 aria-labelledby="adminControlModalTitle"
                 aria-hidden="true"
