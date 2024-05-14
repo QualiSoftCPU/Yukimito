@@ -146,7 +146,7 @@ const AdminDashBoard = () => {
           >
             {adminDashboardTabs.map((tab, index) => {
               return (
-                <li class="nav-item" role="presentation">
+                <li class="nav-item admin-nav" role="presentation">
                   <button
                     class={"nav-link " + (index === 0 ? "active" : "")}
                     id={tab.id}
