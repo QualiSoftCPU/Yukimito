@@ -46,31 +46,16 @@ export default function AdminPendingVaccineCard(props) {
                 </div>
               </div>
               <div className="d-flex justify-content-end card-footer">
-                    <button
-                      className="btn btn-primary yuki-color button-border-color mx-2"
-                      data-toggle="modal"
-                      data-target={"#AdminPetVaccine" + props.petId}
-                      href="/"
-                    >
+                    <button className="btn btn-primary yuki-color button-border-color mx-2" data-toggle="modal" data-target={"#AdminPetVaccine" + props.petId} href="/">
                       {" "}
-                      Accept
+                      Approve
                     </button>
                     
                     {/* Confirmation Modal for Vaccine Approval */}
                     {props.pets.map(pet => {
                       return (
-                        <div
-                          class="modal fade"
-                          id={"AdminPetVaccine" + pet.id}
-                          tabindex="-1"
-                          role="dialog"
-                          aria-labelledby="AdminPetVaccine"
-                          aria-hidden="true"
-                        >
-                          <div
-                            class="modal-dialog modal-dialog-centered"
-                            role="document"
-                          >
+                        <div class="modal fade" id={"AdminPetVaccine" + pet.id} tabindex="-1" role="dialog" aria-labelledby="AdminPetVaccine"aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
                                 <h5 class="modal-title" id="AdminBookingLongTitle">
@@ -95,7 +80,7 @@ export default function AdminPendingVaccineCard(props) {
                                   class="btn btn-primary button-color"
                                   onClick={() => props.handleApproveVaccine(props.petId)}
                                 >
-                                  Approve
+                                  Confirm
                                 </button>
                               </div>
                             </div>
