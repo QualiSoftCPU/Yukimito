@@ -149,68 +149,70 @@ const AdminDashBoard = () => {
           <span className="yuki-font-color">Welcome Back</span> ...
         </h1>
         <Box sx={{ flexGrow: 1, margin: 5 }}>
-          <ul
-            class="nav nav-tabs justify-content-center"
-            id="myTab"
-            role="tablist"
-          >
-            {adminDashboardTabs.map((tab, index) => {
-              return (
-                <li class="nav-item admin-nav" role="presentation">
-                  <button
-                    class={"nav-link " + (index === 0 ? "active" : "")}
-                    id={tab.id}
-                    data-bs-toggle="tab"
-                    data-bs-target={tab.dataBsTarget}
-                    type="button"
-                    role="tab"
-                    aria-controls={tab.ariaControls}
-                    aria-selected={tab.ariaSelected}
-                  >
-                    {tab.title}
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-
-          <div class="tab-content" id="myTabContent">
-            <div
-              class="tab-pane fade show active"
-              id="booking"
-              role="tabpanel"
-              aria-labelledby="booking-tab"
+          <div className="border rounded-3">
+            <ul
+              class="nav nav-tabs justify-content-center"
+              id="myTab"
+              role="tablist"
             >
-              {bookings.map((booking) => {
+              {adminDashboardTabs.map((tab, index) => {
                 return (
-                  <>
-                    <AdminBookingCard
-                      bookings={bookings}
-                      handleRejectionReason={handleRejectionReason}
-                      handleBookingRejection={handleBookingRejection}
-                      handleSubmit={handleSubmit}
-                      handleBookingAcceptance={handleBookingAcceptance}
-                      bookingId={booking.id}
-                      petOwnerId={booking.petOwnerId}
-                      service={booking.service_type}
-                      checkIn={booking.checkIn}
-                      checkOut={booking.checkOut}
-                    />
-                  </>
+                  <li class="nav-item admin-nav" role="presentation">
+                    <button
+                      class={"nav-link " + (index === 0 ? "active" : "")}
+                      id={tab.id}
+                      data-bs-toggle="tab"
+                      data-bs-target={tab.dataBsTarget}
+                      type="button"
+                      role="tab"
+                      aria-controls={tab.ariaControls}
+                      aria-selected={tab.ariaSelected}
+                    >
+                      {tab.title}
+                    </button>
+                  </li>
                 );
               })}
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade show active"
+                id="booking"
+                role="tabpanel"
+                aria-labelledby="booking-tab"
+              >
+                {bookings.map((booking) => {
+                  return (
+                    <>
+                      <AdminBookingCard
+                        bookings={bookings}
+                        handleRejectionReason={handleRejectionReason}
+                        handleBookingRejection={handleBookingRejection}
+                        handleSubmit={handleSubmit}
+                        handleBookingAcceptance={handleBookingAcceptance}
+                        bookingId={booking.id}
+                        petOwnerId={booking.petOwnerId}
+                        service={booking.service_type}
+                        checkIn={booking.checkIn}
+                        checkOut={booking.checkOut}
+                      />
+                    </>
+                  );
+                })}
+              </div>
+
+              <PendingVaccinesTab 
+                pets={pets}
+                petOwners={petOwners}
+                handleAcceptVaccine={handleAcceptVaccine}
+              />
+
+              <VaccineTabComponent />
+
+              <ContentManagementTabComponent />
+              <AdminControlsTabComponent />
             </div>
-
-            <PendingVaccinesTab 
-              pets={pets}
-              petOwners={petOwners}
-              handleAcceptVaccine={handleAcceptVaccine}
-            />
-
-            <VaccineTabComponent />
-
-            <ContentManagementTabComponent />
-            <AdminControlsTabComponent />
           </div>
         </Box>
       </div>
