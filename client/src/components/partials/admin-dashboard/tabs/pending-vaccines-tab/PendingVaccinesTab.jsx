@@ -26,6 +26,7 @@ const PendingVaccinesTab = (props) => {
             pets={pets}
             petName={pet.name}
             breed={pet.breed}
+            petOwners={props.petOwners}
             petOwnerId={pet.petOwnerId}
             vaccinePhoto={pet.vaccinePhoto}
             handleApproveVaccine={props.handleAcceptVaccine}

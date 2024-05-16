@@ -19,6 +19,7 @@ const AdminDashBoard = () => {
   const [reason, setReason] = useState("");
   const [bookings, setBookings] = useState([]);
   const [pets, setPets] = useState([]);
+  const [petOwners, setPetOwners] = useState([]);
 
   function handleSubmit() {
     window.location.href = "/AdminLogin";
@@ -113,9 +114,16 @@ const AdminDashBoard = () => {
       .then((response) => response.json())
       .then((fetchedPets) => setPets(fetchedPets))
       .catch((error) => console.log(error));
-  }, [navigate, token]);
 
-  console.log(pets);
+    fetch(`http://localhost:4269/api/auth/getAllPetOwners`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((fetchedPetOwners) => setPetOwners(fetchedPetOwners))
+    .catch((error) => console.log(error));
+  }, [navigate, token]);
 
   const navItems = [
     <a href="/AdminDashBoard" style={{ textDecoration: "none", color: "white" }}>
@@ -125,6 +133,8 @@ const AdminDashBoard = () => {
     Home
     </a>,
   ];
+
+  console.log(petOwners);
 
   return (
     <>
@@ -193,6 +203,7 @@ const AdminDashBoard = () => {
 
             <PendingVaccinesTab 
               pets={pets}
+              petOwners={petOwners}
               handleAcceptVaccine={handleAcceptVaccine}
             />
 

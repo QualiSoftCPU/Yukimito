@@ -1,4 +1,12 @@
 export default function AdminPendingVaccineCard(props) {
+
+  const petOwners = props.petOwners;
+
+  const getOwnerName = (petOwnerId) => {
+    const owner = petOwners.find(owner => owner.id === petOwnerId);
+    return owner ? owner.name : 'Unknown';
+  };
+
   return (
     <>
       <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3">
@@ -10,7 +18,7 @@ export default function AdminPendingVaccineCard(props) {
             <div class="card-body">
               <h5 class="card-title">Pet Name: {props.petName}</h5>
               <p>Breed: {props.breed}</p>
-              <p>Owner: {props.petOwnerId}</p>
+              <p>Owner: {getOwnerName(props.petOwnerId)}</p>
               <p class="card-text text-secondary">
                 Vaccine Photo: 
                 <button
