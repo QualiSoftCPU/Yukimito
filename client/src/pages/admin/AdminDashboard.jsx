@@ -145,9 +145,6 @@ const AdminDashBoard = () => {
       </div>
 
       <div className="container px-5">
-        <h1 class="display-5 fw-bold">
-          <span className="yuki-font-color">Welcome Back</span> ...
-        </h1>
         <Box sx={{ flexGrow: 1, margin: 5 }}>
           <div className="border rounded-3">
             <ul
@@ -196,6 +193,7 @@ const AdminDashBoard = () => {
                         service={booking.service_type}
                         checkIn={booking.checkIn}
                         checkOut={booking.checkOut}
+                        petOwners={petOwners}
                       />
                     </>
                   );

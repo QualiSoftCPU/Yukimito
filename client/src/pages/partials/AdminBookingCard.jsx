@@ -1,4 +1,12 @@
 export default function AdminBookingCard(props) {
+
+  const petOwners = props.petOwners;
+
+  const getOwnerName = (petOwnerId) => {
+    const owner = petOwners.find(owner => owner.id === petOwnerId);
+    return owner ? owner.name : 'Unknown';
+  };
+
   return (
     <>
       <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3">
@@ -8,14 +16,14 @@ export default function AdminBookingCard(props) {
               <b>Booking Details</b>
             </div>
             <div class="card-body">
-              <h5 class="card-title">Pet Owner ID: {props.petOwnerId}</h5>
-              <p>Booking #: 000000{props.bookingId}</p>
+              <h5 class="card-title">Client Name: {getOwnerName(props.petOwnerId)}</h5>
+              <p>Booking ID: YKMTBK{props.bookingId}</p>
               <p class="card-text text-secondary">
-                Service Availed: {props.service}
+                Service Availed: {props.service === "dayCare" ? "Day Care": null} {props.service === "errandsCare" ? "Errands Care": null} {props.service === "homeCare" ? "Home Care": null}
                 <br />
-                Check In Time: {props.checkIn}
+                Check In Time: {new Date(props.checkIn).toLocaleString()}
                 <br />
-                Expected Check Out Time: {props.checkOut}
+                Expected Check Out Time: {new Date(props.checkOut).toLocaleString()}
               </p>
 
               <div className="d-flex justify-content-end ">
@@ -118,7 +126,7 @@ export default function AdminBookingCard(props) {
                           Cancel
                         </a>
                         <button type="button" class="btn btn-danger" onClick={() => props.handleBookingRejection(props.bookingId)}>
-                          Reject Booking
+                          Confirm
                         </button>
                       </div>
                     </div>
