@@ -100,6 +100,16 @@ const signin = (req, res) => {
    });
 };
 
+const getAllUsers = async (req, res) => {
+  try {
+    const allUsers = await petOwner.findAll(); // Retrieve all users from the database
+
+    res.status(200).json(allUsers); // Send the retrieved users as a response
+  } catch (err) {
+    res.status(500).send({ message: err.message }); // Handle any errors that occur
+  }
+};
+
 const getPetOwner = (req, res) => {
 
   const userId = req.params.petOwnerId;
