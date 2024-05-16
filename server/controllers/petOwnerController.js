@@ -100,7 +100,7 @@ const signin = (req, res) => {
    });
 };
 
-const getAllUsers = async (req, res) => {
+const getAllPetOwners = async (req, res) => {
   try {
     const allUsers = await petOwner.findAll(); // Retrieve all users from the database
 
@@ -198,4 +198,4 @@ const giveCurrentDateTime = () => {
   return dateTime
 };
 
-module.exports = { signup, signin, getPetOwner, updateProfile, addProfilePicture};
+module.exports = { signup, signin, getPetOwner, updateProfile, addProfilePicture, getAllPetOwners};
