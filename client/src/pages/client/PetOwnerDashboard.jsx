@@ -535,9 +535,9 @@ export default function PetOwnerDashboard() {
                     </div>
 
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item text-secondary p-1">
-                        {bookings.map((booking) => {
-                          return (
+                      {bookings.map((booking) => {
+                        return (
+                          <li class="list-group-item text-secondary p-1">
                             <div 
                               className="card my-2 shadow overflow-auto p-1 mb-3 mb-md-0 mr-md-2"
                               style={{ maxWidth: "800px", maxHeight: "500px" }}
@@ -566,9 +566,9 @@ export default function PetOwnerDashboard() {
                                 </p>    
                               </div>
                             </div>
-                          );
-                        })}
-                      </li>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
 
