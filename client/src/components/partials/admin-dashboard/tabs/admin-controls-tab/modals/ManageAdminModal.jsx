@@ -1,24 +1,8 @@
 import React from 'react'
 import { TextField } from '@mui/material'
+import { manageAdminDetails } from './options.ts';
 
 const ManageAdminModal = () => {
-
-
-    const manageAdminDetails = [
-        {
-          name: 'Name',
-          label: "Name",
-          placeholder: "Name",
-          type: "text"
-        }, 
-        {
-          name: 'Type',
-          label: "Type",
-          placeholder: "Type",
-          options: ["Super Admin", "Admin"] 
-        }
-      ];
-      
 
   return (
     <div
@@ -60,7 +44,7 @@ const ManageAdminModal = () => {
     name={details.name}
     required
   >
-    <option class="dropdown-item" value="" disabled selected>Select Admin Type</option>
+    <option class="dropdown-item" value="" disabled selected>Change Type</option>
     {details.options.map((option, index) => (
       <option class="dropdown-item" key={index} value={option}>{option}</option>
     ))}

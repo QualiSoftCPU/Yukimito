@@ -1,10 +1,23 @@
-import React from "react";
-
+import { useState, React } from "react";
 import ManageAdminModal from "./modals/ManageAdminModal";
+import AddAdminAccountModal from "./modals/AddAdminAccountModal";
 
 const AdminControlsTabComponent = () => {
 
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+    role: ''
+  });
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+    console.log(formData)
+  };
 
   return (
     <div
@@ -16,7 +29,17 @@ const AdminControlsTabComponent = () => {
       <div class="container py-3">
         <div class="card border">
           <div class="card-header">
-            <h4>Admin Accounts</h4>
+            <div >
+              <div class="col align-middle">
+                <div class="input-group mb-3">
+                  <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary yuki-color button-border-color mx-2" data-toggle="modal" data-target="#AddAdminAccountModal">
+                      Add Admin Account
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="card-body">
             <div class="card shadow">
@@ -53,9 +76,9 @@ const AdminControlsTabComponent = () => {
           </div>
         </div>
       </div>
-
+      <AddAdminAccountModal handleChange={handleChange}/>
       {/* admin control modal */}
-<ManageAdminModal/>
+      <ManageAdminModal/>
    
     </div>
   );
