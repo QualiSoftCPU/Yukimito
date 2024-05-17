@@ -1,10 +1,43 @@
-import React from "react";
-
+import { useState, React } from "react";
 import ManageAdminModal from "./modals/ManageAdminModal";
+import AddAdminAccountModal from "./modals/AddAdminAccountModal";
+import axios from "axios";
 
 const AdminControlsTabComponent = () => {
+  const token = localStorage.getItem("token");
 
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+    role: ''
+  });
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+    console.log(formData)
+  };
+
+  const handleAddAdmin = async() => {
+    try {
+      const response = await axios.post('http://localhost:4269/api/auth/signup/admin', formData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+      });
+
+      if (response.status === 200) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <div
@@ -16,7 +49,17 @@ const AdminControlsTabComponent = () => {
       <div class="container py-3">
         <div class="card border">
           <div class="card-header">
-            <h4>Admin Accounts</h4>
+            <div >
+              <div class="col align-middle">
+                <div class="input-group mb-3">
+                  <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary yuki-color button-border-color mx-2" data-toggle="modal" data-target="#AddAdminAccountModal">
+                      Add Admin Account
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="card-body">
             <div class="card shadow">
@@ -53,9 +96,9 @@ const AdminControlsTabComponent = () => {
           </div>
         </div>
       </div>
-
+      <AddAdminAccountModal handleChange={handleChange} handleAddAdmin={handleAddAdmin}/>
       {/* admin control modal */}
-<ManageAdminModal/>
+      <ManageAdminModal/>
    
     </div>
   );

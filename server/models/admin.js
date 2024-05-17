@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING,
     password: DataTypes.STRING,
     petOwners: DataTypes.ARRAY(DataTypes.INTEGER),
-    bookings: DataTypes.ARRAY(DataTypes.INTEGER)
+    bookings: DataTypes.ARRAY(DataTypes.INTEGER),
+    role: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'admin',
