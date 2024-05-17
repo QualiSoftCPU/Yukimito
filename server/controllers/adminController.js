@@ -106,10 +106,32 @@ async function rejectBooking(req, res) {
   }
 }
 
-async function setRoleToAdmin() {
-  
-}
+const updateRole = async (req, res) => {
+  const { id } = req.params;
+  const { role } = req.body;
+
+  const validRoles = ['admin', 'superadmin'];
+
+  if (!validRoles.includes(role)) {
+    return res.status(400).send({ message: "Invalid role provided." });
+  }
+
+  try {
+    const admin = await Admin.findByPk(id);
+    if (!admin) {
+      return res.status(404).send({ message: "Admin not found." });
+    }
+
+    admin.role = role;
+    await admin.save();
+
+    res.send({ message: "Admin role updated successfully." });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
 
 
 
-module.exports = { signup, signin, acceptBooking, rejectBooking};
+
+module.exports = { signup, signin, acceptBooking, rejectBooking, updateRole };
