@@ -18,7 +18,7 @@ export default function AdminPendingVaccineCard(props) {
             <div className="row">
               <div className="col-2">
                 <img
-                  className="img-fluid mt-3 ms-3 img-thumbnail"
+                  className="img-fluid my-3 ms-3 img-thumbnail"
                   alt={`${props.petName}`}
                   src={props.vaccinePhoto}
                   sx={{ height: 150, width: 150}}

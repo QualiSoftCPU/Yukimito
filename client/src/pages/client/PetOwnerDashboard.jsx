@@ -9,7 +9,6 @@ import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import NavBarMain from "../partials/NavBarMain";
 import Logout from "../partials/Logout";
-import VerifiedIcon from "@mui/icons-material/Verified";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
 import coverImage from "../../assets/images/coverImage.jpeg";
@@ -373,10 +372,6 @@ export default function PetOwnerDashboard() {
                 <div className="col">
                   <h1>
                     {userData.ownerName}{" "}
-                    <VerifiedIcon
-                      style={iconStyle}
-                      className="yuki-font-color"
-                    />
                   </h1>
                 </div>
                 <div class="col d-flex flex-row-reverse lg">

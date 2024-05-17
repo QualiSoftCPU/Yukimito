@@ -7,10 +7,8 @@ import axios from "axios";
 import adminDashboardTabs from "../../components/partials/admin-dashboard/adminDashboardTabs";
 import PendingVaccinesTab from "../../components/partials/admin-dashboard/tabs/pending-vaccines-tab/PendingVaccinesTab";
 import VaccineTabComponent from "../../components/partials/admin-dashboard/tabs/vaccine-tab/VaccineTabComponent";
-import ContentManagementTabComponent from "../../components/partials/admin-dashboard/tabs/content-management-tab/ContentManagementTabComponent";
 import AdminControlsTabComponent from "../../components/partials/admin-dashboard/tabs/admin-controls-tab/AdminControlsTabComponent";
 import Logout from "../partials/Logout";
-
 
 const AdminDashBoard = () => {
   const navigate = useNavigate();
@@ -207,8 +205,6 @@ const AdminDashBoard = () => {
               />
 
               <VaccineTabComponent />
-
-              <ContentManagementTabComponent />
               <AdminControlsTabComponent />
             </div>
           </div>

@@ -106,6 +106,10 @@ async function rejectBooking(req, res) {
   }
 }
 
+async function setRoleToAdmin() {
+  
+}
+
 
 
 module.exports = { signup, signin, acceptBooking, rejectBooking};
