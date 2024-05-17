@@ -40,6 +40,7 @@ const AdminControlsTabComponent = () => {
       console.log(error.message);
     }
   };
+  
 
   useEffect(() => {
     axios
@@ -83,25 +84,28 @@ const AdminControlsTabComponent = () => {
           <div class="card-body">
             {adminAccounts.map((account) => {
               return (
-                <div class="card shadow mt-3">
-                  <div class="card-body p-3">
-                    <div class="card-body d-flex">
-                      <i class="bi bi-person"></i> 
-                      <div>
-                        <h5 class="card-title">Admin Username: {account.username}</h5>
-                        <p class="card-text text-secondary">Role: {account.role}</p>
+                <div>
+                  <div class="card shadow mt-3">
+                    <div class="card-body p-3">
+                      <div class="card-body d-flex">
+                        <i class="bi bi-person"></i> 
+                        <div>
+                          <h5 class="card-title">Admin Username: {account.username}</h5>
+                          <p class="card-text text-secondary">Role: {account.role}</p>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-end">
+                        <button
+                          class="btn btn-outline-secondary mx-2"
+                          data-toggle="modal"
+                          data-target={"#adminControlModalTitle" + account.id}
+                        >
+                          Manage Account
+                        </button>
                       </div>
                     </div>
-                    <div class="d-flex justify-content-end">
-                      <button
-                        class="btn btn-outline-secondary mx-2"
-                        data-toggle="modal"
-                        data-target="#adminControlModal"
-                      >
-                        Manage Account
-                      </button>
-                    </div>
                   </div>
+                  <ManageAdminModal adminId={account.id}/>
                 </div>
               )
             })}
@@ -110,7 +114,6 @@ const AdminControlsTabComponent = () => {
       </div>
       <AddAdminAccountModal handleChange={handleChange} handleAddAdmin={handleAddAdmin}/>
       {/* admin control modal */}
-      <ManageAdminModal/>
    
     </div>
   );

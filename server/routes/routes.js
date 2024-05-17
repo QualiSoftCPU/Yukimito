@@ -24,7 +24,7 @@ router.get("/api/admin/getAllAdmin", adminController.getAllAdmins);
 router.post("/api/auth/signin/admin", adminController.signin);
 router.put("/api/admin/booking/accept/:id", adminController.acceptBooking);
 router.put("/api/admin/booking/reject/:id", adminController.rejectBooking);
-router.put("/api/admin/admin-account-management/:id", adminController.updateRole)
+router.put("/api/admin/adminAccountManagement/:id", adminController.updateRole)
 
 router.get("/api/getAllPets", petController.getAllPets);
 router.get("/api/getPets/pet/:petOwnerId", petController.getAllPetsOfPetOwner);
