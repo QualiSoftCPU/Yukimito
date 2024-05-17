@@ -1,8 +1,10 @@
 import { useState, React } from "react";
 import ManageAdminModal from "./modals/ManageAdminModal";
 import AddAdminAccountModal from "./modals/AddAdminAccountModal";
+import axios from "axios";
 
 const AdminControlsTabComponent = () => {
+  const token = localStorage.getItem("token");
 
   const [formData, setFormData] = useState({
     username: '',
@@ -17,6 +19,24 @@ const AdminControlsTabComponent = () => {
       [name]: value
     });
     console.log(formData)
+  };
+
+  const handleAddAdmin = async() => {
+    try {
+      const response = await axios.post('http://localhost:4269/api/auth/signup/admin', formData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+      });
+
+      if (response.status === 200) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -76,7 +96,7 @@ const AdminControlsTabComponent = () => {
           </div>
         </div>
       </div>
-      <AddAdminAccountModal handleChange={handleChange}/>
+      <AddAdminAccountModal handleChange={handleChange} handleAddAdmin={handleAddAdmin}/>
       {/* admin control modal */}
       <ManageAdminModal/>
    

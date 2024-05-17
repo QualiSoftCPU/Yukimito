@@ -9,6 +9,7 @@ const signup = (req, res) => {
  Admin.create({
    username: req.body.username,
    password: bcrypt.hashSync(req.body.password, 8),
+   role: req.body.role
  })
    .then(admin => {
      res.send({ message: "Admin was registered successfully!" });

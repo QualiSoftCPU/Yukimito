@@ -38,7 +38,7 @@ const AddAdminAccountModal = (props) => {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary yuki-color button-border-color">Add</button>
+            <button onClick={props.handleAddAdmin}type="button" class="btn btn-primary yuki-color button-border-color">Add</button>
           </div>
         </div>
       </div>
