@@ -21,13 +21,6 @@ const adminDashboardTabs = [
       ariaSelected: "false"
     },
     {
-      title: "Content Management",
-      id: "content-tab",
-      dataBsTarget: "#content",
-      ariaControls: "content",
-      ariaSelected: "false"
-    },
-    {
       title: "Admin Controls",
       id: "controls-tab",
       dataBsTarget: "#controls",

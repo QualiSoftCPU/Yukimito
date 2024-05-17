@@ -7,10 +7,8 @@ import axios from "axios";
 import adminDashboardTabs from "../../components/partials/admin-dashboard/adminDashboardTabs";
 import PendingVaccinesTab from "../../components/partials/admin-dashboard/tabs/pending-vaccines-tab/PendingVaccinesTab";
 import VaccineTabComponent from "../../components/partials/admin-dashboard/tabs/vaccine-tab/VaccineTabComponent";
-import ContentManagementTabComponent from "../../components/partials/admin-dashboard/tabs/content-management-tab/ContentManagementTabComponent";
 import AdminControlsTabComponent from "../../components/partials/admin-dashboard/tabs/admin-controls-tab/AdminControlsTabComponent";
 import Logout from "../partials/Logout";
-
 
 const AdminDashBoard = () => {
   const navigate = useNavigate();
@@ -145,9 +143,6 @@ const AdminDashBoard = () => {
       </div>
 
       <div className="container px-5">
-        <h1 class="display-5 fw-bold">
-          <span className="yuki-font-color">Welcome Back</span> ...
-        </h1>
         <Box sx={{ flexGrow: 1, margin: 5 }}>
           <div className="border rounded-3">
             <ul
@@ -196,6 +191,7 @@ const AdminDashBoard = () => {
                         service={booking.service_type}
                         checkIn={booking.checkIn}
                         checkOut={booking.checkOut}
+                        petOwners={petOwners}
                       />
                     </>
                   );
@@ -209,8 +205,6 @@ const AdminDashBoard = () => {
               />
 
               <VaccineTabComponent />
-
-              <ContentManagementTabComponent />
               <AdminControlsTabComponent />
             </div>
           </div>

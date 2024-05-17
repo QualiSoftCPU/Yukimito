@@ -1,5 +1,3 @@
-import Avatar from "@mui/material/Avatar";
-
 export default function AdminPendingVaccineCard(props) {
 
   const petOwners = props.petOwners;
@@ -10,7 +8,7 @@ export default function AdminPendingVaccineCard(props) {
   };
 
   return (
-    <>
+    <> 
       <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3">
         <div className="py-3">
           <div className="card shadow">
@@ -20,7 +18,7 @@ export default function AdminPendingVaccineCard(props) {
             <div className="row">
               <div className="col-2">
                 <img
-                  className="img-fluid mt-3 ms-3 img-thumbnail"
+                  className="img-fluid my-3 ms-3 img-thumbnail"
                   alt={`${props.petName}`}
                   src={props.vaccinePhoto}
                   sx={{ height: 150, width: 150}}

@@ -6,10 +6,6 @@ const PendingVaccinesTab = (props) => {
 
   const filteredPets = props.pets.filter(pet => !pet.vaccinated && pet.vaccinePhoto);
 
-  const handleApproveVaccine = (petId) => {
-    props.handleApproveVaccine(petId);
-  };
-
   console.log(filteredPets);
   return (
     <div
