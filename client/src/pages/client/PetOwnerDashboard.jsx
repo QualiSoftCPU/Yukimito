@@ -321,10 +321,6 @@ export default function PetOwnerDashboard() {
 
   const navItems = [];
 
-  const iconStyle = {
-    fontSize: "35px",
-  };
-
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const specificBookingId = selectedBookingId;
 
