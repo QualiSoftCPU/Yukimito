@@ -11,7 +11,7 @@ import NavBarMain from "../partials/NavBarMain";
 import Logout from "../partials/Logout";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
-import coverImage from "../../assets/images/coverImage.jpeg";
+import coverImage from "../../assets/images/cover.svg";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { DeleteBooking } from "../../components/partials/DeleteBooking";
 import EditPetForm from "../partials/EditPetForm";
@@ -791,7 +791,8 @@ export default function PetOwnerDashboard() {
                                 petSize={pet.size}
                                 petBirthday={pet.birthday}
                               />
-                              <VaccinePhotoModal 
+                              <VaccinePhotoModal
+                                vaccinated={pet.vaccinated}
                                 petId={pet.id}
                                 petName={pet.name}
                                 petVaccinePhoto={pet.vaccinePhoto}
