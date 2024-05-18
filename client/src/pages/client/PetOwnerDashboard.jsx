@@ -701,6 +701,9 @@ export default function PetOwnerDashboard() {
                                       style={{ display: "none" }}
                                       onChange={(e) => handleUploadPetAvatar(e, pet.id)}
                                     />
+                                    <div>
+                                      <button className="yuki-font-color btn btn-link ps-0">View Pet Vaccine</button>
+                                    </div>
                                     <span className="card-title h5">
                                       {pet.name}
                                     </span>
