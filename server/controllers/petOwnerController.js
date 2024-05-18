@@ -140,7 +140,8 @@ const updateProfile = (req, res) => {
     name: req.body.ownerName,
     contact_number: req.body.contactNumber,
     email_address: req.body.email,
-    username: req.body.username
+    username: req.body.username,
+    address: req.body.address,
   };
 
   petOwner.update(updatedProfile, {

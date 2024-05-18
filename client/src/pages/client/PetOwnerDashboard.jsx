@@ -297,7 +297,7 @@ export default function PetOwnerDashboard() {
         setPetOwnerDetails({
           ownerName: userDetails.name,
           username: userDetails.username,
-          address: "No address",
+          address: userDetails.address,
           contactNumber: userDetails.contact_number,
           email: userDetails.email_address,
           profilePhoto: userDetails.profilePhoto
@@ -306,7 +306,7 @@ export default function PetOwnerDashboard() {
         setUserData({
           ownerName: userDetails.name,
           username: userDetails.username,
-          address: "No address",
+          address: userDetails.address,
           contactNumber: userDetails.contact_number,
           email: userDetails.email_address,
           profilePhoto: userDetails.profilePhoto
@@ -412,7 +412,7 @@ export default function PetOwnerDashboard() {
                   <b>Pet Owner Details</b>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">{userData.address}</h5>
+                  <h5 class="card-title">Address: {userData.address ? userData.address : "No address"}</h5>
                   <p class="card-text text-secondary">
                     Contact Number: {userData.contactNumber}
                     <br />
