@@ -138,7 +138,7 @@ const uploadPetProfile = async (req, res) => {
     console.log(downloadURL);
 
     await pet.update({
-      vaccinePhoto: downloadURL,
+      petPhoto: downloadURL,
     });
 
     res.status(200).json(pet);
