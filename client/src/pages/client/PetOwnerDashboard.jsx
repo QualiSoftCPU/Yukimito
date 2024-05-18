@@ -299,7 +299,7 @@ export default function PetOwnerDashboard() {
           username: userDetails.username,
           address: "No address",
           contactNumber: userDetails.contact_number,
-          email: userDetails.email,
+          email: userDetails.email_address,
           profilePhoto: userDetails.profilePhoto
         });
 
@@ -321,6 +321,8 @@ export default function PetOwnerDashboard() {
 
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const specificBookingId = selectedBookingId;
+
+  console.log(petOwnerDetails)
 
   return (
     <>
@@ -375,7 +377,7 @@ export default function PetOwnerDashboard() {
                       username={petOwnerDetails.username}
                       contactNumber={petOwnerDetails.contactNumber}
                       address={petOwnerDetails.address}
-                      email={petOwnerDetails}
+                      email={petOwnerDetails.email}
                       openEdit={openEdit}
                       handleUpdateUser={handleUpdateUser}
                       handleUpdate={handleUpdate}
