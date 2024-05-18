@@ -111,6 +111,42 @@ const updatePet = async (req, res) => {
   }
 };
 
+const uploadPetProfile = async (req, res) => {
+  const petId = req.params.petId;
+
+  try {
+    const pet = await Pet.findByPk(petId);
+
+    if (!pet) {
+      return res.status(404).json({ message: 'Pet not found' });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ message: 'No file uploaded for vaccinePhoto' });
+    }
+
+    console.log(req.file);
+
+    const dateTime = giveCurrentDateTime();
+    const storageRef = ref(storage, `files/${req.file.originalname + " " + dateTime}`);
+    const metadata = {
+      contentType: req.file.mimetype,
+    };
+    const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
+    const downloadURL = await getDownloadURL(snapshot.ref);
+
+    console.log(downloadURL);
+
+    await pet.update({
+      petPhoto: downloadURL,
+    });
+
+    res.status(200).json(pet);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
 
 async function approvePetVaccine(req, res) {
   const petId = req.params.petId;
@@ -164,4 +200,4 @@ const giveCurrentDateTime = () => {
   return dateTime
 };
 
-module.exports = { getAllPets, getAllPetsOfPetOwner, createPet, getPet, deletePet, approvePetVaccine, updatePet};
+module.exports = { getAllPets, getAllPetsOfPetOwner, createPet, getPet, deletePet, approvePetVaccine, updatePet, uploadPetProfile};

@@ -15,6 +15,7 @@ import coverImage from "../../assets/images/coverImage.jpeg";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { DeleteBooking } from "../../components/partials/DeleteBooking";
 import EditPetForm from "../partials/EditPetForm";
+import VaccinePhotoModal from "../partials/VaccinePhotoModal";
 
 export default function PetOwnerDashboard() {
   const navigate = useNavigate();
@@ -75,6 +76,35 @@ export default function PetOwnerDashboard() {
       ...pet,
       [event.target.name]: event.target.files[0],
     });
+  };
+
+  const handleUploadPetAvatar = async (event, petId) => {
+    const file = event.target.files[0];
+  
+    const formData = new FormData();
+    formData.append('_method', 'PUT');
+    formData.append("petProfilePhoto", file);
+  
+    try {
+      const response = await axios.put(
+        `http://localhost:4269/api/pet/uploadPetProfile/${petId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "Authorization": `Bearer ${token}`
+          },
+        }
+      );
+      if (response.status === 200) {
+        console.log("Pet avatar uploaded successfully!");
+        window.location.reload();
+      } else {
+        console.log("Failed to upload pet avatar!");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const handleUploadProfilePhoto = async (event) => {
@@ -644,7 +674,7 @@ export default function PetOwnerDashboard() {
                       >
                         {pets.map((pet, index) => {
                           return (
-                            <div className="card my-2 shadow-sm">
+                            <div className="card my-2 shadow-sm" key={pet.id}>
                               <div className="card-header">{pet.breed}</div>
                               <div className="card-body">
                                 <div
@@ -654,66 +684,82 @@ export default function PetOwnerDashboard() {
                                     alignItems: "center",
                                   }}
                                 >
-                                  <div>
-                                    <Avatar
-                                      className="img-fluid"
-                                      alt={`${pets[index].name}`}
-                                      src={pets[index].vaccinePhoto}
-                                      sx={{ width: 75, height: 75 }}
+                                  <div className="align-middle">
+                                    <label htmlFor={`pet-avatar-upload-${pet.id}`}>
+                                      <Avatar
+                                        className="img-fluid me-2"
+                                        alt={`${pets[index].name}`}
+                                        src={pets[index].petPhoto}
+                                        sx={{ width: 75, height: 75 }}
+                                        style={{ cursor: "pointer" }}
+                                      />
+                                    </label>
+                                    <input
+                                      id={`pet-avatar-upload-${pet.id}`}
+                                      type="file"
+                                      accept="image/*"
+                                      style={{ display: "none" }}
+                                      onChange={(e) => handleUploadPetAvatar(e, pet.id)}
                                     />
+                                    <div>
+                                      <button 
+                                      className="yuki-font-color btn btn-link ps-0"
+                                      data-toggle="modal"
+                                      data-target={"#PetVaccineModal" + pet.id}
+                                      >View Pet Vaccine</button>
+                                    </div>
                                     <span className="card-title h5">
                                       {pet.name}
                                     </span>
                                     &nbsp;
                                     <span className="span">({pet.size})</span>
-                                    {pets[index].vaccinated ? <VaccinesIcon className="text-success" /> : null}
+                                    {pet.vaccinated ? <VaccinesIcon className="text-success" /> : null}
                                   </div>
                                   <div>
-                                  <button
-                                    class="btn btn-outline-secondary mx-2"
-                                    data-toggle="modal"
-                                    data-target={"#editPetForm" + pet.id}
-                                  >
-                                    Edit
-                                  </button>
+                                    <button
+                                      className="btn btn-outline-secondary mx-2"
+                                      data-toggle="modal"
+                                      data-target={`#editPetForm${pet.id}`}
+                                    >
+                                      Edit
+                                    </button>
                                     <a
                                       type="button"
-                                      class="btn btn-danger"
+                                      className="btn btn-danger"
                                       data-toggle="modal"
-                                      data-target={"#HomeCareBookNow" + pet.id}
+                                      data-target={`#HomeCareBookNow${pet.id}`}
                                       href="/"
                                     >
                                       Delete
                                     </a>
-
                                     <div
-                                      class="modal fade"
-                                      id={"HomeCareBookNow" + pet.id}
-                                      tabindex="-1"
+                                      className="modal fade"
+                                      id={`HomeCareBookNow${pet.id}`}
+                                      tabIndex="-1"
                                       role="dialog"
                                       aria-labelledby="HomeCareBookNowCenterTitle"
                                       aria-hidden="true"
                                     >
                                       <div
-                                        class="modal-dialog modal-dialog-centered"
+                                        className="modal-dialog modal-dialog-centered"
                                         role="document"
                                       >
-                                        <div class="modal-content">
-                                          <div class="modal-header">
+                                        <div className="modal-content">
+                                          <div className="modal-header">
                                             <h5
-                                              class="modal-title"
+                                              className="modal-title"
                                               id="HomeCareBookNowLongTitle"
                                             >
                                               Delete Pet
                                             </h5>
                                           </div>
-                                          <div class="modal-body">
+                                          <div className="modal-body">
                                             Are you sure you want to delete pet?
                                           </div>
-                                          <div class="modal-footer">
+                                          <div className="modal-footer">
                                             <button
                                               type="button"
-                                              class="btn btn-secondary"
+                                              className="btn btn-secondary"
                                               data-dismiss="modal"
                                               onClick={handleCancel}
                                             >
@@ -722,10 +768,8 @@ export default function PetOwnerDashboard() {
                                             <button
                                               id={pet.id}
                                               type="button"
-                                              class="btn btn-primary button-color"
-                                              onClick={() =>
-                                                handleDeletePet(pet.id)
-                                              }
+                                              className="btn btn-primary button-color"
+                                              onClick={() => handleDeletePet(pet.id)}
                                             >
                                               Yes
                                             </button>
@@ -746,7 +790,12 @@ export default function PetOwnerDashboard() {
                                 petBreed={pet.breed}
                                 petSize={pet.size}
                                 petBirthday={pet.birthday}
-                                />
+                              />
+                              <VaccinePhotoModal 
+                                petId={pet.id}
+                                petName={pet.name}
+                                petVaccinePhoto={pet.vaccinePhoto}
+                              />
                             </div>
                           );
                         })}

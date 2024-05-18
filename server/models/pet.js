@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     petOwnerId: DataTypes.INTEGER,
     vaccinePhoto: DataTypes.STRING,
     vaccinated: DataTypes.BOOLEAN,
+    petPhoto: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'pet',
