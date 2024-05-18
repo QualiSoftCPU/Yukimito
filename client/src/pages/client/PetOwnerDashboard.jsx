@@ -322,8 +322,6 @@ export default function PetOwnerDashboard() {
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const specificBookingId = selectedBookingId;
 
-  console.log(petOwnerDetails)
-
   return (
     <>
       <NavBarMain navItems={navItems} customLink={<Logout link="/"/>} />
