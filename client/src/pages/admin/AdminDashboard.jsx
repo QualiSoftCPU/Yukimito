@@ -7,11 +7,7 @@ import axios from "axios";
 import adminDashboardTabs from "../../components/partials/admin-dashboard/adminDashboardTabs";
 import PetOwnersTabComponent from "../../components/partials/admin-dashboard/tabs/pet-owners-tab/PetOwnersTabComponent";
 import VaccineTabComponent from "../../components/partials/admin-dashboard/tabs/vaccine-tab/VaccineTabComponent";
-import { DateCalendar } from "@mui/x-date-pickers";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import AdminMainNav from "../../components/partials/admin-dashboard/AdminMainNav";
-import WhatWeOffer from "../partials/WhatWeOffer";
+import BookingsTabComponent from "../../components/partials/admin-dashboard/tabs/bookings-tab/BookingsTabComponent";
 
 const AdminDashBoard = () => {
   const navigate = useNavigate();
@@ -141,31 +137,7 @@ const AdminDashBoard = () => {
           </ul>
 
           <div class="tab-content" id="myTabContent">
-            <div
-              class="tab-pane fade show active"
-              id="booking"
-              role="tabpanel"
-              aria-labelledby="booking-tab"
-            >
-              {bookings.map((booking) => {
-                return (
-                  <>
-                    <AdminBookingCard
-                      bookings={bookings}
-                      handleRejectionReason={handleRejectionReason}
-                      handleBookingRejection={handleBookingRejection}
-                      handleSubmit={handleSubmit}
-                      handleBookingAcceptance={handleBookingAcceptance}
-                      bookingId={booking.id}
-                      petOwnerId={booking.petOwnerId}
-                      service={booking.service_type}
-                      checkIn={booking.checkIn}
-                      checkOut={booking.checkOut}
-                    />
-                  </>
-                );
-              })}
-            </div>
+            <BookingsTabComponent />
 
             <PetOwnersTabComponent />
 
