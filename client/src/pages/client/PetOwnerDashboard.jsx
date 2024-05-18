@@ -15,6 +15,7 @@ import coverImage from "../../assets/images/coverImage.jpeg";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { DeleteBooking } from "../../components/partials/DeleteBooking";
 import EditPetForm from "../partials/EditPetForm";
+import VaccinePhotoModal from "../partials/VaccinePhotoModal";
 
 export default function PetOwnerDashboard() {
   const navigate = useNavigate();
@@ -702,7 +703,11 @@ export default function PetOwnerDashboard() {
                                       onChange={(e) => handleUploadPetAvatar(e, pet.id)}
                                     />
                                     <div>
-                                      <button className="yuki-font-color btn btn-link ps-0">View Pet Vaccine</button>
+                                      <button 
+                                      className="yuki-font-color btn btn-link ps-0"
+                                      data-toggle="modal"
+                                      data-target={"#PetVaccineModal" + pet.id}
+                                      >View Pet Vaccine</button>
                                     </div>
                                     <span className="card-title h5">
                                       {pet.name}
@@ -786,6 +791,11 @@ export default function PetOwnerDashboard() {
                                 petBreed={pet.breed}
                                 petSize={pet.size}
                                 petBirthday={pet.birthday}
+                              />
+                              <VaccinePhotoModal 
+                                petId={pet.id}
+                                petName={pet.name}
+                                petVaccinePhoto={pet.vaccinePhoto}
                               />
                             </div>
                           );
