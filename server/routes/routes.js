@@ -31,6 +31,7 @@ router.get("/api/getPets/pet/:petOwnerId", petController.getAllPetsOfPetOwner);
 router.post("/api/addPet/pet", upload.single('filename'), petController.createPet);
 router.get("/api/getPet/:petId", petController.getPet);
 router.put("/api/pet/approveVaccinationRecord/:petId", petController.approvePetVaccine);
+router.put("/api/pet/updatePet/:petId", petController.updatePet);
 router.delete("/api/deletePet/:petOwnerId/:petId", petController.deletePet);
 
 router.post("/api/createHomeCareBooking", bookingController.createHomeCareBooking);
