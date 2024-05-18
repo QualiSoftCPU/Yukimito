@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     bookings: DataTypes.ARRAY(DataTypes.INTEGER),
     address: DataTypes.STRING,
     profilePhoto: DataTypes.STRING,
+    email_address: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'petOwner',
