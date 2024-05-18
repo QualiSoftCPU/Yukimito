@@ -6,7 +6,6 @@ const PendingVaccinesTab = (props) => {
 
   const filteredPets = props.pets.filter(pet => !pet.vaccinated && pet.vaccinePhoto);
 
-  console.log(filteredPets);
   return (
     <div
       class="tab-pane fade"
@@ -15,7 +14,7 @@ const PendingVaccinesTab = (props) => {
       aria-labelledby="pending-vaccines-tab"
     >
       <ul>
-      {filteredPets.map((pet, index) => {
+      {filteredPets.length === 0 ? <div className="text-secondary text-center my-3">{"No pending vaccines yet."}</div> : filteredPets.map((pet, index) => {
         return (
           <AdminPendingVaccineCard 
             petId={pet.id}
