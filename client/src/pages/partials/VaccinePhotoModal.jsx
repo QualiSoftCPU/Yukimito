@@ -15,7 +15,7 @@ const VaccinePhotoModal = (props) => {
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="PetVaccineModal">
-              {props.petName}'s Vaccine Photo
+              {props.petName}'s Vaccine Photo ({props.vaccinated ? 'Approved': 'Pending'})
             </h5>
           </div>
           <div class="modal-body">
