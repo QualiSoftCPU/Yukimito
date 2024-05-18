@@ -74,8 +74,6 @@ export default function PetOwnerDashboard() {
       ...pet,
       [event.target.name]: event.target.files[0],
     });
-
-    console.log(pet);
   };
 
   const handleUploadProfilePhoto = async (event) => {
@@ -301,7 +299,7 @@ export default function PetOwnerDashboard() {
           username: userDetails.username,
           address: "No address",
           contactNumber: userDetails.contact_number,
-          email: userDetails.email,
+          email: userDetails.email_address,
           profilePhoto: userDetails.profilePhoto
         });
 
@@ -310,7 +308,7 @@ export default function PetOwnerDashboard() {
           username: userDetails.username,
           address: "No address",
           contactNumber: userDetails.contact_number,
-          email: userDetails.email,
+          email: userDetails.email_address,
           profilePhoto: userDetails.profilePhoto
         });
       })

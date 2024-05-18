@@ -139,7 +139,7 @@ const updateProfile = (req, res) => {
   const updatedProfile = {
     name: req.body.ownerName,
     contact_number: req.body.contactNumber,
-    email: req.body.email,
+    email_address: req.body.email,
     username: req.body.username
   };
 
