@@ -34,7 +34,6 @@ export default function PetOwnerDashboard() {
 
   const [pets, setPets] = useState([]);
   const [profilePicture, setProfilePicture] = useState(petOwnerDetails.profilePhoto);
-  const [petProfilePhoto, setPetProfilePhoto] = useState(null);
 
   const [pet, setPet] = useState({
     name: String,
