@@ -132,8 +132,6 @@ const AdminDashBoard = () => {
     </a>,
   ];
 
-  console.log(petOwners);
-
   return (
     <>
       <NavBarMain navItems={navItems} customLink={<Logout link="/AdminLogin"/>}/>
@@ -177,7 +175,7 @@ const AdminDashBoard = () => {
                 role="tabpanel"
                 aria-labelledby="booking-tab"
               >
-                {bookings.map((booking) => {
+                {bookings.filter((booking) => booking.status === "pending").map((booking) => {
                   return (
                     <>
                       <AdminBookingCard

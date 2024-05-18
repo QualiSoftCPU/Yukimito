@@ -351,6 +351,7 @@ export default function PetOwnerDashboard() {
                       width: 150,
                       height: 150,
                     }}
+                    className="border border-5 border-white"
                   />
                 </label>
                 <input
