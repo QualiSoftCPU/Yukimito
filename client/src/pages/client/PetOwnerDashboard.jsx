@@ -14,6 +14,7 @@ import VaccinesIcon from "@mui/icons-material/Vaccines";
 import coverImage from "../../assets/images/coverImage.jpeg";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { DeleteBooking } from "../../components/partials/DeleteBooking";
+import EditPetForm from "../partials/EditPetForm";
 
 export default function PetOwnerDashboard() {
   const navigate = useNavigate();
@@ -667,10 +668,13 @@ export default function PetOwnerDashboard() {
                                     {pets[index].vaccinated ? <VaccinesIcon className="text-success" /> : null}
                                   </div>
                                   <div>
-                                    <button className="btn btn-primary yuki-color button-border-color mx-2">
-                                      {" "}
-                                      Edit
-                                    </button>
+                                  <button
+                                    class="btn btn-outline-secondary mx-2"
+                                    data-toggle="modal"
+                                    data-target={"#editPetForm" + pet.id}
+                                  >
+                                    Edit
+                                  </button>
                                     <a
                                       type="button"
                                       class="btn btn-danger"
@@ -735,6 +739,13 @@ export default function PetOwnerDashboard() {
                                   <br />
                                 </p>
                               </div>
+                              <EditPetForm 
+                                petId={pet.id}
+                                petName={pet.name} 
+                                petBreed={pet.breed}
+                                petSize={pet.size}
+                                petBirthday={pet.birthday}
+                                />
                             </div>
                           );
                         })}
