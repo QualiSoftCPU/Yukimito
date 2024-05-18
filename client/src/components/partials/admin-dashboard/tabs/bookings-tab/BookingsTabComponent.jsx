@@ -5,7 +5,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import bookingSubTabs from "./bookingSubTabs";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 const BookingsTabComponent = () => {
