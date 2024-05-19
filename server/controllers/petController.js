@@ -11,7 +11,17 @@ initializeApp(config);
 
 const storage = getStorage();
 
-async function getAll(req, res)  {
+async function getAllPets(req, res) {
+  try {
+    const pets = await Pet.findAll();
+    res.json(pets);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+async function getAllPetsOfPetOwner(req, res)  {
   const userId = req.params.petOwnerId;
 
   console.log(userId);
@@ -24,6 +34,7 @@ async function getAll(req, res)  {
 
   res.json(pets);
 };
+
 
 async function getPet(req, res) {
   const petId = req.params.petId;
@@ -74,7 +85,88 @@ const createPet = async (req, res) => {
   }
 };
 
+const updatePet = async (req, res) => {
+  const petId = req.params.petId;
 
+  try {
+    const pet = await Pet.findByPk(petId);
+
+    if (!pet) {
+      return res.status(404).json({ message: 'Pet not found' });
+    }
+
+    const { name, breed, birthday, size } = req.body;
+
+    await pet.update({
+      name: name || pet.name,
+      breed: breed || pet.breed,
+      birthday: birthday || pet.birthday,
+      size: size || pet.size
+    });
+
+    res.status(200).json(pet);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+const uploadPetProfile = async (req, res) => {
+  const petId = req.params.petId;
+
+  try {
+    const pet = await Pet.findByPk(petId);
+
+    if (!pet) {
+      return res.status(404).json({ message: 'Pet not found' });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ message: 'No file uploaded for vaccinePhoto' });
+    }
+
+    console.log(req.file);
+
+    const dateTime = giveCurrentDateTime();
+    const storageRef = ref(storage, `files/${req.file.originalname + " " + dateTime}`);
+    const metadata = {
+      contentType: req.file.mimetype,
+    };
+    const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
+    const downloadURL = await getDownloadURL(snapshot.ref);
+
+    console.log(downloadURL);
+
+    await pet.update({
+      petPhoto: downloadURL,
+    });
+
+    res.status(200).json(pet);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+async function approvePetVaccine(req, res) {
+  const petId = req.params.petId;
+
+  try {
+    const pet = await Pet.findByPk(petId);
+
+    if (!pet) {
+      return res.status(404).json({ message: 'Pet not found' });
+    }
+
+    // Update the vaccinated field to true
+    await pet.update({ vaccinated: true });
+
+    res.status(200).json({ message: 'Pet vaccine approved successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
 
 async function deletePet(req, res) {
   const petId = req.params.petId;
@@ -108,4 +200,4 @@ const giveCurrentDateTime = () => {
   return dateTime
 };
 
-module.exports = { getAll, createPet, getPet, deletePet};
+module.exports = { getAllPets, getAllPetsOfPetOwner, createPet, getPet, deletePet, approvePetVaccine, updatePet, uploadPetProfile};

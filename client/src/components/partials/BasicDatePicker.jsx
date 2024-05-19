@@ -5,9 +5,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateField } from '@mui/x-date-pickers/DateField';
 import dayjs from 'dayjs';
 
-export default function BasicDatePicker({ onDateChange }) {
-
-  const [value, setValue] = React.useState(dayjs('2023-12-01'));
+export default function BasicDatePicker({ onDateChange, defaultDate }) {
+  const [value, setValue] = React.useState(defaultDate ? dayjs(defaultDate) : dayjs());
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -15,6 +14,7 @@ export default function BasicDatePicker({ onDateChange }) {
         <DateField
           label="Birth Date"
           value={value}
+          name="birthday"
           onChange={(newValue) => {
             setValue(newValue);
             onDateChange(newValue);

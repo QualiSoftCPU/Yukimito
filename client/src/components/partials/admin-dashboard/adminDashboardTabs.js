@@ -7,10 +7,10 @@ const adminDashboardTabs = [
       ariaSelected: "true"
     },
     {
-      title: "Pet Owners",
-      id: "petowners-tab",
-      dataBsTarget: "#petowners",
-      ariaControls: "petowners",
+      title: "Pending Vaccines",
+      id: "pending-vaccines-tab",
+      dataBsTarget: "#pending-vaccines",
+      ariaControls: "pending-vaccines",
       ariaSelected: "false"
     },
     {
@@ -18,13 +18,6 @@ const adminDashboardTabs = [
       id: "vaccine-tab",
       dataBsTarget: "#vaccine",
       ariaControls: "vaccine",
-      ariaSelected: "false"
-    },
-    {
-      title: "Content Management",
-      id: "content-tab",
-      dataBsTarget: "#content",
-      ariaControls: "content",
       ariaSelected: "false"
     },
     {

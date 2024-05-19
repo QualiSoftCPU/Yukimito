@@ -1,7 +1,6 @@
 import Footer from "../partials/Footer";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
-import profilePicture from "../../assets/images/pp1.jpeg";
 import AddPetForm from "../../components/partials/AddPetForm";
 import EditPetProfileForm from "../../components/partials/EditPetProfileForm";
 import { useState, useEffect } from "react";
@@ -10,12 +9,13 @@ import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import NavBarMain from "../partials/NavBarMain";
 import Logout from "../partials/Logout";
-import VerifiedIcon from "@mui/icons-material/Verified";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
-import coverImage from "../../assets/images/coverImage.jpeg";
+import coverImage from "../../assets/images/cover.svg"
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { DeleteBooking } from "../../components/partials/DeleteBooking";
+import EditPetForm from "../partials/EditPetForm";
+import VaccinePhotoModal from "../partials/VaccinePhotoModal";
 
 export default function PetOwnerDashboard() {
   const navigate = useNavigate();
@@ -23,15 +23,17 @@ export default function PetOwnerDashboard() {
 
   let userSelected = jwtDecode(token);
 
-  const [pets, setPets] = useState([]);
-
   const [petOwnerDetails, setPetOwnerDetails] = useState({
     ownerName: String,
     username: String,
     address: String,
     contactNumber: Number,
     email: String,
+    profilePhoto: String
   });
+
+  const [pets, setPets] = useState([]);
+  const [profilePicture, setProfilePicture] = useState(petOwnerDetails.profilePhoto);
 
   const [pet, setPet] = useState({
     name: String,
@@ -39,6 +41,7 @@ export default function PetOwnerDashboard() {
     birthday: String,
     size: String,
     petOwnerId: userSelected.id,
+    filename: String
   });
 
   const [bookings, setBookings] = useState([]);
@@ -66,6 +69,72 @@ export default function PetOwnerDashboard() {
   };
   const handleCancel = () => {
     setOpen(false);
+  };
+
+  const handleUpload = (event) => {
+    setPet({
+      ...pet,
+      [event.target.name]: event.target.files[0],
+    });
+  };
+
+  const handleUploadPetAvatar = async (event, petId) => {
+    const file = event.target.files[0];
+  
+    const formData = new FormData();
+    formData.append('_method', 'PUT');
+    formData.append("petProfilePhoto", file);
+  
+    try {
+      const response = await axios.put(
+        `http://localhost:4269/api/pet/uploadPetProfile/${petId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "Authorization": `Bearer ${token}`
+          },
+        }
+      );
+      if (response.status === 200) {
+        console.log("Pet avatar uploaded successfully!");
+        window.location.reload();
+      } else {
+        console.log("Failed to upload pet avatar!");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const handleUploadProfilePhoto = async (event) => {
+    const file = event.target.files[0];
+
+    setProfilePicture(file);
+
+    const ownerId = userSelected.id;
+
+    const formData = new FormData();
+
+    formData.append('_method', 'PUT');
+    formData.append("filename", file);
+
+    console.log([...formData]);
+
+    await axios.put(
+      `http://localhost:4269/api/auth/uploadProfilePicture/${ownerId}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Authorization": `Bearer ${token}`
+        },
+      }
+    )
+    .then(response => console.log(response))
+    .catch(error => console.log(error));
+    
+    window.location.reload();
   };
 
   const handleUpdateUser = (updatedUser) => {
@@ -120,15 +189,29 @@ export default function PetOwnerDashboard() {
   async function handleAdd() {
     const token = localStorage.getItem("token");
 
-    console.log(pet);
+    let formData = new FormData();
+
+    for (let detail in pet) {
+      console.log(detail, ":", pet[detail])
+      if (detail === 'vaccinePhoto') {
+        formData.append('filename', pet[detail])
+      } else {
+        formData.append(detail, pet[detail])
+      }
+    }
+
+    formData.append('_method', 'POST'); 
+
+    console.log([...formData]);
 
     try {
       const response = await axios.post(
         "http://localhost:4269/api/addPet/pet",
-        pet,
+        formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+            "Authorization": `Bearer ${token}`
           },
         }
       );
@@ -138,7 +221,7 @@ export default function PetOwnerDashboard() {
         window.location.reload();
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   }
 
@@ -245,17 +328,19 @@ export default function PetOwnerDashboard() {
         setPetOwnerDetails({
           ownerName: userDetails.name,
           username: userDetails.username,
-          address: "No address",
+          address: userDetails.address,
           contactNumber: userDetails.contact_number,
-          email: userDetails.email,
+          email: userDetails.email_address,
+          profilePhoto: userDetails.profilePhoto
         });
 
         setUserData({
           ownerName: userDetails.name,
           username: userDetails.username,
-          address: "No address",
+          address: userDetails.address,
           contactNumber: userDetails.contact_number,
-          email: userDetails.email,
+          email: userDetails.email_address,
+          profilePhoto: userDetails.profilePhoto
         });
       })
       .catch((error) => {
@@ -265,19 +350,12 @@ export default function PetOwnerDashboard() {
 
   const navItems = [];
 
-  const iconStyle = {
-    fontSize: "35px",
-  };
-
-  console.log("Sorted", bookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
-  console.log("User Data:", userData);
-
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const specificBookingId = selectedBookingId;
 
   return (
     <>
-      <NavBarMain navItems={navItems} customLink={<Logout />} />
+      <NavBarMain navItems={navItems} customLink={<Logout link="/"/>} />
       <div className="mt-5 pt-3 px-5 yuki-color2 text-center">
         Welcome back to Yukimito Services!
       </div>
@@ -294,14 +372,24 @@ export default function PetOwnerDashboard() {
 
             <div className="mt-1" style={{ maxHeight: "50px" }}>
               <div className="col mt-1">
-                <Avatar
-                  alt="Profile Picture"
-                  src={profilePicture}
-                  sx={{
-                    transform: "translate(10%, -80%)",
-                    width: 150,
-                    height: 150,
-                  }}
+                <label htmlFor="profile-picture-upload">
+                  <Avatar
+                    alt="Profile Picture"
+                    src={profilePicture || petOwnerDetails.profilePhoto}
+                    sx={{
+                      transform: "translate(10%, -80%)",
+                      width: 150,
+                      height: 150,
+                    }}
+                    className="border border-5 border-white"
+                  />
+                </label>
+                <input
+                  id="profile-picture-upload"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={handleUploadProfilePhoto}
                 />
               </div>
             </div>
@@ -310,10 +398,6 @@ export default function PetOwnerDashboard() {
                 <div className="col">
                   <h1>
                     {userData.ownerName}{" "}
-                    <VerifiedIcon
-                      style={iconStyle}
-                      className="yuki-font-color"
-                    />
                   </h1>
                 </div>
                 <div class="col d-flex flex-row-reverse lg">
@@ -360,7 +444,7 @@ export default function PetOwnerDashboard() {
                   <b>Pet Owner Details</b>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">{userData.address}</h5>
+                  <h5 class="card-title">Address: {userData.address ? userData.address : "No address"}</h5>
                   <p class="card-text text-secondary">
                     Contact Number: {userData.contactNumber}
                     <br />
@@ -472,9 +556,9 @@ export default function PetOwnerDashboard() {
                     </div>
 
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item text-secondary p-1">
-                        {bookings.map((booking) => {
-                          return (
+                      {bookings.map((booking) => {
+                        return (
+                          <li class="list-group-item text-secondary p-1">
                             <div 
                               className="card my-2 shadow overflow-auto p-1 mb-3 mb-md-0 mr-md-2"
                               style={{ maxWidth: "800px", maxHeight: "500px" }}
@@ -503,9 +587,9 @@ export default function PetOwnerDashboard() {
                                 </p>    
                               </div>
                             </div>
-                          );
-                        })}
-                      </li>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
 
@@ -577,6 +661,7 @@ export default function PetOwnerDashboard() {
                       handleCancel={handleCancel}
                       handleChange={handleChange}
                       handleClickOpen={handleClickOpen}
+                      handleUpload={handleUpload}
                     />
                   </div>
                 </div>
@@ -587,9 +672,9 @@ export default function PetOwnerDashboard() {
                         class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light"
                         style={{ maxWidth: "800px", maxHeight: "500px" }}
                       >
-                        {pets.map((pet) => {
+                        {pets.map((pet, index) => {
                           return (
-                            <div className="card my-2 shadow-sm">
+                            <div className="card my-2 shadow-sm" key={pet.id}>
                               <div className="card-header">{pet.breed}</div>
                               <div className="card-body">
                                 <div
@@ -599,63 +684,82 @@ export default function PetOwnerDashboard() {
                                     alignItems: "center",
                                   }}
                                 >
-                                  <div>
-                                    <Avatar
-                                      className="img-fluid"
-                                      alt="Profile Picture"
-                                      src={profilePicture}
-                                      sx={{ width: 75, height: 75 }}
+                                  <div className="align-middle">
+                                    <label htmlFor={`pet-avatar-upload-${pet.id}`}>
+                                      <Avatar
+                                        className="img-fluid me-2"
+                                        alt={`${pets[index].name}`}
+                                        src={pets[index].petPhoto}
+                                        sx={{ width: 75, height: 75 }}
+                                        style={{ cursor: "pointer" }}
+                                      />
+                                    </label>
+                                    <input
+                                      id={`pet-avatar-upload-${pet.id}`}
+                                      type="file"
+                                      accept="image/*"
+                                      style={{ display: "none" }}
+                                      onChange={(e) => handleUploadPetAvatar(e, pet.id)}
                                     />
+                                    <div>
+                                      <button 
+                                      className="yuki-font-color btn btn-link ps-0"
+                                      data-toggle="modal"
+                                      data-target={"#PetVaccineModal" + pet.id}
+                                      >View Pet Vaccine</button>
+                                    </div>
                                     <span className="card-title h5">
                                       {pet.name}
                                     </span>
                                     &nbsp;
                                     <span className="span">({pet.size})</span>
-                                    <VaccinesIcon className="yuki-font-color" />
+                                    {pet.vaccinated ? <VaccinesIcon className="text-success" /> : null}
                                   </div>
                                   <div>
-                                    <button className="btn btn-primary yuki-color button-border-color mx-2">
-                                      {" "}
+                                    <button
+                                      className="btn btn-outline-secondary mx-2"
+                                      data-toggle="modal"
+                                      data-target={`#editPetForm${pet.id}`}
+                                    >
                                       Edit
                                     </button>
                                     <a
                                       type="button"
-                                      class="btn btn-danger"
+                                      className="btn btn-danger"
                                       data-toggle="modal"
-                                      data-target={"#HomeCareBookNow" + pet.id}
+                                      data-target={`#HomeCareBookNow${pet.id}`}
                                       href="/"
                                     >
                                       Delete
                                     </a>
-
                                     <div
-                                      class="modal fade"
-                                      id={"HomeCareBookNow" + pet.id}
-                                      tabindex="-1"
+                                      className="modal fade"
+                                      id={`HomeCareBookNow${pet.id}`}
+                                      tabIndex="-1"
                                       role="dialog"
                                       aria-labelledby="HomeCareBookNowCenterTitle"
                                       aria-hidden="true"
                                     >
                                       <div
-                                        class="modal-dialog modal-dialog-centered"
+                                        className="modal-dialog modal-dialog-centered"
                                         role="document"
                                       >
-                                        <div class="modal-content">
-                                          <div class="modal-header">
+                                        <div className="modal-content">
+                                          <div className="modal-header">
                                             <h5
-                                              class="modal-title"
+                                              className="modal-title"
                                               id="HomeCareBookNowLongTitle"
                                             >
                                               Delete Pet
                                             </h5>
                                           </div>
-                                          <div class="modal-body">
+                                          <div className="modal-body">
                                             Are you sure you want to delete pet?
                                           </div>
-                                          <div class="modal-footer">
+                                          <div className="modal-footer">
                                             <button
                                               type="button"
-                                              class="btn btn-secondary"
+                                              className="btn btn-secondary"
                                               data-dismiss="modal"
                                               onClick={handleCancel}
                                             >
@@ -664,10 +768,8 @@ export default function PetOwnerDashboard() {
                                             <button
                                               id={pet.id}
                                               type="button"
-                                              class="btn btn-primary button-color"
-                                              onClick={() =>
-                                                handleDeletePet(pet.id)
-                                              }
+                                              className="btn btn-primary button-color"
+                                              onClick={() => handleDeletePet(pet.id)}
                                             >
                                               Yes
                                             </button>
@@ -682,6 +784,19 @@ export default function PetOwnerDashboard() {
                                   <br />
                                 </p>
                               </div>
+                              <EditPetForm 
+                                petId={pet.id}
+                                petName={pet.name} 
+                                petBreed={pet.breed}
+                                petSize={pet.size}
+                                petBirthday={pet.birthday}
+                              />
+                              <VaccinePhotoModal
+                                vaccinated={pet.vaccinated}
+                                petId={pet.id}
+                                petName={pet.name}
+                                petVaccinePhoto={pet.vaccinePhoto}
+                              />
                             </div>
                           );
                         })}

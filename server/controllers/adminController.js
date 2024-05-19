@@ -9,6 +9,7 @@ const signup = (req, res) => {
  Admin.create({
    username: req.body.username,
    password: bcrypt.hashSync(req.body.password, 8),
+   role: req.body.role
  })
    .then(admin => {
      res.send({ message: "Admin was registered successfully!" });
@@ -16,6 +17,15 @@ const signup = (req, res) => {
    .catch(err => {
      res.status(500).send({ message: err.message });
    });
+};
+
+const getAllAdmins = async (req, res) => {
+  try {
+    const admins = await Admin.findAll();
+    res.status(200).json(admins);
+  } catch (error) {
+    res.status(500).json({ message: "Error retrieving admin accounts" });
+  }
 };
 
 const signin = (req, res) => {
@@ -106,6 +116,32 @@ async function rejectBooking(req, res) {
   }
 }
 
+const updateRole = async (req, res) => {
+  const { id } = req.params;
+  const { role } = req.body;
+
+  const validRoles = ['admin', 'superadmin'];
+
+  if (!validRoles.includes(role)) {
+    return res.status(400).send({ message: "Invalid role provided." });
+  }
+
+  try {
+    const admin = await Admin.findByPk(id);
+    if (!admin) {
+      return res.status(404).send({ message: "Admin not found." });
+    }
+
+    admin.role = role;
+    await admin.save();
+
+    res.send({ message: "Admin role updated successfully." });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
 
 
-module.exports = { signup, signin, acceptBooking, rejectBooking};
+
+
+module.exports = { signup, signin, acceptBooking, rejectBooking, updateRole, getAllAdmins };
