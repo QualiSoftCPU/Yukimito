@@ -45,7 +45,8 @@ router.get("/api/getAllBookings", bookingController.getAllBookings);
 router.put("/api/updateBooking/:bookingId", bookingController.updateBooking);
 
 router.post("/api/addVaccine", vaccineController.createVaccine);
-router.get("/api/getVaccine/:id", vaccineController.getVaccine);
+router.get("/api/getVaccine/:id", vaccineController.findVaccineById);
+router.get("/api/getAllVaccines", vaccineController.findAllVaccines);
 router.put("/api/updateVaccine/:id", vaccineController.updateVaccine);
 router.delete("/api/deleteVaccine/:id", vaccineController.deleteVaccine);
  

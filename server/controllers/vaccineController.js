@@ -88,11 +88,29 @@ async function findVaccineById(req, res) {
     }
   }
 
+  async function findAllVaccines(req, res) {
+    try {
+      const vaccines = await vaccine.findAll();
+      if (vaccines.length === 0) {
+        return res.status(404).send({ message: "No vaccines found" });
+      }
+      else {
+        return res.status(200).send(vaccines);
+      }
+
+    } catch (error) {
+      res.status(500).send({
+        message: error.message || "Some error occurred while retrieving vaccines."
+      });
+    }
+  }
+
 module.exports = {
   createVaccine,
   updateVaccine,
   deleteVaccine,
-  findVaccineById
+  findVaccineById,
+  findAllVaccines
 };
 
 
