@@ -298,7 +298,7 @@ export default function WhatWeOffer() {
                 Boarding Services 
             </h1>
             <hr className='mb-2 pb-5'/>
-          {/* <img src={BoardingServices} class="d-block w-100" alt="..."/> */}
+          <img src={BoardingServices} class="d-block w-100" alt="..."/>
           <br />
           
           <h1 class="display-5 fw-bold lh-1 mb-3 yuki-font-color mt-5">
