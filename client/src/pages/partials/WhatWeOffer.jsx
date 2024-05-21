@@ -290,7 +290,7 @@ export default function WhatWeOffer() {
             For your pet.
           </h1>
 
-{/* </div>
+</div>
 <div>
 
 
@@ -298,14 +298,14 @@ export default function WhatWeOffer() {
                 Boarding Services 
             </h1>
             <hr className='mb-2 pb-5'/>
-          <img src={BoardingServices} class="d-block w-100" alt="..."/>
+          {/* <img src={BoardingServices} class="d-block w-100" alt="..."/> */}
           <br />
           
           <h1 class="display-5 fw-bold lh-1 mb-3 yuki-font-color mt-5">
                 Grooming Services
             </h1>
             <hr className='mb-2 pb-5'/>
-          <img src={GroomingServices} class="d-block w-100" alt="..."/> */}
+          {/* <img src={GroomingServices} class="d-block w-100" alt="..."/> */}
 
           {/* <div class="col-lg-12 mx-auto col-12">
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
