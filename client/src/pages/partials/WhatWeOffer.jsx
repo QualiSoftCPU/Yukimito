@@ -305,7 +305,7 @@ export default function WhatWeOffer() {
                 Grooming Services
             </h1>
             <hr className='mb-2 pb-5'/>
-          {/* <img src={GroomingServices} class="d-block w-100" alt="..."/> */}
+          <img src={GroomingServices} class="d-block w-100" alt="..."/>
 
           {/* <div class="col-lg-12 mx-auto col-12">
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
