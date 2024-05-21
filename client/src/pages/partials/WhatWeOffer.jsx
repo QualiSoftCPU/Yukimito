@@ -1,5 +1,6 @@
 import crsl2 from '../../assets/images/crsl3.png';
-
+import BoardingServices from '../../assets/images/BoardingServices.png';
+import GroomingServices from '../../assets/images/GroomingServices.png';
 import h1 from '../../assets/images/gallery/h1.PNG';
 import h2 from '../../assets/images/gallery/h2.PNG';
 import h3 from '../../assets/images/gallery/h3.PNG';
@@ -289,62 +290,24 @@ export default function WhatWeOffer() {
             For your pet.
           </h1>
 
-          <hr className='w-25 mx-auto py-3'/>
+</div>
+<div>
 
-          <div class="col-lg-12 mx-auto col-12">
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-              <div class="row g-5">
-                <div class="col-sm-4">
-                  <div class="card shadow">
-                    <div className="card-header">
-                      <h5 class="card-title">Errand Service</h5>
-                    </div>
-                    <div class="card-body">
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">
-                          <a class="btn btn-primary button-color" href="#Log In">Get Service</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="card shadow">
-                    <div className="card-header">
-                      <h5 class="card-title">Errand Service</h5>
-                    </div>
-                    <div class="card-body">
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">
-                          <a class="btn btn-primary button-color" href="#Log In">Get Service</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="card shadow">
-                    <div className="card-header">
-                      <h5 class="card-title">Errand Service</h5>
-                    </div>
-                    <div class="card-body">
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">
-                          <a class="btn btn-primary button-color" href="#Log In">Get Service</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
+          <h1 class="display-5 fw-bold lh-1 mb-3 yuki-font-color">
+                Boarding Services 
+            </h1>
+            <hr className='mb-2 pb-5'/>
+          <img src={BoardingServices} class="d-block w-100" alt="..."/>
+          <br />
+          
+          <h1 class="display-5 fw-bold lh-1 mb-3 yuki-font-color mt-5">
+                Grooming Services
+            </h1>
+            <hr className='mb-2 pb-5'/>
+          <img src={GroomingServices} class="d-block w-100" alt="..."/>
+
+      
         </div>
 
         <hr id='Team' className='pb-5 mb-5'/>
