@@ -307,60 +307,7 @@ export default function WhatWeOffer() {
             <hr className='mb-2 pb-5'/>
           <img src={GroomingServices} class="d-block w-100" alt="..."/>
 
-          {/* <div class="col-lg-12 mx-auto col-12">
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-              <div class="row g-5">
-                <div class="col-sm-4">
-                  <div class="card shadow">
-                    <div className="card-header">
-                      <h5 class="card-title">Errand Service</h5>
-                    </div>
-                    <div class="card-body">
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">
-                          <a class="btn btn-primary button-color" href="#Log In">Get Service</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="card shadow">
-                    <div className="card-header">
-                      <h5 class="card-title">Errand Service</h5>
-                    </div>
-                    <div class="card-body">
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">
-                          <a class="btn btn-primary button-color" href="#Log In">Get Service</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="card shadow">
-                    <div className="card-header">
-                      <h5 class="card-title">Errand Service</h5>
-                    </div>
-                    <div class="card-body">
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">
-                          <a class="btn btn-primary button-color" href="#Log In">Get Service</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> */}
+      
         </div>
 
         <hr id='Team' className='pb-5 mb-5'/>
