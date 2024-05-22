@@ -21,6 +21,13 @@ const adminDashboardTabs = [
       ariaSelected: "false"
     },
     {
+      title: "Product Inventory",
+      id: "inventory-tab",
+      dataBsTarget: "#inventory",
+      ariaControls: "inventory",
+      ariaSelected: "false"
+    },
+    {
       title: "Admin Controls",
       id: "controls-tab",
       dataBsTarget: "#controls",
