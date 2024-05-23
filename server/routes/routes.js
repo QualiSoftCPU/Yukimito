@@ -8,6 +8,7 @@ const petOwnerController = require("../controllers/petOwnerController");
 const adminController = require("../controllers/adminController");
 const petController = require("../controllers/petController");
 const bookingController = require("../controllers/bookingController");
+const vaccineController = require("../controllers/vaccineController");
 const uploadController = require("../controllers/uploadController");
 //const serviceController = require("../controllers/serviceController");
 
@@ -42,6 +43,12 @@ router.post("/api/createDayCareBooking", bookingController.createDayCareBooking)
 router.get("/api/getBooking/:petOwnerId", bookingController.getBooking);
 router.get("/api/getAllBookings", bookingController.getAllBookings);
 router.put("/api/updateBooking/:bookingId", bookingController.updateBooking);
+
+router.post("/api/addVaccine", vaccineController.createVaccine);
+router.get("/api/getVaccine/:id", vaccineController.findVaccineById);
+router.get("/api/getAllVaccines", vaccineController.findAllVaccines);
+router.put("/api/updateVaccine/:id", vaccineController.updateVaccine);
+router.delete("/api/deleteVaccine/:id", vaccineController.deleteVaccine);
  
 // router.post("/api/addService", serviceController.createService);
 // router.get("/api/getService/:serviceId", serviceController.getService);
