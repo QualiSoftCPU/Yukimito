@@ -12,6 +12,12 @@ module.exports = {
       acquire: 30000,
       idle: 10000,
     },
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false 
+      }
+    },
     logging: false,
   },
   test: {
@@ -23,6 +29,12 @@ module.exports = {
       acquire: 30000,
       idle: 10000,
     },
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false 
+      }
+    },
     logging: false,
   },
   production: {
@@ -33,6 +45,12 @@ module.exports = {
       min: 0,
       acquire: 30000,
       idle: 10000,
+    },
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false 
+      }
     },
     logging: false,
   },

@@ -22,7 +22,8 @@
   "homepage": "https://github.com/QualiSoftCPU/Yukimito/tree/main#readme",
   "dependencies": {
     "bootstrap": "^5.3.2",
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "react-toastify": "^10.0.5"
   },
   "devDependencies": {
     "axios": "^1.6.2",
