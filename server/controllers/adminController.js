@@ -4,6 +4,7 @@ const db = require("../models");
 const Booking = db.booking;
 const Admin = db.admin;
 
+
 const signup = (req, res) => {
 
  Admin.create({
@@ -70,7 +71,7 @@ async function acceptBooking(req, res) {
   const { id } = req.params;
 
   try {
-    const booking = await Booking.findByPk(id);
+    const booking = await Booking.findByPk(id, { include: PetOwner });
     if (!booking) {
       return res.status(404).json({ message: 'Booking not found' });
     }
@@ -81,6 +82,13 @@ async function acceptBooking(req, res) {
 
     booking.status = 'accepted';
     await booking.save();
+
+    const petOwner = booking.petOwner; // Assuming booking has a petOwner field with the associated PetOwner
+    if (petOwner.status === 'new') {
+      petOwner.status = 'old';
+      await petOwner.save();
+    }
+
     res.json(booking);
   } catch (error) {
     console.error(error);
