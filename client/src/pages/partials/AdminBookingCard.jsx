@@ -11,6 +11,12 @@ export default function AdminBookingCard(props) {
     return owner ? owner.address : 'Unknown';
   };
 
+  const getOwnerStatus = (petOwnerId) => {
+    const owner = petOwners.find((owner) => owner.id === petOwnerId);
+    return owner ? owner.status : 'Unknown';
+  };
+
+
   return (
     <>
       <div className="overflow-auto p-3 mb-3 mb-md-0 mr-md-3">
@@ -20,7 +26,7 @@ export default function AdminBookingCard(props) {
               <b>Booking Details</b>
             </div>
             <div className="card-body">
-              <h5 className="card-title">Client Name: {getOwnerName(props.petOwnerId)}</h5>
+              <h5 className="card-title">Client Name: {getOwnerName(props.petOwnerId)}<span> ({getOwnerStatus(props.petOwnerId)})</span></h5>
               <p>Client Address: {getOwnerAddress(props.petOwnerId)}</p>
               <p>Booking ID: YKMTBK{props.bookingId}</p>
               <p className="card-text text-secondary">

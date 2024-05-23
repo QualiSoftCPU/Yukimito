@@ -1,6 +1,7 @@
 const db = require('../models');
 const Booking = db.booking;
 const Pet = db.pet;
+const PetOwner = db.petOwner;
 
 async function createHomeCareBooking(req, res) {
   const { petList, checkIn, checkOut } = req.body;
@@ -55,6 +56,13 @@ async function createHomeCareBooking(req, res) {
       return res.status(404).send({ message: `Pets with IDs ${missingPets.join(', ')} not found.` });
   }
 
+  const status = 'pending';
+  const petOwner = PetOwner.findByPk(req.body.petOwnerId);
+
+  if (petOwner.status === "old" ) {
+    status = 'accepted';
+  }
+
   try {
       await Booking.create({
           service_type: 'homeCare',
@@ -63,7 +71,7 @@ async function createHomeCareBooking(req, res) {
           checkOut: checkOut,
           total_price: totalPrice,
           petList: petList,
-          status: 'pending'
+          status: status
       });
   } catch (error) {
       console.error('Failed to create booking:', error);
@@ -118,6 +126,13 @@ async function createErrandsCareBooking(req, res) {
       return res.status(404).send({ message: `Pets with IDs ${missingPets.join(', ')} not found.` });
   }
 
+  const status = 'pending';
+  const petOwner = PetOwner.findByPk(req.body.petOwnerId);
+
+  if (petOwner.status === "old" ) {
+    status = 'accepted';
+  }
+
   try {
       await Booking.create({
           service_type: 'errandsCare',
@@ -126,7 +141,7 @@ async function createErrandsCareBooking(req, res) {
           checkOut: checkOut,
           total_price: totalPrice,
           petList: petList,
-          status: 'pending'
+          status: status
       });
   } catch (error) {
       console.error('Failed to create booking:', error);
@@ -181,6 +196,13 @@ async function createDayCareBooking(req, res) {
       return res.status(404).send({ message: `Pets with IDs ${missingPets.join(', ')} not found.` });
   }
 
+  const status = 'pending';
+  const petOwner = PetOwner.findByPk(req.body.petOwnerId);
+
+  if (petOwner.status === "old" ) {
+    status = 'accepted';
+  }
+
   try {
       await Booking.create({
           service_type: 'dayCare',
@@ -189,7 +211,7 @@ async function createDayCareBooking(req, res) {
           checkOut: checkOut,
           total_price: totalPrice,
           petList: petList,
-          status: 'pending'
+          status: status
       });
   } catch (error) {
       console.error('Failed to create booking:', error);
