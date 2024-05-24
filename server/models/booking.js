@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     petList: DataTypes.ARRAY(DataTypes.INTEGER),
     status: DataTypes.STRING,
     total_price: DataTypes.FLOAT,
-    reasonOfRejection: DataTypes.STRING
+    reasonOfRejection: DataTypes.STRING,
+    specific_instructions: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'booking',
