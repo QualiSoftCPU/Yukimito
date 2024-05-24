@@ -557,12 +557,12 @@ export default function PetOwnerDashboard() {
                       </div>
                     </div>
 
-                    <ul class="list-group list-group-flush">
-                      {bookings.map((booking) => {
+                    <ul class="list-group list-group-flush border-top-0">
+                      {bookings.length ? bookings.map((booking) => {
                         return (
                           <li class="list-group-item text-secondary p-1">
                             <div 
-                              className="card my-2 shadow overflow-auto p-1 mb-3 mb-md-0 mr-md-2"
+                              className="card my-2 shadow overflow-auto p-1 mb-3 mb-md-0 mr-md-2 border-top-0"
                               style={{ maxWidth: "800px", maxHeight: "500px" }}
                               onClick={() => setSelectedBookingId(booking.id)}
                             >
@@ -591,7 +591,7 @@ export default function PetOwnerDashboard() {
                             </div>
                           </li>
                         );
-                      })}
+                      }) : <p className="my-2 text-center">No bookings yet.</p>}
                     </ul>
                   </div>
 
@@ -675,7 +675,7 @@ export default function PetOwnerDashboard() {
                         class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light"
                         style={{ maxWidth: "800px", maxHeight: "500px" }}
                       >
-                        {pets.map((pet, index) => {
+                        {pets.length ? pets.map((pet, index) => {
                           return (
                             <div className="card my-2 shadow-sm" key={pet.id}>
                               <div className="card-header">{pet.breed}</div>
@@ -802,7 +802,7 @@ export default function PetOwnerDashboard() {
                               />
                             </div>
                           );
-                        })}
+                        }) : <p className="text-center">No pets added yet.</p>}
                       </div>
                     </div>
                   </div>
