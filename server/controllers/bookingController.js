@@ -4,7 +4,7 @@ const Pet = db.pet;
 const PetOwner = db.petOwner;
 
 async function createHomeCareBooking(req, res) {
-  const { petList, checkIn, checkOut } = req.body;
+  const { petList, checkIn, checkOut, specificInstructions } = req.body;
   const checkInDate = new Date(req.body.checkIn);
   const checkOutDate = new Date(req.body.checkOut);
   let totalPrice =  0;
@@ -18,7 +18,7 @@ async function createHomeCareBooking(req, res) {
   }
 
   const missingPets = [];
-  for (const petId of petList) {
+  for (const  petId of petList) {
       const pet = await Pet.findByPk(petId);
 
       if (!pet) {
@@ -71,7 +71,8 @@ async function createHomeCareBooking(req, res) {
           checkOut: checkOut,
           total_price: totalPrice,
           petList: petList,
-          status: status
+          status: status,
+          specific_instructions: specificInstructions
       });
   } catch (error) {
       console.error('Failed to create booking:', error);
@@ -82,7 +83,7 @@ async function createHomeCareBooking(req, res) {
 }
 
 async function createErrandsCareBooking(req, res) {
-  const { petList, checkIn, checkOut } = req.body;
+  const { petList, checkIn, checkOut, specificInstructions } = req.body;
   const checkInDate = new Date(req.body.checkIn);
   const checkOutDate = new Date(req.body.checkOut);
   let totalPrice =  0;
@@ -141,7 +142,8 @@ async function createErrandsCareBooking(req, res) {
           checkOut: checkOut,
           total_price: totalPrice,
           petList: petList,
-          status: status
+          status: status,
+          specific_instructions: specificInstructions
       });
   } catch (error) {
       console.error('Failed to create booking:', error);
@@ -152,7 +154,7 @@ async function createErrandsCareBooking(req, res) {
 }
 
 async function createDayCareBooking(req, res) {
-  const { petList, checkIn, checkOut } = req.body;
+  const { petList, checkIn, checkOut, specificInstructions } = req.body;
   const checkInDate = new Date(req.body.checkIn);
   const checkOutDate = new Date(req.body.checkOut);
   let totalPrice =  0;
@@ -211,7 +213,8 @@ async function createDayCareBooking(req, res) {
           checkOut: checkOut,
           total_price: totalPrice,
           petList: petList,
-          status: status
+          status: status,
+          specific_instructions: specificInstructions
       });
   } catch (error) {
       console.error('Failed to create booking:', error);
