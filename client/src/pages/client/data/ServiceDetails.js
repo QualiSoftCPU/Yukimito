@@ -15,7 +15,7 @@ const homeCare = {
   </>,
   operatingTime: "",
   description: "Going for a vacation or business trip and worried about your  pet, Home Care service is your choice. We take every precautionto provide a safe and stress-free boarding experience for your pet.",
-  price: 450
+  price: 425
 }
 
 const dayCare = {
@@ -41,7 +41,7 @@ const errandsCare = {
     Operating Time: 7:30 AM - 7:00 PM &nbsp;
   </>,
   description: "Going to church, grocery, or an important meeting for a short period of time and you cant attend to your pet needs, Errand service is for you.",
-  price: 180
+  price: 175
 }
 
 export { homeCare, dayCare, errandsCare };
