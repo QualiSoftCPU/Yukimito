@@ -16,7 +16,6 @@ export default function AdminBookingCard(props) {
     return owner ? owner.status : 'Unknown';
   };
 
-
   return (
     <>
       <div className="overflow-auto p-3 mb-3 mb-md-0 mr-md-3">
@@ -35,6 +34,9 @@ export default function AdminBookingCard(props) {
                 Check In Time: {new Date(props.checkIn).toLocaleString()}
                 <br />
                 Expected Check Out Time: {new Date(props.checkOut).toLocaleString()}
+              </p>
+              <p>
+                {props.specificInstructions ? `Specific instructions: ${props.specificInstructions}`: null}
               </p>
 
               <div className="d-flex justify-content-end">

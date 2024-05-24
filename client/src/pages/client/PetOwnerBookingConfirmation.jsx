@@ -25,7 +25,8 @@ const PetOwnerBookingHomeCare = () => {
 
   let userSelected = jwtDecode(token);
 
-  const [ pets, setPets] = useState([]);
+  const [pets, setPets] = useState([]);
+  const [specificInstructions, setSpecificInstructions] = useState(""); // State to hold specific instructions
 
   const [bookingDetails, setBookingDetails] = useState({
     service: "",
@@ -35,21 +36,16 @@ const PetOwnerBookingHomeCare = () => {
     petOwnerId: userSelected.id
   });
 
-  const [ calculated, setCalculated ] = useState(false);
-  const [ petsIncluded , setPetsIncluded ] = useState([]);
-
-  const [ serviceDetails, setServiceDetails ] = useState(homeCare);
-  const [ paymentBreakdown, setPaymentBreakdown] = useState([]); 
-  const [ totalPayment, setTotalPayment] = useState(0);
+  const [calculated, setCalculated] = useState(false);
+  const [petsIncluded, setPetsIncluded] = useState([]);
+  const [serviceDetails, setServiceDetails] = useState(homeCare);
+  const [paymentBreakdown, setPaymentBreakdown] = useState([]); 
+  const [totalPayment, setTotalPayment] = useState(0);
 
   const petList = pets.map((pet) => pet.name);
-  // console.log(pets);
-  const navItems = [];
 
-  function handleCheckInInput(event) {
-
+  const handleCheckInInput = (event) => {
     if (bookingDetails.service) {
-
       let service = bookingDetails.service;
 
       if (service === "Home Care") {
@@ -71,15 +67,12 @@ const PetOwnerBookingHomeCare = () => {
           checkOut: moment(event.$d).add(4, 'h').toDate()
         });
       }
-
-
     } else {
       alert("Please select a service first!")
     }
   }
 
-  function handleServiceSelection(event) {
-    console.log(bookingDetails)
+  const handleServiceSelection = (event) => {
     let service = event.target.innerText;
 
     if (service === "Home Care") {
@@ -96,7 +89,7 @@ const PetOwnerBookingHomeCare = () => {
     });
   }
 
-  function handlePetSelection(event, index) {
+  const handlePetSelection = (event, index) => {
     const selectedPetName = event.target.innerText;
     const selectedPet = pets.find((pet) => pet.name === selectedPetName);
   
@@ -105,16 +98,15 @@ const PetOwnerBookingHomeCare = () => {
       setBookingDetails((prevState) => ({
         ...prevState,
         petList: updatedPetList,
-      }))
+      }));
 
       setPetsIncluded((prevState) => ([
         ...prevState, selectedPet
       ]));
     }
-    console.log(petsIncluded);
   }
 
-  function handlePaymentBreakdown() {
+  const handlePaymentBreakdown = () => {
     const selectedService = bookingDetails.service;
 
     if (selectedService && paymentBreakdown && !calculated) {
@@ -131,71 +123,44 @@ const PetOwnerBookingHomeCare = () => {
     }
   }
 
-  async function handleBookingAppointmentConfirmation() {
-    console.log("Final Details:");
-    console.log(bookingDetails);
-    console.log(paymentBreakdown);
-    
-    console.log("Payment List: ", paymentBreakdown.map((pet) => {return pet.rate}));
+  const handleBookingAppointmentConfirmation = async () => {
+    if (!specificInstructions) {
+      alert("Please provide specific instructions!");
+      return;
+    }
 
-    if (bookingDetails.service === "Home Care") {
+    const bookingDetailsWithInstructions = {
+      ...bookingDetails,
+      specificInstructions: specificInstructions
+    };
 
-      axios.post('http://localhost:4269/api/createHomeCareBooking', bookingDetails)
-      .then((response) => {
-        console.log(response.data);
-        // handle success here
-        alert('Home Care Booking successful!');
-        navigate('/');
-        window.location.reload();
-      })
-      .catch((error) => {
-          console.error(error.message);
-          // handle error here
-          alert('Home Care Booking failed!');
-      });
+    try {
+      let response;
 
-    } else if (bookingDetails.service === "Day Care") {
-
-      axios.post('http://localhost:4269/api/createDayCareBooking', bookingDetails)
-      .then((response) => {
-        console.log(response.data);
-        // handle success here
-        alert('Day Care Booking successful!');
-        navigate('/');
-        window.location.reload();
-      })
-      .catch((error) => {
-          console.error(error.message);
-          // handle error here
-          alert('Day Care Booking failed!');
-      });
-      
-    } else if (bookingDetails.service === "Errands Care") {
-
-      try {
-        const response = await axios.post(
-          "http://localhost:4269/api/createErrandsCareBooking",
-          bookingDetails,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-  
-        if (response.status === 200) {
-          navigate('/');
-          window.location.reload();
-        }
-      } catch (error) {
-        console.log(error.message);
+      if (bookingDetails.service === "Home Care") {
+        response = await axios.post('http://localhost:4269/api/createHomeCareBooking', bookingDetailsWithInstructions);
+      } else if (bookingDetails.service === "Day Care") {
+        response = await axios.post('http://localhost:4269/api/createDayCareBooking', bookingDetailsWithInstructions);
+      } else if (bookingDetails.service === "Errands Care") {
+        response = await axios.post('http://localhost:4269/api/createErrandsCareBooking', bookingDetailsWithInstructions, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
       }
 
+      if (response && response.status === 200) {
+        alert(`${bookingDetails.service} Booking successful!`);
+        navigate('/');
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error(error.message);
+      alert(`${bookingDetails.service} Booking failed!`);
     }
   }
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
     if (!token) {
       navigate("/");
     }
@@ -208,12 +173,12 @@ const PetOwnerBookingHomeCare = () => {
       .then((response) => response.json())
       .then((fetchedPets) => setPets(fetchedPets))
       .catch((error) => console.log(error));
-  }, [navigate, userSelected.id]);
+  }, [navigate, token, userSelected.id]);
 
   return (
     <>
       <NavBarMain
-        navItems={navItems}
+        navItems={[]}
         customLink={
           <li class="nav-item active px-3 align-middle yuki-font-color">
             <a class="nav-link text-white" href="/">
@@ -228,10 +193,10 @@ const PetOwnerBookingHomeCare = () => {
         <h1 class="display-5 fw-bold">
           Booking <span className="yuki-font-color">Confirmation</span>
         </h1>
-        {/* content */}
         <hr />
         <div class="row align-items-center justify-content-center">
-          <div class="col-lg-12">
+         
+        <div class="col-lg-12">
             <div class="card">
               <Paper elevation={3} style={{ padding: "50px" }}>
                 <div className="row">
@@ -242,151 +207,134 @@ const PetOwnerBookingHomeCare = () => {
                       height: "100%",
                     }}
                   >
-                    {
-                      <div className="flex-container" style={{ flex: 1 }}>
-                        <form
-                          action="/action_page.php"
-                          className="form-container center"
-                        >
-
+                    <div className="flex-container" style={{ flex: 1 }}>
+                      <form action="/action_page.php" className="form-container center">
                         <p class="lead mb-4">
                           Please provide us the date for your Check-in.
                         </p>
-                        <SelectServiceInput 
-                          onClick={handleServiceSelection}
-                        />
-                          <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DateTimePicker
-                              label="Check In"
-                              name="startDateTime"
-                              className="input-margin non-inline input-styling"
-                              onChange={handleCheckInInput}
-                            />
-                          </LocalizationProvider>
-                          <Stack spacing={2} className="mb-2">
-                          
+                        <SelectServiceInput onClick={handleServiceSelection} />
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                          <DateTimePicker
+                            label="Check In"
+                            name="startDateTime"
+                            className="input-margin non-inline input-styling"
+                            onChange={handleCheckInInput}
+                          />
+                        </LocalizationProvider>
+                        <Stack spacing={2} className="mb-2">
                           {bookingDetails.checkOut && (
-  
-                            <Alert severity="warning"
-                            >
-                              <AlertTitle><h5><b>Expected Check Out Time:</b></h5></AlertTitle>
+                            <Alert severity="warning">
+                              <AlertTitle>
+                                <h5><b>Expected Check Out Time:</b></h5>
+                              </AlertTitle>
                               {bookingDetails.checkOut.toString()}
                             </Alert>
-            
                           )}
-                          </Stack>
-                        </form>
-
-                        <form
-                          action="/action_page.php"
-                          className="form-container center"
-                        >
-                        </form>
-
-                        <Autocomplete
-                          sx={{
-                            width: "100%",
-                          }}
-                          multiple
-                          options={petList}
-                          onChange={handlePetSelection}
-                          getOptionLabel={(option) => option}
-                          disableCloseOnSelect
-                          renderInput={(params) => (
-                            <TextField
-                              {...params}
-                              variant="outlined"
-                              label="Select Pets"
-                              placeholder="Select Pets"
-                            />
-                          )}
-                        />
-                      </div>
-                    }
+                        </Stack>
+                      </form>
+                      <Autocomplete
+                        sx={{
+                          width: "100%",
+                        }}
+                        multiple
+                        options={petList}
+                        onChange={handlePetSelection}
+                        getOptionLabel={(option) => option}
+                        disableCloseOnSelect
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            variant="outlined"
+                            label="Select Pets"
+                            placeholder="Select Pets"
+                          />
+                        )}
+                      />
+                      <TextField
+                        autocomplete="off"
+                        autoFocus
+                        name="specificInstructions"
+                        id="specificInstructions"
+                        label="Specific Instructions"
+                        type="text"
+                        variant="outlined"
+                        value={specificInstructions}
+                        onChange={(e) => setSpecificInstructions(e.target.value)}
+                        style={{ width: '100%', marginTop: '1rem', marginBottom: '1rem' }}
+                      />
+                    </div>
                   </div>
                   <div className="col">
-                  <BookingConfirmationInfoCard 
-                    service={serviceDetails.title + " (" + serviceDetails.duration + " Hours)"}
-                    checkIn={
-                      <span className="text-success">
-                        {serviceDetails.checkInTime}
-                      </span>}
-                    checkOut={
-                      <span className="text-danger">
-                        {serviceDetails.checkOutTime}
-                      </span>
-                    }
-                    operatingTime={
-                      <span className="text-danger">
-                        {serviceDetails.operatingTime}
-                      </span>
-                    }
-                    description={serviceDetails.description}
-                    price={serviceDetails.price}
-                    duration={serviceDetails.duration}
-                    onClick={handlePaymentBreakdown}
-                  />
+                    <BookingConfirmationInfoCard 
+                      service={serviceDetails.title + " (" + serviceDetails.duration + " Hours)"}
+                      checkIn={
+                        <span className="text-success">
+                          {serviceDetails.checkInTime}
+                        </span>}
+                      checkOut={
+                        <span className="text-danger">
+                          {serviceDetails.checkOutTime}
+                        </span>
+                      }
+                      operatingTime={
+                        <span className="text-danger">
+                          {serviceDetails.operatingTime}
+                        </span>
+                      }
+                      description={serviceDetails.description}
+                      price={serviceDetails.price}
+                      duration={serviceDetails.duration}
+                      onClick={handlePaymentBreakdown}
+                    />
+                  </div>
                 </div>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Thank you for availing our  {bookingDetails.service} service!</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Please review the details of your reservation and kindly wait for our staff to review and confirm your reservation.</p>
+                        <hr />
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Size</th>
+                              <th scope="col">Rate</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {paymentBreakdown.map((pet, index) => {
+                              return (
+                                <tr key={index}>
+                                  <th scope="row">{index}</th>
+                                  <td>{pet.petName}</td>
+                                  <td>{pet.size}</td>
+                                  <td>{pet.rate}</td>
+                                </tr>
+                              )
+                            })}
+                            <tr>
+                              <th scope="row"></th>
+                              <td></td>
+                              <td>Total Payment:</td>
+                              <td>{totalPayment}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn button-color text-white" onClick={handleBookingAppointmentConfirmation}>Confirm Booking</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                
-                
-                
               </Paper>
-            </div>
-          </div>
-
-         
-        </div>
-      </div>
-
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Thank you for availing our  {bookingDetails.service} service!</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p>Please review the
-              details of your reservation and kindly wait for our staff to review and confirm your reservation.</p>
-              <hr />
-              <table class="table"> 
-                <thead>
-               
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Size</th>
-                  <th scope="col">Rate</th>
-               
-                </tr>
-                </thead>
-                <tbody>
-                  {paymentBreakdown.map((pet, index) => {
-                    return (
-                      <tr>
-                        <th scope="row">{index}</th>
-                        <td>{pet.petName}</td>
-                        <td>{pet.size}</td>
-                        <td>{pet.rate}</td>
-                  
-                      </tr>
-                    )
-                  })}
-                  <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <td>Total Payment:</td>
-                    <td>
-                      {totalPayment}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn button-color text-white" onClick={handleBookingAppointmentConfirmation}>Confirm Booking</button>
             </div>
           </div>
         </div>

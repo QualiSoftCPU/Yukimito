@@ -191,6 +191,7 @@ const AdminDashBoard = () => {
                         checkIn={booking.checkIn}
                         checkOut={booking.checkOut}
                         petOwners={petOwners}
+                        specificInstructions={booking.specific_instructions}
                       />
                     </>
                   );
