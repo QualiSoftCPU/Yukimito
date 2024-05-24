@@ -53,6 +53,7 @@ export default function PetOwnerDashboard() {
   const [usernameError, setUsernameError] = useState("");
   const [contactNumberError, setContactNumberError] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [ uploadedPetVaccine, setUploadedPetVaccine] = useState(false);
   // const [ addressError, setAddressError ] = useState('');
 
   const handleChange = (event) => {
@@ -76,6 +77,7 @@ export default function PetOwnerDashboard() {
       ...pet,
       [event.target.name]: event.target.files[0],
     });
+    setUploadedPetVaccine(true);
   };
 
   const handleUploadPetAvatar = async (event, petId) => {
@@ -655,6 +657,7 @@ export default function PetOwnerDashboard() {
                   </div>
                   <div className="col d-flex flex-row-reverse">
                     <AddPetForm
+                      uploaded={uploadedPetVaccine}
                       handleDateChange={handleDateChange}
                       open={open}
                       handleAdd={handleAdd}

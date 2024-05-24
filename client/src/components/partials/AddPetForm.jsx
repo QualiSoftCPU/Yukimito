@@ -13,6 +13,7 @@ import Select from '@mui/material/Select';
 import { Typography } from '@mui/material';
 import BasicDatePicker from './BasicDatePicker';
 import AddIcon from '@mui/icons-material/Add';
+import CheckMark from '../../pages/partials/CheckMark';
 
 const dialogueNames = [
   {
@@ -73,7 +74,8 @@ export default function EditItemForm(props) {
                 <MenuItem value={'large'}>Large</MenuItem>
               </Select>
             </FormControl>
-            <UploadFile handleUpload={props.handleUpload}/>
+            <span><UploadFile handleUpload={props.handleUpload}/></span>
+            <span>{props.uploaded ? <CheckMark /> : null}</span>
           </DialogContent>
         <DialogActions>
           <Button className='button-link' onClick={props.handleCancel}>Cancel</Button>
